@@ -33,6 +33,7 @@ public class CodeGroupController extends BaseController{
         List<CodeGroupDto> list = service.selectList(vo);
         System.out.println("asdasdf");
         System.out.println("asdasdf");
+        System.out.println("asdasdf");
         model.addAttribute("list", list);
         return "codeGroupList";
     }
