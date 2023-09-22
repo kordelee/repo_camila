@@ -31,6 +31,7 @@ public class CodeGroupController extends BaseController{
     	public String codeGroupList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
         vo.setParamsPaging(service.selectOneCount(vo));
         List<CodeGroupDto> list = service.selectList(vo);
+        System.out.println("asdasdf");
         model.addAttribute("list", list);
         return "codeGroupList";
     }
