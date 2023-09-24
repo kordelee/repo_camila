@@ -35,6 +35,7 @@ public class CodeGroupController extends BaseController{
         System.out.println("asdasdf");
         System.out.println("asdasdf");
         System.out.println("asdasdf");
+        System.out.println("asdasdf");
         model.addAttribute("list", list);
         return "codeGroupList";
     }
