@@ -22,7 +22,7 @@ public class IndexController extends BaseController{
 	
     @RequestMapping(value = "/indexXdmView")
 	public String indexView() throws Exception{
-	return uriView;
-}
+    	return uriView;
+    }
 
 }
