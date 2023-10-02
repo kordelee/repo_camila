@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(value="/v1/infra/code/")
 public class CodeController extends BaseController{
-
+	
 	String uriList = "xdm/v1/infra/code/codeXdmList";
 	String uriAjaxList = "xdm/v1/infra/code/codeXdmAjaxList";
 	String uriAjaxLita = "xdm/v1/infra/code/codeXdmAjaxLita";

@@ -181,7 +181,7 @@ function checkLogic (objName, pattern, nullAllowedNy, message, regExp) {
     var obj = document.getElementById(objName);
     var objValue = document.getElementById(objName).value.trim();
     var objFeedback = document.getElementById(objName+"Feedback");
-
+	
     if(nullAllowedNy == 0) {
         if(regExp.test(objValue)){
             // obj.removeClass("is-invalid");
