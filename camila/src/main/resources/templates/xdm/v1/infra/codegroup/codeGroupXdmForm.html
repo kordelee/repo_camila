@@ -3,6 +3,14 @@
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
+<style>
+.btn_custom {
+
+	padding: 0.4rem 0.6rem 0.4rem 0.6rem !important;
+
+}
+</style>
+
   <body>
 
     <!-- ===============================================-->
@@ -21,9 +29,109 @@
         <h2 class="mb-0">Code Group</h2>
       </div>
     </div>
+    
     <!-- main -->
     <div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
-<!-- 
+  <div class="card-header p-4 border-bottom border-300 bg-soft">
+    <div class="row g-3 justify-content-between align-items-center">
+      <div class="col-12 col-md">
+        <h4 class="text-900 mb-0" data-anchor="data-anchor">Custom styles Example</h4>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div class="collapse code-collapse" id="custom-styles-example-code">
+
+    </div>
+    <div class="p-4 code-to-copy">
+      <form class="row g-3 needs-validation" novalidate="">
+        <div class="col-md-4">
+
+          <label class="form-label" for="validationCustom01">First name</label>
+
+          <input class="form-control" id="validationCustom01" type="text" value="Mark" required="" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+
+          <label class="form-label" for="validationCustom02">Last name</label>
+
+          <input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-4">
+
+          <label class="form-label" for="validationCustomUsername">Username</label>
+
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+
+            <input class="form-control" id="validationCustomUsername" type="text" aria-describedby="inputGroupPrepend"
+              required="" />
+            <div class="invalid-feedback">Please choose a username.</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <label class="form-label" for="validationCustom03">City</label>
+
+          <input class="form-control" id="validationCustom03" type="text" required="" />
+          <div class="invalid-feedback">Please provide a valid city.</div>
+        </div>
+        <div class="col-md-3">
+
+          <label class="form-label" for="validationCustom04">State</label>
+
+          <select class="form-select" id="validationCustom04" required="">
+            <option selected="" disabled="" value="">Choose...</option>
+            <option>...</option>
+          </select>
+          <div class="invalid-feedback">Please select a valid state.</div>
+        </div>
+        <div class="col-md-3">
+
+          <label class="form-label" for="validationCustom05">Zip</label>
+
+          <input class="form-control" id="validationCustom05" type="text" required="" />
+          <div class="invalid-feedback">Please provide a valid zip.</div>
+        </div>
+        <div class="col-12">
+
+          <div class="form-check">
+
+            <input class="form-check-input" id="invalidCheck" type="checkbox" value="" required="" />
+
+            <label class="form-check-label mb-0" for="invalidCheck">Agree to terms and conditions</label>
+            <div class="invalid-feedback mt-0">You must agree before submitting.</div>
+          </div>
+        </div>
+        <div class="col-12">
+
+          <button class="btn btn-primary btn_custom" type="submit"><i class="fa-solid fa-cloud-arrow-up fa-lg"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+  </div>
+  <footer class="footer position-absolute">
+    <div class="row g-0 justify-content-between align-items-center h-100">
+      <div class="col-12 col-sm-auto text-center">
+        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
+            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
+            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
+      </div>
+      <div class="col-12 col-sm-auto text-center">
+        <p class="mb-0 text-600">v1.13.0</p>
+      </div>
+    </div>
+  </footer>
+</div>
+    <!-- 
+    <div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+ 
       <div class="card-header p-4 border-bottom border-300 bg-soft">
         <div class="row g-3 justify-content-between align-items-center">
           <div class="col-12 col-md">
@@ -44,7 +152,7 @@
 
         </div>
       </div>
- -->
+
       <div class="card-body p-0">
         <div class="p-4 code-to-copy">
           <form class="row g-3 needs-validation" novalidate="">
@@ -114,7 +222,7 @@
     </div>
   </footer>
 </div>
-      
+-->      
       <script>
         var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
         var navbarTop = document.querySelector('.navbar-top');
