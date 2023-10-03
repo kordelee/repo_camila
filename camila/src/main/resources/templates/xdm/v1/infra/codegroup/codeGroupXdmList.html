@@ -5,11 +5,7 @@
 
 <style>
 
-.btn_custom {
 
-	padding: 0.4rem 0.6rem 0.4rem 0.6rem !important;
-
-}
 </style>
 
   <body>
@@ -65,7 +61,10 @@
         	 <fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/> 
             <input type="text" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
 -->            
-			<input type="text" id="shDateStart" name="shDateStart" value="" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+			<!-- <input type="text" id="shDateStart" name="shDateStart" value="" placeholder="시작일" class="form-control form-control-sm" autocomplete="off"> -->
+			<div class="flatpickr-input-container me-2">
+			<input class="form-control ps-6 datetimepicker" id="datepicker" type="text" data-options='{"dateFormat":"M j, Y","disableMobile":true,"defaultDate":"Mar 1, 2022"}' /><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
+			</div>
 		</div>              
 		<div class="col">
 <!--         
@@ -135,7 +134,7 @@
 							</select>
 						</div>
 					</div>
-				<	/div>
+	
 				<!-- totalAndRowNum e -->    
       	<hr style="margin: 0.5rem 0;">
 
