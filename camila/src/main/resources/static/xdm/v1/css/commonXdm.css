@@ -18,6 +18,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+
 /* jquery-ui datepicker 오늘, 취소 text size : default: 1rem */
 .ui-widget button {
 	font-size: 0.7em;
