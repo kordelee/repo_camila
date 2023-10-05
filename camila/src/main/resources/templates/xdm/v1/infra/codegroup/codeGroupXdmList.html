@@ -3,245 +3,180 @@
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
-  <body>
+<body>
 
-    <!-- ===============================================-->
-    <!--    Main Content-->
-    <!-- ===============================================-->
-    <main class="main" id="top">
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
 
 <div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
       
 <div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
-      
+
 <div class="content">
-  <div class="mb-9">
-    <div class="row g-3 mb-4">
-      <div class="col-auto">
-        <h2 class="mb-0">Code Group</h2>
-      </div>
-    </div>
- 
-    <div id="orderTable"
-      data-list='{"valueNames":["order","total","customer","payment_status","fulfilment_status","delivery_type","date"],"page":10,"pagination":true}'>
-     
-     <!--  -->
+	<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+		<input type="hidden" name="checkboxSeqArray">
+		<input type="hidden" name="ifcgSeq">
+		
+		<nav class="mb-2" aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+				<li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+				<li class="breadcrumb-item active">Default</li>
+			</ol>
+		</nav>
+	  <div class="mb-9">
+	    <div class="row g-3 mb-4">
+	      <div class="col-auto">
+	        <h2 class="mb-0">Code Group</h2>
+	      </div>
+	    </div>
+	    <div id="orderTable"
+	      data-list='{"valueNames":["ifcgSeq","ifcgName","ifcgNameEng","xifcdSeqCount","ifcgUseNy","ifcgOrder","regDateTime","modDateTime"],"page":5'>
+
+<!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
-    <div class="row">
-        <div id="divSearchControl" class="col text-center">
-            <i id="iSearchControlUp" class="fas fa-chevron-up"></i>
-            <i id="iSearchControlDown" class="fas fa-chevron-down"></i>
-        </div>
-    </div>
+	<div class="row">
+		<div id="divSearchControl" class="col text-center">
+			<i id="iSearchControlUp" class="fas fa-chevron-up"></i>
+			<i id="iSearchControlDown" class="fas fa-chevron-down"></i>
+		</div>
+	</div>
 </div>
-<!--  -->
+<!-- hidden search e -->
 
 <!-- search s -->
-<!-- <div id="divSearch" class="container-fluid px-0 mt-2 py-2 py-sm-3"> -->
 <div id="divSearch" class="container-fluid px-0 pb-3">
 	<div class="row row-cols-2 row-cols-sm-6 g-2 px-2">
 		<div class="col">
 			<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-				<option value="" >삭제여부</option>
-<!--             
-                <option value="" <c:if test="${empty vo.shDelNy}">selected</c:if>>삭제여부</option>
-                <option value="1" <c:if test="${vo.shDelNy eq 1}">selected</c:if>>Y</option>
-                <option value="0" <c:if test="${vo.shDelNy eq 0}">selected</c:if>>N</option>
- -->                
+				<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+				<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
 			</select>
 		</div>
 		<div class="col">
+			<select class="form-select" name="shUseNy" id="shUseNy">
+			<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
+<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+	</select>
+</div>			
+		<div class="col">
 			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
-				<option value="" >날짜</option>
-<!-- 
-                <option value="" <c:if test="${empty vo.shOptionDate}">selected</c:if>>날짜</option>
-                <option value="1" <c:if test="${vo.shOptionDate eq 1}">selected</c:if>>등록일</option>
-                <option value="2" <c:if test="${vo.shOptionDate eq 2}">selected</c:if>>수정일</option>
-                <option value="3" <c:if test="${vo.shOptionDate eq 3}">selected</c:if>>생일</option>
- -->
+				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+				<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+				<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 			</select>
 		</div>  
 		<div class="col">
-<!--        	
-        	 <fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/> 
-            <input type="text" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
--->            
+		<!-- <span th:text="${#date.format(vo.shDateEnd, 'yyyy-MM-dd')}">213</span> -->
+		<span th:text="${#temporals.createDate(vo.shDateEnd, 'yyyyMMdd')}">213</span>
+		<span th:text="${vo.shDateEnd}">213</span>
+	<!--        	
+				 <fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/> 
+				<input type="text" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+	-->            
 			<input type="text" id="shDateStart" name="shDateStart" value="" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
-<!-- 
-			<div class="flatpickr-input-container me-2">
-			<input class="form-control ps-6 datetimepicker" id="datepicker" type="text" data-options='{"dateFormat":"M j, Y","disableMobile":true,"defaultDate":"Mar 1, 2022"}' /><span class="uil uil-calendar-alt flatpickr-icon text-700"></span>
-			</div>
- -->
 		</div>              
 		<div class="col">
-<!--         
-			<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd }" pattern="yyyy-MM-dd HH:mm:ss" />
-	        <input type="text" id="shDateEnd" name="shDateEnd" value="<fmt:formatDate value="${shDateEnd }" pattern="yyyy-MM-dd"/>" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
- -->
-			<input type="text" id="shDateEnd" name="shDateEnd" value="" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+	<!--         
+				<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd }" pattern="yyyy-MM-dd HH:mm:ss" />
+				<input type="text" id="shDateEnd" name="shDateEnd" value="<fmt:formatDate value="${shDateEnd }" pattern="yyyy-MM-dd"/>" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+	 -->
+			<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+			<!-- th:text="${#date.format(vo.shDateEnd, 'yyyy-MM-dd HH:mm:ss')}" -->
 		</div> 
 	</div>
 	<div class="row row-cols-2 row-cols-sm-6 g-2 mt-1 px-2">
 		<div class="col">
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
-				<option value="">검색구분</option>
-	<!-- 
-	                <option value="" <c:if test="${empty vo.shOption}">selected</c:if>>검색구분</option>
-	                <option value="1" <c:if test="${vo.shOption eq 1}">selected</c:if>>코드그룹 코드</option>
-	                <option value="2" <c:if test="${vo.shOption eq 2}">selected</c:if>>코드그룹 이름</option>
-	                <option value="3" <c:if test="${vo.shOption eq 3}">selected</c:if>>코드그룹 이름 (영문)</option>
-	 -->
+				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+				<option value="1" th:selected="${vo.shOption == 1}">코드그룹 코드</option>
+				<option value="2" th:selected="${vo.shOption == 2}">코드그룹 이름</option>
+				<option value="3" th:selected="${vo.shOption == 3}">코드그룹 이름 (영문)</option>
 			</select>
 		</div>                    
 		<div class="col">
-	            <!-- <input type="text" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어" class="form-control form-control-sm"> -->
-			<input type="text" id="shValue" name="shValue" value="" placeholder="검색어" class="form-control form-control-sm">
+					<!-- <input type="text" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어" class="form-control form-control-sm"> -->
+			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" placeholder="검색어" class="form-control form-control-sm">
 			<div class="invalid-feedback" id="shValueFeedback"></div>
 		</div> 
 		<div class="col">
-			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" name="" id="btnSearch"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" name="" id="btnReset"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
+			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" id="btnSearch"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" id="btnReset"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
 		</div>    
 	</div>
 </div>
 <!-- search e -->
  
- 
-			<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+				<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
 
-<!-- totalAndRowNum s -->
-				<div class="container-fluid px-0 mt-2">
-					<div class="row">
-						<div class="col-9 col-md-10 col-xl-10 text-start pt-1">
-<!--         
-<c:choose>
-	<c:when test="${not empty vo.totalRows}">        
- -->
-							<span class="align-middle">Total: 123</span>
-<!-- 
-	</c:when>
-	<c:otherwise>            
- -->
-			<!-- <span class="align-middle">Total: 0</span> -->
-<!-- 
-	</c:otherwise>
-</c:choose>
- -->
-						</div>
-						<div class="col-3 col-md-2 col-xl-2 text-end">
-							<select class="form-select form-select-sm" id="changeRowNum" name="changeRowNum">
-								<option value="10">10</option>
-<!--             
-                <option value="10" <c:if test="${vo.rowNumToShow eq 10}">selected</c:if>>10</option>
-                <option value="30" <c:if test="${vo.rowNumToShow eq 30}">selected</c:if>>30</option>
-                <option value="50" <c:if test="${vo.rowNumToShow eq 50}">selected</c:if>>50</option>
-                <option value="80" <c:if test="${vo.rowNumToShow eq 80}">selected</c:if>>80</option>
-                <option value="100" <c:if test="${vo.rowNumToShow eq 100}">selected</c:if>>100</option>
- -->            
-							</select>
-						</div>
+<div th:replace="~{xdm/v1/infra/include/totalAndRowNum :: totalAndRowNum}"></div>
+
+					<hr style="margin: 0.5rem 0;">
+      	
+<!-- table s  -->
+<div class="table-responsive scrollbar mx-n1 px-1">
+	<table class="table table-sm fs--1 mb-0">
+		<thead>
+			<tr class="text-center">
+				<th class="white-space-nowrap fs--1 align-middle ps-0" style="width:30px; min-width: 30px;">
+					<div class="form-check mb-0 fs-0">
+						<input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
 					</div>
-	
-				<!-- totalAndRowNum e -->    
-      	<hr style="margin: 0.5rem 0;">
-
-
-
-      	<!-- table s  -->
-        <div class="table-responsive scrollbar mx-n1 px-1">
-          <table class="table table-sm fs--1 mb-0">
-            <thead>
-              <tr>
-                <th class="white-space-nowrap fs--1 align-middle ps-0" style="width:26px;">
-                  <div class="form-check mb-0 fs-0">
-                    <input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox"
-                      data-bulk-select='{"body":"order-table-body"}' />
-                  </div>
-                </th>
-                <th class="sort white-space-nowrap align-middle pe-3" scope="col" data-sort="order" style="width:5%;">
-                  ORDER</th>
-                <th class="sort align-middle text-end" scope="col" data-sort="total" style="width:6%;">TOTAL</th>
-                <th class="sort align-middle ps-8" scope="col" data-sort="customer"
-                  style="width:28%; min-width: 250px;">CUSTOMER</th>
-                <th class="sort align-middle pe-3" scope="col" data-sort="payment_status" style="width:10%;">PAYMENT
-                  STATUS</th>
-                <th class="sort align-middle text-start pe-3" scope="col" data-sort="fulfilment_status"
-                  style="width:12%; min-width: 200px;">FULFILMENT STATUS</th>
-                <th class="sort align-middle text-start" scope="col" data-sort="delivery_type" style="width:30%;">
-                  DELIVERY TYPE</th>
-                <th class="sort align-middle text-end pe-0" scope="col" data-sort="date">DATE</th>
-              </tr>
-            </thead>
-            <tbody class="list" id="order-table-body">
-              <tr class="hover-actions-trigger btn-reveal-trigger position-static">
-                <td class="fs--1 align-middle px-0 py-3">
-                  <div class="form-check mb-0 fs-0">
-                    <input class="form-check-input" type="checkbox"
-                      data-bulk-select-row='{"order":2453,"total":87,"customer":{"avatar":"/team/32.webp","name":"Carry Anna"},"payment_status":{"label":"Complete","type":"badge-phoenix-success","icon":"check"},"fulfilment_status":{"label":"Cancelled","type":"badge-phoenix-secondary","icon":"x"},"delivery_type":"Cash on delivery","date":"Dec 12, 12:56 PM"}' />
-                  </div>
-                </td>
-                <td class="order align-middle white-space-nowrap py-0"><a class="fw-semi-bold" href="#!">#2453</a></td>
-                <td class="total align-middle text-end fw-semi-bold text-1000">$87</td>
-                <td class="customer align-middle white-space-nowrap ps-8"><a class="d-flex align-items-center text-900"
-                    href="../../../apps/e-commerce/landing/profile.html">
-                    <div class="avatar avatar-m"><img class="rounded-circle"
-                        src="/xdm/v1/template/phoenix-v1.13.0/assets/img/team/32.webp" alt="" />
-                    </div>
-                    <h6 class="mb-0 ms-3 text-900">Carry Anna</h6>
-                  </a></td>
-                <td class="payment_status align-middle white-space-nowrap text-start fw-bold text-700"><span
-                    class="badge badge-phoenix fs--2 badge-phoenix-success"><span
-                      class="badge-label">Complete</span><span class="ms-1" data-feather="check"
-                      style="height:12.8px;width:12.8px;"></span></span></td>
-                <td class="fulfilment_status align-middle white-space-nowrap text-start fw-bold text-700"><span
-                    class="badge badge-phoenix fs--2 badge-phoenix-secondary"><span
-                      class="badge-label">Cancelled</span><span class="ms-1" data-feather="x"
-                      style="height:12.8px;width:12.8px;"></span></span></td>
-                <td class="delivery_type align-middle white-space-nowrap text-900 fs--1 text-start">Cash on delivery
-                </td>
-                <td class="date align-middle white-space-nowrap text-700 fs--1 ps-4 text-end">Dec 12, 12:56 PM</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-				<!-- table e  -->
-
+				</th>
+				<th class="align-middle" style="width:80px; min-width: 80px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹이름</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgNameEng" style="width: 200px; min-width: 200px;">코드그룹이름(영문)</th>
+				<th class="sort align-middle" scope="col" data-sort="xifcdSeqCount" style="width: 80px; min-width: 80px;">갯수</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgUseNy" style="width: 80px; min-width: 80px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgOrder" style="width: 80px; min-width: 80px;">순서</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+			</tr>
+		</thead>
+		<tbody class="list text-center" id="order-table-body">
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}">
+				<td class="fs--1 align-middle px-0 py-3">
+					<div class="form-check mb-0 fs-0">
+						<input class="form-check-input" type="checkbox" />
+					</div>
+				</td>
+				<td class="align-middle white-space-nowrap" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
+				<td class="ifcgSeq align-middle fw-semi-bold" th:text="${list.ifcgSeq}"></td>
+				<td class="ifcgName align-middle white-space-nowrap"><a href="" th:text="${list.ifcgName}" style="font-size: medium;"></a></td>
+				<td class="ifcgNameEng align-middle white-space-nowrap" th:text="${list.ifcgNameEng}"></td>
+				<td class="xifcdSeqCount align-middle white-space-nowrap" th:text="${list.xifcdSeqCount}"></td>
+				<td class="ifcgUseNy align-middle white-space-nowrap" th:if="${list.ifcgUseNy eq 0}">N</td>
+				<td class="ifcgUseNy align-middle white-space-nowrap" th:unless="${list.ifcgUseNy eq 0}">Y</td>
+				<td class="ifcgOrder align-middle white-space-nowrap" th:text="${list.ifcgOrder}"></td>
+				<td class="regDateTime align-middle white-space-nowrap" th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+				<td class="modDateTime align-middle white-space-nowrap" th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- table e  -->      	
+      	
 <!-- paging s  -->				
 <div class="container-fluid px-0 mt-2 mb-2">
-    <div class="row">
-        <div class="col">
-            <!-- <ul class="pagination pagination-sm justify-content-center mb-0"> -->
-            <ul class="pagination justify-content-center mb-0">
-                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li> -->
-<!-- <c:if test="${vo.startPage gt vo.pageNumToShow}"> -->
-                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})"><i class="fa-solid fa-angle-left"></i></a></li>
-<!-- </c:if> -->
-<!-- 
-<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
-	<c:choose>
-		<c:when test="${i.index eq vo.thisPage}">
- -->
-                <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})"><!-- ${i.index} --></a></li>
-<!-- 
-		</c:when>
-		<c:otherwise>             
- -->
-                <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})"><!-- ${i.index} --></a></li>
-<!--                 
-		</c:otherwise>
-	</c:choose>
-</c:forEach>                
-<c:if test="${vo.endPage ne vo.totalPages}">
- -->                
-                <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})"><i class="fa-solid fa-angle-right"></i></a></li>
-<!-- </c:if> -->
-                <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li> -->
-            </ul>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col">
+			<ul class="pagination justify-content-center mb-0">
+				<li class="page-item" th:if="${vo.startPage gt vo.pageNumToShow}"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li class="page-item" th:if="${vo.endPage ne vo.totalPages}"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
 </div>
-<!-- paging e  -->
-
+<!-- paging e  -->		      	
+      	
 <!-- button s -->
 <div class="container-fluid px-0 mt-2 mb-4">
 	<div class="row">
@@ -256,45 +191,45 @@
 	</div>
 </div>
 <!-- button e -->
-      	
 
-
-      </div>
-    </div>
-  </div>
-  <footer class="footer position-absolute">
-    <div class="row g-0 justify-content-between align-items-center h-100">
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
-            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
-            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
-      </div>
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 text-600">v1.13.0</p>
-      </div>
-    </div>
-  </footer>
+				</div>
+			</div>
+		</div>
+	  <footer class="footer position-absolute">
+	    <div class="row g-0 justify-content-between align-items-center h-100">
+	      <div class="col-12 col-sm-auto text-center">
+	        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
+	            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
+	            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
+	      </div>
+	      <div class="col-12 col-sm-auto text-center">
+	        <p class="mb-0 text-600">v1.13.0</p>
+	      </div>
+	    </div>
+	  </footer>
+	</form>
 </div>
 
-      <script>
-        var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
-        var navbarTop = document.querySelector('.navbar-top');
-        if (navbarTopStyle === 'darker') {
-          navbarTop.classList.add('navbar-darker');
-        }
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+  	navbarTop.classList.add('navbar-darker');
+	}
 
-        var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
-        var navbarVertical = document.querySelector('.navbar-vertical');
-        if (navbarVertical && navbarVerticalStyle === 'darker') {
-          navbarVertical.classList.add('navbar-darker');
-        }
-      </script>
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+  	navbarVertical.classList.add('navbar-darker');
+	}
+</script>
       
-      
-    </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
 
 <div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
 
@@ -308,7 +243,17 @@
 	window.addEventListener('load', function() {
 			$("#shDateStart, #shDateEnd").datepicker();
 	});
+	
+	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";                        /*###*/
+	let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm";                        /*###*/
+	let goUrlMultiUele = "/infra/codegroup/codeGroupMultiUele";              /*###*/
+	let goUrlMultiDele = "/infra/codegroup/codeGroupMultiDele";              /*###*/
+	
+	let seq = document.querySelector("input[name=ifcgSeq]");        				/*###*/
 
 </script>
-  </body>
+
+<script src="/xdm/v1/js/includeXdmList.js"></script>
+
+</body>
 </html>

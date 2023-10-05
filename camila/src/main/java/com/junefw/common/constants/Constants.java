@@ -6,6 +6,7 @@ public final class Constants {
 	
 	public static final String ABBREVIATION_ADMIN = "Xdm"; 
 	public static final String ABBREVIATION_USER = "Usr";
+	public static final String ABBREVIATION_ADVERTISER = "Adt";
 	
 //	for paging
 	public static final int ROW_NUM_TO_SHOW = 5;
@@ -23,7 +24,7 @@ public final class Constants {
 
 	public static final String TIME_FORMAT_BASIC = "HH:mm:ss";
 	
-	public static final int DATE_INTERVAL = -7;
+	public static final int DATE_INTERVAL = -30;
 	
 	public static final long PASSWOPRD_CHANGE_INTERVAL = 90;
 	
