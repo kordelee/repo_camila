@@ -45,6 +45,21 @@ public class UtilDateTime {
 	}
 	
 	
+	public static String calculateDayReplace00TimeString(LocalDateTime localDateTime, int day) throws Exception {
+		LocalDateTime localDateTimeNew;
+		
+		if(day >= 0) {
+			localDateTimeNew = localDateTime.plusDays(day); 
+		} else {
+			localDateTimeNew = localDateTime.minusDays(Math.abs(day));
+		}
+		
+		String localDateTimeNewString = localDateTimeNew.format(DateTimeFormatter.ofPattern(Constants.DATETIME_FORMAT_BASIC));
+		localDateTimeNewString = localDateTimeNewString.substring(0, 10) + " 00:00:00";
+		return localDateTimeNewString;
+	}
+	
+	
 	public static LocalDateTime calculateDayLocalDateTime(LocalDateTime localDateTime, int day) throws Exception {
 		LocalDateTime localDateTimeNew;
 		

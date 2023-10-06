@@ -60,9 +60,9 @@
 		</div>
 		<div class="col">
 			<select class="form-select" name="shUseNy" id="shUseNy">
-			<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
-<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+				<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
+				<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
 	</select>
 </div>			
 		<div class="col">
@@ -73,22 +73,10 @@
 			</select>
 		</div>  
 		<div class="col">
-		<!-- <span th:text="${#date.format(vo.shDateEnd, 'yyyy-MM-dd')}">213</span> -->
-		<span th:text="${#temporals.createDate(vo.shDateEnd, 'yyyyMMdd')}">213</span>
-		<span th:text="${vo.shDateEnd}">213</span>
-	<!--        	
-				 <fmt:parseDate var="shDateStart" value="${vo.shDateStart }" pattern="yyyy-MM-dd HH:mm:ss"/> 
-				<input type="text" id="shDateStart" name="shDateStart" value="<fmt:formatDate value="${shDateStart }" pattern="yyyy-MM-dd" />" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
-	-->            
-			<input type="text" id="shDateStart" name="shDateStart" value="" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+			<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
 		</div>              
 		<div class="col">
-	<!--         
-				<fmt:parseDate var="shDateEnd" value="${vo.shDateEnd }" pattern="yyyy-MM-dd HH:mm:ss" />
-				<input type="text" id="shDateEnd" name="shDateEnd" value="<fmt:formatDate value="${shDateEnd }" pattern="yyyy-MM-dd"/>" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
-	 -->
-			<input type="text" id="shDateEnd" name="shDateEnd" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
-			<!-- th:text="${#date.format(vo.shDateEnd, 'yyyy-MM-dd HH:mm:ss')}" -->
+			<input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
 		</div> 
 	</div>
 	<div class="row row-cols-2 row-cols-sm-6 g-2 mt-1 px-2">
@@ -101,7 +89,6 @@
 			</select>
 		</div>                    
 		<div class="col">
-					<!-- <input type="text" id="shValue" name="shValue" value="<c:out value="${vo.shValue }"/>" placeholder="검색어" class="form-control form-control-sm"> -->
 			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" placeholder="검색어" class="form-control form-control-sm">
 			<div class="invalid-feedback" id="shValueFeedback"></div>
 		</div> 
@@ -168,9 +155,9 @@
 	<div class="row">
 		<div class="col">
 			<ul class="pagination justify-content-center mb-0">
-				<li class="page-item" th:if="${vo.startPage gt vo.pageNumToShow}"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
-				<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
-				<li class="page-item" th:if="${vo.endPage ne vo.totalPages}"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+				<li class="page-item" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
 			</ul>
 		</div>
 	</div>

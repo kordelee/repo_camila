@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.junefw.common.base.BaseController;
-import com.junefw.common.constants.Constants;
-import com.junefw.common.util.UtilDateTime;
 
 @Controller
 @RequestMapping(value = "/v1/infra/codegroup")
@@ -26,29 +24,19 @@ public class CodeGroupController extends BaseController{
 	@Autowired
 	CodeGroupService service;
 	
-	
-	public void setSearch(CodeGroupVo vo) throws Exception {
-		vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy());
-		vo.setShDelNy(vo.getShDelNy() == null ? 0 : vo.getShDelNy());
-		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
-		vo.setShDateStart(vo.getShDateStart() == null
-		    ? UtilDateTime.calculateDayString(UtilDateTime.nowLocalDateTime(), Constants.DATE_INTERVAL)
-		    : UtilDateTime.add00TimeString(vo.getShDateStart()));
-		vo.setShDateEnd(vo.getShDateEnd() == null
-		    ? UtilDateTime.nowString()
-		    : UtilDateTime.addNowTimeString(vo.getShDateEnd()));		
-		
-//		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
-//		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-//		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
-	}	
-	
-	
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
 		setSearch(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
-        model.addAttribute("list", service.selectList(vo));
+		
+		System.out.println("vo.getShDelNy(): " + vo.getShDelNy());
+		System.out.println("vo.getShUseNy(): " + vo.getShUseNy());
+		System.out.println("vo.getShOptionDate(): " + vo.getShOptionDate());
+		System.out.println("vo.getShOption(): " + vo.getShOption());
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
         return pathCommonXdm + "codeGroupXdmList";
   	}
 
