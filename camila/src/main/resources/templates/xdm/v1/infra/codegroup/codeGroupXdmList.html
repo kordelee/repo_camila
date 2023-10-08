@@ -113,7 +113,7 @@
 			<tr class="text-center">
 				<th class="white-space-nowrap fs--1 align-middle ps-0" style="width:30px; min-width: 30px;">
 					<div class="form-check mb-0 fs-0">
-						<input class="form-check-input" id="checkbox-bulk-order-select" type="checkbox" data-bulk-select='{"body":"order-table-body"}' />
+						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
 				<th class="align-middle" style="width:80px; min-width: 80px;">#</th>
@@ -128,10 +128,15 @@
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
-			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}">
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:if="${#lists.isEmpty(list)}">
+				<td colspan="10">
+					<p style="padding-top: 12px;">There are no data!</p>
+				</td>
+			</tr>
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" onmouseover="this.style.background='red'" onmouseout="this.style.background=''">
 				<td class="fs--1 align-middle px-0 py-3">
 					<div class="form-check mb-0 fs-0">
-						<input class="form-check-input" type="checkbox" />
+						<input class="form-check-input" type="checkbox" th:id="'checkboxSeq_' + ${list.ifcgSeq}" name="checkboxSeq" th:value="${list.ifcgSeq}"/>
 					</div>
 				</td>
 				<td class="align-middle white-space-nowrap" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
@@ -168,12 +173,12 @@
 <div class="container-fluid px-0 mt-2 mb-4">
 	<div class="row">
 		<div class="col-6 text-start">
-			<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnDelete"><i class="fa-solid fa-x fa-lg"></i></button>
-			<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnUelete"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+			<button type="button" class="btn btn-danger btn-sm btn_custom" id="btnDelete"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" class="btn btn-danger btn-sm btn_custom" id="btnUelete"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 		</div>
 		<div class="col-6 text-end">
-			<button type="button" class="btn btn-success btn-sm btn_custom" name="" id="btnExcel"><i class="fa-regular fa-file-excel fa-lg"></i></button>
-			<button type="button" class="btn btn-primary btn-sm btn_custom" name="" id="btnForm"><i class="fas fa-plus fa-lg"></i></button>
+			<button type="button" class="btn btn-success btn-sm btn_custom" id="btnExcel"><i class="fa-regular fa-file-excel fa-lg"></i></button>
+			<button type="button" class="btn btn-primary btn-sm btn_custom" id="btnForm"><i class="fas fa-plus fa-lg"></i></button>
 		</div>
 	</div>
 </div>
@@ -233,10 +238,10 @@
 	
 	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";                        /*###*/
 	let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm";                        /*###*/
-	let goUrlMultiUele = "/infra/codegroup/codeGroupMultiUele";              /*###*/
-	let goUrlMultiDele = "/infra/codegroup/codeGroupMultiDele";              /*###*/
+	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";              /*###*/
+	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";              /*###*/
 	
-	let seq = document.querySelector("input[name=ifcgSeq]");        				/*###*/
+	let seq = document.querySelector("input[name=ifcgSeq]");        									/*###*/
 
 </script>
 
