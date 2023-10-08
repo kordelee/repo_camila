@@ -89,12 +89,12 @@
 			</select>
 		</div>                    
 		<div class="col">
-			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" placeholder="검색어" class="form-control form-control-sm">
+			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
 			<div class="invalid-feedback" id="shValueFeedback"></div>
 		</div> 
 		<div class="col">
-			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" id="btnSearch"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-			<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" id="btnReset"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
+			<button type="button" id="btnSearch" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+			<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
 		</div>    
 	</div>
 </div>
@@ -128,27 +128,27 @@
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
-			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:if="${#lists.isEmpty(list)}">
+			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold">
 				<td colspan="10">
 					<p style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
-			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" onmouseover="this.style.background='red'" onmouseout="this.style.background=''">
+			<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" onmouseover="this.style.background='red'" onmouseout="this.style.background=''">
 				<td class="fs--1 align-middle px-0 py-3">
 					<div class="form-check mb-0 fs-0">
-						<input class="form-check-input" type="checkbox" th:id="'checkboxSeq_' + ${list.ifcgSeq}" name="checkboxSeq" th:value="${list.ifcgSeq}"/>
+						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifcgSeq}" name="checkboxSeq" th:value="${list.ifcgSeq}" class="form-check-input"/>
 					</div>
 				</td>
-				<td class="align-middle white-space-nowrap" th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}"></td>
-				<td class="ifcgSeq align-middle fw-semi-bold" th:text="${list.ifcgSeq}"></td>
+				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle white-space-nowrap"></td>
+				<td th:text="${list.ifcgSeq}" class="ifcgSeq align-middle fw-semi-bold"></td>
 				<td class="ifcgName align-middle white-space-nowrap"><a href="" th:text="${list.ifcgName}" style="font-size: medium;"></a></td>
-				<td class="ifcgNameEng align-middle white-space-nowrap" th:text="${list.ifcgNameEng}"></td>
-				<td class="xifcdSeqCount align-middle white-space-nowrap" th:text="${list.xifcdSeqCount}"></td>
-				<td class="ifcgUseNy align-middle white-space-nowrap" th:if="${list.ifcgUseNy eq 0}">N</td>
-				<td class="ifcgUseNy align-middle white-space-nowrap" th:unless="${list.ifcgUseNy eq 0}">Y</td>
-				<td class="ifcgOrder align-middle white-space-nowrap" th:text="${list.ifcgOrder}"></td>
-				<td class="regDateTime align-middle white-space-nowrap" th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-				<td class="modDateTime align-middle white-space-nowrap" th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+				<td th:text="${list.ifcgNameEng}" class="ifcgNameEng align-middle white-space-nowrap"></td>
+				<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle white-space-nowrap"></td>
+				<td th:if="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle white-space-nowrap">N</td>
+				<td th:unless="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle white-space-nowrap">Y</td>
+				<td th:text="${list.ifcgOrder}" class="ifcgOrder align-middle white-space-nowrap"></td>
+				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle white-space-nowrap"></td>
+				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle white-space-nowrap" ></td>
 			</tr>
 		</tbody>
 	</table>
@@ -160,9 +160,9 @@
 	<div class="row">
 		<div class="col">
 			<ul class="pagination justify-content-center mb-0">
-				<li class="page-item" th:if="${vo.startPage gt vo.pageNumToShow}" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
-				<li class="page-item" th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
-				<li class="page-item" th:if="${vo.endPage ne vo.totalPages}" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+				<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
 			</ul>
 		</div>
 	</div>
@@ -173,12 +173,12 @@
 <div class="container-fluid px-0 mt-2 mb-4">
 	<div class="row">
 		<div class="col-6 text-start">
-			<button type="button" class="btn btn-danger btn-sm btn_custom" id="btnDelete"><i class="fa-solid fa-x fa-lg"></i></button>
-			<button type="button" class="btn btn-danger btn-sm btn_custom" id="btnUelete"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 		</div>
 		<div class="col-6 text-end">
-			<button type="button" class="btn btn-success btn-sm btn_custom" id="btnExcel"><i class="fa-regular fa-file-excel fa-lg"></i></button>
-			<button type="button" class="btn btn-primary btn-sm btn_custom" id="btnForm"><i class="fas fa-plus fa-lg"></i></button>
+			<button type="button" id="btnExcel" class="btn btn-success btn-sm btn_custom"><i class="fa-regular fa-file-excel fa-lg"></i></button>
+			<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fas fa-plus fa-lg"></i></button>
 		</div>
 	</div>
 </div>

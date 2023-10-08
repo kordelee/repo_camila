@@ -62,6 +62,14 @@ document.getElementById("btnSearch").onclick = function () {
 };
 
 
+function enterkey() {
+	if (window.event.keyCode == 13) {
+	    form.action = goUrlXdmList;
+	    form.submit();
+    }
+}
+
+
 document.getElementById("checkBoxAll").onclick = function () {
     let checkNum = document.getElementsByName("checkboxSeq");
 
