@@ -1,275 +1,136 @@
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="ko">
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
-  <body>
+<body>
 
-    <!-- ===============================================-->
-    <!--    Main Content-->
-    <!-- ===============================================-->
-    <main class="main" id="top">
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
 
 <div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
       
 <div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
       
 <div class="content">
-
 	<nav class="mb-2" aria-label="breadcrumb">
 		<ol class="breadcrumb mb-0">
-			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-			<li class="breadcrumb-item active">Default</li>
+			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+			<li class="breadcrumb-item active">Default</li>								<!-- ### -->
 		</ol>
 	</nav>
-
-  <div class="mb-9">
-    <div class="row g-3 mb-4">
-      <div class="col-auto">
-        <h2 class="mb-0">Code Group</h2>
-      </div>
-    </div>
-    
-    <!-- main -->
-    <div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
-  <div class="card-header p-4 border-bottom border-300 bg-soft">
-    <div class="row g-3 justify-content-between align-items-center">
-      <div class="col-12 col-md">
-        <h4 class="text-900 mb-0" data-anchor="data-anchor">Custom styles Example</h4>
-      </div>
-
-    </div>
-  </div>
-  <div class="card-body p-0">
-    <div class="collapse code-collapse" id="custom-styles-example-code">
-
-    </div>
-    <div class="p-4 code-to-copy">
-      <form class="row g-3 needs-validation" novalidate="">
-        <div class="col-md-4">
-
-          <label class="form-label" for="validationCustom01">First name</label>
-
-          <input class="form-control" id="validationCustom01" type="text" value="Mark" required="" />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4">
-
-          <label class="form-label" for="validationCustom02">Last name</label>
-
-          <input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-          <div class="valid-feedback">Looks good!</div>
-        </div>
-        <div class="col-md-4">
-
-          <label class="form-label" for="validationCustomUsername">Username</label>
-
-          <div class="input-group has-validation">
-            <span class="input-group-text" id="inputGroupPrepend">@</span>
-
-            <input class="form-control" id="validationCustomUsername" type="text" aria-describedby="inputGroupPrepend"
-              required="" />
-            <div class="invalid-feedback">Please choose a username.</div>
-          </div>
-        </div>
-        <div class="col-md-6">
-
-          <label class="form-label" for="validationCustom03">City</label>
-
-          <input class="form-control" id="validationCustom03" type="text" required="" />
-          <div class="invalid-feedback">Please provide a valid city.</div>
-        </div>
-        <div class="col-md-3">
-
-          <label class="form-label" for="validationCustom04">State</label>
-
-          <select class="form-select" id="validationCustom04" required="">
-            <option selected="" disabled="" value="">Choose...</option>
-            <option>...</option>
-          </select>
-          <div class="invalid-feedback">Please select a valid state.</div>
-        </div>
-        <div class="col-md-3">
-
-          <label class="form-label" for="validationCustom05">Zip</label>
-
-          <input class="form-control" id="validationCustom05" type="text" required="" />
-          <div class="invalid-feedback">Please provide a valid zip.</div>
-        </div>
-        <div class="col-12">
-
-          <div class="form-check">
-
-            <input class="form-check-input" id="invalidCheck" type="checkbox" value="" required="" />
-
-            <label class="form-check-label mb-0" for="invalidCheck">Agree to terms and conditions</label>
-            <div class="invalid-feedback mt-0">You must agree before submitting.</div>
-          </div>
-        </div>
-
-        <div class="col-12">
-					<div class="row">
-						<div class="col-6 text-start">
-							<button type="button" class="btn btn-outline-secondary btn-sm btn_custom" name="" id="btnDelete"><i class="fa-solid fa-list fa-lg"></i></button>
-							<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnDelete"><i class="fa-solid fa-x fa-lg"></i></button>
-							<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnUelete"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+	<div class="mb-9">
+	  <div class="row g-3 mb-4">
+	    <div class="col-auto">
+	      <h2 class="mb-0">Code Group</h2>														<!-- ### -->
+	    </div>
+	  </div>
+		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+			<div class="card-header p-4 border-bottom border-300 bg-soft">
+				<div class="row g-3 justify-content-between align-items-center">
+					<div class="col-12 col-md">
+						<h4 class="text-900 mb-0">기본정보</h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="p-4 code-to-copy">
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
+			
+<div th:replace="~{xdm/v1/infra/codegroup/codeGroupXdmVo :: vo}"></div>			<!-- ### --> 					
+					
+						<div class="col-md-4">
+							<label class="form-label" for="validationCustom01">First name</label>
+							<input class="form-control" id="validationCustom01" type="text" value="Mark" required="" />
+							<div class="valid-feedback">Looks good!</div>
 						</div>
-						<div class="col-6 text-end">
-							<button type="button" class="btn btn-primary btn-sm btn_custom" name="" id="btnForm"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
-							<button class="btn btn-primary btn_custom" type="submit"><i class="fa-solid fa-database fa-lg"></i></button>
+						<div class="col-md-4">
+							<label class="form-label" for="validationCustom02">Last name</label>
+							<input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
+							<div class="valid-feedback">Looks good!</div>
 						</div>
-					</div>          
-        </div>
-
-<!-- button s -->
-<!-- 
-<div class="container-fluid px-0 mt-2">
-	<div class="row">
-		<div class="col-6 text-start">
-			<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnDelete"><i class="fa-solid fa-x fa-lg"></i></button>
-			<button type="button" class="btn btn-danger btn-sm btn_custom" name="" id="btnUelete"><i class="fa-regular fa-trash-can fa-lg"></i></button>
-		</div>
-		<div class="col-6 text-end">
-			<button type="button" class="btn btn-success btn-sm btn_custom" name="" id="btnExcel"><i class="fa-regular fa-file-excel fa-lg"></i></button>
-			<button type="button" class="btn btn-primary btn-sm btn_custom" name="" id="btnForm"><i class="fas fa-plus fa-lg"></i></button>
+						<div class="col-md-4">
+							<label class="form-label" for="validationCustomUsername">Username</label>
+							<div class="input-group has-validation">
+								<span class="input-group-text" id="inputGroupPrepend">@</span>
+								<input class="form-control" id="validationCustomUsername" type="text" aria-describedby="inputGroupPrepend" required="" />
+								<div class="invalid-feedback">Please choose a username.</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label" for="validationCustom03">City</label>
+							<input class="form-control" id="validationCustom03" type="text" required="" />
+							<div class="invalid-feedback">Please provide a valid city.</div>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label" for="validationCustom04">State</label>
+							<select class="form-select" id="validationCustom04" required="">
+								<option selected="" disabled="" value="">Choose...</option>
+								<option>...</option>
+							</select>
+							<div class="invalid-feedback">Please select a valid state.</div>
+						</div>
+						<div class="col-md-3">
+							<label class="form-label" for="validationCustom05">Zip</label>
+							<input class="form-control" id="validationCustom05" type="text" required="" />
+							<div class="invalid-feedback">Please provide a valid zip.</div>
+						</div>
+						<div class="col-12">
+							<div class="form-check">
+								<input class="form-check-input" id="invalidCheck" type="checkbox" value="" required="" />
+								<label class="form-check-label mb-0" for="invalidCheck">Agree to terms and conditions</label>
+								<div class="invalid-feedback mt-0">You must agree before submitting.</div>
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="row">
+								<div class="col-6 text-start">
+									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+								</div>
+								<div class="col-6 text-end">
+									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+									<button type="submit" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+								</div>
+							</div>          
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
-</div>
- -->
-<!-- button e --> 
-      </form>
-    </div>
-  </div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>   
 
 </div>
-  </div>
-  <footer class="footer position-absolute">
-    <div class="row g-0 justify-content-between align-items-center h-100">
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
-            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
-            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
-      </div>
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 text-600">v1.13.0</p>
-      </div>
-    </div>
-  </footer>
-</div>
-    <!-- 
-    <div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
- 
-      <div class="card-header p-4 border-bottom border-300 bg-soft">
-        <div class="row g-3 justify-content-between align-items-center">
-          <div class="col-12 col-md">
-            <h4 class="text-900 mb-0" data-anchor="data-anchor">Basic Information</h4>
-          </div>
 
-          <div class="col col-md-auto">
-            <nav class="nav nav-underline justify-content-end doc-tab-nav align-items-center" role="tablist">
-              <button class="btn btn-link px-2 text-900 copy-code-btn" type="button"><span
-                  class="fas fa-copy me-1"></span>Copy Code</button><a
-                class="btn btn-sm btn-phoenix-primary code-btn ms-2" data-bs-toggle="collapse"
-                href="#custom-styles-example-code" role="button" aria-controls="custom-styles-example-code"
-                aria-expanded="false"> <span class="me-2" data-feather="code"></span>View code</a><a
-                class="btn btn-sm btn-phoenix-primary preview-btn ms-2"><span class="me-2"
-                  data-feather="eye"></span>Preview</a>
-            </nav>
-          </div>
+<form name="formVo" method="post">
+	<div th:replace="~{xdm/v1/infra/codegroup/codeGroupXdmVo :: vo}"></div>			<!-- ### -->
+</form>
 
-        </div>
-      </div>
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+		navbarTop.classList.add('navbar-darker');
+	}
 
-      <div class="card-body p-0">
-        <div class="p-4 code-to-copy">
-          <form class="row g-3 needs-validation" novalidate="">
-            <div class="col-md-4">
-              <label class="form-label" for="validationCustom01">First name</label>
-              <input class="form-control" id="validationCustom01" type="text" value="Mark" required="" />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label" for="validationCustom02">Last name</label>
-              <input class="form-control" id="validationCustom02" type="text" value="Otto" required="" />
-              <div class="valid-feedback">Looks good!</div>
-            </div>
-            <div class="col-md-4">
-              <label class="form-label" for="validationCustomUsername">Username</label>
-              <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input class="form-control" id="validationCustomUsername" type="text"
-                  aria-describedby="inputGroupPrepend" required="" />
-                <div class="invalid-feedback">Please choose a username.</div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label" for="validationCustom03">City</label>
-              <input class="form-control" id="validationCustom03" type="text" required="" />
-              <div class="invalid-feedback">Please provide a valid city.</div>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label" for="validationCustom04">State</label>
-              <select class="form-select" id="validationCustom04" required="">
-                <option selected="" disabled="" value="">Choose...</option>
-                <option>...</option>
-              </select>
-              <div class="invalid-feedback">Please select a valid state.</div>
-            </div>
-            <div class="col-md-3">
-              <label class="form-label" for="validationCustom05">Zip</label>
-              <input class="form-control" id="validationCustom05" type="text" required="" />
-              <div class="invalid-feedback">Please provide a valid zip.</div>
-            </div>
-            <div class="col-12">
-              <div class="form-check">
-                <input class="form-check-input" id="invalidCheck" type="checkbox" value="" required="" />
-                <label class="form-check-label mb-0" for="invalidCheck">Agree to terms and conditions</label>
-                <div class="invalid-feedback mt-0">You must agree before submitting.</div>
-              </div>
-            </div>
-            <div class="col-12">
-              <button class="btn btn-primary" type="button">Submit form</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <footer class="footer position-absolute">
-    <div class="row g-0 justify-content-between align-items-center h-100">
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
-            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
-            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
-      </div>
-      <div class="col-12 col-sm-auto text-center">
-        <p class="mb-0 text-600">v1.13.0</p>
-      </div>
-    </div>
-  </footer>
-</div>
--->      
-      <script>
-        var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
-        var navbarTop = document.querySelector('.navbar-top');
-        if (navbarTopStyle === 'darker') {
-          navbarTop.classList.add('navbar-darker');
-        }
-
-        var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
-        var navbarVertical = document.querySelector('.navbar-vertical');
-        if (navbarVertical && navbarVerticalStyle === 'darker') {
-          navbarVertical.classList.add('navbar-darker');
-        }
-      </script>
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+		navbarVertical.classList.add('navbar-darker');
+	}
+</script>
       
-      
-    </main>
-    <!-- ===============================================-->
-    <!--    End of Main Content-->
-    <!-- ===============================================-->
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
 
 <div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
 
@@ -277,5 +138,33 @@
 
 <div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
 
-  </body>
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			
+	});
+	
+	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";		/* ### */
+	let goUrlXdmInst = "/v1/infra/codegroup/codeGroupXdmInst";		/* ### */
+	let goUrlXdmUpdt = "/v1/infra/codegroup/codeGroupXdmUpdt";		/* ### */
+	let goUrlXdmDele = "/v1/infra/codegroup/codeGroupXdmDele";		/* ### */
+	let goUrlXdmUele = "/v1/infra/codegroup/codeGroupXdmUele";		/* ### */
+	
+	let seq = document.querySelector("input[name=ifcgSeq]");			/* ### */
+	
+	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+	
+	}
+
+</script>
+
+<script src="/xdm/v1/js/includeXdmForm.js"></script>
+
+</body>
 </html>

@@ -32,6 +32,9 @@ public class CodeGroupController extends BaseController{
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
+//			List<CodeGroupDao> list = service.selectList(vo));
+//			model.addAttribute("list", list);
+			
 			model.addAttribute("list", service.selectList(vo));
 		}
         return pathCommonXdm + "codeGroupXdmList";
@@ -39,7 +42,18 @@ public class CodeGroupController extends BaseController{
 
 	
 	@RequestMapping(value = "/codeGroupXdmForm")
-	public String codeGroupXdmForm() throws Exception{
+	public String codeGroupXdmForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
+		
+		if (vo.getIfcgSeq().equals("0") || vo.getIfcgSeq().equals("")) {
+//			insert mode
+		} else {
+//			update mode
+
+//			CodeGroupDto item = service.selectOne(vo);
+//			model.addAttribute("item", item);
+			
+			model.addAttribute("item", service.selectOne(vo));
+		}
 		return pathCommonXdm + "codeGroupXdmForm";
 	}
 	

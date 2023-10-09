@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" dir="ltr">
+<html lang="ko">
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
@@ -19,19 +19,19 @@
 		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 		<input type="hidden" name="checkboxSeqArray">
-		<input type="hidden" name="ifcgSeq">
+		<input type="hidden" name="ifcgSeq">															<!-- ### -->
 		
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
-				<li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-				<li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-				<li class="breadcrumb-item active">Default</li>
+				<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+				<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+				<li class="breadcrumb-item active">Default</li>								<!-- ### -->
 			</ol>
 		</nav>
 	  <div class="mb-9">
 	    <div class="row g-3 mb-4">
 	      <div class="col-auto">
-	        <h2 class="mb-0">Code Group</h2>
+	        <h2 class="mb-0">Code Group</h2>														<!-- ### -->
 	      </div>
 	    </div>
 	    <div id="orderTable"
@@ -187,18 +187,9 @@
 				</div>
 			</div>
 		</div>
-	  <footer class="footer position-absolute">
-	    <div class="row g-0 justify-content-between align-items-center h-100">
-	      <div class="col-12 col-sm-auto text-center">
-	        <p class="mb-0 mt-2 mt-sm-0 text-900">Thank you for creating with Phoenix<span
-	            class="d-none d-sm-inline-block"></span><span class="d-none d-sm-inline-block mx-1">|</span><br
-	            class="d-sm-none" />2023 &copy;<a class="mx-1" href="https://themewagon.com">Themewagon</a></p>
-	      </div>
-	      <div class="col-12 col-sm-auto text-center">
-	        <p class="mb-0 text-600">v1.13.0</p>
-	      </div>
-	    </div>
-	  </footer>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>       		
+
 	</form>
 </div>
 
@@ -229,19 +220,19 @@
 
 <div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
 
-
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
 			$("#shDateStart, #shDateEnd").datepicker();
 	});
 	
-	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";                        /*###*/
-	let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm";                        /*###*/
-	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";              /*###*/
-	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";              /*###*/
+	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";								/* ### */
+	let goUrlXdmForm = "/v1/infra/codegroup/codeGroupXdmForm";								/* ### */
+	let goUrlXdmMultiUele = "/v1/infra/codegroup/codeGroupXdmMultiUele";			/* ### */
+	let goUrlXdmMultiDele = "/v1/infra/codegroup/codeGroupXdmMultiDele";			/* ### */
+	let goUrlXdmView = "/v1/infra/codegroup/codeGroupXdmView";								/* ### */
 	
-	let seq = document.querySelector("input[name=ifcgSeq]");        									/*###*/
+	let seq = document.querySelector("input[name=ifcgSeq]");									/* ### */
 
 </script>
 
