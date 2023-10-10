@@ -3,25 +3,26 @@ let formVo = document.querySelector("form[name=formVo]");
 
 
 document.getElementById("btnList").onclick = function () {
-	alert("goUrlXdmList:  " + goUrlXdmList);
 	formVo.action = goUrlXdmList;
 	formVo.submit();
 }
 
 
 document.getElementById("btnDelete").onclick = function () {
-	document.querySelector(".modal-title").textContent = "확 인";
-	document.querySelector(".modal-body").textContent = "해당 데이터를 삭제하시겠습니까 ?";
+	document.querySelector("#modalConfirmTitle").textContent = "확 인";
+	document.querySelector("#modalConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";
 	document.querySelector("#btnModalUelete").style.display = 'none';
 	document.querySelector("#btnModalDelete").style.display = '';
+	$("#modalConfirm").modal("show");      	
 }
 
 
 document.getElementById("btnUelete").onclick = function () {
-	document.querySelector(".modal-title").textContent = "확 인";
-	document.querySelector(".modal-body").textContent = "해당 데이터를 삭제하시겠습니까 ?";
+	document.querySelector("#modalConfirmTitle").textContent = "확 인";
+	document.querySelector("#modalConfirmTitle").textContent = "해당 데이터를 삭제하시겠습니까 ?";
 	document.querySelector("#btnModalUelete").style.display = '';
 	document.querySelector("#btnModalDelete").style.display = 'none';
+	$("#modalConfirm").modal("show");      	
 }
 
 

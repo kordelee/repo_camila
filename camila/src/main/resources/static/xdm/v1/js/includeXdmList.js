@@ -91,14 +91,14 @@ document.getElementById("checkBoxAll").onclick = function () {
 
 document.getElementById("btnUelete").onclick = function () {
 	if (document.querySelectorAll("input[name='checkboxSeq']:checked").length > 0) {
-		document.querySelector(".modal-title").textContent = "확 인";
-		document.querySelector(".modal-body").textContent = "해당 데이터를 삭제하시겠습니까 ?";
+		document.querySelector("#modalConfirmTitle").textContent = "확 인";
+		document.querySelector("#modalConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";
 		document.querySelector("#btnModalUelete").style.display = '';
 		document.querySelector("#btnModalDelete").style.display = 'none';
 		$("#modalConfirm").modal("show");        
 	} else {
-		document.querySelector(".modal-title").textContent = "확 인";
-		document.querySelector(".modal-body").textContent = "데이터를 선택해 주세요!";
+		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalAlertBody").textContent = "데이터를 선택해 주세요!";
 		document.querySelector("#btnModalDelete").style.display = 'none';
 		document.querySelector("#btnModalUelete").style.display = 'none';
 		$("#modalAlert").modal("show");
