@@ -141,7 +141,7 @@
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle white-space-nowrap"></td>
 				<td th:text="${list.ifcgSeq}" class="ifcgSeq align-middle fw-semi-bold"></td>
-				<td class="ifcgName align-middle white-space-nowrap"><a href="" th:text="${list.ifcgName}" style="font-size: medium;"></a></td>
+				<td class="ifcgName align-middle white-space-nowrap"><a href="javascript:void(0);" th:text="${list.ifcgName}" th:attr="onclick=|goForm('${list.ifcgSeq}')|" style="font-size: medium;"></a></td>
 				<td th:text="${list.ifcgNameEng}" class="ifcgNameEng align-middle white-space-nowrap"></td>
 				<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle white-space-nowrap"></td>
 				<td th:if="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle white-space-nowrap">N</td>

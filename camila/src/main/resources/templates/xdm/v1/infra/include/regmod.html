@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">  	
+
+<th:block th:if="${not #strings.isEmpty(item?.ifcgSeq)}" th:fragment="regmod">		
+	<div class="col-md-3">						
+		<label for="regSeq" class="form-label">등록자</label>
+		<input type="text" id="regSeq" name="regSeq" th:value="|${item?.regId} (${item?.regSeq})|" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="regDateTime" class="form-label">등록일</label>
+		<input type="text" id="regDateTime" name="regDateTime" th:value="${#dates.format(item.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="regIp" class="form-label">등록 IP</label>
+		<input type="text" id="regIp" name="regIp" th:value="${item?.regIp}" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="regDeviceCd" class="form-label">등록 장치</label>
+		<input type="text" id="regDeviceCd" name="regDeviceCd" th:value="${item?.regDeviceCd}" disabled class="form-control"/>
+	</div>
+	<div class="col-md-3">						
+		<label for="modSeq" class="form-label">수정자</label>
+		<input type="text" id="modSeq" name="modSeq" th:value="|${item?.modId} (${item?.modSeq})|" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="modDateTime" class="form-label">수정일</label>
+		<input type="text" id="modDateTime" name="modDateTime" th:value="${#dates.format(item.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="modIp" class="form-label">수정 IP</label>
+		<input type="text" id="modIp" name="modIp" th:value="${item?.modIp}" disabled class="form-control"/>
+	</div>						
+	<div class="col-md-3">						
+		<label for="modDeviceCd" class="form-label">수정 장치</label>
+		<input type="text" id="modDeviceCd" name="modDeviceCd" th:value="${item?.modDeviceCd}" disabled class="form-control"/>
+	</div>
+</th:block>
+</html>

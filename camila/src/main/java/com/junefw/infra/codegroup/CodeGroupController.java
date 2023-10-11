@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
+import com.junefw.common.constants.Constants;
 
 @Controller
 @RequestMapping(value = "/v1/infra/codegroup")
@@ -39,6 +40,18 @@ public class CodeGroupController extends BaseController{
 		}
         return pathCommonXdm + "codeGroupXdmList";
   	}
+	
+	
+	@RequestMapping(value = "/codeGroupXdmView")
+	public String codeGroupXdmView(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
+		
+//		CodeGroupDto item = service.selectOne(vo);
+//		model.addAttribute("item", item);
+
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonXdm + "codeGroupXdmView";
+	}
 
 	
 	@RequestMapping(value = "/codeGroupXdmForm")
@@ -79,6 +92,60 @@ public class CodeGroupController extends BaseController{
 			vo.setIfcgSeq(checkboxSeq);
 			service.delete(vo);
 		}
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return pathRedirectCommonXdm + "codeGroupXdmList";
+	}
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "codeGroupXdmInst")
+	public String codeGroupXdmInst(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.insert(dto);
+		
+		vo.setIfcgSeq(dto.getIfcgSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		if (Constants.INSERT_AFTER_TYPE == 1) {
+			return pathRedirectCommonXdm + "codeGroupXdmForm";
+		} else {
+			return pathRedirectCommonXdm + "codeGroupXdmList";
+		}
+	}
+	
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "codeGroupXdmUpdt")
+	public String codeGroupXdmUpdt(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.update(dto);
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		if (Constants.INSERT_AFTER_TYPE == 1) {
+			return pathRedirectCommonXdm + "codeGroupXdmForm";
+		} else {
+			return pathRedirectCommonXdm + "codeGroupXdmList";
+		}
+	}
+	
+	@RequestMapping(value = "codeGroupXdmUele")
+	public String codeGroupXdmUele(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.uelete(dto);
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return pathRedirectCommonXdm + "codeGroupXdmList";
+	}
+
+	
+	@RequestMapping(value = "codeGroupXdmDele")
+	public String codeGroupXdmDele(CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.delete(vo);
 
 		redirectAttributes.addFlashAttribute("vo", vo);
 

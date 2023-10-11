@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">  
 
-<div th:fragment="vo">
+<th:block th:fragment="vo">	
 	<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1">
 	<input type="hidden" name="rowNumToShow" th:value="${vo.rowNumToShow}">
 	
@@ -16,5 +16,6 @@
 	<input type="hidden" name="shValue" th:value="${vo.shValue}">
 	
 	<input type="hidden" name="ifcgSeq" th:value="${vo.ifcgSeq}">		<!-- ### -->
-</div>
+</th:block>
+
 </html>

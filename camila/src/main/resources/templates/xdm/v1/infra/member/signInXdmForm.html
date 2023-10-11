@@ -25,14 +25,14 @@
               <label class="form-label" for="ifmmId">ID</label>
               <div class="form-icon-container">
                 <input class="form-control form-icon-input" id="ifmmId" name="ifmmId" type="text" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>
-                <div class="invalid-feedback" id="ifmmIdFeedback">sdfgsdfg</div>
+                <div class="invalid-feedback" id="ifmmIdFeedback"></div>
               </div>
             </div>
             <div class="mb-3 text-start">
               <label class="form-label" for="ifmmPassword">Password</label>
               <div class="form-icon-container">
                 <input class="form-control form-icon-input" id="ifmmPassword" name="ifmmPassword" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
-                <div class="invalid-feedback" id="ifmmPasswordFeedback">sdfgsdfg</div>
+                <div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
               </div>
             </div>
             <div class="row flex-between-center mb-7">
@@ -63,50 +63,50 @@
 
 <script type="text/javascript">
 
-// validation = function() {
-// 	 if(!checkNull('ifmmId', 2, "ID를 입력해 주세요.")) return false;
-// 	 if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해 주세요.")) return false;
-// }
-
-// document.getElementById("buttonSignIn").onclick = function () {
-	
-// 	if(validation() == false) return false;
-	
-	
-
-// // 	$.ajax({
-// // 		async: true 
-// // 		,cache: false
-// // 		,type: "post"
-// // 		/* ,dataType:"json" */
-// // 		,url: "/v1/infra/member/loginUsrProc"
-// // 		/* ,data : $("#formLogin").serialize() */
-// // 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-// // 		,success: function(response) {
-// // 			if(response.rt == "success") {
-// // 				if(response.changePwd == "true") {
-// // 					location.href = "/v1/infra/member/expiredPwdUsrForm";
-// // 				} else {
-// // 					location.href = "/v1/infra/index/indexUsrView";
-// // 				}
-// // 			} else {
-// // 				alert("회원없음");
-// // 			}
-// // 		}
-// // 		,error : function(jqXHR, textStatus, errorThrown){
-// // 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-// // 		}
-// // 	});
- 	
-
-// }
+validation = function() {
+	 if(!checkNull('ifmmId', 2, "ID를 입력해 주세요.")) return false;
+	 if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해 주세요.")) return false;
+}
 
 document.getElementById("buttonSignIn").onclick = function () {
 	
-		document.getElementById("modalAlertTitle").innerText = "확 인";
-		document.getElementById("modalAlertBody").innerText = "진심입니까? 과연 그럴까요 ?????";
-		$("#modalAlert").modal("show");
+	if(validation() == false) return false;
+	
+	
+
+// 	$.ajax({
+// 		async: true 
+// 		,cache: false
+// 		,type: "post"
+// 		/* ,dataType:"json" */
+// 		,url: "/v1/infra/member/loginUsrProc"
+// 		/* ,data : $("#formLogin").serialize() */
+// 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+// 		,success: function(response) {
+// 			if(response.rt == "success") {
+// 				if(response.changePwd == "true") {
+// 					location.href = "/v1/infra/member/expiredPwdUsrForm";
+// 				} else {
+// 					location.href = "/v1/infra/index/indexUsrView";
+// 				}
+// 			} else {
+// 				alert("회원없음");
+// 			}
+// 		}
+// 		,error : function(jqXHR, textStatus, errorThrown){
+// 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+// 		}
+// 	});
+ 	
+
 }
+
+// document.getElementById("buttonSignIn").onclick = function () {
+	
+// 		document.getElementById("modalAlertTitle").innerText = "확 인";
+// 		document.getElementById("modalAlertBody").innerText = "진심입니까? 과연 그럴까요 ?????";
+// 		$("#modalAlert").modal("show");
+// }
 
 </script>
 

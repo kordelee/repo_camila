@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.junefw.common.base.BaseController;
 
 @Controller
-@RequestMapping(value = "/infra/member")
+@RequestMapping(value = "/v1/infra/member")
 public class MemberController extends BaseController{
 	
 	String uriList = "xdm/v1/infra/member/memberXdmList";
