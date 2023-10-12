@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!-- table s  -->
+<div class="table-responsive scrollbar mx-n1 px-1">
+	<table class="table table-sm fs--1 mb-0">
+		<thead>
+			<tr class="text-center">
+				<th class="white-space-nowrap fs--1 align-middle ps-0" style="width:30px; min-width: 30px;">
+					<div class="form-check mb-0 fs-0">
+						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
+					</div>
+				</th>
+				<th class="align-middle" style="width:80px; min-width: 80px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹이름</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgNameEng" style="width: 200px; min-width: 200px;">코드그룹이름(영문)</th>
+				<th class="sort align-middle" scope="col" data-sort="xifcdSeqCount" style="width: 80px; min-width: 80px;">갯수</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgUseNy" style="width: 80px; min-width: 80px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgOrder" style="width: 80px; min-width: 80px;">순서</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+			</tr>
+		</thead>
+		<tbody class="list text-center" id="order-table-body">
+			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold">
+				<td colspan="10">
+					<p style="padding-top: 12px;">There are no data!</p>
+				</td>
+			</tr>
+			<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" onmouseover="this.style.background='red'" onmouseout="this.style.background=''">
+				<td class="fs--1 align-middle px-0 py-3">
+					<div class="form-check mb-0 fs-0">
+						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifcgSeq}" name="checkboxSeq" th:value="${list.ifcgSeq}" class="form-check-input"/>
+					</div>
+				</td>
+				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle white-space-nowrap"></td>
+				<td th:text="${list.ifcgSeq}" class="ifcgSeq align-middle fw-semi-bold"></td>
+				<td class="ifcgName align-middle white-space-nowrap"><a href="javascript:void(0);" th:text="${list.ifcgName}" th:attr="onclick=|goForm('${list.ifcgSeq}')|" style="font-size: medium;"></a></td>
+				<td th:text="${list.ifcgNameEng}" class="ifcgNameEng align-middle white-space-nowrap"></td>
+				<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle white-space-nowrap"></td>
+				<td th:if="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle white-space-nowrap">N</td>
+				<td th:unless="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle white-space-nowrap">Y</td>
+				<td th:text="${list.ifcgOrder}" class="ifcgOrder align-middle white-space-nowrap"></td>
+				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle white-space-nowrap"></td>
+				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle white-space-nowrap" ></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- table e  -->      	
+      	
+<!-- paging s  -->				
+<div class="container-fluid px-0 mt-2 mb-2">
+	<div class="row">
+		<div class="col">
+			<ul class="pagination justify-content-center mb-0">
+				<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- paging e  -->
+
+</html>

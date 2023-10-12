@@ -142,7 +142,7 @@
 </th:block>
 								</div>
 								<div class="col-6 text-end">
-									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button>
+<!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
 									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
 								</div>
 							</div>          
@@ -193,13 +193,14 @@
 			
 	});
 	
-	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";		/* ### */
-	let goUrlXdmInst = "/v1/infra/codegroup/codeGroupXdmInst";		/* ### */
-	let goUrlXdmUpdt = "/v1/infra/codegroup/codeGroupXdmUpdt";		/* ### */
-	let goUrlXdmDele = "/v1/infra/codegroup/codeGroupXdmDele";		/* ### */
-	let goUrlXdmUele = "/v1/infra/codegroup/codeGroupXdmUele";		/* ### */
+	let goUrlXdmList = "/v1/infra/codegroup/codeGroupXdmList";						/* ### */
+	let goUrlXdmAjaxList = "/v1/infra/codegroup/codeGroupXdmAjaxList";		/* ### */
+	let goUrlXdmInst = "/v1/infra/codegroup/codeGroupXdmInst";						/* ### */
+	let goUrlXdmUpdt = "/v1/infra/codegroup/codeGroupXdmUpdt";						/* ### */
+	let goUrlXdmDele = "/v1/infra/codegroup/codeGroupXdmDele";						/* ### */
+	let goUrlXdmUele = "/v1/infra/codegroup/codeGroupXdmUele";						/* ### */
 	
-	let seq = document.querySelector("input[name=ifcgSeq]");			/* ### */
+	let seq = document.querySelector("input[name=ifcgSeq]");							/* ### */
 	
 	
 	function validationInst() {
