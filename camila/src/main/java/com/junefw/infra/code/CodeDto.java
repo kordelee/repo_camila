@@ -18,6 +18,8 @@ public class CodeDto extends BaseDto{
 	private String ifcdNameLang4;
 	private String ifcdNameLang5;
 	private String ifcdNameLang6;
+	private String ifcdNameLang7;
+	private String ifcdNameLang8;
 	private Integer ifcdUseNy;
 	private Integer ifcdOrder;
 	private String ifcdReferenceV1;
@@ -116,6 +118,22 @@ public class CodeDto extends BaseDto{
 
 	public void setIfcdNameLang6(String ifcdNameLang6) {
 		this.ifcdNameLang6 = ifcdNameLang6;
+	}
+	
+	public String getIfcdNameLang7() {
+		return ifcdNameLang7;
+	}
+	
+	public void setIfcdNameLang7(String ifcdNameLang7) {
+		this.ifcdNameLang7 = ifcdNameLang7;
+	}
+	
+	public String getIfcdNameLang8() {
+		return ifcdNameLang8;
+	}
+	
+	public void setIfcdNameLang8(String ifcdNameLang8) {
+		this.ifcdNameLang8 = ifcdNameLang8;
 	}
 
 	public Integer getIfcdUseNy() {

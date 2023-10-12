@@ -116,10 +116,10 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:80px; min-width: 80px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹코드</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹이름</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgNameEng" style="width: 200px; min-width: 200px;">코드그룹이름(영문)</th>
+				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹 코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹 이름</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgNameEng" style="width: 200px; min-width: 200px;">코드그룹 이름(영문)</th>
 				<th class="sort align-middle" scope="col" data-sort="xifcdSeqCount" style="width: 80px; min-width: 80px;">갯수</th>
 				<th class="sort align-middle" scope="col" data-sort="ifcgUseNy" style="width: 80px; min-width: 80px;">사용</th>
 				<th class="sort align-middle" scope="col" data-sort="ifcgOrder" style="width: 80px; min-width: 80px;">순서</th>
@@ -133,7 +133,9 @@
 					<p style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
-			<tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" onmouseover="this.style.background='red'" onmouseout="this.style.background=''">
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" 
+				onmouseover="this.style.background='red'" onmouseout="this.style.background=''"
+				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifcgSeq}" >			<!-- ### -->
 				<td class="fs--1 align-middle px-0 py-3">
 					<div class="form-check mb-0 fs-0">
 						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifcgSeq}" name="checkboxSeq" th:value="${list.ifcgSeq}" class="form-check-input"/>

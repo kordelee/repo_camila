@@ -14,6 +14,12 @@
 		WHERE 1=1
 			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcdUseNy = #{shUseNy}</if>
 			<if test="shDelNy != null and !shDelNy.equals('')">AND ifcdDelNy = #{shDelNy}</if>
+<!--         
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->    
 			<choose>
 				<when test="shOption == 1">AND a.ifcgSeq = #{shValue}</when>
 				<when test="shOption == 2">AND b.ifcgName LIKE CONCAT('%',#{shValue},'%')</when>
@@ -37,7 +43,7 @@
 				, a.ifcdOrder
 				<include refid="Base.selectRegModWithAlies" />
 			<include refid="selectCommon" />
-			ORDER BY a.ifcgSeq, a.ifcdOrder, a.ifcdSeq
+			ORDER BY a.ifcgSeq desc, a.ifcdOrder, a.ifcdSeq
 			<include refid="Base.orderByLimitForMysql" />
 		<include refid="Base.selectListLowerForMysql" />
 	</select>
@@ -69,6 +75,8 @@
 			,ifcdNameLang4
 			,ifcdNameLang5
 			,ifcdNameLang6
+			,ifcdNameLang7
+			,ifcdNameLang8
 			,ifcdUseNy
 			,ifcdOrder
 			,ifcdReferenceV1
@@ -94,6 +102,8 @@
 			,#{ifcdNameLang4}
 			,#{ifcdNameLang5}
 			,#{ifcdNameLang6}
+			,#{ifcdNameLang7}
+			,#{ifcdNameLang8}
 			,#{ifcdUseNy}
 			,#{ifcdOrder}
 			,#{ifcdReferenceV1}
@@ -126,6 +136,8 @@
 			,ifcdNameLang4 = #{ifcdNameLang4}
 			,ifcdNameLang5 = #{ifcdNameLang5}
 			,ifcdNameLang6 = #{ifcdNameLang6}
+			,ifcdNameLang7 = #{ifcdNameLang7}
+			,ifcdNameLang8 = #{ifcdNameLang8}
 			,ifcdUseNy = #{ifcdUseNy}
 			,ifcdOrder = #{ifcdOrder}
 			,ifcdReferenceV1 = #{ifcdReferenceV1}
@@ -158,7 +170,7 @@
 			AND ifcdSeq = #{ifcdSeq}
 	</delete>
 	
-    <select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
+	<select id="selectListCachedCodeArrayList" resultMap="resultMapObj">
 		SELECT 
 			ifcdSeq
 			, ifcdName
@@ -168,7 +180,7 @@
 		WHERE 1=1
 			AND ifcdDelNy = 0
 		    AND ifcdUseNy = 1
-    </select>
+   </select>
 </mapper>
 
 

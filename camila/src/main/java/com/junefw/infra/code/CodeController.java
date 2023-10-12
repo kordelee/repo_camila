@@ -1,7 +1,6 @@
 package com.junefw.infra.code;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
-import com.junefw.common.util.UtilDateTime;
 import com.junefw.infra.codegroup.CodeGroupService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,16 +21,15 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping(value="/v1/infra/code/")
 public class CodeController extends BaseController{
 	
-	String uriList = "xdm/v1/infra/code/codeXdmList";
-	String uriAjaxList = "xdm/v1/infra/code/codeXdmAjaxList";
-	String uriAjaxLita = "xdm/v1/infra/code/codeXdmAjaxLita";
-	String uriForm = "xdm/v1/infra/code/codeXdmForm";
-	String uriView = "";
+	String pathCommonXdm = "xdm/v1/infra/code/";
+	String pathRedirectCommonXdm = "redirect:/v1/infra/code/";
+
+	String pathCommonUsr = "usr/v1/infra/code/";
+	String pathRedirectCommonUsr = "";
 	
-	String uriRedirectList = "redirect:/v1/infra/code/codeXdmList";
-	String uriRedirectAjaxList = "redirect:/v1/infra/code/codeXdmAjaxList";
-	String uriRedirectForm = "redirect:/v1/infra/code/codeXdmForm";
-	String uriRedirectView = "";
+	String pathCommonAdt = "adt/v1/infra/code/";
+	String pathRedirectCommonAdt = "";	
+	
 	
 	@Autowired
 	CodeService service;
@@ -40,103 +37,54 @@ public class CodeController extends BaseController{
 	@Autowired
 	CodeGroupService codeGroupService;
 	
-public void setSearch(CodeVo vo) throws Exception {
+	
+	@RequestMapping(value = "/codeXdmAjaxList")
+	public String codeXdmAjaxList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
-		vo.setShUseNy(vo.getShUseNy() == null ? 1 : vo.getShUseNy());
-		vo.setShDelNy(vo.getShDelNy() == null ? 0 : vo.getShDelNy());
-		vo.setShOptionDate(vo.getShOptionDate() == null ? 2 : vo.getShOptionDate());
-		vo.setShDateStart(vo.getShDateStart() == null || vo.getShDateStart() == "" ? null : UtilDateTime.add00TimeString(vo.getShDateStart()));
-		vo.setShDateEnd(vo.getShDateEnd() == null || vo.getShDateEnd() == "" ? null : UtilDateTime.add59TimeString(vo.getShDateEnd()));
+		setSearch(vo);
+		
+		return pathCommonXdm + "codeXdmAjaxList";
 	}
 	
 	
-	@RequestMapping(value = "codeXdmList")
-	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
-
+	@RequestMapping(value = "/codeXdmAjaxLita")
+	public String codeXdmAjaxLita(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		
 		setSearch(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-			List<CodeDto> list = service.selectList(vo);
-			model.addAttribute("list", list);
+			model.addAttribute("list", service.selectList(vo));
 		}
+		
+		return pathCommonXdm + "codeXdmAjaxLita";
+	}
+	
+	
+	@RequestMapping(value = "/codeXdmView")
+	public String codeXdmView(@ModelAttribute("vo") CodeVo vo, Model model) {
 
-		return uriList;
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonXdm + "codeXdmView";
 	}
 
 	
 	@RequestMapping(value = "codeXdmForm")
 	public String codeXdmForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
-		model.addAttribute("list", codeGroupService.selectListWithoutPaging());
+		model.addAttribute("listCodeGroup", codeGroupService.selectListWithoutPaging());
 		
 		if (vo.getIfcdSeq().equals("0") || vo.getIfcdSeq().equals("")) {
 			//	insert
 		} else {
-			CodeDto item = service.selectOne(vo);
-			model.addAttribute("item", item);
+			model.addAttribute("item", service.selectOne(vo));
 		}
 		
-		return uriForm;
+		return pathCommonXdm + "codeXdmForm";
 	}
 	
 
-	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeXdmInst")
-	public String codeXdmInst(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.insert(dto);
-	
-		vo.setIfcdSeq(dto.getIfcdSeq());
-		
-		redirectAttributes.addFlashAttribute("vo", vo);
-
-		if (Constants.INSERT_AFTER_TYPE == 1) {
-			return uriRedirectForm;
-		} else {
-			return uriRedirectList;
-		}
-	}
-	
-	
-	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeXdmUpdt")
-	public String codeXdmUpdt(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.update(dto);
-
-		redirectAttributes.addFlashAttribute("vo", vo);
-
-		if (Constants.UPDATE_AFTER_TYPE == 1) {
-			return uriRedirectForm;
-		} else {
-			return uriRedirectList;
-		}
-	}
-
-	
-	@RequestMapping(value = "codeXdmUele")
-	public String codeXdmUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.uelete(dto);
-
-		redirectAttributes.addFlashAttribute("vo", vo);
-
-		return uriRedirectList;
-	}
-
-	
-	@RequestMapping(value = "codeXdmDele")
-	public String codeXdmDele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
-
-		service.delete(vo);
-
-		redirectAttributes.addFlashAttribute("vo", vo);
-
-		return uriRedirectList;
-	}
-
-	
 	@RequestMapping(value = "codeXdmMultiUele")
 	public String codeXdmMultiUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -147,7 +95,7 @@ public void setSearch(CodeVo vo) throws Exception {
 
 		redirectAttributes.addFlashAttribute("vo", vo);
 
-		return uriRedirectList;
+		return pathRedirectCommonXdm + "codeXdmList";
 	}
 
 	
@@ -161,9 +109,65 @@ public void setSearch(CodeVo vo) throws Exception {
 
 		redirectAttributes.addFlashAttribute("vo", vo);
 
-		return uriRedirectList;
+		return pathRedirectCommonXdm + "codeXdmList";
 	}
 	
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "codeXdmInst")
+	public String codeXdmInst(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.insert(dto);
+	
+		vo.setIfcdSeq(dto.getIfcdSeq());
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		if (Constants.INSERT_AFTER_TYPE == 1) {
+			return pathRedirectCommonXdm + "codeXdmForm";
+		} else {
+			return pathRedirectCommonXdm + "codeXdmList";
+		}
+	}
+	
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "codeXdmUpdt")
+	public String codeXdmUpdt(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.update(dto);
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		if (Constants.UPDATE_AFTER_TYPE == 1) {
+			return pathRedirectCommonXdm + "codeXdmForm";
+		} else {
+			return pathRedirectCommonXdm + "codeXdmList";
+		}
+	}
+
+	
+	@RequestMapping(value = "codeXdmUele")
+	public String codeXdmUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.uelete(dto);
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return pathRedirectCommonXdm + "codeXdmList";
+	}
+
+	
+	@RequestMapping(value = "codeXdmDele")
+	public String codeXdmDele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+
+		service.delete(vo);
+
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return pathRedirectCommonXdm + "codeXdmList";
+	}
+
 
 	@RequestMapping("excelDownload")
     public void excelDownload(CodeVo vo, HttpServletResponse httpServletResponse) throws Exception {
@@ -264,6 +268,7 @@ public void setSearch(CodeVo vo) throws Exception {
 //	        workbook.close();
 //		}
     }
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "codeXdmInit")

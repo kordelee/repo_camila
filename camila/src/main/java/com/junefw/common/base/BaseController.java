@@ -105,7 +105,7 @@ public class BaseController {
 	}
 	
 	
-	public void setSearch(CodeGroupVo vo) throws Exception {
+	public void setSearch(BaseVo vo) throws Exception {
 		/* 최초 화면 로딩시에 세팅은 문제가 없지만 */
 		/*이후 전체적으로 데이터를 조회를 하려면 null 값이 넘어 오는 관계로 문제가 전체 데이터 조회가 되지 못한다.*/
 		/*해서 BaseVo.java 에서 기본값을 주어서 처리*/

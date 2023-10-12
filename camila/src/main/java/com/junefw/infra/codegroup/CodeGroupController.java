@@ -23,8 +23,10 @@ public class CodeGroupController extends BaseController{
 	String pathCommonAdt = "adt/v1/infra/codeGroup/";
 	String pathRedirectCommonAdt = "";
 	
+	
 	@Autowired
 	CodeGroupService service;
+	
 	
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
@@ -41,33 +43,7 @@ public class CodeGroupController extends BaseController{
         return pathCommonXdm + "codeGroupXdmList";
   	}
 	
-	
-	@RequestMapping(value = "/codeGroupXdmAjaxList")
-	public String codeGroupXdmAjaxList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
-		
-		setSearch(vo);
-		
-		return pathCommonXdm + "codeGroupXdmAjaxList";
-	}
-	
-	
-	@RequestMapping(value = "/codeGroupXdmAjaxLita")
-	public String codeGroupXdmAjaxLita(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
-		
-		setSearch(vo);
-		vo.setParamsPaging(service.selectOneCount(vo));
-		
-		if (vo.getTotalRows() > 0) {
-//			List<CodeGroupDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
-			model.addAttribute("list", service.selectList(vo));
-		}
-		
-		return pathCommonXdm + "codeGroupXdmAjaxLita";
-	}
-	
-	
+
 	@RequestMapping(value = "/codeGroupXdmView")
 	public String codeGroupXdmView(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
 		

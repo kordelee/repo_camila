@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+      
+<div class="content">
+	<nav class="mb-2" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-0">
+			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+			<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+		</ol>
+	</nav>
+	<div class="mb-9">
+	  <div class="row g-3 mb-4">
+	    <div class="col-auto">
+	      <h2 class="mb-0">Code</h2>														<!-- ### -->
+	    </div>
+	  </div>
+		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+			<div class="card-header p-4 border-bottom border-300 bg-soft">
+				<div class="row g-3 justify-content-between align-items-center">
+					<div class="col-12 col-md">
+						<h4 class="text-900 mb-0">기본정보</h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="p-4 code-to-copy">
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
+			
+<div th:replace="~{xdm/v1/infra/code/codeXdmVo :: vo}"></div>			<!-- ### --> 					
+					
+						<div class="col-md-3">
+							<label for="ifcgSeq" class="form-label">코드그룹 <span class="text-danger">*</span></label>
+							<select id="ifcgSeq" name="ifcgSeq" class="form-select">
+								<option value="">선택하세요</option>
+								<option th:each="list : ${listCodeGroup}" th:value="${list.ifcgSeq}" th:text="${list.ifcgName}" th:selected="${list.ifcgSeq == item?.ifcgSeq}"></option>
+							</select>
+							<div class="invalid-feedback" id="ifcgSeqFeedback"></div>
+						</div>
+						<div class="col-md-9">
+							<!-- empty -->
+						</div>						
+						<div class="col-md-3">
+							<label for="ifcdSeq" class="form-label">코드 <span class="text-danger">*</span></label>
+							<input type="text" id="ifcdSeq" name="ifcdSeq" th:value="${item?.ifcdSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdSeqAnother" class="form-label">코드 (Another)</label>
+							<input type="text" id="ifcdSeqAnother" name="ifcdSeqAnother" th:value="${item?.ifcdSeqAnother}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdSeqAnotherFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdName" class="form-label">코드 이름 <span class="text-danger">*</span></label>
+							<input type="text" id="ifcdName" name="ifcdName" th:value="${item?.ifcdName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdNameEng" class="form-label">코드 이름 (영문)</label>
+							<input type="text" id="ifcdNameEng" name="ifcdNameEng" th:value="${item?.ifcdNameEng}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameEngFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdUseNy" class="form-label">사용여부 <span class="text-danger">*</span></label>
+							<select id="ifcdUseNy" name="ifcdUseNy" class="form-select">
+								<option value="1" th:selected="${item?.ifcdUseNy == 1}">사용</option>
+								<option value="0" th:selected="${item?.ifcdUseNy == 0}">미사용</option>
+							</select>
+							<div class="invalid-feedback" id="ifcdUseNyFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdOrder" class="form-label">순서 <span class="text-danger">*</span></label>
+							<input type="text" id="ifcdOrder" name="ifcdOrder" th:value="${item?.ifcdOrder}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdOrderFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label class="form-label">설명</label>
+							<div class="controls">
+								<textarea class="form-control" id="ifcdDesc" name="ifcdDesc" th:value="${item?.ifcdDesc}" th:text="${item?.ifcdDesc}" style="height: 100px;"></textarea>
+								<div class="invalid-feedback" id="ifcdDescFeedback"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdNameLang1" class="form-label">다국어1</label>
+							<input type="text" id="ifcdNameLang1" name="ifcdNameLang1" th:value="${item?.ifcdNameLang1}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang1Feedback"></div>
+						</div>										
+						<div class="col-md-3">
+							<label for="ifcdNameLang2" class="form-label">다국어2</label>
+							<input type="text" id="ifcdNameLang2" name="ifcdNameLang2" th:value="${item?.ifcdNameLang2}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang2Feedback"></div>
+						</div>										
+						<div class="col-md-3">
+							<label for="ifcdNameLang3" class="form-label">다국어3</label>
+							<input type="text" id="ifcdNameLang3" name="ifcdNameLang3" th:value="${item?.ifcdNameLang3}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang3Feedback"></div>
+						</div>										
+						<div class="col-md-3">
+							<label for="ifcdNameLang4" class="form-label">다국어4</label>
+							<input type="text" id="ifcdNameLang4" name="ifcdNameLang4" th:value="${item?.ifcdNameLang4}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang4Feedback"></div>
+						</div>										
+						<div class="col-md-3">
+							<label for="ifcdNameLang5" class="form-label">다국어5</label>
+							<input type="text" id="ifcdNameLang5" name="ifcdNameLang5" th:value="${item?.ifcdNameLang5}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang5Feedback"></div>
+						</div>										
+						<div class="col-md-3">
+							<label for="ifcdNameLang6" class="form-label">다국어6</label>
+							<input type="text" id="ifcdNameLang6" name="ifcdNameLang6" th:value="${item?.ifcdNameLang6}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang6Feedback"></div>
+						</div>								
+						<div class="col-md-3">
+							<label for="ifcdNameLang7" class="form-label">다국어7</label>
+							<input type="text" id="ifcdNameLang7" name="ifcdNameLang7" th:value="${item?.ifcdNameLang7}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang7Feedback"></div>
+						</div>								
+						<div class="col-md-3">
+							<label for="ifcdNameLang8" class="form-label">다국어8</label>
+							<input type="text" id="ifcdNameLang8" name="ifcdNameLang8" th:value="${item?.ifcdNameLang8}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameLang8Feedback"></div>
+						</div>																
+						<div class="col-md-3">
+							<label for="ifcdReferenceV1" class="form-label">예비1 (varchar type)</label>
+							<input type="text" id="ifcdReferenceV1" name="ifcdReferenceV1" th:value="${item?.ifcdReferenceV1}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceV1Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcdReferenceV2" class="form-label">예비2 (varchar type)</label>
+							<input type="text" id="ifcdReferenceV2" name="ifcdReferenceV2" th:value="${item?.ifcdReferenceV2}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceV2Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcdReferenceV3" class="form-label">예비3 (varchar type)</label>
+							<input type="text" id="ifcdReferenceV3" name="ifcdReferenceV3" th:value="${item?.ifcdReferenceV3}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceV3Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcdReferenceV4" class="form-label">예비4 (varchar type)</label>
+							<input type="text" id="ifcdReferenceV4" name="ifcdReferenceV4" th:value="${item?.ifcdReferenceV4}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceV4Feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdReferenceI1" class="form-label">예비1 (int type)</label>
+							<input type="text" id="ifcdReferenceI1" name="ifcdReferenceI1" th:value="${item?.ifcdReferenceI1}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceI1Feedback"></div>
+						</div>
+						<div class="col-md-3">							
+							<label for="ifcdReferenceI2" class="form-label">예비2 (int type)</label>
+							<input type="text" id="ifcdReferenceI2" name="ifcdReferenceI2" th:value="${item?.ifcdReferenceI2}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceI2Feedback"></div>
+						</div>							
+						<div class="col-md-3">						
+							<label for="ifcdReferenceI3" class="form-label">예비3 (int type)</label>
+							<input type="text" id="ifcdReferenceI3" name="ifcdReferenceI3" th:value="${item?.ifcdReferenceI3}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceI3Feedback"></div>
+						</div>							
+						<div class="col-md-3">						
+							<label for="ifcdReferenceI4" class="form-label">예비4 (int type)</label>
+							<input type="text" id="ifcdReferenceI4" name="ifcdReferenceI4" th:value="${item?.ifcdReferenceI4}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdReferenceI4Feedback"></div>
+						</div>						
+	
+<th:block th:if="${not #strings.isEmpty(item?.ifcdSeq)}">			<!-- ### -->	
+	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
+</th:block>					
+										
+						<div class="col-12">
+							<div class="row">
+								<div class="col-6 text-start">
+									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+<th:block th:if="${not #strings.isEmpty(item?.ifcdSeq)}">			<!-- ### -->									
+									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+</th:block>
+								</div>
+								<div class="col-6 text-end">
+<!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
+									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+								</div>
+							</div>          
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>   
+
+</div>
+
+<form name="formVo" method="post">
+	<div th:replace="~{xdm/v1/infra/code/codeXdmVo :: vo}"></div>			<!-- ### -->
+</form>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+		navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+		navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			
+	});
+	
+	let goUrlXdmList = "/v1/infra/code/codeXdmList";											/* ### */
+	let goUrlXdmAjaxList = "/v1/infra/code/codeXdmAjaxList";							/* ### */
+	let goUrlXdmInst = "/v1/infra/code/codeXdmInst";											/* ### */
+	let goUrlXdmUpdt = "/v1/infra/code/codeXdmUpdt";											/* ### */
+	let goUrlXdmDele = "/v1/infra/code/codeXdmDele";											/* ### */
+	let goUrlXdmUele = "/v1/infra/code/codeXdmUele";											/* ### */
+	
+	let seq = document.querySelector("input[name=ifcdSeq]");							/* ### */
+	
+	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+		if(!checkSelectNull('ifcgSeq', 2, "코드그룹을 선택해 주세요.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdSeqAnother', 2, 1, "코드 (Another)는 영대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyKoreanEnglishNumber('ifcdName', 2, 0, "코드 이름은 한글, 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdNameEng', 2, 1, "코드 이름 (영문)는 영대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyNumber('ifcdOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+		if(!checkOnlyEnglishNumber('ifcdReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;		
+		if(!checkOnlyNumber('ifcdReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		if(!checkOnlyNumber('ifcdReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		if(!checkOnlyNumber('ifcdReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		if(!checkOnlyNumber('ifcdReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+	}
+
+</script>
+
+<script src="/xdm/v1/js/includeXdmForm.js"></script>
+
+</body>
+</html>
