@@ -43,9 +43,6 @@ public class CodeController extends BaseController{
 		
 		setSearch(vo);
 		
-		System.out.println("vo.getTotalRows(): " + vo.getTotalRows());
-		
-		
 		return pathCommonXdm + "codeXdmAjaxList";
 	}
 	
@@ -55,7 +52,6 @@ public class CodeController extends BaseController{
 		
 		setSearch(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
-		System.out.println("vo.getTotalRows(): " + vo.getTotalRows());
 		
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
