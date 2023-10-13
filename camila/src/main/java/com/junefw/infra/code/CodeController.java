@@ -61,6 +61,20 @@ public class CodeController extends BaseController{
 	}
 	
 	
+	@RequestMapping(value = "/codeXdmList")
+	public String codeXdmList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
+		
+		setSearch(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			model.addAttribute("list", service.selectList(vo));
+		}
+		
+		return pathCommonXdm + "codeXdmList";
+	}
+		
+	
 	@RequestMapping(value = "/codeXdmView")
 	public String codeXdmView(@ModelAttribute("vo") CodeVo vo, Model model) {
 

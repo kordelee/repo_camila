@@ -28,17 +28,8 @@ public class MemberController extends BaseController{
 	MemberService service;
 	
     
-	@RequestMapping(value = "/memberXdmAjaxList")
-	public String memberXdmAjaxList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
-		
-		setSearch(vo);
-		
-		return pathCommonXdm + "memberXdmAjaxList";
-	}
-	
-	
-	@RequestMapping(value = "/memberXdmAjaxLita")
-	public String memberXdmAjaxLita(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
+	@RequestMapping(value = "/memberXdmList")
+	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
 		setSearch(vo);
 		vo.setParamsPaging(service.selectOneCount(vo));
@@ -47,7 +38,7 @@ public class MemberController extends BaseController{
 			model.addAttribute("list", service.selectList(vo));
 		}
 		
-		return pathCommonXdm + "memberXdmAjaxLita";
+		return pathCommonXdm + "memberXdmList";
 	}
 	
 	

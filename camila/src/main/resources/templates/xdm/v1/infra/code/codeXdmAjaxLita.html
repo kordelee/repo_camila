@@ -74,4 +74,40 @@
 </div>
 <!-- paging e  -->
 
+<script type="text/javascript">
+ 
+	window.addEventListener('load', function () {
+	    let checkboxes = document.querySelectorAll('input[name=checkboxSeq]');
+	
+	    for (let checkbox of checkboxes) {
+	        checkbox.addEventListener('change', function (event) {
+	            if (event.target.checked) {
+	                document.getElementById("trNum_" + event.target.value).style.backgroundColor = TABLE_COLOR;
+	            } else {
+	                document.getElementById("trNum_" + event.target.value).style.backgroundColor = "";
+	            }
+	        });
+	    }
+	});
+	
+	
+	if(document.getElementById("changeRowNum")) {
+		document.getElementById("changeRowNum").onchange = function () {
+		    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+		    form.action = goUrlXdmAjaxList;
+		    form.submit();
+		}
+	}
+	
+	
+	$("input[name=checkboxSeq]").click(function() {
+		var total = $("input[name=checkboxSeq]").length;
+		var checked = $("input[name=checkboxSeq]:checked").length;
+		
+		if(total != checked) $("#checkboxAll").prop("checked", false);
+		else $("#checkboxAll").prop("checked", true); 
+	});
+
+</script>
+
 </html>

@@ -1,29 +1,39 @@
 let form = document.querySelector("form[name=formList]");
 let checkboxSeqArray = [];
 
-window.addEventListener('load', function () {
-    let checkboxes = document.querySelectorAll('input[name=checkboxSeq]');
+function setLita() {
+    $.ajax({
+        async: true
+        ,cache: false
+        ,type: "post"
+        ,url: goUrlXdmAjaxLita
+        ,data : $("#formList").serialize()
+        ,success: function(response) {
+			$("#lita").empty();
+			$("#lita").append(response);
+			history.pushState({data: response}, null, goUrlXdmAjaxList + '?page=' + $("input:hidden[name=thisPage]").val());			
+//            $("#lita").html(response);
+//            let thisPage = $("input[name=thisPage]").val();
+//            history.pushState({data: response}, null, goUrlXdmAjaxList + thisPage);
+        }
+        ,error : function(jqXHR, textStatus, errorThrown){
+            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+        }
+    });
+}
 
-    for (let checkbox of checkboxes) {
-        checkbox.addEventListener('change', function (event) {
-            if (event.target.checked) {
-                document.getElementById("trNum_" + event.target.value).style.backgroundColor = TABLE_COLOR;
-            } else {
-                document.getElementById("trNum_" + event.target.value).style.backgroundColor = "";
-            }
-        });
-    }
+
+$(window).on('popstate', function(event) {
+    let data = event.originalEvent.state;
+    $('#lita').html(data.data);
 });
 
 
-$("input[name=checkboxSeq]").click(function() {
-	var total = $("input[name=checkboxSeq]").length;
-	var checked = $("input[name=checkboxSeq]:checked").length;
-	
-	if(total != checked) $("#checkboxAll").prop("checked", false);
-	else $("#checkboxAll").prop("checked", true); 
-});
-	
+document.getElementById("btnSearch").onclick = function () {
+    form.action = goUrlXdmAjaxList;
+    form.submit();
+};
+
 
 document.getElementById("btnReset").onclick = function () {
     location.href = goUrlXdmAjaxList;
@@ -49,17 +59,9 @@ goList = function (thisPage) {
 }
 
 
-document.getElementById("changeRowNum").onchange = function () {
-    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
-    form.action = goUrlXdmAjaxList;
-    form.submit();
-}
 
 
-document.getElementById("btnSearch").onclick = function () {
-    form.action = goUrlXdmAjaxList;
-    form.submit();
-};
+
 
 
 function enterkey() {
@@ -149,28 +151,43 @@ document.getElementById("btnModalDelete").click = function () {
 }
 
 
-function setLita() {
-    $.ajax({
-        async: true
-        ,cache: false
-        ,type: "post"
-        ,url: goUrlXdmAjaxLita
-        ,data : $("#formList").serialize()
-        ,success: function(response) {
-			$("#lita").empty();
-			$("#lita").append(response);
-			history.pushState({data: response}, null, goUrlXdmAjaxList + '?page=' + $("input:hidden[name=thisPage]").val());			
-//            $("#lita").html(response);
-//            let thisPage = $("input[name=thisPage]").val();
-//            history.pushState({data: response}, null, goUrlXdmAjaxList + thisPage);
-        }
-        ,error : function(jqXHR, textStatus, errorThrown){
-            alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-        }
-    });
-}
 
-$(window).on('popstate', function(event) {
-    let data = event.originalEvent.state;
-    $('#lita').html(data.data);
+
+
+/*
+window.addEventListener('load', function () {
+    let checkboxes = document.querySelectorAll('input[name=checkboxSeq]');
+
+    for (let checkbox of checkboxes) {
+        checkbox.addEventListener('change', function (event) {
+            if (event.target.checked) {
+                document.getElementById("trNum_" + event.target.value).style.backgroundColor = TABLE_COLOR;
+            } else {
+                document.getElementById("trNum_" + event.target.value).style.backgroundColor = "";
+            }
+        });
+    }
 });
+*/
+
+
+/*
+$("input[name=checkboxSeq]").click(function() {
+	var total = $("input[name=checkboxSeq]").length;
+	var checked = $("input[name=checkboxSeq]:checked").length;
+	
+	if(total != checked) $("#checkboxAll").prop("checked", false);
+	else $("#checkboxAll").prop("checked", true); 
+});
+*/
+
+
+/*
+if(document.getElementById("changeRowNum")) {
+	document.getElementById("changeRowNum").onchange = function () {
+	    document.getElementById("rowNumToShow").value = document.getElementById("changeRowNum").value;
+	    form.action = goUrlXdmAjaxList;
+	    form.submit();
+	}
+}
+*/
