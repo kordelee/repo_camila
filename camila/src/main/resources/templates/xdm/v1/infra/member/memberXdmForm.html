@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+      
+<div class="content">
+	<nav class="mb-2" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-0">
+			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+			<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+		</ol>
+	</nav>
+	<div class="mb-9">
+	  <div class="row g-3 mb-4">
+	    <div class="col-auto">
+	      <h2 class="mb-0">Member</h2>																<!-- ### -->
+	    </div>
+	  </div>
+		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+			<div class="card-header p-4 border-bottom border-300 bg-soft">
+				<div class="row g-3 justify-content-between align-items-center">
+					<div class="col-12 col-md">
+						<h4 class="text-900 mb-0">기본정보</h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="p-4 code-to-copy">
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
+			
+<div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### --> 					
+				
+										
+						<div class="col-12">
+							<div class="row">
+								<div class="col-6 text-start">
+									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+<th:block th:if="${not #strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->									
+									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+</th:block>
+								</div>
+								<div class="col-6 text-end">
+<!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
+									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+								</div>
+							</div>          
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>   
+
+</div>
+
+<form name="formVo" method="post">
+	<div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### -->
+</form>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+		navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+		navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			
+	});
+	
+	let goUrlXdmList = "/v1/infra/member/memberXdmList";											/* ### */
+	let goUrlXdmAjaxList = "/v1/infra/member/memberXdmAjaxList";							/* ### */
+	let goUrlXdmInst = "/v1/infra/member/memberXdmInst";											/* ### */
+	let goUrlXdmUpdt = "/v1/infra/member/memberXdmUpdt";											/* ### */
+	let goUrlXdmDele = "/v1/infra/member/memberXdmDele";											/* ### */
+	let goUrlXdmUele = "/v1/infra/member/memberXdmUele";											/* ### */
+	
+	let seq = document.querySelector("input[name=ifmmSeq]");							/* ### */
+	
+	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+// 		if(!checkSelectNull('ifcgSeq', 2, "코드그룹을 선택해 주세요.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdSeqAnother', 2, 1, "코드 (Another)는 영대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyKoreanEnglishNumber('ifcdName', 2, 0, "코드 이름은 한글, 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdNameEng', 2, 1, "코드 이름 (영문)는 영대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyNumber('ifcdOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyEnglishNumber('ifcdReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;		
+// 		if(!checkOnlyNumber('ifcdReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyNumber('ifcdReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyNumber('ifcdReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyNumber('ifcdReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+	}
+
+</script>
+
+<script src="/xdm/v1/js/includeXdmForm.js"></script>
+
+</body>
+</html>

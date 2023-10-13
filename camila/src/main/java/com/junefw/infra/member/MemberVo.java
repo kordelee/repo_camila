@@ -7,7 +7,7 @@ public class MemberVo extends BaseVo{
 	private String ifmmSeq;
 
 //	search item extra (optional)
-	private Integer shAdminNy;
+	private Integer shAdminNy = 0;
 //-----
 
 	public String getIfmmSeq() {

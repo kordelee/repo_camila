@@ -16,19 +16,22 @@
 					</div>
 				</th>
 				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifmmAdminNy" style="width: 110px; min-width:110px;">관리자</th>
+				<th class="sort align-middle" scope="col" data-sort="ifmmSeq" style="width: 110px; min-width:110px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmName" style="width: 110px; min-width:110px;">이름</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmId" style="min-width: 200px;">아이디</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmGender" style="width: 200px; min-width: 200px;">성별</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmDob" style="width: 80px; min-width: 80px;">생일</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmeEmailFull" style="width: 80px; min-width: 80px;">이메일</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmpNumber" style="width: 80px; min-width: 80px;">모바일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifmmDelNy" style="width: 80px; min-width: 80px;">탈퇴</th>
 				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
 				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
 			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold">
-				<td colspan="10">				<!-- ### -->
+				<td colspan="11">				<!-- ### -->
 					<p style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
@@ -41,7 +44,17 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle white-space-nowrap"></td>
-
+				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle white-space-nowrap">N</td>
+				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle white-space-nowrap">Y</td>
+				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle fw-semi-bold"></td>
+				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|" style="font-size: medium;"></a></td>
+				<td th:text="${list.ifmmId}" class="ifmmId align-middle fw-semi-bold"></td>
+				<td th:text="${list.ifmmGenderCd}" class="ifmmGenderCd align-middle fw-semi-bold"></td>
+				<td th:text="${list.ifmmDob}" class="ifcdName align-middle white-space-nowrap"></td>
+				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle white-space-nowrap"></td>
+				<td th:text="${list.ifmpNumber}" class="ifmpNumber align-middle white-space-nowrap"></td>
+				<td th:if="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle white-space-nowrap">N</td>
+				<td th:unless="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle white-space-nowrap">Y</td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle white-space-nowrap"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle white-space-nowrap" ></td>
 			</tr>

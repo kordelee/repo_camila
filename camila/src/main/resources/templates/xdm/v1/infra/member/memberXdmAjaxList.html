@@ -53,16 +53,16 @@
 	<div class="row row-cols-2 row-cols-sm-6 g-2 px-2">
 		<div class="col">
 			<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-				<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+				<option value="" th:selected="${vo.shDelNy == null}">탈퇴여부</option>
 				<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
 				<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
 			</select>
 		</div>
 		<div class="col">
-			<select class="form-select" name="shUseNy" id="shUseNy">
-				<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
-				<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-				<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+			<select class="form-select" name="shAdminNy" id="shAdminNy">
+				<option value="" th:selected="${vo.shAdminNy == null}">관리자</option>
+				<option value="1" th:selected="${vo.shAdminNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shAdminNy == 0}">N</option>
 	</select>
 </div>			
 		<div class="col">
@@ -83,10 +83,11 @@
 		<div class="col">
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-				<option value="1" th:selected="${vo.shOption == 1}">이름</option>
-				<option value="2" th:selected="${vo.shOption == 2}">아이디</option>
-				<option value="3" th:selected="${vo.shOption == 3}">이메일</option>
-				<option value="4" th:selected="${vo.shOption == 4}">모바일</option>				
+				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
+				<option value="2" th:selected="${vo.shOption == 2}">이름</option>
+				<option value="3" th:selected="${vo.shOption == 3}">아이디</option>
+				<option value="4" th:selected="${vo.shOption == 4}">이메일</option>
+				<option value="5" th:selected="${vo.shOption == 5}">모바일</option>				
 			</select>
 		</div>                    
 		<div class="col">

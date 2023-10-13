@@ -25,10 +25,11 @@
 			</choose>
  -->			
 			<choose>
-				<when test="shOption == 1">AND a.ifmmName LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 2">AND a.ifmmId LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 3">AND b.ifmeEmailFull LIKE CONCAT('%',#{shValue},'%')</when>
-				<when test="shOption == 4">AND c.ifmpNumber LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 1">AND a.ifmmSeq = #{shValue}</when>
+				<when test="shOption == 2">AND a.ifmmName LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 3">AND a.ifmmId LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 4">AND b.ifmeEmailFull LIKE CONCAT('%',#{shValue},'%')</when>
+				<when test="shOption == 5">AND c.ifmpNumber LIKE CONCAT('%',#{shValue},'%')</when>
 			</choose>
 	</sql>
 	

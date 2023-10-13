@@ -150,7 +150,6 @@ document.getElementById("btnModalDelete").click = function () {
 
 
 function setLita() {
-	alert("asdfasdfas");
     $.ajax({
         async: true
         ,cache: false
