@@ -22,24 +22,24 @@
               <div class="divider-content-center">or use email</div>
             </div>
             <div class="mb-3 text-start">
-              <label class="form-label" for="ifmmId">ID</label>
+              <label for="ifmmId" class="form-label">ID</label>
               <div class="form-icon-container">
-                <input class="form-control form-icon-input" id="ifmmId" name="ifmmId" type="text" placeholder="name@example.com" /><span class="fas fa-user text-900 fs--1 form-icon"></span>
+                <input type="text" id="ifmmId" name="ifmmId"  placeholder="name@example.com" class="form-control form-icon-input"/><span class="fas fa-user text-900 fs--1 form-icon"></span>
                 <div class="invalid-feedback" id="ifmmIdFeedback"></div>
               </div>
             </div>
             <div class="mb-3 text-start">
-              <label class="form-label" for="ifmmPassword">Password</label>
+              <label for="ifmmPassword" class="form-label">Password</label>
               <div class="form-icon-container">
-                <input class="form-control form-icon-input" id="ifmmPassword" name="ifmmPassword" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
+                <input type="password" id="ifmmPassword" name="ifmmPassword" placeholder="Password" class="form-control form-icon-input" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
                 <div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
               </div>
             </div>
             <div class="row flex-between-center mb-7">
               <div class="col-auto">
                 <div class="form-check mb-0">
-                  <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
-                  <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
+                  <input type="checkbox" id="autoLogin" name="autoLogin" class="form-check-input" checked/>
+                  <label for="autoLogin" class="form-check-label mb-0">Remember me</label>
                 </div>
               </div>
               <div class="col-auto"><a class="fs--1 fw-semi-bold" href="../../../pages/authentication/simple/forgot-password.html">Forgot Password?</a></div>
@@ -63,43 +63,41 @@
 
 <script type="text/javascript">
 
-validation = function() {
-	 if(!checkNull('ifmmId', 2, "ID를 입력해 주세요.")) return false;
-	 if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해 주세요.")) return false;
-}
+	validation = function() {
+		if(!checkNull('ifmmId', 2, "ID를 입력해 주세요.")) return false;
+		if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해 주세요.")) return false;
+	}
 
-document.getElementById("buttonSignIn").onclick = function () {
+	document.getElementById("buttonSignIn").onclick = function () {
+		
+		if(validation() == false) return false;
 	
-	if(validation() == false) return false;
-	
-	
-
-// 	$.ajax({
-// 		async: true 
-// 		,cache: false
-// 		,type: "post"
-// 		/* ,dataType:"json" */
-// 		,url: "/v1/infra/member/loginUsrProc"
-// 		/* ,data : $("#formLogin").serialize() */
-// 		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-// 		,success: function(response) {
-// 			if(response.rt == "success") {
-// 				if(response.changePwd == "true") {
-// 					location.href = "/v1/infra/member/expiredPwdUsrForm";
-// 				} else {
-// 					location.href = "/v1/infra/index/indexUsrView";
-// 				}
-// 			} else {
-// 				alert("회원없음");
-// 			}
-// 		}
-// 		,error : function(jqXHR, textStatus, errorThrown){
-// 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-// 		}
-// 	});
- 	
-
-}
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/v1/infra/member/signinXdmProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+			,success: function(response) {
+				if(response.rt == "success") {
+					if(response.changePwd == "true") {
+						location.href = "/v1/infra/member/expiredPwdUsrForm";
+					} else {
+						location.href = "/v1/infra/index/indexXdmView";
+					}
+				} else {
+			 		document.getElementById("modalAlertTitle").innerText = "확 인";
+			 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+			 		$("#modalAlert").modal("show");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
 
 // document.getElementById("buttonSignIn").onclick = function () {
 	

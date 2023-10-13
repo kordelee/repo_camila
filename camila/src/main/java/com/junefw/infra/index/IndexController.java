@@ -5,24 +5,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.junefw.common.base.BaseController;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping(value = "/infra/index")
+@RequestMapping(value = "/v1/infra/index")
 public class IndexController extends BaseController{
 	
-	String uriList = "xdm/v1/infra/index/indexXdmList";
-	String uriAjaxList = "xdm/v1/infra/index/indexXdmAjaxList";
-	String uriAjaxLita = "xdm/v1/infra/index/indexXdmAjaxLita";
-	String uriForm = "xdm/v1/infra/index/indexXdmForm";
-	String uriView = "xdm/v1/infra/index/indexXdmView";
+	String pathCommonXdm = "xdm/v1/infra/index/";
+	String pathRedirectCommonXdm = "redirect:/v1/infra/index/";
+
+	String pathCommonUsr = "usr/v1/infra/index/";
+	String pathRedirectCommonUsr = "";
 	
-	String uriRedirectList = "redirect:/v1/infra/index/indexXdmList";
-	String uriRedirectAjaxList = "redirect:/v1/infra/index/indexXdmAjaxList";
-	String uriRedirectForm = "redirect:/v1/infra/index/indexXdmForm";
-	String uriRedirectView = "";
+	String pathCommonAdt = "adt/v1/infra/index/";
+	String pathRedirectCommonAdt = "";	
+	
 	
     @RequestMapping(value = "/indexXdmView")
-	public String indexView() throws Exception{
-    	return uriView;
+	public String indexXdmView(HttpSession httpSession) throws Exception{
+    	System.out.println("httpSession.getAttribute(\"sessNameXdm\"): " + httpSession.getAttribute("sessNameXdm"));
+    	
+    	return pathCommonXdm + "indexXdmView";
     }
 
 }

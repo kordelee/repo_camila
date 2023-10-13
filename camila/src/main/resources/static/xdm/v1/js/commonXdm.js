@@ -39,3 +39,24 @@ $("#shDateEnd").datepicker({
         $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
     }
 });
+
+
+	$("#btnSignout").on("click", function(){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			,url: URL_SIGNOUT_PROC_XDM
+			,data: {}
+			,success: function(response) {
+				if(response.rt == "success") {
+					location.href = URL_SIGNIN_FORM_XDM;
+				} else {
+					// by pass
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	});

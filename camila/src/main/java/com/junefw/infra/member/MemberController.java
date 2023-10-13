@@ -1,14 +1,21 @@
 package com.junefw.infra.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
+import com.junefw.common.util.UtilCookie;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/v1/infra/member")
@@ -148,15 +155,118 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "/signInXdmForm")
-	public String signInXdmForm() throws Exception{
-    	return "xdm/v1/infra/member/signInXdmForm";
-    }
+	/*
+	 * @RequestMapping(value = "/signinXdmForm") public String signinXdmForm()
+	 * throws Exception{ return "xdm/v1/infra/member/signinXdmForm"; }
+	 */
     
     
-    @RequestMapping(value = "/signUpXdmForm")
-    public String signUpXdmForm() throws Exception{
-    	return "xdm/v1/infra/member/signUpXdmForm";
+    @RequestMapping(value = "/signupXdmForm")
+    public String signupXdmForm() throws Exception{
+    	return "xdm/v1/infra/member/signupXdmForm";
     }
 
+    
+    @RequestMapping(value = "signinXdmForm")
+	public String signinXdmForm(MemberVo vo, HttpSession httpSession) throws Exception {
+		if(UtilCookie.getValueXdm(Constants.COOKIE_NAME_SEQ_XDM) != null) {
+
+			//	auto login
+			if(httpSession.getAttribute("sessXdmSeq") == null) {
+				
+				vo.setIfmmSeq(UtilCookie.getValueXdm(Constants.COOKIE_NAME_SEQ_XDM));
+				
+				MemberDto rtMember = service.selectOne(vo);
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessXdmSeq", rtMember.getIfmmSeq());
+				httpSession.setAttribute("sessXdmId", rtMember.getIfmmId());
+				httpSession.setAttribute("sessXdmName", rtMember.getIfmmName());
+			} else {
+				//	by pass
+			}
+			return "redirect:/v1/infra/index/indexXdmView";
+		} else {
+			return pathCommonXdm + "signinXdmForm";
+		}
+	}
+
+
+	@ResponseBody
+	@RequestMapping(value = "signinXdmProc")
+	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		MemberDto rtMember = service.selectOneId(dto);
+
+		if (rtMember != null) {
+//			dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+			MemberDto rtMember2 = service.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				
+				if(dto.getAutoLogin() == true) {
+					UtilCookie.createCookie(
+							Constants.COOKIE_NAME_SEQ_XDM, 
+							rtMember2.getIfmmSeq(), 
+							Constants.COOKIE_DOMAIN_XDM, 
+							Constants.COOKIE_PATH_XDM, 
+							Constants.COOKIE_MAXAGE_XDM);
+				} else {
+					// by pass
+				}
+				System.out.println("asdfasdfasdf");
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqXdm", rtMember2.getIfmmSeq());
+				httpSession.setAttribute("sessIdXdm", rtMember2.getIfmmId());
+				httpSession.setAttribute("sessNameXdm", rtMember2.getIfmmName());
+
+				rtMember2.setIfmmSocialLoginCd(103);
+				rtMember2.setIflgResultNy(1);
+				service.insertLogLogin(rtMember2);
+
+//				Date date = rtMember2.getIfmmPwdModDate();
+//				LocalDateTime ifmmPwdModDateLocalDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+//
+//				if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime, UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
+//					returnMap.put("changePwd", "true");
+//				}
+
+				returnMap.put("rt", "success");
+			} else {
+				dto.setIfmmSocialLoginCd(103);
+				dto.setIfmmSeq(rtMember.getIfmmSeq());
+				dto.setIflgResultNy(0);
+				service.insertLogLogin(dto);
+
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			dto.setIfmmSocialLoginCd(103);
+			dto.setIflgResultNy(0);
+			service.insertLogLogin(dto);
+
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+
+	
+	@RequestMapping(value = "/expiredPwdXdmForm")
+	public String expiredPwdXdmForm() throws Exception {
+
+		return pathCommonXdm + "expiredPwdXdmForm";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "signoutXdmProc")
+	public Map<String, Object> signoutXdmProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		UtilCookie.deleteCookieXdm();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+    
 }

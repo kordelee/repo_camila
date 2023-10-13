@@ -14,4 +14,10 @@ public interface MemberDao extends BaseDao{
     public int uelete(MemberDto dto);
     public int delete(MemberVo vo);
     
+//    signin
+	public MemberDto selectOneId(MemberDto dto);
+	public MemberDto selectOneLogin(MemberDto dto);
+	public int insertLogLogin(MemberDto dto);
+	public int updateIfmmPwdModDate(MemberDto dto);
+    
 }
