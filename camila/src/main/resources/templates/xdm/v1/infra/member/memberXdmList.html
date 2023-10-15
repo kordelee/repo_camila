@@ -152,7 +152,7 @@
 				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle fw-semi-bold"></td>
 				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|" style="font-size: medium;"></a></td>
 				<td th:text="${list.ifmmId}" class="ifmmId align-middle fw-semi-bold"></td>
-				<td th:text="${list.ifmmGenderCd}" class="ifmmGenderCd align-middle fw-semi-bold"></td>
+				<td th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle fw-semi-bold"></td>
 				<td th:text="${list.ifmmDob}" class="ifcdName align-middle white-space-nowrap"></td>
 				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle white-space-nowrap"></td>
 				<td th:text="${list.ifmpNumber}" class="ifmpNumber align-middle white-space-nowrap"></td>

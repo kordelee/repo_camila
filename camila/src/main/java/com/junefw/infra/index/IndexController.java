@@ -23,8 +23,6 @@ public class IndexController extends BaseController{
 	
     @RequestMapping(value = "/indexXdmView")
 	public String indexXdmView(HttpSession httpSession) throws Exception{
-    	System.out.println("httpSession.getAttribute(\"sessNameXdm\"): " + httpSession.getAttribute("sessNameXdm"));
-    	
     	return pathCommonXdm + "indexXdmView";
     }
 

@@ -13,7 +13,7 @@ public class MemberDto extends BaseDto{
 //	infrMember	
 	private String ifmmSeq;
 	private Integer ifmmAdminNy;
-	private Integer ifmmDormancyNy;
+	private Integer ifmmSleepNy;
 	private Integer ifmmSocialLoginCd;
 	private String ifmmName;
 	private String ifmmNameEng;
@@ -163,11 +163,11 @@ public class MemberDto extends BaseDto{
 	public void setIfmmAdminNy(Integer ifmmAdminNy) {
 		this.ifmmAdminNy = ifmmAdminNy;
 	}
-	public Integer getIfmmDormancyNy() {
-		return ifmmDormancyNy;
+	public Integer getIfmmSleepNy() {
+		return ifmmSleepNy;
 	}
-	public void setIfmmDormancyNy(Integer ifmmDormancyNy) {
-		this.ifmmDormancyNy = ifmmDormancyNy;
+	public void setIfmmSleepNy(Integer ifmmSleepNy) {
+		this.ifmmSleepNy = ifmmSleepNy;
 	}
 	public Integer getIfmmSocialLoginCd() {
 		return ifmmSocialLoginCd;

@@ -154,12 +154,6 @@ public class MemberController extends BaseController{
 		return pathRedirectCommonXdm + "memberXdmList";
 	}
 	
-	
-	/*
-	 * @RequestMapping(value = "/signinXdmForm") public String signinXdmForm()
-	 * throws Exception{ return "xdm/v1/infra/member/signinXdmForm"; }
-	 */
-    
     
     @RequestMapping(value = "/signupXdmForm")
     public String signupXdmForm() throws Exception{
@@ -169,19 +163,19 @@ public class MemberController extends BaseController{
     
     @RequestMapping(value = "signinXdmForm")
 	public String signinXdmForm(MemberVo vo, HttpSession httpSession) throws Exception {
-		if(UtilCookie.getValueXdm(Constants.COOKIE_NAME_SEQ_XDM) != null) {
+		if(UtilCookie.getValueXdm(Constants.COOKIE_SEQ_NAME_XDM) != null) {
 
 			//	auto login
-			if(httpSession.getAttribute("sessXdmSeq") == null) {
+			if(httpSession.getAttribute("sessSeqXdm") == null) { 
 				
-				vo.setIfmmSeq(UtilCookie.getValueXdm(Constants.COOKIE_NAME_SEQ_XDM));
+				vo.setIfmmSeq(UtilCookie.getValueXdm(Constants.COOKIE_SEQ_NAME_XDM));
 				
 				MemberDto rtMember = service.selectOne(vo);
 				
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
-				httpSession.setAttribute("sessXdmSeq", rtMember.getIfmmSeq());
-				httpSession.setAttribute("sessXdmId", rtMember.getIfmmId());
-				httpSession.setAttribute("sessXdmName", rtMember.getIfmmName());
+				httpSession.setAttribute("sessSeqXdm", rtMember.getIfmmSeq());
+				httpSession.setAttribute("sessIdXdm", rtMember.getIfmmId());
+				httpSession.setAttribute("sessNameXdm", rtMember.getIfmmName());
 			} else {
 				//	by pass
 			}
@@ -207,7 +201,7 @@ public class MemberController extends BaseController{
 				
 				if(dto.getAutoLogin() == true) {
 					UtilCookie.createCookie(
-							Constants.COOKIE_NAME_SEQ_XDM, 
+							Constants.COOKIE_SEQ_NAME_XDM, 
 							rtMember2.getIfmmSeq(), 
 							Constants.COOKIE_DOMAIN_XDM, 
 							Constants.COOKIE_PATH_XDM, 
@@ -215,7 +209,7 @@ public class MemberController extends BaseController{
 				} else {
 					// by pass
 				}
-				System.out.println("asdfasdfasdf");
+
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_XDM); // 60second * 30 = 30minute
 				httpSession.setAttribute("sessSeqXdm", rtMember2.getIfmmSeq());
 				httpSession.setAttribute("sessIdXdm", rtMember2.getIfmmId());

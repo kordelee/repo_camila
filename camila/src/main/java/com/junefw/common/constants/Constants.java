@@ -35,11 +35,11 @@ public final class Constants {
 	public static final int COOKIE_MAXAGE_XDM = 60 * 60 * 24 * 30;	//초 * 분 * 시간 * 일 : 30day
 	public static final String COOKIE_DOMAIN_XDM = "";
 	public static final String COOKIE_PATH_XDM = "/";
-	public static final String COOKIE_NAME_SEQ_XDM = "cookieSeqXdm";
+	public static final String COOKIE_SEQ_NAME_XDM = "cookieSeqXdm";
 	
 	public static final String versionUiMain = "v1";
 	
-	public static final String SESSION_SEQ_NAME_XDM = "sessXdmSeq";
+	public static final String SESSION_SEQ_NAME_XDM = "sessSeqXdm";
 	
 	
 //	usr
@@ -51,8 +51,8 @@ public final class Constants {
 	public static final int COOKIE_MAXAGE_USR = 60 * 60 * 24 * 30;	//초 * 분 * 시간 * 일 : 30day
 	public static final String COOKIE_DOMAIN_USR = "";
 	public static final String COOKIE_PATH_USR = "/";
-	public static final String COOKIE_NAME_SEQ_USR = "cookieSeqUsr";
+	public static final String COOKIE_SEQ_NAME_USR = "cookieSeqUsr";
 	
-	public static final String SESSION_SEQ_NAME_USR = "sessUsrSeq";
+	public static final String SESSION_SEQ_NAME_USR = "sessSeqUsr";
 	
 }

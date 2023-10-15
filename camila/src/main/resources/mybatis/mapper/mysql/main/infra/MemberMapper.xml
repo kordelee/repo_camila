@@ -39,7 +39,7 @@
 			SELECT
 				a.ifmmSeq
 				,a.ifmmAdminNy
-				,a.ifmmDormancyNy
+				,a.ifmmSleepNy
 				,a.ifmmSocialLoginCd
 				,a.ifmmName
 				,a.ifmmNameEng
@@ -93,7 +93,7 @@
 		SELECT
 			a.ifmmSeq
 			,a.ifmmAdminNy
-			,a.ifmmDormancyNy
+			,a.ifmmSleepNy
 			,a.ifmmSocialLoginCd
 			,a.ifmmName
 			,a.ifmmNameEng
@@ -138,7 +138,7 @@
 	<insert id="insert">
 		INSERT INTO infrMember (
 			ifmmAdminNy
-			,ifmmDormancyNy
+			,ifmmSleepNy
 			,ifmmSocialLoginCd
 			,ifmmName
 			,ifmmNameEng
@@ -204,7 +204,7 @@
 		UPDATE infrMember
 		SET
 			ifmmAdminNy = #{ifmmAdminNy}
-			,ifmmDormancyNy = #{ifmmDormancyNy}
+			,ifmmSleepNy = #{ifmmSleepNy}
 			,ifmmName = #{ifmmName}
 			,ifmmNameEng = #{ifmmNameEng}
 			,ifmmLastName = #{ifmmLastName}
@@ -437,7 +437,7 @@
 	<insert id="insertSocialLoginMember">
 		INSERT INTO infrMember (
 			ifmmAdminNy
-			,ifmmDormancyNy
+			,ifmmSleepNy
 			,ifmmSocialLoginCd
 			,ifmmName
 			,ifmmNameEng

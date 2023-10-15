@@ -36,7 +36,7 @@ public class UtilCookie {
     	
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals(Constants.COOKIE_NAME_SEQ_USR)) {
+				if (cookie.getName().equals(Constants.COOKIE_SEQ_NAME_USR)) {
 					rt = cookie.getValue();
 				} else {
 					//	by pass
@@ -57,7 +57,7 @@ public class UtilCookie {
     	
     	if (cookies != null) {
     		for (Cookie cookie : cookies) {
-    			if (cookie.getName().equals(Constants.COOKIE_NAME_SEQ_XDM)) {
+    			if (cookie.getName().equals(Constants.COOKIE_SEQ_NAME_XDM)) {
     				rt = cookie.getValue();
     			} else {
     				//	by pass
@@ -72,7 +72,7 @@ public class UtilCookie {
 
     public static void deleteCookieXdm() throws Exception {
     	HttpServletResponse httpServletResponse = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getResponse();
-       	Cookie cookie = new Cookie(Constants.COOKIE_NAME_SEQ_XDM, null);
+       	Cookie cookie = new Cookie(Constants.COOKIE_SEQ_NAME_XDM, null);
        	cookie.setPath("/");
        	cookie.setDomain("");
         cookie.setMaxAge(0);
@@ -82,7 +82,7 @@ public class UtilCookie {
     
     public static void deleteCookieUsr() throws Exception {
     	HttpServletResponse httpServletResponse = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getResponse();
-       	Cookie cookie = new Cookie(Constants.COOKIE_NAME_SEQ_USR, null);
+       	Cookie cookie = new Cookie(Constants.COOKIE_SEQ_NAME_USR, null);
        	cookie.setPath("/");
        	cookie.setDomain("");
         cookie.setMaxAge(0);
