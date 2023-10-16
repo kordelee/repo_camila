@@ -135,31 +135,31 @@
 		<tbody class="list text-center" id="order-table-body">
 			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold">
 				<td colspan="11">				<!-- ### -->
-					<p style="padding-top: 12px;">There are no data!</p>
+					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
-			<tr class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold" 
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static" 
 				onmouseover="this.style.background='red'" onmouseout="this.style.background=''"
 				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifmmSeq}">			<!-- ### -->
-				<td class="fs--1 align-middle px-0 py-3">
+				<td class="align-middle px-0 py-3">
 					<div class="form-check mb-0 fs-0">
 						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifmmSeq}" name="checkboxSeq" th:value="${list.ifmmSeq}" class="form-check-input"/>
 					</div>
 				</td>
-				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle white-space-nowrap"></td>
-				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle white-space-nowrap">N</td>
-				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle white-space-nowrap">Y</td>
-				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle fw-semi-bold"></td>
-				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|" style="font-size: medium;"></a></td>
-				<td th:text="${list.ifmmId}" class="ifmmId align-middle fw-semi-bold"></td>
-				<td th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle fw-semi-bold"></td>
-				<td th:text="${list.ifmmDob}" class="ifcdName align-middle white-space-nowrap"></td>
-				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle white-space-nowrap"></td>
-				<td th:text="${list.ifmpNumber}" class="ifmpNumber align-middle white-space-nowrap"></td>
-				<td th:if="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle white-space-nowrap">N</td>
-				<td th:unless="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle white-space-nowrap">Y</td>
-				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle white-space-nowrap"></td>
-				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle white-space-nowrap" ></td>
+				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">N</td>
+				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">Y</td>
+				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle"></td>
+				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|"></a></td>
+				<td th:text="${list.ifmmId}" class="ifmmId align-middle"></td>
+				<td th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
+				<td th:text="${list.ifmmDob}" class="ifcdName align-middle"></td>
+				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle"></td>
+				<td th:text="${list.ifmpNumber}" class="ifmpNumber align-middle"></td>
+				<td th:if="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle">N</td>
+				<td th:unless="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle">Y</td>
+				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>
 		</tbody>
 	</table>

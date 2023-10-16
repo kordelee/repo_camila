@@ -43,26 +43,26 @@
 <div th:replace="~{xdm/v1/infra/codegroup/codeGroupXdmVo :: vo}"></div>			<!-- ### --> 					
 					
 						<div class="col-md-3">
-							<label for="ifcgSeq" class="form-label">코드그룹 코드 <span class="text-danger">*</span></label>
+							<label for="ifcgSeq" class="form-label fs--1">코드그룹 코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcgSeq" name="ifcgSeq" th:value="${item?.ifcgSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgSeqAnother" class="form-label">코드그룹 코드 (Another))</label>
+							<label for="ifcgSeqAnother" class="form-label fs--1">코드그룹 코드 (Another))</label>
 							<input type="text" id="ifcgSeqAnother" name="ifcgSeqAnother" th:value="${item?.ifcgSeqAnother}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgSeqAnotherFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgName" class="form-label">코드그룹 이름 <span class="text-danger">*</span></label>
+							<label for="ifcgName" class="form-label fs--1">코드그룹 이름 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcgName" name="ifcgName" th:value="${item?.ifcgName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgNameFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgNameEng" class="form-label">코드그룹 이름 (영문)</label>
+							<label for="ifcgNameEng" class="form-label fs--1">코드그룹 이름 (영문)</label>
 							<input type="text" id="ifcgNameEng" name="ifcgNameEng" th:value="${item?.ifcgNameEng}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgNameEngFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgUseNy" class="form-label">사용여부 <span class="text-danger">*</span></label>
+							<label for="ifcgUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
 							<select id="ifcgUseNy" name="ifcgUseNy" class="form-select">
 								<option value="1" th:selected="${item?.ifcgUseNy == 1}">사용</option>
 								<option value="0" th:selected="${item?.ifcgUseNy == 0}">미사용</option>
@@ -70,7 +70,7 @@
 							<div class="invalid-feedback" id="ifcgUseNyFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgOrder" class="form-label">순서 <span class="text-danger">*</span></label>
+							<label for="ifcgOrder" class="form-label fs--1">순서 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcgOrder" name="ifcgOrder" th:value="${item?.ifcgOrder}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgOrderFeedback"></div>
 						</div>
@@ -78,7 +78,7 @@
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
-							<label class="form-label">설명</label>
+							<label class="form-label fs--1">설명</label>
 							<div class="controls">
 								<textarea class="form-control" id="ifcgDesc" name="ifcgDesc" th:value="${item?.ifcgDesc}" th:text="${item?.ifcgDesc}" style="height: 100px;"></textarea>
 								<div class="invalid-feedback" id="ifcgDescFeedback"></div>
@@ -88,42 +88,42 @@
 							<!-- empty -->
 						</div>						
 						<div class="col-md-3">
-							<label for="ifcgReferenceV1" class="form-label">예비1 (varchar type)</label>
+							<label for="ifcgReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
 							<input type="text" id="ifcgReferenceV1" name="ifcgReferenceV1" th:value="${item?.ifcgReferenceV1}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceV1Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcgReferenceV2" class="form-label">예비2 (varchar type)</label>
+							<label for="ifcgReferenceV2" class="form-label fs--1">예비2 (varchar type)</label>
 							<input type="text" id="ifcgReferenceV2" name="ifcgReferenceV2" th:value="${item?.ifcgReferenceV2}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceV2Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcgReferenceV3" class="form-label">예비3 (varchar type)</label>
+							<label for="ifcgReferenceV3" class="form-label fs--1">예비3 (varchar type)</label>
 							<input type="text" id="ifcgReferenceV3" name="ifcgReferenceV3" th:value="${item?.ifcgReferenceV3}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceV3Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcgReferenceV4" class="form-label">예비4 (varchar type)</label>
+							<label for="ifcgReferenceV4" class="form-label fs--1">예비4 (varchar type)</label>
 							<input type="text" id="ifcgReferenceV4" name="ifcgReferenceV4" th:value="${item?.ifcgReferenceV4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceV4Feedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcgReferenceI1" class="form-label">예비1 (int type)</label>
+							<label for="ifcgReferenceI1" class="form-label fs--1">예비1 (int type)</label>
 							<input type="text" id="ifcgReferenceI1" name="ifcgReferenceI1" th:value="${item?.ifcgReferenceI1}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceI1Feedback"></div>
 						</div>
 						<div class="col-md-3">							
-							<label for="ifcgReferenceI2" class="form-label">예비2 (int type)</label>
+							<label for="ifcgReferenceI2" class="form-label fs--1">예비2 (int type)</label>
 							<input type="text" id="ifcgReferenceI2" name="ifcgReferenceI2" th:value="${item?.ifcgReferenceI2}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceI2Feedback"></div>
 						</div>							
 						<div class="col-md-3">						
-							<label for="ifcgReferenceI3" class="form-label">예비3 (int type)</label>
+							<label for="ifcgReferenceI3" class="form-label fs--1">예비3 (int type)</label>
 							<input type="text" id="ifcgReferenceI3" name="ifcgReferenceI3" th:value="${item?.ifcgReferenceI3}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceI3Feedback"></div>
 						</div>							
 						<div class="col-md-3">						
-							<label for="ifcgReferenceI4" class="form-label">예비4 (int type)</label>
+							<label for="ifcgReferenceI4" class="form-label fs--1">예비4 (int type)</label>
 							<input type="text" id="ifcgReferenceI4" name="ifcgReferenceI4" th:value="${item?.ifcgReferenceI4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceI4Feedback"></div>
 						</div>						

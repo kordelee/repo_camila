@@ -43,7 +43,7 @@
 <div th:replace="~{xdm/v1/infra/code/codeXdmVo :: vo}"></div>			<!-- ### --> 					
 					
 						<div class="col-md-3">
-							<label for="ifcgSeq" class="form-label">코드그룹 <span class="text-danger">*</span></label>
+							<label for="ifcgSeq" class="form-label fs--1">코드그룹 <span class="text-danger fs-0">*</span></label>
 							<select id="ifcgSeq" name="ifcgSeq" class="form-select">
 								<option value="">선택하세요</option>
 								<option th:each="list : ${listCodeGroup}" th:value="${list.ifcgSeq}" th:text="${list.ifcgName}" th:selected="${list.ifcgSeq == item?.ifcgSeq}"></option>
@@ -54,26 +54,26 @@
 							<!-- empty -->
 						</div>						
 						<div class="col-md-3">
-							<label for="ifcdSeq" class="form-label">코드 <span class="text-danger">*</span></label>
+							<label for="ifcdSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcdSeq" name="ifcdSeq" th:value="${item?.ifcdSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdSeqAnother" class="form-label">코드 (Another)</label>
+							<label for="ifcdSeqAnother" class="form-label fs--1">코드 (Another)</label>
 							<input type="text" id="ifcdSeqAnother" name="ifcdSeqAnother" th:value="${item?.ifcdSeqAnother}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdSeqAnotherFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdName" class="form-label">코드 이름 <span class="text-danger">*</span></label>
+							<label for="ifcdName" class="form-label fs--1">코드 이름 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcdName" name="ifcdName" th:value="${item?.ifcdName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdNameEng" class="form-label">코드 이름 (영문)</label>
+							<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label>
 							<input type="text" id="ifcdNameEng" name="ifcdNameEng" th:value="${item?.ifcdNameEng}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameEngFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdUseNy" class="form-label">사용여부 <span class="text-danger">*</span></label>
+							<label for="ifcdUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
 							<select id="ifcdUseNy" name="ifcdUseNy" class="form-select">
 								<option value="1" th:selected="${item?.ifcdUseNy == 1}">사용</option>
 								<option value="0" th:selected="${item?.ifcdUseNy == 0}">미사용</option>
@@ -81,7 +81,7 @@
 							<div class="invalid-feedback" id="ifcdUseNyFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdOrder" class="form-label">순서 <span class="text-danger">*</span></label>
+							<label for="ifcdOrder" class="form-label fs--1">순서 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifcdOrder" name="ifcdOrder" th:value="${item?.ifcdOrder}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdOrderFeedback"></div>
 						</div>
@@ -89,7 +89,7 @@
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
-							<label class="form-label">설명</label>
+							<label class="form-label fs--1">설명</label>
 							<div class="controls">
 								<textarea class="form-control" id="ifcdDesc" name="ifcdDesc" th:value="${item?.ifcdDesc}" th:text="${item?.ifcdDesc}" style="height: 100px;"></textarea>
 								<div class="invalid-feedback" id="ifcdDescFeedback"></div>
@@ -99,82 +99,82 @@
 							<!-- empty -->
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdNameLang1" class="form-label">다국어1</label>
+							<label for="ifcdNameLang1" class="form-label fs--1">다국어1</label>
 							<input type="text" id="ifcdNameLang1" name="ifcdNameLang1" th:value="${item?.ifcdNameLang1}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang1Feedback"></div>
 						</div>										
 						<div class="col-md-3">
-							<label for="ifcdNameLang2" class="form-label">다국어2</label>
+							<label for="ifcdNameLang2" class="form-label fs--1">다국어2</label>
 							<input type="text" id="ifcdNameLang2" name="ifcdNameLang2" th:value="${item?.ifcdNameLang2}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang2Feedback"></div>
 						</div>										
 						<div class="col-md-3">
-							<label for="ifcdNameLang3" class="form-label">다국어3</label>
+							<label for="ifcdNameLang3" class="form-label fs--1">다국어3</label>
 							<input type="text" id="ifcdNameLang3" name="ifcdNameLang3" th:value="${item?.ifcdNameLang3}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang3Feedback"></div>
 						</div>										
 						<div class="col-md-3">
-							<label for="ifcdNameLang4" class="form-label">다국어4</label>
+							<label for="ifcdNameLang4" class="form-label fs--1">다국어4</label>
 							<input type="text" id="ifcdNameLang4" name="ifcdNameLang4" th:value="${item?.ifcdNameLang4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang4Feedback"></div>
 						</div>										
 						<div class="col-md-3">
-							<label for="ifcdNameLang5" class="form-label">다국어5</label>
+							<label for="ifcdNameLang5" class="form-label fs--1">다국어5</label>
 							<input type="text" id="ifcdNameLang5" name="ifcdNameLang5" th:value="${item?.ifcdNameLang5}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang5Feedback"></div>
 						</div>										
 						<div class="col-md-3">
-							<label for="ifcdNameLang6" class="form-label">다국어6</label>
+							<label for="ifcdNameLang6" class="form-label fs--1">다국어6</label>
 							<input type="text" id="ifcdNameLang6" name="ifcdNameLang6" th:value="${item?.ifcdNameLang6}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang6Feedback"></div>
 						</div>								
 						<div class="col-md-3">
-							<label for="ifcdNameLang7" class="form-label">다국어7</label>
+							<label for="ifcdNameLang7" class="form-label fs--1">다국어7</label>
 							<input type="text" id="ifcdNameLang7" name="ifcdNameLang7" th:value="${item?.ifcdNameLang7}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang7Feedback"></div>
 						</div>								
 						<div class="col-md-3">
-							<label for="ifcdNameLang8" class="form-label">다국어8</label>
+							<label for="ifcdNameLang8" class="form-label fs--1">다국어8</label>
 							<input type="text" id="ifcdNameLang8" name="ifcdNameLang8" th:value="${item?.ifcdNameLang8}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdNameLang8Feedback"></div>
 						</div>																
 						<div class="col-md-3">
-							<label for="ifcdReferenceV1" class="form-label">예비1 (varchar type)</label>
+							<label for="ifcdReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
 							<input type="text" id="ifcdReferenceV1" name="ifcdReferenceV1" th:value="${item?.ifcdReferenceV1}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceV1Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcdReferenceV2" class="form-label">예비2 (varchar type)</label>
+							<label for="ifcdReferenceV2" class="form-label fs--1">예비2 (varchar type)</label>
 							<input type="text" id="ifcdReferenceV2" name="ifcdReferenceV2" th:value="${item?.ifcdReferenceV2}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceV2Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcdReferenceV3" class="form-label">예비3 (varchar type)</label>
+							<label for="ifcdReferenceV3" class="form-label fs--1">예비3 (varchar type)</label>
 							<input type="text" id="ifcdReferenceV3" name="ifcdReferenceV3" th:value="${item?.ifcdReferenceV3}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceV3Feedback"></div>
 						</div>	
 						<div class="col-md-3">
-							<label for="ifcdReferenceV4" class="form-label">예비4 (varchar type)</label>
+							<label for="ifcdReferenceV4" class="form-label fs--1">예비4 (varchar type)</label>
 							<input type="text" id="ifcdReferenceV4" name="ifcdReferenceV4" th:value="${item?.ifcdReferenceV4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceV4Feedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdReferenceI1" class="form-label">예비1 (int type)</label>
+							<label for="ifcdReferenceI1" class="form-label fs--1">예비1 (int type)</label>
 							<input type="text" id="ifcdReferenceI1" name="ifcdReferenceI1" th:value="${item?.ifcdReferenceI1}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceI1Feedback"></div>
 						</div>
 						<div class="col-md-3">							
-							<label for="ifcdReferenceI2" class="form-label">예비2 (int type)</label>
+							<label for="ifcdReferenceI2" class="form-label fs--1">예비2 (int type)</label>
 							<input type="text" id="ifcdReferenceI2" name="ifcdReferenceI2" th:value="${item?.ifcdReferenceI2}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceI2Feedback"></div>
 						</div>							
 						<div class="col-md-3">						
-							<label for="ifcdReferenceI3" class="form-label">예비3 (int type)</label>
+							<label for="ifcdReferenceI3" class="form-label fs--1">예비3 (int type)</label>
 							<input type="text" id="ifcdReferenceI3" name="ifcdReferenceI3" th:value="${item?.ifcdReferenceI3}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceI3Feedback"></div>
 						</div>							
 						<div class="col-md-3">						
-							<label for="ifcdReferenceI4" class="form-label">예비4 (int type)</label>
+							<label for="ifcdReferenceI4" class="form-label fs--1">예비4 (int type)</label>
 							<input type="text" id="ifcdReferenceI4" name="ifcdReferenceI4" th:value="${item?.ifcdReferenceI4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcdReferenceI4Feedback"></div>
 						</div>						
