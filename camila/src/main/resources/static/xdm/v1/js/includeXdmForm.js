@@ -3,7 +3,7 @@ let formVo = document.querySelector("form[name=formVo]");
 
 
 document.getElementById("btnList").onclick = function () {
-	formVo.action = goUrlXdmAjaxList;
+	formVo.action = goUrlXdmList;
 	formVo.submit();
 }
 
