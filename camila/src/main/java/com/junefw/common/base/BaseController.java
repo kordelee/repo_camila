@@ -5,13 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+import java.util.Calendar;
+import java.util.Random;
 
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilDateTime;
-import com.junefw.infra.codegroup.CodeGroupVo;
-
-import java.util.Calendar;
-import java.util.Random;
 
 import jakarta.servlet.http.HttpServletRequest;
 
