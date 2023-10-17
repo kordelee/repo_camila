@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages="com.junefw.infra.*"     						//#-->	*dao 찾는 영역
+@MapperScan(basePackages="com.junefw.*"     						//#-->	*dao 찾는 영역
         ,sqlSessionFactoryRef="sqlSessionFactoryMysqlMain")             //#-->
 @EnableTransactionManagement
 public class dbConfigMysqlMain {                                        //#-->
