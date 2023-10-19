@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">  	
 
-<th:block th:if="${not #strings.isEmpty(item?.ifcgSeq)}" th:fragment="regmod">		
+<th:block th:fragment="regmod">		
 	<div class="col-md-3">						
 		<label for="regSeq" class="form-label">등록자</label>
 		<input type="text" id="regSeq" name="regSeq" th:value="|${item?.regId} (${item?.regSeq})|" disabled class="form-control"/>

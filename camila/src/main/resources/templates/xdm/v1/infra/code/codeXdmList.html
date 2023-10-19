@@ -35,7 +35,7 @@
 	      </div>
 	    </div>
 	    <div id="orderTable"
-	      data-list='{"valueNames":["ifcgSeq","ifcgName","ifcgNameEng","xifcdSeqCount","ifcgUseNy","ifcgOrder","regDateTime","modDateTime"],"page":5'>
+	      data-list='{"valueNames":["ifcgSeq","ifcgName","ifcdSeq","ifcdSeqAnother","ifcdName","ifcdNameEng","ifcdUseNy","ifcdOrder","regDateTime","modDateTime"]}'>
 
 <!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
@@ -154,7 +154,7 @@
 				<td class="ifcdName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifcdName}" th:attr="onclick=|goForm('${list.ifcdSeq}')|"></a></td>
 				<td th:text="${list.ifcdNameEng}" class="ifcdNameEng align-middle"></td>
 				<td th:if="${list.ifcdUseNy eq 0}" class="ifcdUseNy align-middle">N</td>
-				<td th:unless="${list.ifcdUseNy eq 0}" class="ifcdUseNy align-middle">Y</td>
+				<td th:unless="${list.ifcdUseNy eq 0}" class="ifcdOrder align-middle">Y</td>
 				<td th:text="${list.ifcdOrder}" class="ifcdOrder align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
