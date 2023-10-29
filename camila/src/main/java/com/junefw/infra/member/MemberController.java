@@ -65,6 +65,10 @@ public class MemberController extends BaseController{
 			//	insert
 		} else {
 			model.addAttribute("item", service.selectOne(vo));
+			
+			System.out.println("service.selectListUploaded(vo).size(): " + service.selectListUploaded(vo).size());
+			
+			model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		}
 		
 		return pathCommonXdm + "memberXdmForm";

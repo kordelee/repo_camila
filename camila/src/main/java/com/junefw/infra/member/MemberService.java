@@ -53,6 +53,11 @@ public class MemberService extends BaseService{
     	return dao.delete(vo); 
     }
     
+
+	public List<MemberDto> selectListUploaded(MemberVo vo) throws Exception {
+		return dao.selectListUploaded(vo);
+	}
+    
     
 //	signin
 	public MemberDto selectOneId(MemberDto dto) throws Exception {

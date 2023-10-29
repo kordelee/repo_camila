@@ -3,6 +3,26 @@
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
+<style type="text/css">
+
+	.addScroll{
+		overflow-y:auto;
+		height: 200px;
+		background-color:#E9ECEF;
+		padding-top:5px; 
+		padding-left:5px;
+	}
+ 	
+	.input-file-button{
+		padding: 4px 25px;
+		background-color:#FF6600;
+		border-radius: 4px;
+		color: white;
+		cursor: pointer;
+	}
+
+</style>
+
 <body>
 
 <!-- ===============================================-->
@@ -41,7 +61,66 @@
 					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
 			
 <div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### --> 					
-				
+						
+						<div class="col-md-3">
+							<label for="ifcdSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifcdSeq" name="ifcdSeq" th:value="${item?.ifcdSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdSeqAnother" class="form-label fs--1">코드 (Another)</label>
+							<input type="text" id="ifcdSeqAnother" name="ifcdSeqAnother" th:value="${item?.ifcdSeqAnother}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdSeqAnotherFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdName" class="form-label fs--1">코드 이름 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifcdName" name="ifcdName" th:value="${item?.ifcdName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label>
+							<input type="text" id="ifcdNameEng" name="ifcdNameEng" th:value="${item?.ifcdNameEng}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifcdNameEngFeedback"></div>
+						</div>				
+						<div class="col-md-6" th:with="type=2, name='uploadImg'">
+						<!-- 	<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label> -->
+<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
+<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
+<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
+<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
+<label for="uploadImg" class="form-label input-file-button fs--1">이미지첨부</label>
+<input class="form-control form-control-sm" 
+th:id="${name}"
+th:name="${name}"
+type="file"
+multiple="multiple"
+style="display: none;" 
+/>
+<div th:id="|imgDiv_${name}Preview|" class="addScroll">
+<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px; background-color: red;">
+<img src="" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
+<!-- <div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('', ,, , '')">X</span></div> -->
+<!-- 
+<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+<c:if test="${listUploaded.type eq type }">
+ -->
+ 
+<!--  
+<div th:id="|imgDiv_${type}|" style="display: inline-block; height: 95px;">
+<img src="" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
+<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+</div>
+ -->
+
+<!-- 
+</c:if>
+</c:forEach>
+ -->
+ </div>
+</div>
+
+
+
+						</div>				
 										
 						<div class="col-12">
 							<div class="row">

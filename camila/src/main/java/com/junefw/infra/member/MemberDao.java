@@ -13,6 +13,7 @@ public interface MemberDao extends BaseDao{
     public int update(MemberDto dto);
     public int uelete(MemberDto dto);
     public int delete(MemberVo vo);
+	public List<MemberDto> selectListUploaded(MemberVo vo);
     
 //    signin
 	public MemberDto selectOneId(MemberDto dto);
