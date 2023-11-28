@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.junefw.common.base.BaseService;
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilDateTime;
+import com.junefw.common.util.UtilSecurity;
 
 @Service
 public class MemberService extends BaseService{
@@ -15,7 +16,7 @@ public class MemberService extends BaseService{
 	@Autowired
 	MemberDao dao;
     
-	
+
 	public int selectOneCount(MemberVo vo) { 
     	return dao.selectOneCount(vo); 
     }
@@ -32,12 +33,72 @@ public class MemberService extends BaseService{
     
     
     public int insert(MemberDto dto) throws Exception {
+    	
     	setRegMod(dto);
-    	return dao.insert(dto); 
+    	
+    	dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
+    	dto.setIfmmName(dto.getIfmmLastName() + dto.getIfmmFirstName());
+    	dto.setIfmmPwdModDate(UtilDateTime.nowDate());
+    	
+    	dao.insert(dto);
+    	
+    	uploadFiles(dto.getUploadImgProfile(), dto, "infrMemberUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber(), dto.getIfmmSeq(), dao);
+    	uploadFiles(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao);
+    	uploadFiles(dto.getUploadFile(), dto, "infrMemberUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber(), dto.getIfmmSeq(), dao);
+	
+//    	// infrMemberEmail
+//		for(int i = 0 ; i < dto.getIfmeEmailFullArray().length ; i++) {
+//			dto.setIfmeDefaultNy(dto.getIfmeDefaultNyArray()[i]);
+//			dto.setIfmeTypeCd(dto.getIfmeTypeCdArray()[i]);
+//			dto.setIfmeEmailFull(dto.getIfmeEmailFullArray()[i]);
+//			dao.insertEmail(dto);
+//		}
+//    	
+//		// infrMemberPhone
+//		for(int i = 0 ; i < dto.getIfmpNumberArray().length ; i++) {
+//			if(!dto.getIfmpNumberArray()[i].isEmpty()) {	 
+//				dto.setIfmpDefaultNy(dto.getIfmpDefaultNyArray()[i]);
+//				dto.setIfmpTypeCd(dto.getIfmpTypeCdArray()[i]);
+//				dto.setIfmpDeviceCd(dto.getIfmpDeviceCdArray()[i]);
+//				dto.setIfmpTelecomCd(dto.getIfmpTelecomCdArray()[i]);
+//				dto.setIfmpNumber(dto.getIfmpNumberArray()[i]);
+//				dao.insertPhone(dto);
+//			}
+//		}
+//		
+////			infrMemberAddress
+//		if (dto.getIfmaZipcodeArray().length >= 1) {
+//			for(int i = 0 ; i < dto.getIfmaZipcodeArray().length ; i++) {
+//				dto.setIfmaDefaultNy(dto.getIfmaDefaultNyArray()[i]);
+//				dto.setIfmaTypeCd(dto.getIfmaTypeCdArray()[i]);
+//				dto.setIfmaTitle(dto.getIfmaTitleArray()[i]);
+//				dto.setIfmaAddress1(dto.getIfmaAddress1Array()[i]);
+//				dto.setIfmaAddress2(dto.getIfmaAddress2Array()[i]);
+//				dto.setIfmaAddress3(dto.getIfmaAddress3Array()[i]);
+//				dto.setIfmaZipcode(dto.getIfmaZipcodeArray()[i]);
+//				dto.setIfmaLat(dto.getIfmaLatArray()[i]);
+//				dto.setIfmaLng(dto.getIfmaLngArray()[i]);
+//				
+//				dao.insertAddress(dto);
+//			}
+//		} else {
+//			// by pass
+//		}
+//		
+//		Thread thread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				UtilMail.sendMail();
+//			}
+//		});
+//		
+//		thread.start();
+		
+		return 1;
+
     }
     
-    
-    public int update(MemberDto dto) throws Exception {
+	public int update(MemberDto dto) throws Exception {
     	setRegMod(dto);
     	return dao.update(dto); 
     }
