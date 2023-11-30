@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
@@ -63,24 +63,80 @@
 <div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### --> 					
 						
 						<div class="col-md-3">
-							<label for="ifcdSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifcdSeq" name="ifcdSeq" th:value="${item?.ifcdSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+							<label for="ifmmSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifmmSeq" name="ifmmSeq" th:value="${item?.ifmmSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+						</div>
+						<div class="col-md-9">
+						</div>						
+						<div class="col-md-3">
+							<label for="ifmmId" class="form-label fs--1">아이디 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifmmId" name="ifmmId" th:value="${item?.ifmmId}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmmIdFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifcdSeqAnother" class="form-label fs--1">코드 (Another)</label>
-							<input type="text" id="ifcdSeqAnother" name="ifcdSeqAnother" th:value="${item?.ifcdSeqAnother}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifcdSeqAnotherFeedback"></div>
+							<label for="ifmmName" class="form-label fs--1">이름 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifmmName" name="ifmmName" th:value="${item?.ifmmName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmmNameFeedback"></div>
 						</div>
+<th:block th:if="${#strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->								
 						<div class="col-md-3">
-							<label for="ifcdName" class="form-label fs--1">코드 이름 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifcdName" name="ifcdName" th:value="${item?.ifcdName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifcdNameFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label>
-							<input type="text" id="ifcdNameEng" name="ifcdNameEng" th:value="${item?.ifcdNameEng}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifcdNameEngFeedback"></div>
+							<label for="ifmmPassword" class="form-label fs--1">비밀번호 <span class="text-danger fs-0">*</span></label>
+							<input type="password" id="ifmmPassword" name="ifmmPassword" th:value="${item?.ifmmPassword}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
 						</div>				
+						<div class="col-md-3">
+							<label for="ifmmPasswordRe" class="form-label fs--1">비밀번호 확인 <span class="text-danger fs-0">*</span></label>
+							<input type="password" id="ifmmPasswordRe" name="ifmmPasswordRe" th:value="${item?.ifmmPasswordRe}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmmPasswordReFeedback"></div>
+						</div>				
+</th:block>
+<th:block th:if="${not #strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->								
+						<div class="col-md-6">
+						</div>				
+</th:block>					
+						<div class="col-md-3">
+							<label for="ifmmGenderCd" class="form-label fs--1">성별 <span class="text-danger fs-0">*</span></label>
+							<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
+								<option value="">선택하세요</option>
+								<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq == item?.ifmmGenderCd}"></option>
+							</select>						
+							<div class="invalid-feedback" id="ifmmGenderCdFeedback"></div>
+						</div>				
+						<div class="col-md-3">
+							<label for="ifmmDob" class="form-label fs--1">출생일 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifmmDob" name="ifmmDob" th:value="${item?.ifmmDob}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmmDobFeedback"></div>
+						</div>				
+						<div class="col-md-3">
+							<label for="ifmeEmailFull" class="form-label fs--1">이메일</label>
+							<input type="text" id="ifmeEmailFull" name="ifmeEmailFull" th:value="${item?.ifmeEmailFull}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+						</div>				
+						<div class="col-md-3">
+							<label for="ifmpNumber" class="form-label fs--1">전화번호</label>
+							<input type="text" id="ifmpNumber" name="ifmpNumber" th:value="${item?.ifmpNumber}" maxlength="20" placeholder="숫자만" class="form-control"/>
+							<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifmaZipcode" class="form-label fs--1">우편번호</label>
+							<input type="text" id="ifmaZipcode" name="ifmaZipcode" th:value="${item?.ifmaZipcode}" maxlength="20" placeholder="숫자만" class="form-control"/>
+							<div class="invalid-feedback" id="ifmaZipcodeFeedback"></div>
+						</div>						
+						<div class="col-md-3">
+							<label for="ifmaAddress1" class="form-label fs--1">주소</label>
+							<input type="text" id="ifmaAddress1" name="ifmaAddress1" th:value="${item?.ifmaAddress1}" maxlength="20" placeholder="숫자만" class="form-control"/>
+							<div class="invalid-feedback" id="ifmaAddress1Feedback"></div>
+						</div>						
+						<div class="col-md-3">
+							<label for="ifmaAddress2" class="form-label fs--1">상세주소</label>
+							<input type="text" id="ifmaAddress2" name="ifmaAddress2" th:value="${item?.ifmaAddress2}" maxlength="20" placeholder="숫자만" class="form-control"/>
+							<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
+						</div>						
+						<div class="col-md-3">
+							<label for="ifmaAddress3" class="form-label fs--1">기타주소</label>
+							<input type="text" id="ifmaAddress3" name="ifmaAddress3" th:value="${item?.ifmaAddress3}" maxlength="20" placeholder="숫자만" class="form-control"/>
+							<div class="invalid-feedback" id="ifmaAddress3Feedback"></div>
+						</div>						
 						<div class="col-md-6" th:with="type=2, name='uploadImg'">
 						<!-- 	<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label> -->
 <input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
@@ -184,7 +240,7 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-			
+		$("#ifmmDob").datepicker();
 	});
 	
 	let goUrlXdmList = "/v1/infra/member/memberXdmList";											/* ### */

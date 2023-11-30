@@ -36,7 +36,6 @@ public class MemberDto extends BaseDto{
 	private Integer ifmmEmailConsentNy;
 	private Integer ifmmSmsConsentNy;
 	private Integer ifmmPushConsentNy;
-	private Integer ifmmCountryResidence;
 	private String ifmmDesc;
 	private Integer ifmmDelNy;
 
@@ -300,12 +299,6 @@ public class MemberDto extends BaseDto{
 	}
 	public void setIfmmPushConsentNy(Integer ifmmPushConsentNy) {
 		this.ifmmPushConsentNy = ifmmPushConsentNy;
-	}
-	public Integer getIfmmCountryResidence() {
-		return ifmmCountryResidence;
-	}
-	public void setIfmmCountryResidence(Integer ifmmCountryResidence) {
-		this.ifmmCountryResidence = ifmmCountryResidence;
 	}
 	public String getIfmmDesc() {
 		return ifmmDesc;

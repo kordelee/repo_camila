@@ -26,5 +26,10 @@ public interface MemberDao extends BaseDao{
 	public MemberDto selectOneLogin(MemberDto dto);
 	public int insertLogLogin(MemberDto dto);
 	public int updateIfmmPwdModDate(MemberDto dto);
+	
+	
+	public int insertEmail(MemberDto dto);
+	public int insertPhone(MemberDto dto);
+	public int insertAddress(MemberDto dto);
     
 }
