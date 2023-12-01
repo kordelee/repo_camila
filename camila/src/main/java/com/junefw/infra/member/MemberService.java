@@ -58,6 +58,12 @@ public class MemberService extends BaseService{
     	
     	dao.insertPhone(dto);
     	
+    	dto.setIfmaDefaultNy(1);
+    	dto.setIfmaTypeCd(78);
+    	dto.setIfmaTitle("Personal");
+    	
+    	dao.insertAddress(dto);
+    	
 //    	// infrMemberEmail
 //		for(int i = 0 ; i < dto.getIfmeEmailFullArray().length ; i++) {
 //			dto.setIfmeDefaultNy(dto.getIfmeDefaultNyArray()[i]);
@@ -112,7 +118,7 @@ public class MemberService extends BaseService{
     
 	public int update(MemberDto dto) throws Exception {
     	setRegMod(dto);
-    	return dao.update(dto); 
+    	return dao.update(dto);
     }
     
     
