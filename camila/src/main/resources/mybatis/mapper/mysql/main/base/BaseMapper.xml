@@ -120,7 +120,7 @@
 	
 	
 	<!-- uploaded s -->
-	<insert id="insertUploaded">
+	<sql id="insertUploaded">
 		INSERT INTO ${tableName} (
 			type
 			,defaultNy
@@ -146,20 +146,20 @@
 			<include refid="Base.insertRegValue" />
 			,#{pseq}
 		)
-	</insert>
+	</sql>
 	
 	
-	<delete id="deleteUploaded">
+	<sql id="deleteUploaded">
 		DELETE FROM ${tableName}
 		WHERE 1=1
 			AND seq = #{seq}
-	</delete>
+	</sql>
 	
 	
-	<update id="ueleteUploaded">
+	<sql id="ueleteUploaded">
 		UPDATE ${tableName} SET delNy = 1
 		WHERE 1=1
 			AND seq = #{seq}
-	</update>
+	</sql>
 	<!-- uploaded e -->	
 </mapper>

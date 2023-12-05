@@ -28,9 +28,14 @@ public final class Constants {
 	
 	public static final long PASSWOPRD_CHANGE_INTERVAL = 90;
 	
-	public static final String UPLOAD_PATH_PREFIX_EXTERNAL = "D://factory/ws_sts4_4180/bella/src/main/webapp";
-	public static final String UPLOAD_PATH_PREFIX = "D://factory/ws_sts4_4180/bella/src/main/webapp/resources/uploaded";
-	public static final String UPLOAD_PATH_PREFIX_FOR_VIEW = "/resources/uploaded";
+	public static final String UPLOADED_PATH_PREFIX_LOCAL = "D:/factory/ws_sts4_4180/repo_camila_uploaded";
+	public static final String UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL = "/uploaded";
+	
+	public static final String UPLOADED_RESSOURCE_HANDLER = "/uploaded/**";
+	public static final String UPLOADED_RESSOURCE_LOCATIONS = "file:///D:/factory/ws_sts4_4180/repo_camila_uploaded/";
+	
+	public static final String UPLOADED_PATH_PREFIX_S3 = "D:/factory/ws_sts4_4180/repo_camila_uploaded";
+	public static final String UPLOADED_PATH_PREFIX_FOR_VIEW_S3 = "/uploaded";
 	
 	public static final int COOKIE_MAXAGE_XDM = 60 * 60 * 24 * 30;	//초 * 분 * 시간 * 일 : 30day
 	public static final String COOKIE_DOMAIN_XDM = "";

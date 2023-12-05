@@ -44,13 +44,13 @@ public class BaseService {
 				String pathModule = className;
 				String nowString = UtilDateTime.nowString();
 				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
-				String path = Constants.UPLOAD_PATH_PREFIX + "/" + pathModule + "/" + pathDate + "/";
-				String pathForView = Constants.UPLOAD_PATH_PREFIX_FOR_VIEW + "/" + pathModule + "/" + pathDate + "/";
+				String path = Constants.UPLOADED_PATH_PREFIX_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
 				
 				File uploadPath = new File(path);
 				
 				if (!uploadPath.exists()) {
-					uploadPath.mkdir();
+					uploadPath.mkdirs();
 				} else {
 					// by pass
 				}

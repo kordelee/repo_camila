@@ -161,9 +161,9 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 <!-- th:onChange="'javascript:upload(\''+ ${name} +'\','+ ${type} +',0,1,0,0,1);'" -->
 <!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
 <div th:id="|${name}Preview|" class="addScroll">
-<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px; background-color: red;">
-<img src="" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
-<!-- <div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('', ,, , '')">X</span></div> -->
+<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">
+	<img th:src="|${listUploaded.path}${listUploaded.uuidName}|" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
+<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
 <!-- 
 <c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
 <c:if test="${listUploaded.type eq type }">
@@ -186,7 +186,10 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 
 
 						</div>				
-										
+						<div class="col-md-6">
+							비어있음																									            
+
+						</div>										
 						<div class="col-12">
 							<div class="row">
 								<div class="col-6 text-start">

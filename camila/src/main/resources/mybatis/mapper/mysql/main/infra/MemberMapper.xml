@@ -522,4 +522,17 @@
 			AND ifmmSeq = #{ifmmSeq}
 	</update>
 	
+	
+	<insert id="insertUploaded">
+		<include refid="Base.insertUploaded" />
+	</insert>
+	
+	<insert id="deleteUploaded">
+		<include refid="Base.deleteUploaded" />
+	</insert>
+	
+	<insert id="ueleteUploaded">
+		<include refid="Base.ueleteUploaded" />
+	</insert>
+	
 </mapper>

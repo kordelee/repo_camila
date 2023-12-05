@@ -16,9 +16,9 @@ public interface MemberDao extends BaseDao{
 	public List<MemberDto> selectListUploaded(MemberVo vo);
     
 //	upload
-//	public int insertUploaded(MemberDto dto);
-//	public int ueleteUploaded(MemberDto dto);
-//	public int deleteUploaded(MemberDto dto);
+	public int insertUploaded(MemberDto dto);
+	public int ueleteUploaded(MemberDto dto);
+	public int deleteUploaded(MemberDto dto);
 	
 	
 //  signin
