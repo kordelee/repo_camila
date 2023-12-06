@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.junefw.common.base.BaseService;
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilDateTime;
@@ -13,6 +14,17 @@ import com.junefw.common.util.UtilSecurity;
 @Service
 public class MemberService extends BaseService{
 	
+
+//	for aws.s3 fileupload s
+	private final AmazonS3Client amazonS3Client;
+	
+    @Autowired
+    public MemberService(AmazonS3Client amazonS3Client) {
+      this.amazonS3Client = amazonS3Client;
+    }
+//	for aws.s3 fileupload e
+    
+
 	@Autowired
 	MemberDao dao;
     
@@ -44,7 +56,8 @@ public class MemberService extends BaseService{
     	dao.insert(dto);
     	
 //    	uploadFiles(dto.getUploadImgProfile(), dto, "infrMemberUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber(), dto.getIfmmSeq(), dao);
-    	uploadFiles(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao);
+//    	uploadFiles(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao);
+    	uploadFilesToS3(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao, amazonS3Client);
 //    	uploadFiles(dto.getUploadFile(), dto, "infrMemberUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber(), dto.getIfmmSeq(), dao);
 	
     	dto.setIfmeDefaultNy(1);
