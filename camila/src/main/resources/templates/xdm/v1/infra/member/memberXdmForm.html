@@ -162,7 +162,7 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 <!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
 <div th:id="|${name}Preview|" class="addScroll">
 <div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">
-	<img th:src="|${listUploaded.path}${listUploaded.uuidName}|" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
+	<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
 <div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
 <!-- 
 <c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
@@ -260,6 +260,7 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 	
 	let seq = document.querySelector("input[name=ifmmSeq]");							/* ### */
 	
+	var aaaa;
 	
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
@@ -546,9 +547,13 @@ th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
 		}
 	}
 	
-	openViewer = function (type, sort) {
-		var str = '<c:set var="tmp" value="'+ type +'"/>';
-		$("#modalImgViewer").append(str);
+	openViewer = function (type, sort, url) {
+	
+		var html = '<div class="carousel-item active">';
+				html += '<img src="'+ url +'" class="d-block w-100">';
+				html += '</div>';		
+		
+		$("#modalImgViewerDetail").append(html);
 		$("#modalImgViewer").modal("show");
 	}
 	

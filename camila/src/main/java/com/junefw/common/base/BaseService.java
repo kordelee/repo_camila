@@ -98,33 +98,31 @@ public class BaseService {
 				String pathModule = className;
 				String nowString = UtilDateTime.nowString();
 				String pathDate = nowString.substring(0,4) + "/" + nowString.substring(5,7) + "/" + nowString.substring(8,10); 
-				String path = Constants.UPLOADED_PATH_PREFIX_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
-				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
+				String path = pathModule + "/" + type + "/" + pathDate + "/";
+//				String pathForView = Constants.UPLOADED_PATH_PREFIX_FOR_VIEW_LOCAL + "/" + pathModule + "/" + type + "/" + pathDate + "/";
 				
 				
 		        ObjectMetadata metadata = new ObjectMetadata();
 		        metadata.setContentLength(multipartFiles[i].getSize());
 		        metadata.setContentType(multipartFiles[i].getContentType());
-
-		        amazonS3Client.putObject(bucket, uuidFileName, multipartFiles[i].getInputStream(), metadata);
-				
-		        String aaa = amazonS3Client.getUrl(bucket, uuidFileName).toString();
-				
-		        System.out.println("aaa: " + aaa);
 		        
-//				dto.setPath(pathForView);
-//				dto.setOriginalName(fileName);
-//				dto.setUuidName(uuidFileName);
-//				dto.setExt(ext);
-//				dto.setSize(multipartFiles[i].getSize());
-//				
-//				dto.setTableName(tableName);
-//				dto.setType(type);
-//	//			dto.setDefaultNy();
-//				dto.setSort(maxNumber + i);
-//				dto.setPseq(pSeq);
-//				
-//				dao.insertUploaded(dto);
+		        amazonS3Client.putObject(bucket, path + uuidFileName, multipartFiles[i].getInputStream(), metadata);
+				
+		        String objectUrl = amazonS3Client.getUrl(bucket, path + uuidFileName).toString();
+		        
+				dto.setPath(objectUrl);
+				dto.setOriginalName(fileName);
+				dto.setUuidName(uuidFileName);
+				dto.setExt(ext);
+				dto.setSize(multipartFiles[i].getSize());
+				
+				dto.setTableName(tableName);
+				dto.setType(type);
+	//			dto.setDefaultNy();
+				dto.setSort(maxNumber + i);
+				dto.setPseq(pSeq);
+				
+				dao.insertUploaded(dto);
 			}
 		}
 	}

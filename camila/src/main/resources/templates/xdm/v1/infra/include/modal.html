@@ -38,6 +38,53 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- <c:set var="imgType" value=""/> -->		<!-- 어떻게 해야 될지 고민 중이다. -->
+	<div class="modal fade" id="modalImgViewer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Image Viewer</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body"> 
+					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+<!-- 					
+						<div class="carousel-indicators" th:each="listUploaded : ${listUploaded}">		
+ <th:block th:if="${listUploaded.type eq 2}">
+	<th:block th:if="${listUploadedStat.count eq 1}">
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+	</th:block>
+						
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<c:out value="${statusUploaded.index }"/>" aria-label="Slide <c:out value="${statusUploaded.count }"/>"></button>
+	<th:block th:unless="${listUploadedStat.count eq 1}">											
+											<button type="button" data-bs-target="#carouselExampleIndicators" th:data-bs-slide-to="${listUploadedStat.index}" th:aria-label="|Slide ${listUploadedStat.count}|"></button>
+	</th:block>
+</th:block>										
+						</div>
+ -->						
+						<div class="carousel-inner" id="modalImgViewerDetail"></div>
+<!-- 						
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+ -->
+					</div>
+	
+				</div>
+	<!-- 			
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-check"></i></button>
+				</div>
+	 -->			
+			</div>
+		</div>
+	</div>	
 
 </th:block>
 
