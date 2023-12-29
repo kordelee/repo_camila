@@ -232,7 +232,10 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-		$("#shDateStart, #shDateEnd").datepicker();
+		$("#shDateStart, #shDateEnd").datetimepicker({
+			timepicker:false,
+ 			format: 'Y-m-d'
+		});
 	});
 	
 	let goUrlXdmAjaxList = "/v1/infra/code/codeXdmAjaxList";				/* ### */
