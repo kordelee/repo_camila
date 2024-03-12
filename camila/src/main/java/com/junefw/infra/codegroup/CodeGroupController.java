@@ -40,7 +40,8 @@ public class CodeGroupController extends BaseController{
 			
 			model.addAttribute("list", service.selectList(vo));
 		}
-        return pathCommonXdm + "codeGroupXdmList";
+
+		return pathCommonXdm + "codeGroupXdmList";
   	}
 	
 
