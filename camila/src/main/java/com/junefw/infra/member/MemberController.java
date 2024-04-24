@@ -164,8 +164,8 @@ public class MemberController extends BaseController{
     
     @RequestMapping(value = "signinXdmForm")
 	public String signinXdmForm(MemberVo vo, HttpSession httpSession) throws Exception {
-		if(UtilCookie.getValueXdm(Constants.COOKIE_SEQ_NAME_XDM) != null) {
 
+    	if(UtilCookie.getValueXdm(Constants.COOKIE_SEQ_NAME_XDM) != null) {
 			//	auto login
 			if(httpSession.getAttribute("sessSeqXdm") == null) { 
 				
