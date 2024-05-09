@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilCookie;
+import com.junefw.infra.mail.MailService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -33,6 +34,9 @@ public class MemberController extends BaseController{
 	
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	MailService mailService;
 	
     
 	@RequestMapping(value = "/memberXdmList")
@@ -107,6 +111,17 @@ public class MemberController extends BaseController{
 		service.insert(dto);
 	
 		vo.setIfmmSeq(dto.getIfmmSeq());
+		
+//		mailService.sendMailSemple();
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mailService.sendMailSemple();
+			}
+		});
+		
+		thread.start();
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 

@@ -33,11 +33,14 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.2.3'
 	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail' , version: '3.2.5'
+	
+	
+	
+	
 	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
-	
-	// https://mvnrepository.com/artifact/javax.mail/mail
-	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
 	
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
@@ -47,3 +50,18 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// 아래 내용이 필요하여 추가를 하였는데 개발상에 문제 였던 것 같다
+// 없어도 정상작동중
+// spring-boot-starter-mail
+// 추가하고 진행을 하는데 계속 클래스를 찾지 못하는 문제가 발생하였다.
+// 문제는 아래것을 제거 해 주어야 한다.
+// 근데 이건 일시적인 문제일 것 같다.
+// 추후 springboot 버젼이 변경이 되면 잘 될 것으로 예상이 된다.
+// https://github.com/spring-projects/spring-boot/issues/33452
+//configurations.all {
+//	resolutionStrategy {
+//		exclude group: "com.sun.activation", module: "jakarta.activation"
+//	}
+//}
+
