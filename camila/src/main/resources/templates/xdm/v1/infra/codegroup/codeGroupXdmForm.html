@@ -86,7 +86,13 @@
 						</div>
 						<div class="col-md-6">
 							<!-- empty -->
-						</div>						
+						</div>
+						<div class="col-md-12">
+							<label for="uploadFiles" class="form-label fs--1">file</label>
+							<input type="file" id="uploadFiles" name="uploadFiles" multiple class="form-control"/>
+							<div class="invalid-feedback" id="uploadFilesFeedback"></div>
+						</div>							
+<!-- 											
 						<div class="col-md-3">
 							<label for="ifcgReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
 							<input type="text" id="ifcgReferenceV1" name="ifcgReferenceV1" th:value="${item?.ifcgReferenceV1}" class="form-control"/>
@@ -127,7 +133,7 @@
 							<input type="text" id="ifcgReferenceI4" name="ifcgReferenceI4" th:value="${item?.ifcgReferenceI4}" class="form-control"/>
 							<div class="invalid-feedback" id="ifcgReferenceI4Feedback"></div>
 						</div>						
-	
+ -->	
 <th:block th:if="${not #strings.isEmpty(item?.ifcgSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
@@ -213,14 +219,14 @@
  		if(!checkOnlyKoreanEnglishNumber('ifcgName', 2, 0, "코드그룹 이름은 한글, 영문대소문자, 숫자만 입력 가능합니다.")) return false;
  		if(!checkOnlyEnglishNumber('ifcgNameEng', 2, 1, "코드그룹 이름 (영문)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
  		if(!checkOnlyNumber('ifcgOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
- 		if(!checkOnlyEnglishNumber('ifcgReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
- 		if(!checkOnlyEnglishNumber('ifcgReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
- 		if(!checkOnlyEnglishNumber('ifcgReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
- 		if(!checkOnlyEnglishNumber('ifcgReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
- 		if(!checkOnlyNumber('ifcgReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
- 		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
- 		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
- 		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 	}
 
 </script>
