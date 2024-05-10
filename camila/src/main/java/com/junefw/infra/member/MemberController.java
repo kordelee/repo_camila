@@ -112,12 +112,22 @@ public class MemberController extends BaseController{
 	
 		vo.setIfmmSeq(dto.getIfmmSeq());
 		
-//		mailService.sendMailSemple();
+//		mailService.sendMailSimple();
+		
+//		Thread thread = new Thread(new Runnable() {
+//			@Override
+//			public void run() {
+//				mailService.sendMailSimple();
+//			}
+//		});
+//		
+//		thread.start();
 		
 		Thread thread = new Thread(new Runnable() {
+			
 			@Override
 			public void run() {
-				mailService.sendMailSemple();
+				mailService.sendMailSimple();
 			}
 		});
 		

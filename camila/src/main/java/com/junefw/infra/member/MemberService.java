@@ -16,12 +16,13 @@ public class MemberService extends BaseService{
 	
 
 //	for aws.s3 fileupload s
-	private final AmazonS3Client amazonS3Client;
+	@Autowired
+	private AmazonS3Client amazonS3Client;
 	
-    @Autowired
-    public MemberService(AmazonS3Client amazonS3Client) {
-      this.amazonS3Client = amazonS3Client;
-    }
+//    @Autowired
+//    public MemberService(AmazonS3Client amazonS3Client) {
+//      this.amazonS3Client = amazonS3Client;
+//    }
 //	for aws.s3 fileupload e
     
 

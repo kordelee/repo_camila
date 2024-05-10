@@ -11,7 +11,7 @@ public class MailService {
 	@Autowired
 	private JavaMailSender javaMailSender;
 	
-    public void sendMailSemple() {
+    public void sendMailSimple() {
     	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
     	
     	simpleMailMessage.setTo("kordelee@naver.com");
