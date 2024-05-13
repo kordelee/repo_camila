@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
@@ -106,16 +105,16 @@ public class CodeGroupController extends BaseController{
 	@RequestMapping(value = "codeGroupXdmInst")
 	public String codeGroupXdmInst(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
-//		service.insert(dto);
+		service.insert(dto);
 		
 //		vo.setIfcgSeq(dto.getIfcgSeq());
 		
-		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
+//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
 		
 		
-		for(MultipartFile a : dto.getUploadFiles()) {
-			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-		}
+//		for(MultipartFile a : dto.getUploadFiles()) {
+//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
+//		}
 		
 		
 
