@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.junefw.common.base.BaseController;
 
 @Controller
-@RequestMapping(value = "/test/")
+@RequestMapping(value = "/v1/infra/test/")
 public class TestController extends BaseController{
 
 	@RequestMapping(value = "publicCorona1JsonNodeList")
@@ -55,6 +55,12 @@ public class TestController extends BaseController{
 //		model.addAttribute(node);
 		
 		return "xdm/v1/infra/test/publicCorona1JsonNodeList";
+	}
+	
+	@RequestMapping(value = "/findRoute")
+	public String findRoute() throws Exception {
+		System.out.println("asdfasdf");
+		return "xdm/v1/infra/test/findRoute";
 	}
 	
 }
