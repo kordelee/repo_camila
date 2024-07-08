@@ -145,3 +145,12 @@ document.getElementById("btnModalDelete").click = function () {
     form.action = goUrlXdmMultiDele;
     form.submit();
 }
+
+
+	$("#btnExcel").click(function() {
+		
+		    form.action = excelUri;
+    form.submit();
+		
+		//form.attr("action", excelUri).submit();
+	});
