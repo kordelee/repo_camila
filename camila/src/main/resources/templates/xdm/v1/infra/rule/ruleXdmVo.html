@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">  
+
+<th:block th:fragment="vo">	
+	<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1">
+	<input type="hidden" name="rowNumToShow" th:value="${vo.rowNumToShow}">
+	
+	<input type="hidden" name="shUseNy" th:value="${vo.shUseNy}">
+	<input type="hidden" name="shDelNy" th:value="${vo.shDelNy}">
+	
+	<input type="hidden" name="shOptionDate" th:value="${vo.shOptionDate}">
+	<input type="hidden" name="shDateStart" th:value="${vo.shDateStart}">
+	<input type="hidden" name="shDateEnd" th:value="${vo.shDateEnd}">
+	
+	<input type="hidden" name="shOption" th:value="${vo.shOption}">
+	<input type="hidden" name="shValue" th:value="${vo.shValue}">
+	
+	<input type="hidden" name="ifrlSeq" th:value="${vo.ifrlSeq}">		<!-- ### -->
+</th:block>
+
+</html>

@@ -1,0 +1,66 @@
+package com.junefw.infra.rule;
+
+import java.util.Date;
+
+import com.junefw.common.base.BaseDto;
+
+public class RuleDto extends BaseDto{
+	
+	private String ifrlSeq;
+	private String ifrlTitle;
+	private String ifrlDesc;
+	private Integer ifrlUseNy;
+	private Integer ifrlDelNy;
+	private String ifrlVersion;
+	private Date ifrlAnnounceDateTime;
+	private Date ifrlApplicationDateTime;
+	public String getIfrlSeq() {
+		return ifrlSeq;
+	}
+	public void setIfrlSeq(String ifrlSeq) {
+		this.ifrlSeq = ifrlSeq;
+	}
+	public String getIfrlTitle() {
+		return ifrlTitle;
+	}
+	public void setIfrlTitle(String ifrlTitle) {
+		this.ifrlTitle = ifrlTitle;
+	}
+	public String getIfrlDesc() {
+		return ifrlDesc;
+	}
+	public void setIfrlDesc(String ifrlDesc) {
+		this.ifrlDesc = ifrlDesc;
+	}
+	public Integer getIfrlUseNy() {
+		return ifrlUseNy;
+	}
+	public void setIfrlUseNy(Integer ifrlUseNy) {
+		this.ifrlUseNy = ifrlUseNy;
+	}
+	public Integer getIfrlDelNy() {
+		return ifrlDelNy;
+	}
+	public void setIfrlDelNy(Integer ifrlDelNy) {
+		this.ifrlDelNy = ifrlDelNy;
+	}
+	public String getIfrlVersion() {
+		return ifrlVersion;
+	}
+	public void setIfrlVersion(String ifrlVersion) {
+		this.ifrlVersion = ifrlVersion;
+	}
+	public Date getIfrlAnnounceDateTime() {
+		return ifrlAnnounceDateTime;
+	}
+	public void setIfrlAnnounceDateTime(Date ifrlAnnounceDateTime) {
+		this.ifrlAnnounceDateTime = ifrlAnnounceDateTime;
+	}
+	public Date getIfrlApplicationDateTime() {
+		return ifrlApplicationDateTime;
+	}
+	public void setIfrlApplicationDateTime(Date ifrlApplicationDateTime) {
+		this.ifrlApplicationDateTime = ifrlApplicationDateTime;
+	}
+	
+}
