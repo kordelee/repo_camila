@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+
+<div class="content">
+	<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+		<input type="hidden" name="checkboxSeqArray">
+		<input type="hidden" name="ifqaSeq">															<!-- ### -->
+		
+		<nav class="mb-2" aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+				<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+				<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+			</ol>
+		</nav>
+	  <div class="mb-9">
+	    <div class="row g-3 mb-4">
+	      <div class="col-auto">
+	        <h2 class="mb-0">Qna관리</h2>														<!-- ### -->
+	      </div>
+	    </div>
+	    <!--수정-->
+	    <div id="orderTable"
+	      data-list='{"valueNames":["ifqaSeq","ifqaName","ifcgNameEng","xifcdSeqCount","ifcgUseNy","ifcgOrder","regDateTime","modDateTime"]}'>
+
+<!-- hidden search s -->
+<div class="container-fluid px-0 d-block d-sm-none">
+	<div class="row">
+		<div id="divSearchControl" class="col text-center">
+			<i id="iSearchControlUp" class="fas fa-chevron-up"></i>
+			<i id="iSearchControlDown" class="fas fa-chevron-down"></i>
+		</div>
+	</div>
+</div>
+<!-- hidden search e -->
+
+<!-- search s -->
+<div id="divSearch" class="container-fluid px-0 pb-3">
+	<div class="row row-cols-2 row-cols-sm-6 g-2 px-2">
+		<div class="col">
+			<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shDelNy == null}">삭제여부</option>
+				<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
+			</select>
+		</div>
+		<!--<div class="col">
+			<select name="shUseNy" id="shUseNy" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
+				<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
+	</select>
+</div>-->			
+		<div class="col">
+			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+				<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+				<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+			</select>
+		</div>  
+		<div class="col">
+			<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+		</div>              
+		<div class="col">
+			<input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+		</div> 
+	</div>
+	<div class="row row-cols-2 row-cols-sm-6 g-2 mt-1 px-2">
+		<div class="col">
+			<select id="shOption" name="shOption" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+				<option value="1" th:selected="${vo.shOption == 1}">seq</option>
+				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
+				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
+			</select>
+		</div>                    
+		<div class="col">
+			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
+			<div class="invalid-feedback" id="shValueFeedback"></div>
+		</div> 
+		<div class="col">
+			<button type="button" id="btnSearch" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+			<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
+		</div>    
+	</div>
+</div>
+<!-- search e -->
+ 
+				<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+
+<div th:replace="~{xdm/v1/infra/include/totalAndRowNum :: totalAndRowNum}"></div>
+
+					<hr style="margin: 0.5rem 0;">
+      	
+<!-- table s  -->
+<div class="table-responsive scrollbar mx-n1 px-1">
+	<table class="table table-sm fs--1 mb-0">
+		<thead>
+			<tr class="text-center">
+				<th class="white-space-nowrap fs--1 align-middle ps-0" style="width:30px; min-width: 30px;">
+					<div class="form-check mb-0 fs-0">
+						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
+					</div>
+				</th>
+				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaSeq" style="width: 110px; min-width:110px;">seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaTitle" style="min-width: 200px;">제목</th>
+				<!--<th class="sort align-middle" scope="col" data-sort="xifqaSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
+				<th class="sort align-middle" scope="col" data-sort="ifqaStatusCd" style="width: 80px; min-width: 80px;">답변 상태</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaTypeCd" style="width: 80px; min-width: 80px;">답변 타입</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerSeq" style="width: 150px; min-width: 100px">답변자 Seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerDateTime" style="width: 150px; min-width: 100px">답변등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 100px;">수정일</th>
+			</tr>
+		</thead>
+		<tbody class="list text-center" id="order-table-body">
+			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
+				<td colspan="11">
+					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
+				</td>
+			</tr>
+			<tr class="hover-actions-trigger btn-reveal-trigger position-static" 
+				onmouseover="this.style.background='red'" onmouseout="this.style.background=''"
+				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifqaSeq}" >			<!-- ### -->
+				<td class="fs--1 align-middle px-0 py-3">
+					<div class="form-check mb-0 fs-0">
+						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifqaSeq}" name="checkboxSeq" th:value="${list.ifqaSeq}" class="form-check-input"/>
+					</div>
+				</td>
+				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+				<td th:text="${list.ifqaSeq}" class="ifqaSeq align-middle fw-semi-bold"></td>
+				<td class="ifqaTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifqaTitle}" th:attr="onclick=|goForm('${list.ifqaSeq}')|"></a></td>
+				<!--<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>-->
+				<td th:text="${list.ifqaStatusCd}" class="ifqaStatusCd align-middle fw-semi-bold"></td>
+				<td th:text="${list.ifqaTypeCd}" class="ifqaTypeCd align-middle fw-semi-bold"></td>
+				<td th:text="${list.ifqaAnswerSeq}" class="ifqaAnswerSeq align-middle fw-semi-bold"></td>
+				<td th:if="${list.ifqaDelNy eq 0}" class="ifqaDelNy align-middle">N</td>
+				<td th:unless="${list.ifqaDelNy eq 0}" class="ifqaDelNy align-middle">Y</td>
+				<td th:text="${#dates.format(list.ifqaAnswerDateTime, 'yyyy-MM-dd HH:mm')}" class="ifqaAnswerDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- table e  -->      	
+      	
+<!-- paging s  -->				
+<div class="container-fluid px-0 mt-2 mb-2">
+	<div class="row">
+		<div class="col">
+			<ul class="pagination justify-content-center mb-0">
+				<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- paging e  -->		      	
+      	
+<!-- button s -->
+<div class="container-fluid px-0 mt-2 mb-4">
+	<div class="row">
+		<div class="col-6 text-start">
+			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+		</div>
+		<div class="col-6 text-end">
+			<button type="button" id="btnExcel" class="btn btn-success btn-sm btn_custom"><i class="fa-regular fa-file-excel fa-lg"></i></button>
+			<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fas fa-plus fa-lg"></i></button>
+		</div>
+	</div>
+</div>
+<!-- button e -->
+
+				</div>
+			</div>
+		</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>       		
+
+	</form>
+</div>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+  	navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+  	navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			$("#shDateStart, #shDateEnd").datepicker();
+	});
+	
+	let goUrlXdmList = "/v1/infra/qna/qnaXdmList";								/* ### */
+	let goUrlXdmForm = "/v1/infra/qna/qnaXdmForm";								/* ### */
+	let goUrlXdmMultiUele = "/v1/infra/qna/qnaXdmMultiUele";			/* ### */
+	let goUrlXdmMultiDele = "/v1/infra/qna/qnaXdmMultiDele";			/* ### */
+	let goUrlXdmView = "/v1/infra/qna/qnaXdmView";								/* ### */
+	
+	let seq = document.querySelector("input[name=ifqaSeq]");									/* ### */
+
+</script>
+
+<script src="/xdm/v1/js/includeXdmList.js"></script>
+
+</body>
+</html>

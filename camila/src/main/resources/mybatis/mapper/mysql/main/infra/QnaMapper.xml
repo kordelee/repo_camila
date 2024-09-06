@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.qna.QnaDao">
+
+	<resultMap id="resultMapObj" type="com.junefw.infra.qna.QnaDto"></resultMap>
+
+    <sql id="selectCommon">
+        FROM infrQna a
+        WHERE 1=1
+        <!--<if test="shUseNy != null and !shUseNy.equals('')">AND a.ifrlUseNy = #{shUseNy}</if>-->
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.ifqaDelNy = #{shDelNy}</if>
+ 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ 				
+        <choose>
+            <when test="shOption == 1">AND a.ifqaSeq = #{shValue}</when>
+            <when test="shOption == 2">AND a.ifqaTitle LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+
+    <select id="selectOneCount" resultType="Integer">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
+    </select>
+
+    <select id="selectList" resultMap="resultMapObj">
+        <include refid="Base.selectListUpperForMysql" />
+        SELECT
+            a.ifqaSeq
+            ,a.ifqaTitle
+            ,a.ifqaTypeCd
+            ,a.ifqaStatusCd
+            ,a.ifqaContents
+            ,a.ifqaAnswer
+            ,a.ifqaAnswerSeq
+            ,a.ifqaAnswerDateTime
+            ,a.ifqaAnswerDisplayNy
+            ,a.ifqaDelNy
+						<include refid="Base.selectRegModWithAlies" />
+        <include refid="selectCommon" />
+        ORDER BY a.ifqaSeq DESC
+        <include refid="Base.selectListLowerForMysql" />
+    </select>
+
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.ifqaSeq
+            ,a.ifqaTitle
+            ,a.ifqaTypeCd
+            ,a.ifqaStatusCd
+            ,a.ifqaContents
+            ,a.ifqaAnswer
+            ,a.ifqaAnswerSeq
+            ,a.ifqaAnswerDateTime
+            ,a.ifqaAnswerDisplayNy
+            ,a.ifqaDelNy
+						<include refid="Base.selectRegModWithAlies" />		            
+        FROM infrQna a
+        WHERE 1=1
+        AND a.ifqaSeq = #{ifqaSeq}
+    </select>
+
+    <insert id="insert">
+			INSERT INTO infrQna (
+	            ifqaTitle
+	            ,ifqaTypeCd
+	            ,ifqaStatusCd
+	            ,ifqaContents
+	            ,ifqaAnswer
+	            ,ifqaAnswerSeq
+	            ,ifqaAnswerDateTime
+	            ,ifqaAnswerDisplayNy
+	            ,ifqaDelNy
+				<include refid="Base.insertRegModColumn" />			
+			) VALUES (
+				#{ifqaTitle}
+				,#{ifqaTypeCd}
+				,#{ifqaStatusCd}
+				,#{ifqaContents}
+				,#{ifqaAnswer}
+				,#{ifqaAnswerSeq}
+				,#{ifqaAnswerDateTime}
+				,#{ifqaAnswerDisplayNy}
+				,0
+				<include refid="Base.insertRegModValue" />			
+			 )
+			 <selectKey resultType="String" keyProperty="ifqaSeq" order="AFTER">
+				SELECT last_insert_id()
+			 </selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE infrQna
+		SET
+			ifqaTitle = #{ifqaTitle}
+	        ,ifqaTypeCd = #{ifqaTypeCd}
+	        ,ifqaStatusCd = #{ifqaStatusCd}
+	        ,ifqaContents = #{ifqaContents}
+	        ,ifqaAnswer = #{ifqaAnswer}
+	        ,ifqaAnswerSeq = #{ifqaAnswerSeq}
+	        ,ifqaAnswerDateTime = #{ifqaAnswerDateTime}
+	        ,ifqaAnswerDisplayNy = #{ifqaAnswerDisplayNy}
+			<include refid="Base.updateModColumnValue" />
+		WHERE 1=1
+			AND ifqaSeq = #{ifqaSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrQna 
+		SET
+			ifqaDelNy = 1
+			<include refid="Base.updateModColumnValue" />	
+		WHERE 1=1
+			AND ifqaSeq = #{ifqaSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrQna 
+		WHERE 1=1
+			AND ifqaSeq = #{ifqaSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.ifqaSeq
+			, a.ifqalTitle
+		FROM infrQna a
+		WHERE 1=1
+			AND ifqaDelNy = 0
+		ORDER BY a.ifqaSeq DESC
+	</select>
+	  
+</mapper>
