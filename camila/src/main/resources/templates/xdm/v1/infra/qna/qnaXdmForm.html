@@ -43,16 +43,23 @@
 <div th:replace="~{xdm/v1/infra/qna/QnaXdmVo :: vo}"></div>			<!-- ### --> 					
 					
 						<div class="col-md-3">
-							<label for="ifqaSeq" class="form-label fs--1">Qna Seq <span class="text-danger fs-0">*</span></label>
+							<label for="ifqaSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaSeq" name="ifqaSeq" th:value="${item?.ifqaSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
 						</div>
 						<div class="col-md-3">
-							<label for="ifqaTitle" class="form-label fs--1">Qna 제목</label>
-							<input type="text" id="ifqaTitle" name="ifqaTitle" th:value="${item?.ifqaTitle}" maxlength="20" placeholder="한글,숫자,영어" class="form-control"/>
-							<div class="invalid-feedback" id="ifqaTitleFeedback"></div>
+							<label for="ifqaSecurityNy" class="form-label fs--1">비밀글 <span class="text-danger fs-0">*</span></label>
+							<select id="ifqaSecurityNy" name="ifqaSecurityNy" class="form-select">
+								<option value="" >선택하세요</option>
+								<option value="1" th:selected="${item?.ifqaSecurityNy == 1}">사용</option>
+								<option value="0" th:selected="${item?.ifqaSecurityNy == 0}">미사용</option>
+							</select>
+							<div class="invalid-feedback" id="ifqaSecurityNyFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
 						</div>
 						<div class="col-md-3">
-							<label for="ifqaStatusCd" class="form-label fs--1">Qna 상태<span class="text-danger fs-0">*</span></label>
+							<label for="ifqaStatusCd" class="form-label fs--1">질문상태<span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaStatusCd" name="ifqaStatusCd" th:value="${item?.ifqaStatusCd}" maxlength="20" placeholder="선택하세요" class="form-control"/>
 							<!--<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
 								<option value="">선택하세요</option>
@@ -61,13 +68,24 @@
 							<div class="invalid-feedback" id="ifqaStatusCdFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifqaStatusCd" class="form-label fs--1">Qna 타입<span class="text-danger fs-0">*</span></label>
+							<label for="ifqaStatusCd" class="form-label fs--1">질문타입<span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaTypeCd" name="ifqaTypeCd" th:value="${item?.ifqaTypeCd}" maxlength="20" placeholder="선택하세요" class="form-control"/>
 							<!--<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
 								<option value="">선택하세요</option>
 								<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
 							</select>-->
 							<div class="invalid-feedback" id="ifqaTypeCdFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label for="ifqaTitle" class="form-label fs--1">제목</label>
+							<input type="text" id="ifqaTitle" name="ifqaTitle" th:value="${item?.ifqaTitle}" maxlength="20" placeholder="한글,숫자,영어" class="form-control"/>
+							<div class="invalid-feedback" id="ifqaTitleFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
 						</div>
 						<div class="col-md-6">
 							<label class="form-label fs--1">질문내용</label>
@@ -80,15 +98,24 @@
 							<!-- empty -->
 						</div>
 						<div class="col-md-3">
-							<label for="ifqaAnswerSeq" class="form-label fs--1">답변자 Seq <span class="text-danger fs-0">*</span></label>
+							<label for="ifqaAnswerSeq" class="form-label fs--1">답변자코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaAnswerSeq" name="ifqaAnswerSeq" th:value="${item?.ifqaAnswerSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="ifqaAnswerDisplayNy" class="form-label fs--1">답변디스플레이 <span class="text-danger fs-0">*</span></label>
+							<select id="ifqaAnswerDisplayNy" name="ifqaAnswerDisplayNy" class="form-select">
+								<option value="" >선택하세요</option>
+								<option value="1" th:selected="${item?.ifqaAnswerDisplayNy == 1}">사용</option>
+								<option value="0" th:selected="${item?.ifqaAnswerDisplayNy == 0}">미사용</option>
+							</select>
+							<div class="invalid-feedback" id="ifntTopNyFeedback"></div>
 						</div>
 						<div class="col-md-3">
 							<label for="ifqaAnswerDateTime" class="form-label fs--1">답변일<span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaAnswerDateTime" name="ifqaAnswerDateTime" th:value="${#dates.format(item?.ifqaAnswerDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="답변일" class="form-control"/>
 							<div class="invalid-feedback" id="ifqaAnswerDateTimeFeedback"></div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
@@ -101,6 +128,7 @@
 						<div class="col-md-6">
 							<!-- empty -->
 						</div>
+						
 											
 <!-- 											
 						<div class="col-md-3">
