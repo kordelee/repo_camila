@@ -81,8 +81,8 @@
 				,#{ifntTopDateStart}
 				,#{ifntTopDateEnd}
 				,0
-				,0
-				,0
+				,#{ifntDisplayNy}
+				,#{ifntTopNy}
 				<include refid="Base.insertRegModValue" />			
 			 )
 			 <selectKey resultType="String" keyProperty="ifntSeq" order="AFTER">

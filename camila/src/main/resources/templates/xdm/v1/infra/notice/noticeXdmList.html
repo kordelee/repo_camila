@@ -86,7 +86,7 @@
 		<div class="col">
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-				<option value="1" th:selected="${vo.shOption == 1}">seq</option>
+				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
 				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
 				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
 			</select>
@@ -120,21 +120,22 @@
 					</div>
 				</th>
 				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifntSeq" style="width: 110px; min-width:110px;">seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntSeq" style="width: 110px; min-width:110px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntTitle" style="min-width: 200px;">제목</th>
 				<!--<th class="sort align-middle" scope="col" data-sort="xifntSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
-				<th class="sort align-middle" scope="col" data-sort="ifntTopOrder" style="width: 80px; min-width: 80px;">TopOrder</th>
-				<th class="sort align-middle" scope="col" data-sort="ifntTopNy" style="width: 80px; min-width: 80px;">topNy</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTopOrder" style="width: 80px; min-width: 80px;">탑공지순서</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTopNy" style="width: 80px; min-width: 80px;">탑공지</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntDisplayNy" style="width: 80px; min-width: 80px;">디스플레이</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="ifntTopDateStart" style="width: 150px; min-width: 100px">top시작일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifntTopDateEnd" style="width: 150px; min-width: 100px">top종료일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 100px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 100px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTopDateStart" style="width: 150px; min-width: 150px">탑공지시작일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTopDateEnd" style="width: 150px; min-width: 150px">탑공지종료일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
 			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
-				<td colspan="11">
+				<td colspan="12">
 					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
@@ -153,6 +154,8 @@
 				<td th:text="${list.ifntTopOrder}" class="ifntTopOrder align-middle fw-semi-bold"></td>
 				<td th:if="${list.ifntTopNy eq 0}" class="ifntTopNy align-middle">N</td>
 				<td th:unless="${list.ifntTopNy eq 0}" class="ifntTopNy align-middle">Y</td>
+				<td th:if="${list.ifntDisplayNy eq 0}" class="ifntDisplayNy align-middle">N</td>
+				<td th:unless="${list.ifntDisplayNy eq 0}" class="ifntDisplayNy align-middle">Y</td>
 				<td th:if="${list.ifntDelNy eq 0}" class="ifntDelNy align-middle">N</td>
 				<td th:unless="${list.ifntDelNy eq 0}" class="ifntDelNy align-middle">Y</td>
 				<td th:text="${#dates.format(list.ifntTopDateStart, 'yyyy-MM-dd HH:mm')}" class="ifntTopDateStart align-middle"></td>

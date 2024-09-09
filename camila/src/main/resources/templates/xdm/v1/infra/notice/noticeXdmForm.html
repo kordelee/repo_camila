@@ -43,40 +43,46 @@
 <div th:replace="~{xdm/v1/infra/notice/NoticeXdmVo :: vo}"></div>			<!-- ### --> 					
 					
 						<div class="col-md-3">
-							<label for="ifntSeq" class="form-label fs--1">공지사항 Seq <span class="text-danger fs-0">*</span></label>
+							<label for="ifntSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifntSeq" name="ifntSeq" th:value="${item?.ifntSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
 						</div>
+						<div class="col-md-9">
+							<!-- empty -->
+						</div>
 						<div class="col-md-3">
-							<label for="ifntTopNy" class="form-label fs--1">상단여부 <span class="text-danger fs-0">*</span></label>
-							<select id="ifntTopNy" name="ifntTopNy" class="form-select">
-								<option value="1" th:selected="${item?.ifntTopNy == 1}">사용</option>
-								<option value="0" th:selected="${item?.ifntTopNy == 0}">미사용</option>
+							<label for="ifntDisplayNy" class="form-label fs--1">디스플레이 <span class="text-danger fs-0">*</span></label>
+							<select id="ifntDisplayNy" name="ifntDisplayNy" class="form-select">
+								<option value="" >선택하세요</option>
+								<option value="1" th:selected="${item?.ifntDisplayNy == 1}">사용</option>
+								<option value="0" th:selected="${item?.ifntDisplayNy == 0}">미사용</option>
 							</select>
 							<div class="invalid-feedback" id="ifntTopNyFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifntTitle" class="form-label fs--1">공지사항 제목</label>
-							<input type="text" id="ifntTitle" name="ifntTitle" th:value="${item?.ifntTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifntTitleFeedback"></div>
+							<label for="ifntTopOrder" class="form-label fs--1">탑공지순서 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifntTopOrder" name="ifntTopOrder" th:value="${item?.ifntTopOrder}" maxlength="20" placeholder="숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifntTopOrderFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifntTopDateStart" class="form-label fs--1">상단 노출 시작일<span class="text-danger fs-0">*</span></label>
+							<label for="ifntTopDateStart" class="form-label fs--1">탑공지시작일<span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifntTopDateStart" name="ifntTopDateStart" th:value="${#dates.format(item?.ifntTopDateStart, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
 							<div class="invalid-feedback" id="ifntTopDateStartFeedback"></div>
 						</div>
 						<div class="col-md-3">
-							<label for="ifntTopDateEnd" class="form-label fs--1">상단 노출 종료일<span class="text-danger fs-0">*</span></label>
+							<label for="ifntTopDateEnd" class="form-label fs--1">탑공지종료일<span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifntTopDateEnd" name="ifntTopDateEnd" th:value="${#dates.format(item?.ifntTopDateEnd, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
 							<div class="invalid-feedback" id="ifntTopDateEndFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<label for="ifntTitle" class="form-label fs--1">제목</label>
+							<input type="text" id="ifntTitle" name="ifntTitle" th:value="${item?.ifntTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifntTitleFeedback"></div>
 						</div>
 						<div class="col-md-6">
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
-							<label class="form-label fs--1">설명</label>
+							<label class="form-label fs--1">내용</label>
 							<div class="controls">
 								<textarea class="form-control" id="ifntContents" name="ifntContents" th:text="${item?.ifntContents}" th:value="${item?.ifntContents}" style="height: 100px;"></textarea>
 								<div class="invalid-feedback" id="ifntContentsFeedback"></div>
@@ -85,7 +91,17 @@
 						<div class="col-md-6">
 							<!-- empty -->
 						</div>
-											
+						<div class="col-md-3">
+							<label for="ifntTopNy" class="form-label fs--1">탑공지 <span class="text-danger fs-0">*</span></label>
+							<select id="ifntTopNy" name="ifntTopNy" class="form-select">
+								<option value="0" th:selected="${item?.ifntTopNy == 0}">미사용</option>
+								<option value="1" th:selected="${item?.ifntTopNy == 1}">사용</option>
+							</select>
+							<div class="invalid-feedback" id="ifntTopNyFeedback"></div>
+						</div>
+						<div class="col-md-9">
+							<!-- empty -->
+						</div>			
 <!-- 											
 						<div class="col-md-3">
 							<label for="ifcgReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
