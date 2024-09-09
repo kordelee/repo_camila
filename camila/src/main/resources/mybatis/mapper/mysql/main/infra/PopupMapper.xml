@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.popup.PopupDao">
+
+	<resultMap id="resultMapObj" type="com.junefw.infra.popup.PopupDto"></resultMap>
+
+    <sql id="selectCommon">
+        FROM infrPopup a
+        WHERE 1=1
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.ifppDelNy = #{shDelNy}</if>
+        <if test="shDisplayNy != null and !shDisplayNy.equals('')">AND a.ifppDisplayNy = #{shDisplayNy}</if>
+ 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 3">AND a.ifppStartDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 4">AND a.ifppEndDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ 				
+        <choose>
+            <when test="shOption == 1">AND a.ifppSeq = #{shValue}</when>
+            <when test="shOption == 2">AND a.ifppTitle LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+
+    <select id="selectOneCount" resultType="Integer">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
+    </select>
+
+    <select id="selectList" resultMap="resultMapObj">
+        <include refid="Base.selectListUpperForMysql" />
+        SELECT
+            a.ifppSeq
+            ,a.ifppTitle
+            ,a.ifppOrder
+            ,a.ifppStartDateTime
+            ,a.ifppEndDateTime
+            ,a.ifppDisplayNy
+            ,a.ifppUrl
+            ,a.ifppDelNy
+						<include refid="Base.selectRegModWithAlies" />
+        <include refid="selectCommon" />
+        ORDER BY a.ifppSeq DESC
+        <include refid="Base.selectListLowerForMysql" />
+    </select>
+
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+           a.ifppSeq
+            ,a.ifppTitle
+            ,a.ifppOrder
+            ,a.ifppStartDateTime
+            ,a.ifppEndDateTime
+            ,a.ifppDisplayNy
+            ,a.ifppUrl
+            ,a.ifppDelNy
+						<include refid="Base.selectRegModWithAlies" />		            
+        FROM infrPopup a
+        WHERE 1=1
+        AND a.ifppSeq = #{ifppSeq}
+    </select>
+
+    <insert id="insert">
+			INSERT INTO infrPopup (
+				ifppDisplayNy
+	            ,ifppXpoint
+	            ,ifppYpoint
+	            ,ifppTitle
+	            ,ifppContents
+	            ,ifppOrder
+	            ,ifppStartDateTime
+	            ,ifppEndDateTime
+	            ,ifppUrl
+	            ,ifppDelNy
+				<include refid="Base.insertRegModColumn" />			
+			) VALUES (
+				#{ifppDisplayNy}
+				,#{ifppXpoint}
+				,#{ifppYpoint}
+				,#{ifppTitle}
+				,#{ifppContents}
+				,#{ifppOrder}
+				,#{ifppStartDateTime}
+				,#{ifppEndDateTime}
+				,#{ifppUrl}
+				,0
+				<include refid="Base.insertRegModValue" />			
+			 )
+			 <selectKey resultType="String" keyProperty="ifppSeq" order="AFTER">
+				SELECT last_insert_id()
+			 </selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE infrPopup
+		SET
+			ifppSeq = #{ifppSeq}
+			,ifppDisplayNy = #{ifppDisplayNy}
+	        ,ifppXpoint = #{ifppXpoint}
+	        ,ifppYpoint = #{ifppYpoint}
+	        ,ifppTitle = #{ifppTitle}
+	        ,ifppContents = #{ifppContents}
+	        ,ifppOrder = #{ifppOrder}
+	        ,ifppStartDateTime = #{ifppStartDateTime}
+	        ,ifppEndDateTime = #{ifppEndDateTime}
+	        ,ifppUrl = #{ifppUrl}
+			<include refid="Base.updateModColumnValue" />
+		WHERE 1=1
+			AND ifppSeq = #{ifppSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrPopup 
+		SET
+			ifppDelNy = 1
+			<include refid="Base.updateModColumnValue" />	
+		WHERE 1=1
+			AND ifppSeq = #{ifppSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrPopup 
+		WHERE 1=1
+			AND ifppSeq = #{ifppSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.ifppSeq
+			, a.ifppTitle
+		FROM infrPopup a
+		WHERE 1=1
+			AND ifppDelNy = 0
+		ORDER BY a.ifppSeq DESC
+	</select>
+	  
+</mapper>
