@@ -43,36 +43,35 @@
 <div th:replace="~{xdm/v1/infra/rule/RuleXdmVo :: vo}"></div>			<!-- ### --> 					
 					
 						<div class="col-md-3">
-							<label for="ifrlSeq" class="form-label fs--1">정책 Seq <span class="text-danger fs-0">*</span></label>
+							<label for="ifrlSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifrlSeq" name="ifrlSeq" th:value="${item?.ifrlSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
 						</div>
-						<div class="col-md-3">
-							<label for="ifrlTitle" class="form-label fs--1">정책 이름</label>
-							<input type="text" id="ifrlTitle" name="ifrlTitle" th:value="${item?.ifrlTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifrlTitleFeedback"></div>
+						<div class="col-md-9">
+							<!-- empty -->
 						</div>
 						<div class="col-md-3">
-							<label for="ifrlVersion" class="form-label fs--1">정책 버전<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifrlVersion" name="ifrlVersion" th:value="${item?.ifrlVersion}" maxlength="20" placeholder="숫자,영어" class="form-control"/>
-							<div class="invalid-feedback" id="ifrlVersionFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifrlUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
+							<label for="ifrlUseNy" class="form-label fs--1">사용 <span class="text-danger fs-0">*</span></label>
 							<select id="ifrlUseNy" name="ifrlUseNy" class="form-select">
 								<option value="1" th:selected="${item?.ifrlUseNy == 1}">사용</option>
 								<option value="0" th:selected="${item?.ifrlUseNy == 0}">미사용</option>
 							</select>
 							<div class="invalid-feedback" id="ifrlUseNyFeedback"></div>
 						</div>
-						<div class="col-md-3">
-							<label for="ifrlApplicationDateTime" class="form-label fs--1">정책 시작일<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifrlApplicationDateTime" name="ifrlApplicationDateTime" th:value="${#dates.format(item?.ifrlApplicationDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
-							<div class="invalid-feedback" id="ifrlApplicationDateTimeFeedback"></div>
+						<div class="col-md-9">
+							<!-- empty -->
 						</div>
 						<div class="col-md-3">
-							<label for="ifrlAnnounceDateTime" class="form-label fs--1">정책 적용일<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifrlAnnounceDateTime" name="ifrlAnnounceDateTime" th:value="${#dates.format(item?.ifrlAnnounceDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
-							<div class="invalid-feedback" id="ifrlAnnounceDateTimeFeedback"></div>
+							<label for="ifrlVersion" class="form-label fs--1">정책 버전<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifrlVersion" name="ifrlVersion" th:value="${item?.ifrlVersion}" maxlength="20" placeholder="숫자,영어" class="form-control"/>
+							<div class="invalid-feedback" id="ifrlVersionFeedback"></div>
+						</div>
+						<div class="col-md-9">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label for="ifrlTitle" class="form-label fs--1">정책 이름</label>
+							<input type="text" id="ifrlTitle" name="ifrlTitle" th:value="${item?.ifrlTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="ifrlTitleFeedback"></div>
 						</div>
 						<div class="col-md-6">
 							<!-- empty -->
@@ -87,7 +86,24 @@
 						<div class="col-md-6">
 							<!-- empty -->
 						</div>
-											
+						<div class="col-md-3">
+							<label for="ifrlStartDateTime" class="form-label fs--1">시작일<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifrlStartDateTime" name="ifrlStartDateTime" th:value="${#dates.format(item?.ifrlStartDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 시작일" class="form-control"/>
+							<div class="invalid-feedback" id="ifrlStartDateTimeFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifrlEndDateTime" class="form-label fs--1">종료일<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifrlEndDateTime" name="ifrlEndDateTime" th:value="${#dates.format(item?.ifrlEndDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 종료일" class="form-control"/>
+							<div class="invalid-feedback" id="ifrlEndDateTimeFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifrlNoticeDateTime" class="form-label fs--1">공지일<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="ifrlNoticeDateTime" name="ifrlNoticeDateTime" th:value="${#dates.format(item?.ifrlNoticeDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 공지일" class="form-control"/>
+							<div class="invalid-feedback" id="ifrlEndDateTimeFeedback"></div>
+						</div>
+						<div class="col-md-3">
+							<!-- empty -->
+						</div>		
 <!-- 											
 						<div class="col-md-3">
 							<label for="ifcgReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
@@ -205,8 +221,9 @@
 	let seq = document.querySelector("input[name=ifrlSeq]");							/* ### */
 	
 	window.addEventListener('load', function() {
-			$("#ifrlApplicationDateTime").datepicker();
-			$("#ifrlAnnounceDateTime").datepicker();
+			$("#ifrlStartDateTime").datepicker();
+			$("#ifrlEndDateTime").datepicker();
+			$("#ifrlNoticeDateTime").datepicker();
 	});
 	
 	function validationInst() {

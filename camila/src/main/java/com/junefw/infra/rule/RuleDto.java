@@ -12,8 +12,10 @@ public class RuleDto extends BaseDto{
 	private Integer ifrlUseNy;
 	private Integer ifrlDelNy;
 	private String ifrlVersion;
-	private Date ifrlAnnounceDateTime;
-	private Date ifrlApplicationDateTime;
+	private Date ifrlStartDateTime;
+	private Date ifrlEndDateTime;
+	private Date ifrlNoticeDateTime;
+	
 	public String getIfrlSeq() {
 		return ifrlSeq;
 	}
@@ -50,17 +52,22 @@ public class RuleDto extends BaseDto{
 	public void setIfrlVersion(String ifrlVersion) {
 		this.ifrlVersion = ifrlVersion;
 	}
-	public Date getIfrlAnnounceDateTime() {
-		return ifrlAnnounceDateTime;
+	public Date getIfrlStartDateTime() {
+		return ifrlStartDateTime;
 	}
-	public void setIfrlAnnounceDateTime(Date ifrlAnnounceDateTime) {
-		this.ifrlAnnounceDateTime = ifrlAnnounceDateTime;
+	public void setIfrlStartDateTime(Date ifrlStartDateTime) {
+		this.ifrlStartDateTime = ifrlStartDateTime;
 	}
-	public Date getIfrlApplicationDateTime() {
-		return ifrlApplicationDateTime;
+	public Date getIfrlEndDateTime() {
+		return ifrlEndDateTime;
 	}
-	public void setIfrlApplicationDateTime(Date ifrlApplicationDateTime) {
-		this.ifrlApplicationDateTime = ifrlApplicationDateTime;
+	public void setIfrlEndDateTime(Date ifrlEndDateTime) {
+		this.ifrlEndDateTime = ifrlEndDateTime;
 	}
-	
+	public Date getIfrlNoticeDateTime() {
+		return ifrlNoticeDateTime;
+	}
+	public void setIfrlNoticeDateTime(Date ifrlNoticeDateTime) {
+		this.ifrlNoticeDateTime = ifrlNoticeDateTime;
+	}
 }

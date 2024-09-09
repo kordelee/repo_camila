@@ -14,8 +14,9 @@
 				<choose>
 					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 3">AND a.ifrlAnnounceDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-					<when test="shOptionDate == 4">AND a.ifrlApplicationDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 3">AND a.ifrlStartDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 4">AND a.ifrlEndDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 5">AND a.ifrlNoticeDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
  				
         <choose>
@@ -37,8 +38,9 @@
             ,a.ifrlDesc
             ,a.ifrlUseNy
             ,a.ifrlDelNy
-            ,a.ifrlAnnounceDateTime
-            ,a.ifrlApplicationDateTime
+            ,a.ifrlStartDateTime
+            ,a.ifrlEndDateTime
+            ,a.ifrlNoticeDateTime
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
         ORDER BY a.ifrlSeq DESC
@@ -53,8 +55,9 @@
             ,a.ifrlVersion
             ,a.ifrlUseNy
             ,a.ifrlDelNy
-            ,a.ifrlAnnounceDateTime
-            ,a.ifrlApplicationDateTime
+            ,a.ifrlStartDateTime
+            ,a.ifrlEndDateTime
+            ,a.ifrlNoticeDateTime
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrRule a
         WHERE 1=1
@@ -67,8 +70,9 @@
 				,ifrlDesc
 				,ifrlVersion
 				,ifrlUseNy
-				,ifrlApplicationDateTime
-				,ifrlAnnounceDateTime
+				,ifrlEndDateTime
+				,ifrlStartDateTime
+				,ifrlNoticeDateTime
 				,ifrlDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
@@ -76,8 +80,9 @@
 				,#{ifrlDesc}
 				,#{ifrlVersion}
 				,#{ifrlUseNy}
-				,#{ifrlApplicationDateTime}
-				,#{ifrlAnnounceDateTime}
+				,#{ifrlEndDateTime}
+				,#{ifrlStartDateTime}
+				,#{ifrlNoticeDateTime}
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -93,8 +98,9 @@
 			,ifrlDesc = #{ifrlDesc}
 			,ifrlVersion = #{ifrlVersion}
 			,ifrlUseNy = #{ifrlUseNy}
-			,ifrlAnnounceDateTime = #{ifrlAnnounceDateTime}
-			,ifrlApplicationDateTime = #{ifrlApplicationDateTime}
+			,ifrlStartDateTime = #{ifrlStartDateTime}
+			,ifrlEndDateTime = #{ifrlEndDateTime}
+			,ifrlNoticeDateTime = #{ifrlNoticeDateTime}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifrlSeq = #{ifrlSeq}

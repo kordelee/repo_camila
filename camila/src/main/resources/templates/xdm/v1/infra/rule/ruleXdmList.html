@@ -72,7 +72,8 @@
 				<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
 				<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
 				<option value="3" th:selected="${vo.shOptionDate == 3}">시작일</option>
-				<option value="4" th:selected="${vo.shOptionDate == 4}">적용일</option>
+				<option value="4" th:selected="${vo.shOptionDate == 4}">종료일</option>
+				<option value="5" th:selected="${vo.shOptionDate == 5}">공지일</option>
 			</select>
 		</div>  
 		<div class="col">
@@ -86,7 +87,7 @@
 		<div class="col">
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-				<option value="1" th:selected="${vo.shOption == 1}">seq</option>
+				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
 				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
 				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
 			</select>
@@ -120,20 +121,21 @@
 					</div>
 				</th>
 				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlSeq" style="width: 110px; min-width:110px;">seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlSeq" style="width: 110px; min-width:110px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifrlTitle" style="min-width: 200px;">제목</th>
 				<!--<th class="sort align-middle" scope="col" data-sort="xifrlSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
 				<th class="sort align-middle" scope="col" data-sort="ifrlUseNy" style="width: 80px; min-width: 80px;">사용</th>
 				<th class="sort align-middle" scope="col" data-sort="ifrlDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlAnnounceDateTime" style="width: 150px; min-width: 100px">시작일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlApplicationDateTime" style="width: 150px; min-width: 100px">적용일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 100px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 100px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlNoticeDateTime" style="width: 150px; min-width: 150px">공지일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlStartDateTime" style="width: 150px; min-width: 150px">시작일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlEndDateTime" style="width: 150px; min-width: 150px">종료일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
 			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
-				<td colspan="10">
+				<td colspan="11">
 					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
@@ -153,8 +155,9 @@
 				<td th:unless="${list.ifrlUseNy eq 0}" class="ifrlUseNy align-middle">Y</td>
 				<td th:if="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">N</td>
 				<td th:unless="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">Y</td>
-				<td th:text="${#dates.format(list.ifrlAnnounceDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlAnnounceDateTime align-middle"></td>
-				<td th:text="${#dates.format(list.ifrlApplicationDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlApplicationDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.ifrlNoticeDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlNoticeDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.ifrlStartDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlStartDateTime align-middle"></td>
+				<td th:text="${#dates.format(list.ifrlEndDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlEndDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>
