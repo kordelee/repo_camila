@@ -8,12 +8,13 @@
     <sql id="selectCommon">
         FROM infrQna a
         WHERE 1=1
-        <!--<if test="shUseNy != null and !shUseNy.equals('')">AND a.ifrlUseNy = #{shUseNy}</if>-->
+        <if test="shSecurityNy != null and !shSecurityNy.equals('')">AND a.ifqaSecurityNy = #{shSecurityNy}</if>
         <if test="shDelNy != null and !shDelNy.equals('')">AND a.ifqaDelNy = #{shDelNy}</if>
  				
 				<choose>
 					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.ifqaAnswerDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
 				</choose>
  				
         <choose>
@@ -40,6 +41,7 @@
             ,a.ifqaAnswerDateTime
             ,a.ifqaAnswerDisplayNy
             ,a.ifqaDelNy
+            ,a.ifqaSecurityNy
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
         ORDER BY a.ifqaSeq DESC
@@ -58,6 +60,7 @@
             ,a.ifqaAnswerDateTime
             ,a.ifqaAnswerDisplayNy
             ,a.ifqaDelNy
+            ,a.ifqaSecurityNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrQna a
         WHERE 1=1
@@ -75,6 +78,7 @@
 	            ,ifqaAnswerDateTime
 	            ,ifqaAnswerDisplayNy
 	            ,ifqaDelNy
+	            ,ifqaSecurityNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
 				#{ifqaTitle}
@@ -86,6 +90,7 @@
 				,#{ifqaAnswerDateTime}
 				,#{ifqaAnswerDisplayNy}
 				,0
+				,#{ifqaSecurityNy}
 				<include refid="Base.insertRegModValue" />			
 			 )
 			 <selectKey resultType="String" keyProperty="ifqaSeq" order="AFTER">
@@ -104,6 +109,7 @@
 	        ,ifqaAnswerSeq = #{ifqaAnswerSeq}
 	        ,ifqaAnswerDateTime = #{ifqaAnswerDateTime}
 	        ,ifqaAnswerDisplayNy = #{ifqaAnswerDisplayNy}
+	        ,ifqaSecurityNy = #{ifqaSecurityNy}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifqaSeq = #{ifqaSeq}

@@ -59,18 +59,19 @@
 				<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
 			</select>
 		</div>
-		<!--<div class="col">
-			<select name="shUseNy" id="shUseNy" class="form-select form-select-sm">
-				<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
-				<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
-				<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
-	</select>
-</div>-->			
+		<div class="col">
+			<select name="shSecurityNy" id="shSecurityNy" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shSecurityNy == null}">비밀글</option>
+				<option value="1" th:selected="${vo.shSecurityNy == 1}">Y</option>
+				<option value="0" th:selected="${vo.shSecurityNy == 0}">N</option>
+			</select>
+		</div>			
 		<div class="col">
 			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
 				<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
 				<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+				<option value="3" th:selected="${vo.shOptionDate == 3}">답변등록일</option>
 			</select>
 		</div>  
 		<div class="col">
@@ -84,7 +85,7 @@
 		<div class="col">
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
-				<option value="1" th:selected="${vo.shOption == 1}">seq</option>
+				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
 				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
 				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
 			</select>
@@ -118,21 +119,23 @@
 					</div>
 				</th>
 				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifqaSeq" style="width: 110px; min-width:110px;">seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaSeq" style="width: 110px; min-width:110px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifqaTitle" style="min-width: 200px;">제목</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaSecurityNy" style="width: 80px; min-width: 80px;">비밀글</th>
 				<!--<th class="sort align-middle" scope="col" data-sort="xifqaSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
-				<th class="sort align-middle" scope="col" data-sort="ifqaStatusCd" style="width: 80px; min-width: 80px;">답변 상태</th>
-				<th class="sort align-middle" scope="col" data-sort="ifqaTypeCd" style="width: 80px; min-width: 80px;">답변 타입</th>
-				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerSeq" style="width: 150px; min-width: 100px">답변자 Seq</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaStatusCd" style="width: 80px; min-width: 80px;">질문상태</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaTypeCd" style="width: 80px; min-width: 80px;">질문타입</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerSeq" style="width: 150px; min-width: 100px">답변자코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerDisplayNy" style="width: 80px; min-width: 80px;">답변디스플레이</th>
 				<th class="sort align-middle" scope="col" data-sort="ifqaDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerDateTime" style="width: 150px; min-width: 100px">답변등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 100px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 100px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifqaAnswerDateTime" style="width: 150px; min-width: 150px">답변일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
 			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
-				<td colspan="11">
+				<td colspan="12">
 					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
@@ -147,10 +150,14 @@
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 				<td th:text="${list.ifqaSeq}" class="ifqaSeq align-middle fw-semi-bold"></td>
 				<td class="ifqaTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifqaTitle}" th:attr="onclick=|goForm('${list.ifqaSeq}')|"></a></td>
+				<td th:if="${list.ifqaSecurityNy eq 0}" class="ifqaDelNy align-middle">N</td>
+				<td th:unless="${list.ifqaSecurityNy eq 0}" class="ifqaDelNy align-middle">Y</td>
 				<!--<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>-->
 				<td th:text="${list.ifqaStatusCd}" class="ifqaStatusCd align-middle fw-semi-bold"></td>
 				<td th:text="${list.ifqaTypeCd}" class="ifqaTypeCd align-middle fw-semi-bold"></td>
 				<td th:text="${list.ifqaAnswerSeq}" class="ifqaAnswerSeq align-middle fw-semi-bold"></td>
+				<td th:if="${list.ifqaAnswerDisplayNy eq 0}" class="ifqaDelNy align-middle">N</td>
+				<td th:unless="${list.ifqaAnswerDisplayNy eq 0}" class="ifqaDelNy align-middle">Y</td>
 				<td th:if="${list.ifqaDelNy eq 0}" class="ifqaDelNy align-middle">N</td>
 				<td th:unless="${list.ifqaDelNy eq 0}" class="ifqaDelNy align-middle">Y</td>
 				<td th:text="${#dates.format(list.ifqaAnswerDateTime, 'yyyy-MM-dd HH:mm')}" class="ifqaAnswerDateTime align-middle"></td>

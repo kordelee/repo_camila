@@ -16,6 +16,7 @@ public class QnaDto extends BaseDto {
 	private Date ifqaAnswerDateTime;
 	private Integer ifqaAnswerDisplayNy;
 	private Integer ifqaDelNy;
+	private Integer ifqaSecurityNy;
 	public String getIfqaSeq() {
 		return ifqaSeq;
 	}
@@ -75,5 +76,11 @@ public class QnaDto extends BaseDto {
 	}
 	public void setIfqaDelNy(Integer ifqaDelNy) {
 		this.ifqaDelNy = ifqaDelNy;
+	}
+	public Integer getIfqaSecurityNy() {
+		return ifqaSecurityNy;
+	}
+	public void setIfqaSecurityNy(Integer ifqaSecurityNy) {
+		this.ifqaSecurityNy = ifqaSecurityNy;
 	}
 }
