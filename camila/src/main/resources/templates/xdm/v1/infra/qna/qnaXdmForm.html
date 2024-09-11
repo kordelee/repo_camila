@@ -111,12 +111,7 @@
 							</select>
 							<div class="invalid-feedback" id="ifqaAnswerDisplayNyFeedback"></div>
 						</div>
-						<div class="col-md-3">
-							<label for="ifqaAnswerDateTime" class="form-label fs--1">답변일<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifqaAnswerDateTime" name="ifqaAnswerDateTime" th:value="${#dates.format(item?.ifqaAnswerDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="답변일" class="form-control"/>
-							<div class="invalid-feedback" id="ifqaAnswerDateTimeFeedback"></div>
-						</div>
-						<div class="col-md-3">
+						<div class="col-md-6">
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
@@ -234,12 +229,7 @@
 
 <script type="text/javascript">
 
-	window.addEventListener('load', function() {
-		$("#ifqaAnswerDateTime").datetimepicker({
-			timepicker:false,
- 			format: 'Y-m-d'
-		});
-	});
+	
 	
 	let goUrlXdmList = "/v1/infra/qna/qnaXdmList";						/* ### */
 	let goUrlXdmAjaxList = "/v1/infra/qna/qnaXdmAjaxList";		/* ### */
