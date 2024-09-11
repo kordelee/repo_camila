@@ -17,11 +17,8 @@ public class NoticeController extends BaseController {
 	String pathCommonXdm = "xdm/v1/infra/notice/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/notice/";
 
-//	String pathCommonUsr = "usr/v1/infra/codeGroup/";
-//	String pathRedirectCommonUsr = "";
-	
-//	String pathCommonAdt = "adt/v1/infra/codeGroup/";
-//	String pathRedirectCommonAdt = "";
+	String pathCommonUsr = "usr/v1/infra/notice/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/notice/";
 	
 	
 	@Autowired

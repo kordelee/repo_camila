@@ -34,10 +34,7 @@ public class CodeController extends BaseController{
 	String pathRedirectCommonXdm = "redirect:/v1/infra/code/";
 
 	String pathCommonUsr = "usr/v1/infra/code/";
-	String pathRedirectCommonUsr = "";
-	
-	String pathCommonAdt = "adt/v1/infra/code/";
-	String pathRedirectCommonAdt = "";	
+	String pathRedirectCommonUsr = "redirect:/v1/infra/code/";
 	
 	
 	@Autowired

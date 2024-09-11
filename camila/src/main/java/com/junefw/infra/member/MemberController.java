@@ -26,10 +26,7 @@ public class MemberController extends BaseController{
 	String pathRedirectCommonXdm = "redirect:/v1/infra/member/";
 
 	String pathCommonUsr = "usr/v1/infra/member/";
-	String pathRedirectCommonUsr = "";
-	
-	String pathCommonAdt = "adt/v1/infra/member/";
-	String pathRedirectCommonAdt = "";	
+	String pathRedirectCommonUsr = "redirect:/v1/infra/member/";
 	
 	
 	@Autowired

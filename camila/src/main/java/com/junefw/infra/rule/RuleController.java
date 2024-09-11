@@ -17,11 +17,8 @@ public class RuleController extends BaseController{
 	String pathCommonXdm = "xdm/v1/infra/rule/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/rule/";
 
-//	String pathCommonUsr = "usr/v1/infra/codeGroup/";
-//	String pathRedirectCommonUsr = "";
-	
-//	String pathCommonAdt = "adt/v1/infra/codeGroup/";
-//	String pathRedirectCommonAdt = "";
+	String pathCommonUsr = "usr/v1/infra/codeGroup/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/rule/";
 	
 	
 	@Autowired

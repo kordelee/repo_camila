@@ -18,10 +18,7 @@ public class CodeGroupController extends BaseController{
 	String pathRedirectCommonXdm = "redirect:/v1/infra/codegroup/";
 
 	String pathCommonUsr = "usr/v1/infra/codeGroup/";
-	String pathRedirectCommonUsr = "";
-	
-	String pathCommonAdt = "adt/v1/infra/codeGroup/";
-	String pathRedirectCommonAdt = "";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/codegroup/";
 	
 	
 	@Autowired

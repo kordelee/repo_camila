@@ -16,11 +16,8 @@ public class QnaController extends BaseController {
 	String pathCommonXdm = "xdm/v1/infra/qna/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/qna/";
 
-//	String pathCommonUsr = "usr/v1/infra/codeGroup/";
-//	String pathRedirectCommonUsr = "";
-	
-//	String pathCommonAdt = "adt/v1/infra/codeGroup/";
-//	String pathRedirectCommonAdt = "";
+	String pathCommonUsr = "usr/v1/infra/qna/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/qna/";
 	
 	
 	@Autowired

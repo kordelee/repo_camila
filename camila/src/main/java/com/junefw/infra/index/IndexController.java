@@ -15,10 +15,7 @@ public class IndexController extends BaseController{
 	String pathRedirectCommonXdm = "redirect:/v1/infra/index/";
 
 	String pathCommonUsr = "usr/v1/infra/index/";
-	String pathRedirectCommonUsr = "";
-	
-	String pathCommonAdt = "adt/v1/infra/index/";
-	String pathRedirectCommonAdt = "";	
+	String pathRedirectCommonUsr = "redirect:/v1/infra/index/";
 	
 	
     @RequestMapping(value = "/indexXdmView")

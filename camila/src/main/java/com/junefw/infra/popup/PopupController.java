@@ -17,11 +17,8 @@ public class PopupController extends BaseController {
 	String pathCommonXdm = "xdm/v1/infra/popup/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/popup/";
 
-//	String pathCommonUsr = "usr/v1/infra/codeGroup/";
-//	String pathRedirectCommonUsr = "";
-	
-//	String pathCommonAdt = "adt/v1/infra/codeGroup/";
-//	String pathRedirectCommonAdt = "";
+	String pathCommonUsr = "usr/v1/infra/popup/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/popup/";
 	
 	
 	@Autowired
