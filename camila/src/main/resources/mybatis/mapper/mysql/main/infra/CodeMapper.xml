@@ -12,8 +12,8 @@
 		FROM infrCode a
 			LEFT JOIN infrCodeGroup b on b.ifcgSeq = a.ifcgSeq
 		WHERE 1=1
-			<if test="shUseNy != null and !shUseNy.equals('')">AND ifcdUseNy = #{shUseNy}</if>
-			<if test="shDelNy != null and !shDelNy.equals('')">AND ifcdDelNy = #{shDelNy}</if>
+			<if test="shUseNy != null and !shUseNy.equals('')">AND a.ifcdUseNy = #{shUseNy}</if>
+			<if test="shDelNy != null and !shDelNy.equals('')">AND a.ifcdDelNy = #{shDelNy}</if>
 <!--         
 				<choose>
 					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
