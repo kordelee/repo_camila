@@ -1,7 +1,13 @@
 document.write("<script src='/xdm/v1/js/constantsXdm.js'></script>");
 document.write("<script src='/xdm/v1/js/validationXdm.js'></script>");
 
-$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+/* datetimepicker s */
+$.datetimepicker.setLocale('ko');
+/* datetimepicker s */
+
+
+/*$.datepicker.setDefaults($.datepicker.regional['ko']);
 $("#shDateStart").datepicker({
     showMonthAfterYear: true,
     changeMonth: true,
@@ -19,9 +25,9 @@ $("#shDateStart").datepicker({
     onClose: function( selectedDate ) {
         $("#shDateEnd").datepicker( "option", "minDate", selectedDate );
     }
-});
+});*/
 
-$("#shDateEnd").datepicker({
+/*$("#shDateEnd").datepicker({
     showMonthAfterYear: true,
     changeMonth: true,
     changeYear: true,
@@ -38,9 +44,9 @@ $("#shDateEnd").datepicker({
     onClose: function( selectedDate ) {
         $("#shDateStart").datepicker( "option", "maxDate", selectedDate );
     }
-});
+});*/
 
-$("#ifmmDob").datepicker({
+/*$("#ifmmDob").datepicker({
     showMonthAfterYear: true,
     changeMonth: true,
     changeYear: true,
@@ -54,7 +60,7 @@ $("#ifmmDob").datepicker({
     monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
     monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
     dateFormat: "yy-mm-dd",
-});
+});*/
 
 
 checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) {
@@ -148,3 +154,16 @@ extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx"
 			}
 		});
 	});
+	
+		
+	  window.addEventListener('load', function() {
+		 let url = window.location.pathname;
+		  let rt = url.split("/");
+		  //배열로 떨어져서 길이 구한다음 모듈 이름까지 빼기
+		  let moduelName = rt[rt.length-2];
+		  //li태그에 active 요소 추가
+		  document.getElementById(moduelName).classList.add('active');
+		  //바로 상위 태그인 ul에 show 요소 추가
+		  document.getElementById(moduelName).closest('ul').classList.add('show');
+		});
+		  

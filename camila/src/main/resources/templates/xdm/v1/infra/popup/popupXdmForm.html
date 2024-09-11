@@ -236,8 +236,10 @@
 	let seq = document.querySelector("input[name=ifppSeq]");							/* ### */
 	
 	window.addEventListener('load', function() {
-			$("#ifppStartDateTime").datepicker();
-			$("#ifppEndDateTime").datepicker();
+		$("#ifppStartDateTime, #ifppEndDateTime").datetimepicker({
+			timepicker:false,
+ 			format: 'Y-m-d'
+		});
 	});
 	
 	function validationInst() {

@@ -100,6 +100,7 @@
 						<div class="col-md-3">
 							<label for="ifqaAnswerSeq" class="form-label fs--1">답변자코드 <span class="text-danger fs-0">*</span></label>
 							<input type="text" id="ifqaAnswerSeq" name="ifqaAnswerSeq" th:value="${item?.ifqaAnswerSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+							<div class="invalid-feedback" id="ifqaAnswerSeqFeedback"></div>
 						</div>
 						<div class="col-md-3">
 							<label for="ifqaAnswerDisplayNy" class="form-label fs--1">답변디스플레이 <span class="text-danger fs-0">*</span></label>
@@ -108,7 +109,7 @@
 								<option value="1" th:selected="${item?.ifqaAnswerDisplayNy == 1}">사용</option>
 								<option value="0" th:selected="${item?.ifqaAnswerDisplayNy == 0}">미사용</option>
 							</select>
-							<div class="invalid-feedback" id="ifntTopNyFeedback"></div>
+							<div class="invalid-feedback" id="ifqaAnswerDisplayNyFeedback"></div>
 						</div>
 						<div class="col-md-3">
 							<label for="ifqaAnswerDateTime" class="form-label fs--1">답변일<span class="text-danger fs-0">*</span></label>
@@ -234,7 +235,10 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-			
+		$("#ifqaAnswerDateTime").datetimepicker({
+			timepicker:false,
+ 			format: 'Y-m-d'
+		});
 	});
 	
 	let goUrlXdmList = "/v1/infra/qna/qnaXdmList";						/* ### */
@@ -245,10 +249,6 @@
 	let goUrlXdmUele = "/v1/infra/qna/qnaXdmUele";						/* ### */
 	
 	let seq = document.querySelector("input[name=ifqaSeq]");							/* ### */
-	
-	window.addEventListener('load', function() {
-			$("#ifqaAnswerDateTime").datepicker();
-	});
 	
 	function validationInst() {
 	    if(validationUpdt() == false) return false;

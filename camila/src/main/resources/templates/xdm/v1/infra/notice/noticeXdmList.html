@@ -236,7 +236,10 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-			$("#shDateStart, #shDateEnd").datepicker();
+		$("#shDateStart, #shDateEnd").datetimepicker({
+			timepicker:false,
+ 			format: 'Y-m-d'
+		});
 	});
 	
 	let goUrlXdmList = "/v1/infra/notice/noticeXdmList";								/* ### */
