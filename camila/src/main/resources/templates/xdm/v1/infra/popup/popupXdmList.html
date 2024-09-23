@@ -119,18 +119,18 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppSeq" style="width: 110px; min-width:110px;">코드</th>
+				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifppDelNy" style="width: 50px; min-width: 50px;">삭제</th>
+				<th class="sort align-middle" scope="col" data-sort="ifppSeq" style="width: 100px; min-width:100px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifppTitle" style="min-width: 200px;">제목</th>
 				<!--<th class="sort align-middle" scope="col" data-sort="xifrlSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
+				<th class="sort align-middle" scope="col" data-sort="ifppUrl" style="min-width: 200px;">URL</th>
 				<th class="sort align-middle" scope="col" data-sort="ifppOrder" style="width: 80px; min-width: 80px;">팝업순서</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppUrl" style="width: 80px; min-width: 80px;">URL</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppDisplayNy" style="width: 80px; min-width: 80px;">디스플레이</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppStartDateTime" style="width: 150px; min-width: 150px">시작일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifppEndDateTime" style="width: 150px; min-width: 150px">종료일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifppDisplayNy" style="width: 50px; min-width: 50px;">디스플레이</th>
+				<th class="sort align-middle" scope="col" data-sort="ifppStartDateTime" style="width: 100px; min-width: 100px">시작일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifppEndDateTime" style="width: 100px; min-width: 100px">종료일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
@@ -148,14 +148,14 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
-				<td th:text="${list.ifppSeq}" class="ifppSeq align-middle fw-semi-bold"></td>
-				<td class="ifppTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifppTitle}" th:attr="onclick=|goForm('${list.ifppSeq}')|"></a></td>
-				<td th:text="${list.ifppOrder}" class="ifppOrder align-middle fw-semi-bold"></td>
-				<td th:text="${list.ifppUrl}" class="ifppUrl align-middle fw-semi-bold"></td>
-				<td th:if="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">N</td>
-				<td th:unless="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">Y</td>
 				<td th:if="${list.ifppDelNy eq 0}" class="ifppDelNy align-middle">N</td>
 				<td th:unless="${list.ifppDelNy eq 0}" class="ifppDelNy align-middle">Y</td>
+				<td th:text="${list.ifppSeq}" class="ifppSeq align-middle fw-semi-bold"></td>
+				<td class="ifppTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifppTitle}" th:attr="onclick=|goForm('${list.ifppSeq}')|"></a></td>
+				<td th:text="${list.ifppUrl}" class="ifppUrl align-middle fw-semi-bold"></td>
+				<td th:text="${list.ifppOrder}" class="ifppOrder align-middle fw-semi-bold"></td>
+				<td th:if="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">N</td>
+				<td th:unless="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">Y</td>
 				<td th:text="${#dates.format(list.ifppStartDateTime, 'yyyy-MM-dd HH:mm')}" class="ifppStartDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.ifppEndDateTime, 'yyyy-MM-dd HH:mm')}" class="ifppEndDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>

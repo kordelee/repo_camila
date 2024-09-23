@@ -119,17 +119,17 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹 코드</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹 이름</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdSeq" style="width: 200px; min-width: 200px;">코드</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdSeqAnother" style="width: 80px; min-width: 80px;">대체 코드</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdName" style="width: 80px; min-width: 80px;">코드 이름</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdNameEng" style="width: 80px; min-width: 80px;">코드 이름(영문)</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdUseNy" style="width: 80px; min-width: 80px;">사용</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcdOrder" style="width: 80px; min-width: 80px;">순서</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdUseNy" style="width: 50px; min-width: 50px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 100px; min-width:100px;">코드그룹 코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width:200px;">코드그룹 이름</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdSeq" style="width: 100px; min-width:100px;">코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdSeqAnother" style="width: 100px; min-width:100px;">대체 코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdName" style="width: 100px; min-width:100px;">코드 이름</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdNameEng" style="width: 100px; min-width:100px;">코드 이름(영문)</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcdOrder" style="width: 50px; min-width: 50px;">순서</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
@@ -147,14 +147,14 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+				<td th:if="${list.ifcdUseNy eq 0}" class="ifcdUseNy align-middle">N</td>
+				<td th:unless="${list.ifcdUseNy eq 0}" class="ifcdOrder align-middle">Y</td>
 				<td th:text="${list.ifcgSeq}" class="ifcgSeq align-middle"></td>
 				<td th:text="${list.ifcgName}" class="ifcgName align-middle"></td>
 				<td th:text="${list.ifcdSeq}" class="ifcdSeq align-middle"></td>
 				<td th:text="${list.ifcdSeqAnother}" class="ifcdSeqAnother align-middle"></td>
 				<td class="ifcdName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifcdName}" th:attr="onclick=|goForm('${list.ifcdSeq}')|"></a></td>
 				<td th:text="${list.ifcdNameEng}" class="ifcdNameEng align-middle"></td>
-				<td th:if="${list.ifcdUseNy eq 0}" class="ifcdUseNy align-middle">N</td>
-				<td th:unless="${list.ifcdUseNy eq 0}" class="ifcdOrder align-middle">Y</td>
 				<td th:text="${list.ifcdOrder}" class="ifcdOrder align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>

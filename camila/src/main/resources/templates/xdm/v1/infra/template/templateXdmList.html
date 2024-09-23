@@ -115,15 +115,15 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="iftpSeq" style="width: 110px; min-width:110px;">코드</th>
-				<th class="sort align-middle" scope="col" data-sort="iftpTypeCd" style="width: 80px; min-width: 80px;">템플릿타입</th>
+				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="iftpDelNy" style="width: 50px; min-width: 50px;">삭제</th>
+				<th class="sort align-middle" scope="col" data-sort="iftpUseNy" style="width: 50px; min-width: 50px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="iftpSeq" style="width: 100px; min-width:100px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="iftpTitle" style="min-width: 200px;">템플릿제목</th>
-				<th class="sort align-middle" scope="col" data-sort="iftpContents" style="width: 200px; min-width: 200px;">템플릿내용</th>
-				<th class="sort align-middle" scope="col" data-sort="iftpUseNy" style="width: 80px; min-width: 80px;">사용</th>
-				<th class="sort align-middle" scope="col" data-sort="iftpDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="iftpContents" style="min-width: 200px;">템플릿내용</th>
+				<th class="sort align-middle" scope="col" data-sort="iftpTypeCd" style="width: 80px; min-width: 80px;">템플릿타입</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
@@ -141,14 +141,14 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
-				<td th:text="${list.iftpSeq}" class="iftpSeq align-middle fw-semi-bold"></td>
-				<td th:text="${list.iftpTypeCd}" class="iftpTypeCd align-middle"></td>
-				<td class="iftpTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.iftpTitle}" th:attr="onclick=|goForm('${list.iftpSeq}')|"></a></td>
-				<td th:text="${list.iftpContents}" class="iftpContents align-middle"></td>
-				<td th:if="${list.iftpUseNy eq 0}" class="iftpUseNy align-middle">N</td>
-				<td th:unless="${list.iftpUseNy eq 0}" class="iftpUseNy align-middle">Y</td>
 				<td th:if="${list.iftpDelNy eq 0}" class="iftpDelNy align-middle">N</td>
 				<td th:unless="${list.iftpDelNy eq 0}" class="iftpDelNy align-middle">Y</td>
+				<td th:if="${list.iftpUseNy eq 0}" class="iftpUseNy align-middle">N</td>
+				<td th:unless="${list.iftpUseNy eq 0}" class="iftpUseNy align-middle">Y</td>
+				<td th:text="${list.iftpSeq}" class="iftpSeq align-middle fw-semi-bold"></td>
+				<td class="iftpTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.iftpTitle}" th:attr="onclick=|goForm('${list.iftpSeq}')|"></a></td>
+				<td th:text="${list.iftpContents}" class="iftpContents align-middle"></td>
+				<td th:text="${list.iftpTypeCd}" class="iftpTypeCd align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>

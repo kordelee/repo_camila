@@ -120,17 +120,17 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlSeq" style="width: 110px; min-width:110px;">코드</th>
+				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlDelNy" style="width: 50px; min-width: 50px;">삭제</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlUseNy" style="width: 50px; min-width: 50px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlSeq" style="width: 100px; min-width:100px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifrlTitle" style="min-width: 200px;">제목</th>
 				<!--<th class="sort align-middle" scope="col" data-sort="xifrlSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
-				<th class="sort align-middle" scope="col" data-sort="ifrlUseNy" style="width: 80px; min-width: 80px;">사용</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlDelNy" style="width: 80px; min-width: 80px;">삭제여부</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlNoticeDateTime" style="width: 150px; min-width: 150px">공지일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlStartDateTime" style="width: 150px; min-width: 150px">시작일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifrlEndDateTime" style="width: 150px; min-width: 150px">종료일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlNoticeDateTime" style="width: 100px; min-width: 100px">공지일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlStartDateTime" style="width: 100px; min-width: 100px">시작일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifrlEndDateTime" style="width: 100px; min-width: 100px">종료일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
@@ -148,13 +148,13 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+				<td th:if="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">N</td>
+				<td th:unless="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">Y</td>
+				<td th:if="${list.ifrlUseNy eq 0}" class="ifrlUseNy align-middle">N</td>
+				<td th:unless="${list.ifrlUseNy eq 0}" class="ifrlUseNy align-middle">Y</td>
 				<td th:text="${list.ifrlSeq}" class="ifrlSeq align-middle fw-semi-bold"></td>
 				<td class="ifrlName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifrlTitle}" th:attr="onclick=|goForm('${list.ifrlSeq}')|"></a></td>
 				<!--<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>-->
-				<td th:if="${list.ifrlUseNy eq 0}" class="ifrlUseNy align-middle">N</td>
-				<td th:unless="${list.ifrlUseNy eq 0}" class="ifrlUseNy align-middle">Y</td>
-				<td th:if="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">N</td>
-				<td th:unless="${list.ifrlDelNy eq 0}" class="ifrlDelNy align-middle">Y</td>
 				<td th:text="${#dates.format(list.ifrlNoticeDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlNoticeDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.ifrlStartDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlStartDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.ifrlEndDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlEndDateTime align-middle"></td>

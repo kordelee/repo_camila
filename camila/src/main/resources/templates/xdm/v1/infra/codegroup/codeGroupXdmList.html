@@ -116,15 +116,15 @@
 						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
 					</div>
 				</th>
-				<th class="align-middle" style="width:40px; min-width: 40px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 110px; min-width:110px;">코드그룹 코드</th>
+				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgUseNy" style="width: 50px; min-width: 50px;">사용</th>
+				<th class="sort align-middle" scope="col" data-sort="ifcgSeq" style="width: 100px; min-width:100px;">코드그룹 코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifcgName" style="min-width: 200px;">코드그룹 이름</th>
 				<th class="sort align-middle" scope="col" data-sort="ifcgNameEng" style="width: 200px; min-width: 200px;">코드그룹 이름(영문)</th>
 				<th class="sort align-middle" scope="col" data-sort="xifcdSeqCount" style="width: 80px; min-width: 80px;">갯수</th>
-				<th class="sort align-middle" scope="col" data-sort="ifcgUseNy" style="width: 80px; min-width: 80px;">사용</th>
 				<th class="sort align-middle" scope="col" data-sort="ifcgOrder" style="width: 80px; min-width: 80px;">순서</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 150px; min-width: 150px">등록일</th>
-				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 150px; min-width: 150px;">수정일</th>
+				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
@@ -142,12 +142,12 @@
 					</div>
 				</td>
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
+				<td th:if="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle">N</td>
+				<td th:unless="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle">Y</td>
 				<td th:text="${list.ifcgSeq}" class="ifcgSeq align-middle fw-semi-bold"></td>
 				<td class="ifcgName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifcgName}" th:attr="onclick=|goForm('${list.ifcgSeq}')|"></a></td>
 				<td th:text="${list.ifcgNameEng}" class="ifcgNameEng align-middle"></td>
 				<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>
-				<td th:if="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle">N</td>
-				<td th:unless="${list.ifcgUseNy eq 0}" class="ifcgUseNy align-middle">Y</td>
 				<td th:text="${list.ifcgOrder}" class="ifcgOrder align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
