@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.template.TemplateDao">
+
+	<resultMap id="resultMapObj" type="com.junefw.infra.template.TemplateDto"></resultMap>
+
+    <sql id="selectCommon">
+        FROM infrTemplate a
+        WHERE 1=1
+        <if test="shUseNy != null and !shUseNy.equals('')">AND a.iftpUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.iftpDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND a.iftpSeq = #{shValue}</when>
+            <when test="shOption == 2">AND a.iftpTitle LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+
+    <select id="selectOneCount" resultType="Integer">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
+    </select>
+
+    <select id="selectList" resultMap="resultMapObj">
+        <include refid="Base.selectListUpperForMysql" />
+        SELECT
+            a.iftpSeq
+            ,a.iftpTypeCd
+            ,a.iftpTitle
+            ,a.iftpContents
+            ,a.iftpUseNy
+            ,a.iftpDelNy
+						<include refid="Base.selectRegModWithAlies" />
+        <include refid="selectCommon" />
+        ORDER BY a.iftpSeq DESC
+        <include refid="Base.selectListLowerForMysql" />
+    </select>
+
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.iftpSeq
+            ,a.iftpTypeCd
+            ,a.iftpTitle
+            ,a.iftpContents
+            ,a.iftpUseNy
+            ,a.iftpDelNy
+						<include refid="Base.selectRegModWithAlies" />		            
+        FROM infrTemplate a
+        WHERE 1=1
+        AND a.iftpSeq = #{iftpSeq}
+    </select>
+
+    <insert id="insert">
+			INSERT INTO infrTemplate (
+				iftpSeq
+	            ,iftpTypeCd
+	            ,iftpTitle
+	            ,iftpContents
+	            ,iftpUseNy
+	            ,iftpDelNy
+				<include refid="Base.insertRegModColumn" />			
+			) VALUES (
+				#{iftpSeq}
+				,#{iftpTypeCd}
+				,#{iftpTitle}
+				,#{iftpContents}
+				,#{iftpUseNy}
+				,0
+				<include refid="Base.insertRegModValue" />			
+			 )
+			 <selectKey resultType="String" keyProperty="iftpSeq" order="AFTER">
+				SELECT last_insert_id()
+			 </selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE infrTemplate
+		SET
+            iftpTypeCd = #{iftpTypeCd}
+            ,iftpTitle = #{iftpTitle}
+            ,iftpContents = #{iftpContents}
+            ,iftpUseNy = #{iftpUseNy}
+			<include refid="Base.updateModColumnValue" />
+		WHERE 1=1
+			AND iftpSeq = #{iftpSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrTemplate 
+		SET
+			iftpDelNy = 1
+			<include refid="Base.updateModColumnValue" />	
+		WHERE 1=1
+			AND iftpSeq = #{iftpSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrTemplate 
+		WHERE 1=1
+			AND iftpSeq = #{iftpSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.iftpSeq
+			, a.iftTitle
+		FROM infrTemplate a
+		WHERE 1=1
+			AND iftpDelNy = 0
+			And iftpUseNy = 1
+		ORDER BY a.iftpSeq DESC
+	</select>
+	  
+</mapper>

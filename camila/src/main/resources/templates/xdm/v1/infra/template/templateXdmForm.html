@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+      
+<div class="content">
+	<nav class="mb-2" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-0">
+			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+			<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+		</ol>
+	</nav>
+	<div class="mb-9">
+	  <div class="row g-3 mb-4">
+	    <div class="col-auto">
+	      <h2 class="mb-0">Code Group</h2>														<!-- ### -->
+	    </div>
+	  </div>
+		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+			<div class="card-header p-4 border-bottom border-300 bg-soft">
+				<div class="row g-3 justify-content-between align-items-center">
+					<div class="col-12 col-md">
+						<h4 class="text-900 mb-0">기본정보</h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="p-4 code-to-copy">
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
+			
+<div th:replace="~{xdm/v1/infra/template/templateXdmVo :: vo}"></div>			<!-- ### --> 					
+					
+						<div class="col-md-3">
+							<label for="iftpSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+							<input type="text" id="iftpSeq" name="iftpSeq" th:value="${item?.iftpSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="iftpUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
+							<select id="iftpUseNy" name="iftpUseNy" class="form-select">
+								<option value="1" th:selected="${item?.iftpUseNy == 1}">사용</option>
+								<option value="0" th:selected="${item?.iftpUseNy == 0}">미사용</option>
+							</select>
+							<div class="invalid-feedback" id="iftpUseNyFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-3">
+							<label for="iftpTypeCd" class="form-label fs--1">템플릿타입<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="iftpTypeCd" name="iftpTypeCd" th:value="${item?.iftpTypeCd}" maxlength="20" placeholder="선택하세요" class="form-control"/>
+							<!--<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
+								<option value="">선택하세요</option>
+								<option th:each="list : ${@codeService.selectListCachedCode(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
+							</select>-->
+							<div class="invalid-feedback" id="iftpTypeCdFeedback"></div>
+						</div>
+						<div class="col-md-9">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label for="iftpTitle" class="form-label fs--1">템플릿제목</label>
+							<input type="text" id="iftpTitle" name="iftpTitle" th:value="${item?.iftpTitle}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+							<div class="invalid-feedback" id="iftpTitleFeedback"></div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label class="form-label fs--1">템플릿내용</label>
+							<div class="controls">
+								<textarea class="form-control" id="iftpContents" name="iftpContents" th:value="${item?.iftpContents}" th:text="${item?.iftpContents}" style="height: 100px;"></textarea>
+								<div class="invalid-feedback" id="iftpContentsFeedback"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+<!-- 											
+						<div class="col-md-3">
+							<label for="iftpReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
+							<input type="text" id="iftpReferenceV1" name="iftpReferenceV1" th:value="${item?.iftpReferenceV1}" class="form-control"/>
+							<div class="invalid-feedback" id="iftpReferenceV1Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcgReferenceV2" class="form-label fs--1">예비2 (varchar type)</label>
+							<input type="text" id="ifcgReferenceV2" name="ifcgReferenceV2" th:value="${item?.ifcgReferenceV2}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceV2Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcgReferenceV3" class="form-label fs--1">예비3 (varchar type)</label>
+							<input type="text" id="ifcgReferenceV3" name="ifcgReferenceV3" th:value="${item?.ifcgReferenceV3}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceV3Feedback"></div>
+						</div>	
+						<div class="col-md-3">
+							<label for="ifcgReferenceV4" class="form-label fs--1">예비4 (varchar type)</label>
+							<input type="text" id="ifcgReferenceV4" name="ifcgReferenceV4" th:value="${item?.ifcgReferenceV4}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceV4Feedback"></div>
+						</div>
+						<div class="col-md-3">
+							<label for="ifcgReferenceI1" class="form-label fs--1">예비1 (int type)</label>
+							<input type="text" id="ifcgReferenceI1" name="ifcgReferenceI1" th:value="${item?.ifcgReferenceI1}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceI1Feedback"></div>
+						</div>
+						<div class="col-md-3">							
+							<label for="ifcgReferenceI2" class="form-label fs--1">예비2 (int type)</label>
+							<input type="text" id="ifcgReferenceI2" name="ifcgReferenceI2" th:value="${item?.ifcgReferenceI2}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceI2Feedback"></div>
+						</div>							
+						<div class="col-md-3">						
+							<label for="ifcgReferenceI3" class="form-label fs--1">예비3 (int type)</label>
+							<input type="text" id="ifcgReferenceI3" name="ifcgReferenceI3" th:value="${item?.ifcgReferenceI3}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceI3Feedback"></div>
+						</div>							
+						<div class="col-md-3">						
+							<label for="ifcgReferenceI4" class="form-label fs--1">예비4 (int type)</label>
+							<input type="text" id="ifcgReferenceI4" name="ifcgReferenceI4" th:value="${item?.ifcgReferenceI4}" class="form-control"/>
+							<div class="invalid-feedback" id="ifcgReferenceI4Feedback"></div>
+						</div>						
+ -->	
+<th:block th:if="${not #strings.isEmpty(item?.iftpSeq)}">			
+	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
+</th:block>					
+										
+						<div class="col-12">
+							<div class="row">
+								<div class="col-6 text-start">
+									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+<th:block th:if="${not #strings.isEmpty(item?.iftpSeq)}">									
+									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+</th:block>
+								</div>
+								<div class="col-6 text-end">
+<!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
+									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+								</div>
+							</div>          
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>   
+
+</div>
+
+<form name="formVo" method="post">
+	<div th:replace="~{xdm/v1/infra/template/templateXdmVo :: vo}"></div>			<!-- ### -->
+</form>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+		navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+		navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			
+	});
+	
+	let goUrlXdmList = "/v1/infra/template/templateXdmList";						/* ### */
+	let goUrlXdmAjaxList = "/v1/infra/template/templateXdmAjaxList";		/* ### */
+	let goUrlXdmInst = "/v1/infra/template/templateXdmInst";						/* ### */
+	let goUrlXdmUpdt = "/v1/infra/template/templateXdmUpdt";						/* ### */
+	let goUrlXdmDele = "/v1/infra/template/templateXdmDele";						/* ### */
+	let goUrlXdmUele = "/v1/infra/template/templateXdmUele";						/* ### */
+	
+	let seq = document.querySelector("input[name=iftpSeq]");							/* ### */
+	
+	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+ 		if(!checkOnlyNumber('iftpTypeCd', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('iftpReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyEnglishNumber('ifcgReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+//  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+	}
+
+	
+	upload = function() {
+		
+		alert("asdasdf");
+	
+	}
+</script>
+
+<script src="/xdm/v1/js/includeXdmForm.js"></script>
+
+</body>
+</html>
