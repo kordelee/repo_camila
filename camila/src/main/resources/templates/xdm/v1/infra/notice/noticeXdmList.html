@@ -121,9 +121,9 @@
 				</th>
 				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntDelNy" style="width: 50px; min-width: 50px;">삭제</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTargetCd" style="width: 50px; min-width: 50px;">대상</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntSeq" style="width: 100px; min-width:100px;">코드</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntTitle" style="min-width: 200px;">제목</th>
-				<!--<th class="sort align-middle" scope="col" data-sort="xifntSeqCount" style="width: 80px; min-width: 80px;">갯수</th>-->
 				<th class="sort align-middle" scope="col" data-sort="ifntTopOrder" style="width: 80px; min-width: 80px;">탑공지순서</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntTopNy" style="width: 80px; min-width: 80px;">탑공지</th>
 				<th class="sort align-middle" scope="col" data-sort="ifntDisplayNy" style="width: 50px; min-width: 50px;">디스플레이</th>
@@ -150,6 +150,7 @@
 				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
 				<td th:if="${list.ifntDelNy eq 0}" class="ifntDelNy align-middle">N</td>
 				<td th:unless="${list.ifntDelNy eq 0}" class="ifntDelNy align-middle">Y</td>
+				<td th:text="${list.ifntTargetCd}" class="ifntTargetCd align-middle fw-semi-bold"></td>
 				<td th:text="${list.ifntSeq}" class="ifntSeq align-middle fw-semi-bold"></td>
 				<td class="ifntTitle align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifntTitle}" th:attr="onclick=|goForm('${list.ifntSeq}')|"></a></td>
 				<!--<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>-->

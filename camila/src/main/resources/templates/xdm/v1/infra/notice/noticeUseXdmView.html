@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+      
+<div class="content">
+	<nav class="mb-2" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-0">
+			<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+			<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+			<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+		</ol>
+	</nav>
+	<div class="mb-9">
+	  <div class="row g-3 mb-4">
+	    <div class="col-auto">
+	      <h2 class="mb-0">공지사항 관리</h2>														<!-- ### -->
+	    </div>
+	  </div>
+		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
+			<div class="card-header p-4 border-bottom border-300 bg-soft">
+				<div class="row g-3 justify-content-between align-items-center">
+					<div class="col-12 col-md">
+						<h4 class="text-900 mb-0">기본정보</h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="p-4 code-to-copy">
+					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
+			
+<div th:replace="~{xdm/v1/infra/notice/NoticeXdmVo :: vo}"></div>			<!-- ### --> 					
+					
+						<div class="col-md-6">
+							<label for="ifntTitle" class="form-label fs--1">제목</label>
+							<input type="text" id="ifntTitle" name="ifntTitle" th:value="${item?.ifntTitle}" maxlength="20" disabled class="form-control"/>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-6">
+							<label class="form-label fs--1">내용</label>
+							<div class="controls">
+								<textarea class="form-control" id="ifntContents" name="ifntContents" th:text="${item?.ifntContents}" th:value="${item?.ifntContents}" disabled style="height: 100px;"></textarea>
+								<div class="invalid-feedback" id="ifntContentsFeedback"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<!-- empty -->
+						</div>
+						<div class="col-md-3">
+							<label for="regDateTime" class="form-label fs--1">등록일</label>
+							<input type="text" id="regDateTime" name="regDateTime" th:value="${#dates.format(item?.regDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" disabled class="form-control"/>
+						</div>
+						<div class="col-md-3">
+							<label for="modDateTime" class="form-label fs--1">수정일</label>
+							<input type="text" id="modDateTime" name="modDateTime" th:value="${#dates.format(item?.modDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" disabled class="form-control"/>
+						</div>
+						<div class="col-md-6">
+						</div>
+						
+										
+						<div class="col-12">
+							<div class="row">
+								<div class="col-6 text-start">
+									<button type="button" id="btnUseList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+								</div>
+								<div class="col-6 text-end">
+								</div>
+							</div>          
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>   
+
+</div>
+
+<form name="formVo" method="post">
+	<div th:replace="~{xdm/v1/infra/notice/noticeXdmVo :: vo}"></div>			<!-- ### -->
+</form>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+		navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+		navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', function() {
+			
+	});
+	
+	let goUrlXdmList = "/v1/infra/notice/noticeXdmList";						/* ### */
+	let goUrlXdmAjaxList = "/v1/infra/notice/noticeXdmAjaxList";		/* ### */
+	let goUrlXdmInst = "/v1/infra/notice/noticeXdmInst";						/* ### */
+	let goUrlXdmUpdt = "/v1/infra/notice/noticeXdmUpdt";						/* ### */
+	let goUrlXdmDele = "/v1/infra/notice/noticeXdmDele";						/* ### */
+	let goUrlXdmUele = "/v1/infra/notice/noticeXdmUele";						/* ### */
+	
+	let goUrlUseXdmList = "/v1/infra/notice/noticeUseXdmList";						/* ### */
+	let seq = document.querySelector("input[name=ifntSeq]");							/* ### */
+	
+	document.getElementById("btnUseList").onclick = function () {
+	formVo.action = goUrlUseXdmList;
+	formVo.submit();
+}
+	
+</script>
+
+<script src="/xdm/v1/js/includeXdmForm.js"></script>
+
+</body>
+</html>

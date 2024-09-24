@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 
 <div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
 
@@ -19,7 +19,7 @@
 		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 		<input type="hidden" name="checkboxSeqArray">
-		<input type="hidden" name="ifmmSeq">															<!-- ### -->
+		<input type="hidden" name="ifntSeq">															<!-- ### -->
 		
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
@@ -31,11 +31,12 @@
 	  <div class="mb-9">
 	    <div class="row g-3 mb-4">
 	      <div class="col-auto">
-	        <h2 class="mb-0">Member</h2>																	<!-- ### -->
+	        <h2 class="mb-0">공지사항</h2>														<!-- ### -->
 	      </div>
 	    </div>
+	    <!--수정-->
 	    <div id="orderTable"
-	      data-list='{"valueNames":["ifmmAdminNy","ifmmSeq","ifmmName","ifmmId","ifmmGenderCd","ifmmDob","ifmeEmailFull","ifmpNumber","ifmmDelNy","regDateTime","modDateTime"]}'>
+	      data-list='{"valueNames":["ifntSeq","ifntName","ifcgNameEng","xifcdSeqCount","ifcgUseNy","ifcgOrder","regDateTime","modDateTime"]}'>
 
 <!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
@@ -51,20 +52,6 @@
 <!-- search s -->
 <div id="divSearch" class="container-fluid px-0 pb-3">
 	<div class="row row-cols-2 row-cols-sm-6 g-2 px-2">
-		<div class="col">
-			<select id="shDelNy" name="shDelNy" class="form-select form-select-sm">
-				<option value="" th:selected="${vo.shDelNy == null}">탈퇴여부</option>
-				<option value="1" th:selected="${vo.shDelNy == 1}">Y</option>
-				<option value="0" th:selected="${vo.shDelNy == 0}">N</option>            
-			</select>
-		</div>
-		<div class="col">
-			<select name="shUseNy" id="shUseNy" class="form-select form-select-sm">
-				<option value="" th:selected="${vo.shAdminNy == null}">관리자</option>
-				<option value="1" th:selected="${vo.shAdminNy == 1}">Y</option>
-				<option value="0" th:selected="${vo.shAdminNy == 0}">N</option>
-	</select>
-</div>			
 		<div class="col">
 			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
@@ -84,10 +71,8 @@
 			<select id="shOption" name="shOption" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
 				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
-				<option value="2" th:selected="${vo.shOption == 2}">이름</option>
-				<option value="3" th:selected="${vo.shOption == 3}">아이디</option>
-				<option value="4" th:selected="${vo.shOption == 4}">이메일</option>
-				<option value="5" th:selected="${vo.shOption == 5}">모바일</option>				
+				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
+				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
 			</select>
 		</div>                    
 		<div class="col">
@@ -107,59 +92,28 @@
 <div th:replace="~{xdm/v1/infra/include/totalAndRowNum :: totalAndRowNum}"></div>
 
 					<hr style="margin: 0.5rem 0;">
-
+      	
 <!-- table s  -->
 <div class="table-responsive scrollbar mx-n1 px-1">
 	<table class="table table-sm fs--1 mb-0">
 		<thead>
 			<tr class="text-center">
-				<th class="white-space-nowrap fs--1 align-middle ps-0" style="width:30px; min-width: 30px;">
-					<div class="form-check mb-0 fs-0">
-						<input type="checkbox" id="checkBoxAll" class="form-check-input"/>
-					</div>
-				</th>
-				<th class="align-middle" style="width:100px; min-width: 100px;">#</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmDelNy" style="width: 50px; min-width: 50px;">탈퇴</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmAdminNy" style="width: 80px; min-width:80px;">관리자</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmSeq" style="width: 100px; min-width:100px;">코드</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmName" style="width: 100px; min-width:100px;">이름</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmId" style="min-width: 200px;">아이디</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmGenderCd" style="width: 70px; min-width: 70px;">성별</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmmDob" style="width: 100px; min-width: 100px;">생일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmeEmailFull" style="width: 150px; min-width: 150px;">이메일</th>
-				<th class="sort align-middle" scope="col" data-sort="ifmpNumber" style="width: 80px; min-width: 80px;">모바일</th>
-				<th class="sort align-middle" scope="col" data-sort="regDateTime" style="width: 100px; min-width: 100px">등록일</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntSeq" style="width: 100px; min-width:100px;">코드</th>
+				<th class="sort align-middle" scope="col" data-sort="ifntTitle" style="min-width: 300px; text-align: left;">제목</th>
 				<th class="sort align-middle" scope="col" data-sort="modDateTime" style="width: 100px; min-width: 100px;">수정일</th>
 			</tr>
 		</thead>
 		<tbody class="list text-center" id="order-table-body">
-			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static text-1000 fw-semi-bold">
-				<td colspan="11">				<!-- ### -->
+			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
+				<td colspan="12">
 					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
 				</td>
 			</tr>
 			<tr class="hover-actions-trigger btn-reveal-trigger position-static" 
 				onmouseover="this.style.background='red'" onmouseout="this.style.background=''"
-				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifmmSeq}">			<!-- ### -->
-				<td class="align-middle px-0 py-3">
-					<div class="form-check mb-0 fs-0">
-						<input type="checkbox" th:id="'checkboxSeq_' + ${list.ifmmSeq}" name="checkboxSeq" th:value="${list.ifmmSeq}" class="form-check-input"/>
-					</div>
-				</td>
-				<td th:text="${vo.totalRows - ((vo.thisPage - 1) * vo.rowNumToShow + listStat.index)}" class="align-middle"></td>
-				<td th:if="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle">N</td>
-				<td th:unless="${list.ifmmDelNy eq 0}" class="ifmmDelNy align-middle">Y</td>
-				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">N</td>
-				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">Y</td>
-				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle"></td>
-				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|"></a></td>
-				<td th:text="${list.ifmmId}" class="ifmmId align-middle"></td>
-				<td th:if="${list.ifmmGenderCd != null}" th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
-				<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
-				<td th:text="${list.ifmmDob}" class="ifcdName align-middle"></td>
-				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle"></td>
-				<td th:text="${list.ifmpNumber}" class="ifmpNumber align-middle"></td>
-				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
+				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifntSeq}" >			<!-- ### -->
+				<td th:text="${list.ifntSeq}" class="ifntSeq align-middle fw-semi-bold"></td>
+				<td class="ifntTitle align-middle fw-semi-bold" style="text-align: left;"><a href="javascript:void(0);" th:text="${list.ifntTitle}" th:attr="onclick=|goView('${list.ifntSeq}')|"></a></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>
 		</tbody>
@@ -179,22 +133,7 @@
 		</div>
 	</div>
 </div>
-<!-- paging e  -->
-      	
-<!-- button s -->
-<div class="container-fluid px-0 mt-2 mb-4">
-	<div class="row">
-		<div class="col-6 text-start">
-			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
-			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
-		</div>
-		<div class="col-6 text-end">
-			<button type="button" id="btnExcel" class="btn btn-success btn-sm btn_custom"><i class="fa-regular fa-file-excel fa-lg"></i></button>
-			<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fas fa-plus fa-lg"></i></button>
-		</div>
-	</div>
-</div>
-<!-- button e -->
+<!-- paging e  -->		      	
 
 				</div>
 			</div>
@@ -235,17 +174,22 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-		$("#shDateStart, #shDateEnd").datepicker();
+		$("#shDateStart, #shDateEnd").datetimepicker({
+			timepicker:false,
+ 			format: 'Y-m-d'
+		});
+		
 	});
 	
-	let goUrlXdmList = "/v1/infra/member/memberXdmList";								/* ### */
-	let goUrlXdmForm = "/v1/infra/member/memberXdmForm";								/* ### */
-	let goUrlXdmMultiUele = "/v1/infra/member/memberXdmMultiUele";			/* ### */
-	let goUrlXdmMultiDele = "/v1/infra/member/memberXdmMultiDele";			/* ### */
-	let goUrlXdmView = "/v1/infra/member/memberXdmView";								/* ### */
+	let goUrlXdmView = "/v1/infra/notice/noticeUseXdmView";								/* ### */
 	
-	let seq = document.querySelector("input[name=ifmmSeq]");						/* ### */
-
+	let seq = document.querySelector("input[name=ifntSeq]");									/* ### */
+	
+	goView = function (keyValue) {
+    seq.value = keyValue;
+    form.action = goUrlXdmView;
+    form.submit();
+}
 </script>
 
 <script src="/xdm/v1/js/includeXdmList.js"></script>

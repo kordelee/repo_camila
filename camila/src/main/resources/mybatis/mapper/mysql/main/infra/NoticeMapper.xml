@@ -40,6 +40,7 @@
             ,a.ifntTopDateEnd
             ,a.ifntDisplayNy
             ,a.ifntDelNy
+            ,a.ifntTargetCd
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
         ORDER BY a.ifntSeq DESC
@@ -56,6 +57,7 @@
             ,a.ifntTopDateStart
             ,a.ifntTopDateEnd
             ,a.ifntDisplayNy
+            ,a.ifntTargetCd
             ,a.ifntDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrNotice a
@@ -73,6 +75,7 @@
 	            ,ifntDelNy
 	            ,ifntDisplayNy
 	            ,ifntTopNy
+	            ,ifntTargetCd
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
 				#{ifntTitle}
@@ -83,6 +86,7 @@
 				,0
 				,#{ifntDisplayNy}
 				,#{ifntTopNy}
+				,#{ifntTargetCd}
 				<include refid="Base.insertRegModValue" />			
 			 )
 			 <selectKey resultType="String" keyProperty="ifntSeq" order="AFTER">
@@ -98,6 +102,7 @@
 	        ,ifntTopOrder = #{ifntTopOrder}
 	        ,ifntTopDateStart = #{ifntTopDateStart}
 	        ,ifntTopDateEnd = #{ifntTopDateEnd}
+	        ,ifntTargetCd = #{ifntTargetCd}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifntSeq = #{ifntSeq}

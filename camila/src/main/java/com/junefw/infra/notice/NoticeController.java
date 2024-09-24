@@ -161,4 +161,33 @@ public class NoticeController extends BaseController {
 
 		return pathRedirectCommonXdm + "noticeXdmList";
 	}
+	
+	@RequestMapping(value = "/noticeUseXdmList")
+	public String noticeUseXdmList(@ModelAttribute("vo") NoticeVo vo, Model model) throws Exception{
+
+		setSearch(vo);
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+//			List<NoticeDao> list = service.selectList(vo));
+//			model.addAttribute("list", list);
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
+
+		return pathCommonXdm + "noticeUseXdmList";
+  	}
+	
+
+	@RequestMapping(value = "/noticeUseXdmView")
+	public String noticeUseXdmView(@ModelAttribute("vo") NoticeVo vo, Model model) {
+		
+//		NoticeDto item = service.selectOne(vo);
+//		model.addAttribute("item", item);
+
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonXdm + "noticeUseXdmView";
+	}
+	
 }

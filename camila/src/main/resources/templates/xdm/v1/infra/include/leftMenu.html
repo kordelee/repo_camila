@@ -18,11 +18,11 @@
 		                    </div>
 		                  </a>
 		             </div>
-			<div class="nav-item-wrapper"><a class="nav-link label-1" id="notice" th:href="@{/v1/infra/notice/noticeXdmList}" role="button" data-bs-toggle="" aria-expanded="false">
-                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="bell"></span></span><span class="nav-link-text-wrapper"><span class="nav-link-text">공지사항</span></span>
-                    </div>
-                  </a>
-             </div>
+					<div class="nav-item-wrapper"><a class="nav-link label-1" id="use" th:href="@{/v1/infra/notice/noticeUseXdmList}" data-bs-toggle="" aria-expanded="false">
+		                    <div class="d-flex align-items-center"><span class="nav-link-icon"><span data-feather="bell"></span></span><span class="nav-link-text-wrapper"><span class="nav-link-text">공지사항</span></span>
+		                    </div>
+		                  </a>
+		             </div>
            
                 <div class="nav-item-wrapper"><a class="nav-link dropdown-indicator label-1" href="#nv-users" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="nv-users">
                     <div class="d-flex align-items-center">
@@ -33,26 +33,8 @@
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-users">
                       <li class="collapsed-nav-item-title d-none">Customization
                       </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/configuration.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Configuration</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/styling.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Styling</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/dark-mode.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Dark mode</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/plugin.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Plugin</span>
+                      <li class="nav-item"><a class="nav-link" id="member" th:href="@{/v1/infra/member/memberXdmList}" data-bs-toggle="" aria-expanded="false">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">멤버관리</span>
                           </div>
                         </a>
                         <!-- more inner pages-->
@@ -75,24 +57,6 @@
                         </a>
                         <!-- more inner pages-->
                       </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/styling.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Styling</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/dark-mode.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Dark mode</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
-                      <li class="nav-item"><a class="nav-link" href="documentation/customization/plugin.html" data-bs-toggle="" aria-expanded="false">
-                          <div class="d-flex align-items-center"><span class="nav-link-text">Plugin</span>
-                          </div>
-                        </a>
-                        <!-- more inner pages-->
-                      </li>
                     </ul>
                   </div>
                 </div>
@@ -105,6 +69,12 @@
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-qna">
                       <li class="nav-item"><a class="nav-link" id="qna" th:href="@{/v1/infra/qna/qnaXdmList}" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Qna관리</span>
+                          </div>
+                        </a>
+                        <!-- more inner pages-->
+                      </li>
+                      <li class="nav-item"><a class="nav-link" id="notice" th:href="@{/v1/infra/notice/noticeXdmList}" data-bs-toggle="" aria-expanded="false">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">공지사항관리</span>
                           </div>
                         </a>
                         <!-- more inner pages-->

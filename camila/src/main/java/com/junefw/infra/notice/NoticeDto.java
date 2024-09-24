@@ -15,6 +15,7 @@ public class NoticeDto extends BaseDto{
 	private Date ifntTopDateEnd;
 	private Integer ifntDisplayNy;
 	private Integer ifntDelNy;
+	private Integer ifntTargetCd;
 	public String getIfntSeq() {
 		return ifntSeq;
 	}
@@ -69,5 +70,10 @@ public class NoticeDto extends BaseDto{
 	public void setIfntDelNy(Integer ifntDelNy) {
 		this.ifntDelNy = ifntDelNy;
 	}
-	
+	public Integer getIfntTargetCd() {
+		return ifntTargetCd;
+	}
+	public void setIfntTargetCd(Integer ifntTargetCd) {
+		this.ifntTargetCd = ifntTargetCd;
+	}
 }
