@@ -14,7 +14,7 @@ import com.junefw.common.constants.Constants;
 @RequestMapping(value = "/v1/infra/codegroup")
 public class CodeGroupController extends BaseController{
 	
-	String pathCommonXdm = "xdm/v1/infra/codeGroup/";
+	String pathCommonXdm = "xdm/v1/infra/codegroup/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/codegroup/";
 
 	String pathCommonUsr = "usr/v1/infra/codeGroup/";
