@@ -157,22 +157,19 @@ extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx"
 	
 		
 	  window.addEventListener('load', function() {
-		 let url = window.location.pathname;
+		  let url = window.location.pathname;
 		  let rt = url.split("/");
 		  //배열로 떨어져서 길이 구한다음 모듈 이름까지 빼기
 		  let moduelName = rt[rt.length-2];
 		  let fileName = rt[rt.length-1];
+		  
 		  if(fileName.includes("Use")){
-			  alert(fileName.includes("Use"));
-			 alert(document.getElementById("use"));
-		  	document.getElementById('use').classList.add('active');
+		  	document.getElementById(moduelName+'Use').classList.add('active');
 		  } else{
-			  alert(fileName.includes("Use"));
-			   //li태그에 active 요소 추가
-		  document.getElementById(moduelName).classList.add('active');
-		  //바로 상위 태그인 ul에 show 요소 추가
-		  document.getElementById(moduelName).closest('ul').classList.add('show');
 		  	//li태그에 active 요소 추가
+		  	document.getElementById(moduelName).classList.add('active');
+		  	//바로 상위 태그인 ul에 show 요소 추가
+		  	document.getElementById(moduelName).closest('ul').classList.add('show');
 		  }
-		});
+	});
 		  
