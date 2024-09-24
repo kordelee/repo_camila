@@ -154,6 +154,15 @@ public class MemberController extends BaseController{
 			return pathRedirectCommonXdm + "memberXdmList";
 		}
 	}
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "memberUseXdmUpdt")
+	public String memberUseXdmUpdt(MemberDto dto) throws Exception {
+
+		service.useUpdate(dto);
+
+		return pathRedirectCommonXdm + "memberUseXdmForm";
+	}
 
 	
 	@RequestMapping(value = "memberXdmUele")
@@ -284,6 +293,16 @@ public class MemberController extends BaseController{
 		httpSession.invalidate();
 		returnMap.put("rt", "success");
 		return returnMap;
+	}
+	
+	
+//	개인정보 관리
+	@RequestMapping(value = "memberUseXdmForm")
+	public String memberUseXdmForm(@ModelAttribute("vo") MemberVo vo, Model model,HttpSession session) throws Exception {
+		vo.setIfmmSeq(session.getAttribute("sessSeqXdm").toString());
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonXdm + "memberUseXdmForm";
 	}
     
 }

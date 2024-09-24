@@ -233,6 +233,23 @@
 	</update>
 				<!-- ,ifmmCountryResidence = #{ifmmCountryResidence} -->
 	
+	<update id="useUpdate">
+		UPDATE infrMember a, infrMemberEmail b, infrMemberPhone c
+		SET
+			a.ifmmName = #{ifmmName}
+			,a.ifmmId = #{ifmmId}
+			,a.ifmmPassword = #{ifmmPassword}
+			,b.ifmeEmailFull = #{ifmeEmailFull}
+			,c.ifmpNumber = #{ifmpNumber}
+			,a.modIp = #{modIp}
+			,a.modSeq = #{modSeq}
+			,a.modDeviceCd = #{modDeviceCd}
+			,a.modDateTime = #{modDateTime}
+			,a.modDateTimeSvr = #{modDateTimeSvr}
+		WHERE 1=1
+			AND a.ifmmSeq = #{ifmmSeq}
+	</update>
+	
 	<update id="uelete">
 		UPDATE infrMember
 		SET

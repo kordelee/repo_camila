@@ -14,6 +14,8 @@ public interface MemberDao extends BaseDao{
     public int uelete(MemberDto dto);
     public int delete(MemberVo vo);
 	public List<MemberDto> selectListUploaded(MemberVo vo);
+	
+	public int useUpdate(MemberDto dto);
     
 //	upload
 	public int insertUploaded(MemberDto dto);

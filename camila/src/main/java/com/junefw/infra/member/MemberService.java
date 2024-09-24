@@ -134,6 +134,11 @@ public class MemberService extends BaseService{
     	setRegMod(dto);
     	return dao.update(dto);
     }
+	
+	public int useUpdate(MemberDto dto) throws Exception {
+    	setRegMod(dto);
+    	return dao.useUpdate(dto);
+    }
     
     
     public int uelete(MemberDto dto) throws Exception {
