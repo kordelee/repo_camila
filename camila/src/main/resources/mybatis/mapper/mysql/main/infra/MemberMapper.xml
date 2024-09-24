@@ -241,11 +241,6 @@
 			,a.ifmmPassword = #{ifmmPassword}
 			,b.ifmeEmailFull = #{ifmeEmailFull}
 			,c.ifmpNumber = #{ifmpNumber}
-			,a.modIp = #{modIp}
-			,a.modSeq = #{modSeq}
-			,a.modDeviceCd = #{modDeviceCd}
-			,a.modDateTime = #{modDateTime}
-			,a.modDateTimeSvr = #{modDateTimeSvr}
 		WHERE 1=1
 			AND a.ifmmSeq = #{ifmmSeq}
 	</update>

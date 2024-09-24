@@ -115,13 +115,6 @@
 							<input type="text" id="modDateTime" name="modDateTime" th:value="${#dates.format(item.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
 						</div>
 						
-<input type="hidden" id="regSeq" name="regSeq" th:value="|${item?.regId} (${item?.regSeq})|" disabled class="form-control"/>
-<input type="hidden" id="regIp" name="regIp" th:value="${item?.regIp}" disabled class="form-control"/>
-<input type="hidden" id="regDeviceCd" name="regDeviceCd" th:value="${item?.regDeviceCd}" disabled class="form-control"/>
-<input type="hidden" id="modSeq" name="modSeq" th:value="|${item?.modId} (${item?.modSeq})|" disabled class="form-control"/>
-<input type="hidden" id="modIp" name="modIp" th:value="${item?.modIp}" disabled class="form-control"/>
-<input type="hidden" id="modDeviceCd" name="modDeviceCd" th:value="${item?.modDeviceCd}" disabled class="form-control"/>
-
 						<div class="col-12">
 							<div class="row">
 								<div class="col-6 text-start">
