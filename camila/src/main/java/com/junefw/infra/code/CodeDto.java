@@ -1,13 +1,15 @@
 package com.junefw.infra.code;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.junefw.common.base.BaseDto;
 
-public class CodeDto extends BaseDto{
+public class CodeDto extends BaseDto implements Serializable{
 	
-//	infr_code
+private static final long serialVersionUID = 1L;
+	//	infr_code
 	private String ifcdSeq;
 	private String ifcdSeqAnother;
 	private String ifcdName;
@@ -39,6 +41,10 @@ public class CodeDto extends BaseDto{
 	
 //	for cache
 	public static List<CodeDto> cachedCodeArrayList = new ArrayList<CodeDto>();
+//	for radis
+	public static List<CodeDto> radisCodeArrayList = new ArrayList<CodeDto>();
+	
+	public static List<String> redisCode = new ArrayList<>();
 
 	public String getIfcdSeq() {
 		return ifcdSeq;
@@ -119,19 +125,19 @@ public class CodeDto extends BaseDto{
 	public void setIfcdNameLang6(String ifcdNameLang6) {
 		this.ifcdNameLang6 = ifcdNameLang6;
 	}
-	
+
 	public String getIfcdNameLang7() {
 		return ifcdNameLang7;
 	}
-	
+
 	public void setIfcdNameLang7(String ifcdNameLang7) {
 		this.ifcdNameLang7 = ifcdNameLang7;
 	}
-	
+
 	public String getIfcdNameLang8() {
 		return ifcdNameLang8;
 	}
-	
+
 	public void setIfcdNameLang8(String ifcdNameLang8) {
 		this.ifcdNameLang8 = ifcdNameLang8;
 	}
@@ -256,4 +262,24 @@ public class CodeDto extends BaseDto{
 		CodeDto.cachedCodeArrayList = cachedCodeArrayList;
 	}
 
+	public static List<CodeDto> getRadisCodeArrayList() {
+		return radisCodeArrayList;
+	}
+
+	public static void setRadisCodeArrayList(List<CodeDto> radisCodeArrayList) {
+		CodeDto.radisCodeArrayList = radisCodeArrayList;
+	}
+
+	public static List<String> getRedisCode() {
+		return redisCode;
+	}
+
+	public static void setRedisCode(List<String> redisCode) {
+		CodeDto.redisCode = redisCode;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }
