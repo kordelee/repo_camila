@@ -39,3 +39,6 @@ out/
 ### Custom ###
 application-external.properties
 logs/
+
+### Mac Generate ###
+*.DS_Store
