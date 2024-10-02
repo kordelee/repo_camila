@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<div th:replace="~{xdm/v1/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+
+<div th:replace="~{xdm/v1/infra/include/leftMenu :: leftMenu}"></div>          
+      
+<div th:replace="~{xdm/v1/infra/include/top :: top}"></div>         
+
+<div class="content">
+	<form name="formList" id="formList" method="post" autocomplete="off">
+		<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
+		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
+		<input type="hidden" name="checkboxSeqArray">
+		<input type="hidden" name="ifntSeq">															<!-- ### -->
+		
+		<nav class="mb-2" aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+				<li class="breadcrumb-item"><a href="#!">Page 1</a></li>			<!-- ### -->
+				<li class="breadcrumb-item"><a href="#!">Page 2</a></li>			<!-- ### -->
+				<li class="breadcrumb-item active">Default</li>								<!-- ### -->
+			</ol>
+		</nav>
+	  <div class="mb-9">
+	    <div class="row g-3 mb-4">
+	      <div class="col-auto">
+	        <h2 class="mb-0">공지사항</h2>														<!-- ### -->
+	      </div>
+	    </div>
+	    <!--수정-->
+	    <div id="orderTable"
+	      data-list='{"valueNames":["ifntSeq","ifntName","ifcgNameEng","xifcdSeqCount","ifcgUseNy","ifcgOrder","regDateTime","modDateTime"]}'>
+
+<!-- hidden search s -->
+<div class="container-fluid px-0 d-block d-sm-none">
+	<div class="row">
+		<div id="divSearchControl" class="col text-center">
+			<i id="iSearchControlUp" class="fas fa-chevron-up"></i>
+			<i id="iSearchControlDown" class="fas fa-chevron-down"></i>
+		</div>
+	</div>
+</div>
+<!-- hidden search e -->
+
+<!-- search s -->
+<div id="divSearch" class="container-fluid px-0 pb-3">
+	<div class="row row-cols-2 row-cols-sm-6 g-2 px-2">
+		<div class="col">
+			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
+				<option value="1" th:selected="${vo.shOptionDate == 1}">등록일</option>
+				<option value="2" th:selected="${vo.shOptionDate == 2}">수정일</option>
+			</select>
+		</div>  
+		<div class="col">
+			<input type="text" id="shDateStart" name="shDateStart" th:value="${#strings.substring(vo.shDateStart, 0, 10)}" placeholder="시작일" class="form-control form-control-sm" autocomplete="off">
+		</div>              
+		<div class="col">
+			<input type="text" id="shDateEnd" name="shDateEnd" th:value="${#strings.substring(vo.shDateEnd, 0, 10)}" placeholder="종료일" class="form-control form-control-sm" autocomplete="off">
+		</div> 
+	</div>
+	<div class="row row-cols-2 row-cols-sm-6 g-2 mt-1 px-2">
+		<div class="col">
+			<select id="shOption" name="shOption" class="form-select form-select-sm">
+				<option value="" th:selected="${vo.shOption == null}">검색구분</option>
+				<option value="1" th:selected="${vo.shOption == 1}">코드</option>
+				<option value="2" th:selected="${vo.shOption == 2}">제목</option>
+				<!--<option value="3" th:selected="${vo.shOption == 3}">내용</option>-->
+			</select>
+		</div>                    
+		<div class="col">
+			<input type="text" id="shValue" name="shValue" th:value="${vo.shValue}" onkeyup="enterkey()" placeholder="검색어" class="form-control form-control-sm">
+			<div class="invalid-feedback" id="shValueFeedback"></div>
+		</div> 
+		<div class="col">
+			<button type="button" id="btnSearch" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
+			<button type="button" id="btnReset" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-rotate-right fa-lg"></i></button>
+		</div>    
+	</div>
+</div>
+<!-- search e -->
+ 
+				<div class="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
+
+<div th:replace="~{xdm/v1/infra/include/totalAndRowNum :: totalAndRowNum}"></div>
+
+					<hr style="margin: 0.5rem 0;">
+      	
+<!-- table s  -->
+<div class="table-responsive scrollbar mx-n1 px-1">
+	<table class="table table-sm fs--1 mb-0">
+		<thead>
+			<tr class="text-center">
+				<th class="sort align-middle" scope="col" data-sort="ifntSeq" style="width: 100px; min-width:100px;">코드</th>
+			</tr>
+		</thead>
+		<tbody class="list text-center" id="order-table-body">
+			<tr th:if="${#lists.isEmpty(list)}" class="hover-actions-trigger btn-reveal-trigger position-static">
+				<td colspan="12">
+					<p class="fs-0" style="padding-top: 12px;">There are no data!</p>
+				</td>
+				<td th:if="${list.ifmmGenderCd != null}" th:text="${@testService.selectOneRadisCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
+				<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
+				<td th:if="${list.ifmmGenderCd != null}" th:text="${list.ifmmGenderCd}" class="ifmmGenderCd align-middle"></td>
+								<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
+			</tr>
+<!--			<tr class="hover-actions-trigger btn-reveal-trigger position-static" 
+				onmouseover="this.style.background='red'" onmouseout="this.style.background=''"
+				th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}" th:id="'trNum_' + ${list.ifntSeq}" >			 ### 
+				<td th:text="${list.ifntSeq}" class="ifntSeq align-middle fw-semi-bold"></td>
+				<td class="ifntTitle align-middle fw-semi-bold" style="text-align: left;"><a href="javascript:void(0);" th:text="${list.ifntTitle}" th:attr="onclick=|goView('${list.ifntSeq}')|"></a></td>
+				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
+			</tr>-->
+			
+		</tbody>
+	</table>
+</div>
+<!-- table e  -->      	
+      	
+<!-- paging s  -->				
+<div class="container-fluid px-0 mt-2 mb-2">
+	<div class="row">
+		<div class="col">
+			<ul class="pagination justify-content-center mb-0">
+				<li th:if="${vo.startPage gt vo.pageNumToShow}" class="page-item" style="cursor: pointer;"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" th:attr="onclick=|goList('${vo.startPage - 1}')|"><i class="fa-solid fa-angle-left"></i></a></li>
+				<li th:each="num: ${#numbers.sequence(vo.startPage, vo.endPage)}" th:classappend="${num eq vo.thisPage} ? active : ''" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${num}')|" th:text="${num}"><!-- ${i.index} --></a></li>
+				<li th:if="${vo.endPage ne vo.totalPages}" class="page-item" style="cursor: pointer;"><a class="page-link" th:attr="onclick=|goList('${vo.endPage + 1}')|"><i class="fa-solid fa-angle-right"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- paging e  -->		      	
+
+				</div>
+			</div>
+		</div>
+
+<div th:replace="~{xdm/v1/infra/include/footer :: footer}"></div>       		
+
+	</form>
+</div>
+
+<script>
+	var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+	var navbarTop = document.querySelector('.navbar-top');
+	
+	if (navbarTopStyle === 'darker') {
+  	navbarTop.classList.add('navbar-darker');
+	}
+
+	var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+	var navbarVertical = document.querySelector('.navbar-vertical');
+	
+	if (navbarVertical && navbarVerticalStyle === 'darker') {
+  	navbarVertical.classList.add('navbar-darker');
+	}
+</script>
+      
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+<div th:replace="~{xdm/v1/infra/include/customize :: customize}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/modal :: modal}"></div>
+
+<div th:replace="~{xdm/v1/infra/include/linkJs :: linkJs}"></div>
+
+<script src="/xdm/v1/js/includeXdmList.js"></script>
+
+</body>
+</html>

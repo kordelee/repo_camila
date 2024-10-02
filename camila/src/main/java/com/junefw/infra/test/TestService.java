@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.DefaultedRedisConnection;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,89 +23,31 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class TestService extends BaseService {
 	
-	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
-	
-	@Autowired
-	CodeDao dao;
-	
-	private static RedisTemplate<String, Object> staticRedisTemplate;
-	
-	@PostConstruct
-	public void init() {
-		staticRedisTemplate = this.redisTemplate;
-	}
-	
-	@PostConstruct
-    public void init1() {
-        // Initialization logic
-    }
+//	@Autowired
+//	private RedisTemplate<String, Object> redisTemplate;
+//	
+//	@Autowired
+//	CodeDao dao;
+//	
+//	private static RedisTemplate<String, Object> staticRedisTemplate;
+//	
+//	@PostConstruct
+//	public void init() {
+//		staticRedisTemplate = this.redisTemplate;
+//	}
+//	
+//	@PostConstruct
+//    public void init1() {
+//        // Initialization logic
+//    }
+//
+//	@Autowired
+//	CodeService service;
+//	
+//
+//	ObjectMapper objectMapper = new ObjectMapper();
 
-	@Autowired
-	CodeService service;
-	
 
-	ObjectMapper objectMapper = new ObjectMapper();
-
-
-	@PostConstruct
-	public void redisList() throws Exception {
-	    ListOperations<String, Object> vop = staticRedisTemplate.opsForList();
-	    
-//	    key 삭제
-	    Set<String> keys = redisTemplate.keys("*"); 
-	        if (keys != null) {
-	            redisTemplate.delete(keys); 
-	        }
-	        
-	    // DB에서 가져온 리스트
-	    for (CodeDto codeListFromDb : service.selectListCachedCodeArrayList1()) {
-	        // 개별 값들을 리스트에 추가
-//	        CodeDto.redisCode.add("ifawe"+codeListFromDb.getIfcgSeq());
-//	        CodeDto.redisCode.add(codeListFromDb.getIfcdSeq());
-//	        CodeDto.redisCode.add(codeListFromDb.getIfcdName());
-//	        CodeDto.redisCode.clear();
-	    	
-	    	List<String> redisList = new ArrayList<String>();
-	    	redisList.add(codeListFromDb.getIfcdSeq());
-	    	redisList.add(codeListFromDb.getIfcdName());
-	    	redisList.add(codeListFromDb.getIfcgSeq());
-	        
-	        vop.rightPush("codeGroup", redisList);  // 	    }
-	    }
-	    System.out.println(vop.range("codeGroup", 0, -1) + "12412414214124214124");
-	    
-	    System.out.println(vop.size("codeGroup") + "afewawegaewgawge");
-	    System.out.println("redisCodeArrayList to Redis: "+ " uploaded !");
-	}
-	
-	
-  public static String getRequest2(int code) throws Exception {
-	  ListOperations<String, Object> vop = staticRedisTemplate.opsForList();  
-    String rt ="";
-    // 모든 키 가져오기 
-//    List<Object> key = vop.range("codeGroup", 0, 170);
-    List<Object> value = vop.range("codeGroup", 0, -1);
-    System.out.println(value+"aewfawefawefawefaewf");
-//    System.out.println(value[0][0]);
-        for (int i=0; i<value.size(); i++) {
-        	String aaa = value.get(i).toString();
-        	String[] split = aaa.split(",");  
-            String ifcdName = split[1].trim();  
-            rt = ifcdName;
-            System.out.println(rt + " ####### ############3 값 #######");
-        }
-    return rt;
-}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 //    public static String getRequest2(int code) throws Exception {
 //    	 ValueOperations<String, Object> vop = staticRedisTemplate.opsForValue();
 // 	    String rt ="";
