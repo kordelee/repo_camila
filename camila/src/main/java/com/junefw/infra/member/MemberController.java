@@ -45,9 +45,9 @@ public class MemberController extends BaseController{
 		if (vo.getTotalRows() > 0) {
 			model.addAttribute("list", service.selectList(vo));
 		}
-		
 		return pathCommonXdm + "memberXdmList";
 	}
+	
 	
 	
 	@RequestMapping(value = "/memberXdmView")

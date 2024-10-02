@@ -122,6 +122,7 @@
 				<th class="sort align-middle" scope="col" data-sort="ifmmDelNy" style="width: 50px; min-width: 50px;">탈퇴</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmAdminNy" style="width: 80px; min-width:80px;">관리자</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmSeq" style="width: 100px; min-width:100px;">코드</th>
+				<th class="sort align-middle" scope="col" data-sort="redis" style="width: 100px; min-width:100px;">redis</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmName" style="width: 100px; min-width:100px;">이름</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmId" style="min-width: 200px;">아이디</th>
 				<th class="sort align-middle" scope="col" data-sort="ifmmGenderCd" style="width: 70px; min-width: 70px;">성별</th>
@@ -152,6 +153,8 @@
 				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">N</td>
 				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">Y</td>
 				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle"></td>
+				<td th:if="${list.ifmmGenderCd != null}" th:text="${@redisService.selectOneCodeInRedisList(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
+								<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
 				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|"></a></td>
 				<td th:text="${list.ifmmId}" class="ifmmId align-middle"></td>
 				<td th:if="${list.ifmmGenderCd != null}" th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>

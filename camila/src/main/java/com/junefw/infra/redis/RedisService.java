@@ -21,10 +21,10 @@ import jakarta.annotation.PostConstruct;
 public class RedisService extends BaseService {
 
 	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
+	CodeDao codeDao;
 	
 	@Autowired
-	CodeDao dao;
+	private RedisTemplate<String, Object> redisTemplate;
 	
 	private static RedisTemplate<String, Object> staticRedisTemplate;
 	
@@ -33,64 +33,73 @@ public class RedisService extends BaseService {
 		staticRedisTemplate = this.redisTemplate;
 	}
 	
-	@PostConstruct
-    public void init1() {
-        // Initialization logic
-    }
-
-	@Autowired
-	CodeService service;
-	
-
-	ObjectMapper objectMapper = new ObjectMapper();
-
 
 	@PostConstruct
-	public void redisList() throws Exception {
-	    ListOperations<String, Object> vop = staticRedisTemplate.opsForList();
-	    List<Object> value = vop.range("codeGroup", 0, -1);
-//	    key 삭제
+	public void selectListCodeArrayListInRedisList() throws Exception {
+	    ListOperations<String, Object> ListOperations = staticRedisTemplate.opsForList();
+	   
 	    Set<String> keys = redisTemplate.keys("*"); 
-	        if (keys != null) {
-	            redisTemplate.delete(keys); 
-	        }
+	    
+        if (keys != null) {
+            redisTemplate.delete(keys); 
+        }
 	        
-	    // DB에서 가져온 리스트
-	    for (CodeDto codeListFromDb : service.selectListCachedCodeArrayList1()) {
-	        // 개별 값들을 리스트에 추가
+	    for (CodeDto codeListFromDb : codeDao.selectListCachedCodeArrayList()) {
 	    	
 	    	List<String> redisList = new ArrayList<String>();
 	    	redisList.add(codeListFromDb.getIfcdSeq());
 	    	redisList.add(codeListFromDb.getIfcdName());
 	    	redisList.add(codeListFromDb.getIfcgSeq());
 	        
-	        vop.rightPush("codeGroup", redisList);  // 	    }
+	    	ListOperations.rightPush("codeGroup", redisList);
 	    }
-//	    System.out.println(value.get(0).getClass().getName()+"@@@@@@@@@@@@@@@@@@@@@@@");
-//	    System.out.println(vop.size("codeGroup") + "afewawegaewgawge");
-//	    System.out.println("redisCodeArrayList to Redis: "+ " uploaded !");
 	}
 	
 
-  @SuppressWarnings("unchecked")
-public static String getRequest2(int code) throws Exception {
-	  ListOperations<String, Object> vop = staticRedisTemplate.opsForList();  
-    String rt ="";
-    // 모든 키 가져오기 
-    List<Object> value = vop.range("codeGroup", 0, -1);
-        for (int i=0; i<value.size(); i++) {
-    		if(String.valueOf(code).equals(((List<Object>) value.get(i)).get(0))) {
-    			rt =(String) ((List<Object>) value.get(i)).get(1);
-    		}
-//        	String[] split = aaa.split(",");
-//        	String ifcdSeq =split[0].trim().substring(1);
-//            if(ifcdSeq.equals(String.valueOf(code))) {
-//            	String ifcdName = split[1].trim();  
-//            	rt = ifcdName;
-//            	System.out.println(rt);
-//            }
-        }
-    
-    return rt;
-}
+	@SuppressWarnings("unchecked")
+	public static List<Object> selectListCodeInRedisList(String ifcgSeq) throws Exception {
+		ListOperations<String, Object> ListOperations = staticRedisTemplate.opsForList();
+		
+		List<Object> rt = new ArrayList<Object>();
+		
+		List<Object> value = ListOperations.range("codeGroup", 0, -1);
+		
+		for (int i=0; i<value.size(); i++) {
+//			value.get(i)).get(2) : ifcgSeq
+			if(ifcgSeq.equals(((List<Object>) value.get(i)).get(2))) {
+//				value.get(i)).get(1): ifcdName
+				CodeDto codeDto = new CodeDto();
+	            codeDto.setIfcdSeq(((List<Object>) value.get(i)).get(0).toString()); 
+	            codeDto.setIfcdName(((List<Object>) value.get(i)).get(1).toString());
+	            codeDto.setIfcgSeq(((List<Object>) value.get(i)).get(2).toString());
+				rt.add(codeDto);
+			} else {
+//				by pass
+			}
+		}
+		
+		return rt;
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public static String selectOneCodeInRedisList(int code) throws Exception {
+		ListOperations<String, Object> vop = staticRedisTemplate.opsForList(); 
+	
+		String rt ="";
+		
+		List<Object> value = vop.range("codeGroup", 0, -1);
+		
+			for (int i=0; i<value.size(); i++) {
+//				value.get(i)).get(0) : ifcdSeq
+				if(String.valueOf(code).equals(((List<Object>) value.get(i)).get(0))) {
+//					value.get(i)).get(1): ifcdName
+					rt =(String) ((List<Object>) value.get(i)).get(1);
+				} else {
+//					by pass
+				}
+			}
+		System.out.println(rt + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		return rt;
+	}	
 }

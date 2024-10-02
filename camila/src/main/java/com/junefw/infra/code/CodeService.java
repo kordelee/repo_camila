@@ -64,15 +64,7 @@ public class CodeService extends BaseService{
 		System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
 	}
     
-//    redisTest
-    public List<CodeDto> selectListCachedCodeArrayList1() throws Exception {
-    	List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();
-//		codeListFromDb = (ArrayList<Code>) dao.selectListCachedCodeArrayList();
-    	System.out.println("cachedCodeArrayList: " + CodeDto.cachedCodeArrayList.size() + " chached !");
-    	return codeListFromDb;
-    }
-
-	
+    
 	public static void clear() throws Exception {
 		CodeDto.cachedCodeArrayList.clear();
 	}
