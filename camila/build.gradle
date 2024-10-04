@@ -53,6 +53,8 @@ dependencies {
 	
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	
+	// https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis
+	implementation group: 'org.springframework.session', name: 'spring-session-data-redis'
 }
 
 tasks.named('test') {
