@@ -22,5 +22,14 @@ public class IndexController extends BaseController{
 	public String indexXdmView(HttpSession httpSession) throws Exception{
     	return pathCommonXdm + "indexXdmView";
     }
+    
+//    
+//	user
+//	
+    
+	@RequestMapping(value = {"/indexUsrView"})
+	public String indexUsrView() throws Exception {
+		return pathCommonUsr + "indexUsrView";
+	}
 
 }
