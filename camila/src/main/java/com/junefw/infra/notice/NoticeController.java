@@ -32,9 +32,6 @@ public class NoticeController extends BaseController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<NoticeDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -45,9 +42,6 @@ public class NoticeController extends BaseController {
 	@RequestMapping(value = "/noticeXdmView")
 	public String noticeXdmView(@ModelAttribute("vo") NoticeVo vo, Model model) {
 		
-//		NoticeDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
-
 		model.addAttribute("item", service.selectOne(vo));
 		
 		return pathCommonXdm + "noticeXdmView";
@@ -61,10 +55,6 @@ public class NoticeController extends BaseController {
 //			insert mode
 		} else {
 //			update mode
-
-//			NoticeDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
 		}
 		return pathCommonXdm + "noticeXdmForm";
@@ -98,6 +88,7 @@ public class NoticeController extends BaseController {
 		return pathRedirectCommonXdm + "noticeXdmList";
 	}
 	
+	
 	@SuppressWarnings(value = { "all" })
 	@RequestMapping(value = "noticeXdmInst")
 	public String noticeXdmInst(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
@@ -105,16 +96,6 @@ public class NoticeController extends BaseController {
 		service.insert(dto);
 		
 		vo.setIfntSeq(dto.getIfntSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 
@@ -169,8 +150,6 @@ public class NoticeController extends BaseController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<NoticeDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
 			
 			model.addAttribute("list", service.selectList(vo));
 		}
@@ -182,12 +161,38 @@ public class NoticeController extends BaseController {
 	@RequestMapping(value = "/noticeUseXdmView")
 	public String noticeUseXdmView(@ModelAttribute("vo") NoticeVo vo, Model model) {
 		
-//		NoticeDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
-
 		model.addAttribute("item", service.selectOne(vo));
 		
 		return pathCommonXdm + "noticeUseXdmView";
 	}
 	
+//	
+//	usr
+//	
+	
+	@RequestMapping(value = "/noticeUsrList")
+	public String noticeUsrList(@ModelAttribute("vo") NoticeVo vo, Model model) throws Exception{
+
+		vo.setShOptionDate(0);
+		vo.setParamsPaging(service.selectOneCount(vo));
+		
+		if (vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectList(vo));
+		}
+
+		return pathCommonUsr + "noticeUsrList";
+  	}
+	
+	
+	@RequestMapping(value = "/noticeUsrView")
+	public String noticeUsrView(@ModelAttribute("vo") NoticeVo vo, Model model) {
+		
+//		NoticeDto item = service.selectOne(vo);
+//		model.addAttribute("item", item);
+
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonUsr + "noticeUsrView";
+	}
 }
