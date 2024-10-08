@@ -111,17 +111,6 @@ public class MemberController extends BaseController{
 	
 		vo.setIfmmSeq(dto.getIfmmSeq());
 		
-//		mailService.sendMailSimple();
-		
-//		Thread thread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				mailService.sendMailSimple();
-//			}
-//		});
-//		
-//		thread.start();
-		
 		Thread thread = new Thread(new Runnable() {
 			
 			@Override
@@ -259,7 +248,7 @@ public class MemberController extends BaseController{
 //				if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime, UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
 //					returnMap.put("changePwd", "true");
 //				}
-
+				
 				returnMap.put("rt", "success");
 			} else {
 				dto.setIfmmSocialLoginCd(103);
@@ -353,7 +342,6 @@ public class MemberController extends BaseController{
 		MemberDto rtMember = service.selectOneId(dto);
 
 		if (rtMember != null) {
-//			dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
 			MemberDto rtMember2 = service.selectOneLogin(dto);
 
 			if (rtMember2 != null) {
@@ -377,13 +365,6 @@ public class MemberController extends BaseController{
 				rtMember2.setIfmmSocialLoginCd(103);
 				rtMember2.setIflgResultNy(1);
 				service.insertLogLogin(rtMember2);
-
-//				Date date = rtMember2.getIfmmPwdModDate();
-//				LocalDateTime ifmmPwdModDateLocalDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
-//
-//				if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime, UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
-//					returnMap.put("changePwd", "true");
-//				}
 
 				returnMap.put("rt", "success");
 			} else {

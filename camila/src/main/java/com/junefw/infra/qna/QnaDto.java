@@ -1,11 +1,13 @@
 package com.junefw.infra.qna;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.junefw.common.base.BaseDto;
 
-public class QnaDto extends BaseDto {
+public class QnaDto extends BaseDto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String ifqaSeq;
 	private Integer ifqaStatusCd;
 	private Integer ifqaTypeCd;
@@ -83,4 +85,8 @@ public class QnaDto extends BaseDto {
 	public void setIfqaSecurityNy(Integer ifqaSecurityNy) {
 		this.ifqaSecurityNy = ifqaSecurityNy;
 	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

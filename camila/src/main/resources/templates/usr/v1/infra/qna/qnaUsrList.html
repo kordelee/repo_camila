@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<form name="formList" >
+	<input type="hidden" id="ifqaSeq" name="ifqaSeq">
+	    <h1>QNA</h1>
+	    <table>
+	        <thead>
+	            <tr>
+	                <th>제목</th>
+	                <th>작성일</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+	                <td><a href="javascript:void(0);" th:text="${list.ifqaTitle}" th:attr="onclick=|goForm('${list.ifqaSeq}')|" ></a></td>
+	                <td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</form>
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
+	<script>
+		let goUrlUsrList = "/v1/infra/qna/qnaUsrList";								/* ### */
+		let goUrlUsrForm = "/v1/infra/qna/qnaUsrView";								/* ### */
+		let goUrlUsrMultiUele = "/v1/infra/qna/qnaUsrMultiUele";			/* ### */
+		let goUrlUsrMultiDele = "/v1/infra/qna/qnaUsrMultiDele";			/* ### */
+		let goUrlUsrView = "/v1/infra/qna/qnaUsrView";								/* ### */
+		
+		let seq = document.querySelector("input[name=ifqaSeq]");									/* ### */
+		
+	</script>
+	
+	<script src="/usr/v1/js/includeUsrList.js"></script>
+	
+</body>
+</html>

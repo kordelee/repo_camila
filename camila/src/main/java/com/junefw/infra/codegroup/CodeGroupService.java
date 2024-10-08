@@ -38,17 +38,14 @@ public class CodeGroupService extends BaseService{
     }
     
     
-    public int insert(CodeGroupDto dto) throws Exception { 
+    public int insert(CodeGroupDto dto) throws Exception {
+    	
     	setRegMod(dto);
-//    	dao.insert(dto);
-    	
-    	
-
+    	dao.insert(dto);
     	
 		for(MultipartFile multipartFile : dto.getUploadFiles()) {
 			
 			if(!multipartFile.isEmpty()) {
-				System.out.println("multipartFile.getOriginalFilename() : " + multipartFile.getOriginalFilename());
 				
 		        ObjectMetadata metadata = new ObjectMetadata();
 		        metadata.setContentLength(multipartFile.getSize());
@@ -58,8 +55,6 @@ public class CodeGroupService extends BaseService{
 				
 		        String objectUrl = amazonS3Client.getUrl(bucket, multipartFile.getOriginalFilename()).toString();
 		        
-		        System.out.println(objectUrl);
-				
 			}
 		}
     	

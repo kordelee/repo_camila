@@ -1,9 +1,12 @@
 package com.junefw.infra.template;
 
+import java.io.Serializable;
+
 import com.junefw.common.base.BaseDto;
 
-public class TemplateDto extends BaseDto{
+public class TemplateDto extends BaseDto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String iftpSeq;
 	private Integer iftpTypeCd;
 	private String iftpTitle;
@@ -45,6 +48,9 @@ public class TemplateDto extends BaseDto{
 	}
 	public void setIftpDelNy(Integer iftpDelNy) {
 		this.iftpDelNy = iftpDelNy;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

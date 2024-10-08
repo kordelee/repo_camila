@@ -1,9 +1,13 @@
 package com.junefw.infra.member;
 
+import java.io.Serializable;
+
 import com.junefw.common.base.BaseVo;
 
-public class MemberVo extends BaseVo{
+public class MemberVo extends BaseVo implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private String ifmmSeq;
 
 //	search item extra (optional)
@@ -26,4 +30,9 @@ public class MemberVo extends BaseVo{
 		this.shAdminNy = shAdminNy;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 }

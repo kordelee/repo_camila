@@ -1,11 +1,13 @@
 package com.junefw.infra.notice;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.junefw.common.base.BaseDto;
 
-public class NoticeDto extends BaseDto{
+public class NoticeDto extends BaseDto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String ifntSeq;
 	private String ifntTitle;
 	private String ifntContents;
@@ -75,5 +77,8 @@ public class NoticeDto extends BaseDto{
 	}
 	public void setIfntTargetCd(Integer ifntTargetCd) {
 		this.ifntTargetCd = ifntTargetCd;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

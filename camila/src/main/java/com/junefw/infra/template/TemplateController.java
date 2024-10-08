@@ -32,9 +32,6 @@ public class TemplateController extends BaseController{
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<templateDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -45,9 +42,6 @@ public class TemplateController extends BaseController{
 	@RequestMapping(value = "/templateXdmView")
 	public String templateXdmView(@ModelAttribute("vo") TemplateVo vo, Model model) {
 		
-//		templateDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
-
 		model.addAttribute("item", service.selectOne(vo));
 		
 		return pathCommonXdm + "templateXdmView";
@@ -61,10 +55,6 @@ public class TemplateController extends BaseController{
 //			insert mode
 		} else {
 //			update mode
-
-//			templateDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
 		}
 		return pathCommonXdm + "templateXdmForm";
@@ -105,16 +95,6 @@ public class TemplateController extends BaseController{
 		service.insert(dto);
 		
 		vo.setIftpSeq(dto.getIftpSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 

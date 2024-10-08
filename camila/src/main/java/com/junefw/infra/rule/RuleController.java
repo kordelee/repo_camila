@@ -32,9 +32,6 @@ public class RuleController extends BaseController{
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<RuleDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -44,9 +41,6 @@ public class RuleController extends BaseController{
 
 	@RequestMapping(value = "/ruleXdmView")
 	public String ruleXdmView(@ModelAttribute("vo") RuleVo vo, Model model) {
-		
-//		RuleDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
 
 		model.addAttribute("item", service.selectOne(vo));
 		
@@ -61,10 +55,6 @@ public class RuleController extends BaseController{
 //			insert mode
 		} else {
 //			update mode
-
-//			RuleDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
 		}
 		return pathCommonXdm + "ruleXdmForm";
@@ -105,16 +95,6 @@ public class RuleController extends BaseController{
 		service.insert(dto);
 		
 		vo.setIfrlSeq(dto.getIfrlSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 

@@ -1,11 +1,14 @@
 package com.junefw.infra.codegroup;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.junefw.common.base.BaseDto;
 
-public class CodeGroupDto extends BaseDto{
+public class CodeGroupDto extends BaseDto implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String ifcgSeq;
 	private String ifcgSeqAnother;
 	private String ifcgName;
@@ -141,6 +144,9 @@ public class CodeGroupDto extends BaseDto{
 	}
 	public void setUploadFiles(MultipartFile[] uploadFiles) {
 		this.uploadFiles = uploadFiles;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

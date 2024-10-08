@@ -1,11 +1,13 @@
 package com.junefw.infra.rule;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.junefw.common.base.BaseDto;
 
-public class RuleDto extends BaseDto{
+public class RuleDto extends BaseDto implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String ifrlSeq;
 	private String ifrlTitle;
 	private String ifrlDesc;
@@ -69,5 +71,8 @@ public class RuleDto extends BaseDto{
 	}
 	public void setIfrlNoticeDateTime(Date ifrlNoticeDateTime) {
 		this.ifrlNoticeDateTime = ifrlNoticeDateTime;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }
