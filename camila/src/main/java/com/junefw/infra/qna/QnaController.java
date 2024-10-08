@@ -10,6 +10,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping(value = "/v1/infra/qna")
 public class QnaController extends BaseController {
@@ -31,9 +33,6 @@ public class QnaController extends BaseController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<QnaDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -43,9 +42,6 @@ public class QnaController extends BaseController {
 
 	@RequestMapping(value = "/qnaXdmView")
 	public String qnaXdmView(@ModelAttribute("vo") QnaVo vo, Model model) {
-		
-//		QnaDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
 
 		model.addAttribute("item", service.selectOne(vo));
 		
@@ -60,10 +56,6 @@ public class QnaController extends BaseController {
 //			insert mode
 		} else {
 //			update mode
-
-//			QnaDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
 		}
 		return pathCommonXdm + "qnaXdmForm";
@@ -101,20 +93,9 @@ public class QnaController extends BaseController {
 	@RequestMapping(value = "qnaXdmInst")
 	public String qnaXdmInst(QnaVo vo, QnaDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
-		System.out.println("awefaewf");
 		service.insert(dto);
 		
 		vo.setIfqaSeq(dto.getIfqaSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 
@@ -160,5 +141,32 @@ public class QnaController extends BaseController {
 		redirectAttributes.addFlashAttribute("vo", vo);
 
 		return pathRedirectCommonXdm + "qnaXdmList";
+	}
+	
+//	
+//	usr
+//	
+	
+	@RequestMapping(value = "/qnaUsrList")
+	public String qnaUsrList(@ModelAttribute("vo") QnaVo vo, Model model,HttpSession session) throws Exception{
+
+		vo.setShOptionDate(0);
+		vo.setRegSeq(session.getAttribute("sessSeqUsr").toString());
+		vo.setParamsPaging(service.selectOneCount(vo));
+		if (vo.getTotalRows() > 0) {
+			
+			model.addAttribute("list", service.selectMyList(vo));
+		}
+
+		return pathCommonUsr + "qnaUsrList";
+  	}
+	
+	
+	@RequestMapping(value = "/qnaUsrView")
+	public String qnaUsrView(@ModelAttribute("vo") QnaVo vo, Model model) {
+		
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonUsr + "qnaUsrView";
 	}
 }
