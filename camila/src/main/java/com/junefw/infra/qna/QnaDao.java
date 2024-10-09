@@ -18,4 +18,9 @@ public interface QnaDao extends BaseDao{
     public int delete(QnaVo vo);
     
     public List<QnaDto> selectListWithoutPaging();
+    
+//
+//    usr
+//    
+    public List<QnaDto> selectMyList(QnaVo vo);
 }

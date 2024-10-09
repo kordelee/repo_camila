@@ -47,6 +47,27 @@
         ORDER BY a.ifqaSeq DESC
         <include refid="Base.selectListLowerForMysql" />
     </select>
+    
+    <select id="selectMyList" resultMap="resultMapObj">
+        <include refid="Base.selectListUpperForMysql" />
+        SELECT
+            a.ifqaSeq
+            ,a.ifqaTitle
+            ,a.ifqaTypeCd
+            ,a.ifqaStatusCd
+            ,a.ifqaContents
+            ,a.ifqaAnswer
+            ,a.ifqaAnswerSeq
+            ,a.ifqaAnswerDateTime
+            ,a.ifqaAnswerDisplayNy
+            ,a.ifqaDelNy
+            ,a.ifqaSecurityNy
+						<include refid="Base.selectRegModWithAlies" />
+        <include refid="selectCommon" />
+        AND a.regSeq = #{regSeq}
+        ORDER BY a.ifqaSeq DESC
+        <include refid="Base.selectListLowerForMysql" />
+    </select>
 
     <select id="selectOne" resultMap="resultMapObj">
         SELECT

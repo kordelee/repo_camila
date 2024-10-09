@@ -19,13 +19,6 @@ public class MemberService extends BaseService{
 	@Autowired
 	private AmazonS3Client amazonS3Client;
 	
-//    @Autowired
-//    public MemberService(AmazonS3Client amazonS3Client) {
-//      this.amazonS3Client = amazonS3Client;
-//    }
-//	for aws.s3 fileupload e
-    
-
 	@Autowired
 	MemberDao dao;
     
@@ -52,14 +45,9 @@ public class MemberService extends BaseService{
     	dto.setIfmmPassword(UtilSecurity.encryptSha256(dto.getIfmmPassword()));
     	dto.setIfmmPwdModDate(UtilDateTime.nowDate());
     	
-    	System.out.println("dto.getIfmmPwdModDate(): " + dto.getIfmmPwdModDate());
-    	
     	dao.insert(dto);
     	
-//    	uploadFiles(dto.getUploadImgProfile(), dto, "infrMemberUploaded", dto.getUploadImgProfileType(), dto.getUploadImgProfileMaxNumber(), dto.getIfmmSeq(), dao);
-//    	uploadFiles(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao);
     	uploadFilesToS3(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao, amazonS3Client);
-//    	uploadFiles(dto.getUploadFile(), dto, "infrMemberUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber(), dto.getIfmmSeq(), dao);
 	
     	dto.setIfmeDefaultNy(1);
     	dto.setIfmeTypeCd(44);

@@ -1,11 +1,13 @@
 package com.junefw.infra.popup;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.junefw.common.base.BaseDto;
 
-public class PopupDto extends BaseDto{
+public class PopupDto extends BaseDto implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String ifppSeq;
 	private Integer ifppDisplayNy;
 	private Integer ifppXpoint;
@@ -83,6 +85,9 @@ public class PopupDto extends BaseDto{
 	}
 	public void setIfppDelNy(Integer ifppDelNy) {
 		this.ifppDelNy = ifppDelNy;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

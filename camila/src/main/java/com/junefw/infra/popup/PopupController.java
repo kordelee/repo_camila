@@ -32,9 +32,6 @@ public class PopupController extends BaseController {
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<PopupDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -44,9 +41,6 @@ public class PopupController extends BaseController {
 
 	@RequestMapping(value = "/popupXdmView")
 	public String popupXdmView(@ModelAttribute("vo") PopupVo vo, Model model) {
-		
-//		PopupDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
 
 		model.addAttribute("item", service.selectOne(vo));
 		
@@ -61,10 +55,6 @@ public class PopupController extends BaseController {
 //			insert mode
 		} else {
 //			update mode
-
-//			PopupDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
 		}
 		return pathCommonXdm + "popupXdmForm";
@@ -105,16 +95,6 @@ public class PopupController extends BaseController {
 		service.insert(dto);
 		
 		vo.setIfppSeq(dto.getIfppSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 

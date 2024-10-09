@@ -1,12 +1,15 @@
 package com.junefw.infra.member;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.junefw.common.base.BaseDto;
 
-public class MemberDto extends BaseDto{
+public class MemberDto extends BaseDto implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Boolean autoLogin;
 
@@ -731,6 +734,9 @@ public class MemberDto extends BaseDto{
 	}
 	public void setxPasswordNew(String xPasswordNew) {
 		this.xPasswordNew = xPasswordNew;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

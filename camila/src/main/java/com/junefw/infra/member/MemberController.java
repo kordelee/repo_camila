@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -111,17 +110,6 @@ public class MemberController extends BaseController{
 		service.insert(dto);
 	
 		vo.setIfmmSeq(dto.getIfmmSeq());
-		
-//		mailService.sendMailSimple();
-		
-//		Thread thread = new Thread(new Runnable() {
-//			@Override
-//			public void run() {
-//				mailService.sendMailSimple();
-//			}
-//		});
-//		
-//		thread.start();
 		
 		Thread thread = new Thread(new Runnable() {
 			
@@ -260,7 +248,7 @@ public class MemberController extends BaseController{
 //				if (ChronoUnit.DAYS.between(ifmmPwdModDateLocalDateTime, UtilDateTime.nowLocalDateTime()) > Constants.PASSWOPRD_CHANGE_INTERVAL) {
 //					returnMap.put("changePwd", "true");
 //				}
-
+				
 				returnMap.put("rt", "success");
 			} else {
 				dto.setIfmmSocialLoginCd(103);
@@ -307,5 +295,93 @@ public class MemberController extends BaseController{
 		
 		return pathCommonXdm + "memberUseXdmForm";
 	}
-    
+	
+//
+//	usr
+//	
+	
+	@RequestMapping(value = "signinUsrForm")
+	public String signinUsrForm(MemberVo vo, HttpSession httpSession) throws Exception {
+
+    	if(UtilCookie.getValueUsr(Constants.COOKIE_SEQ_NAME_USR) != null) {
+			//	auto login
+			if(httpSession.getAttribute("sessSeqUsr") == null) { 
+				
+				vo.setIfmmSeq(UtilCookie.getValueUsr(Constants.COOKIE_SEQ_NAME_USR));
+				
+				MemberDto rtMember = service.selectOne(vo);
+				
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_USR); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqUsr", rtMember.getIfmmSeq());
+				httpSession.setAttribute("sessIdUsr", rtMember.getIfmmId());
+				httpSession.setAttribute("sessNameUsr", rtMember.getIfmmName());
+			} else {
+				//	by pass
+			}
+			return "redirect:/v1/infra/index/indexUsrView";
+		} else {
+			return pathCommonUsr + "signinUsrForm";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "signoutUsrProc")
+	public Map<String, Object> signoutUsrProc(HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		UtilCookie.deleteCookieUsr();
+		httpSession.invalidate();
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "signinUsrProc")
+	public Map<String, Object> signinUsrProc(MemberDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		MemberDto rtMember = service.selectOneId(dto);
+
+		if (rtMember != null) {
+			MemberDto rtMember2 = service.selectOneLogin(dto);
+
+			if (rtMember2 != null) {
+				
+				if(dto.getAutoLogin() == true) {
+					UtilCookie.createCookie(
+							Constants.COOKIE_SEQ_NAME_USR, 
+							rtMember2.getIfmmSeq(), 
+							Constants.COOKIE_DOMAIN_USR, 
+							Constants.COOKIE_PATH_USR, 
+							Constants.COOKIE_MAXAGE_USR);
+				} else {
+					// by pass
+				}
+
+				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_USR); // 60second * 30 = 30minute
+				httpSession.setAttribute("sessSeqUsr", rtMember2.getIfmmSeq());
+				httpSession.setAttribute("sessIdUsr", rtMember2.getIfmmId());
+				httpSession.setAttribute("sessNameUsr", rtMember2.getIfmmName());
+
+				rtMember2.setIfmmSocialLoginCd(103);
+				rtMember2.setIflgResultNy(1);
+				service.insertLogLogin(rtMember2);
+
+				returnMap.put("rt", "success");
+			} else {
+				dto.setIfmmSocialLoginCd(103);
+				dto.setIfmmSeq(rtMember.getIfmmSeq());
+				dto.setIflgResultNy(0);
+				service.insertLogLogin(dto);
+
+				returnMap.put("rt", "fail");
+			}
+		} else {
+			dto.setIfmmSocialLoginCd(103);
+			dto.setIflgResultNy(0);
+			service.insertLogLogin(dto);
+
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
 }

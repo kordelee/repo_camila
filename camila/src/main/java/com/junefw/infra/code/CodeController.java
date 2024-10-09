@@ -48,7 +48,6 @@ public class CodeController extends BaseController{
 	public String codeXdmAjaxList(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception{
 		
 		setSearch(vo);
-		
 		return pathCommonXdm + "codeXdmAjaxList";
 	}
 	

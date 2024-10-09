@@ -9,6 +9,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
+import com.junefw.infra.code.CodeService;
+import com.junefw.infra.code.CodeVo;
 
 @Controller
 @RequestMapping(value = "/v1/infra/codegroup")
@@ -24,6 +26,9 @@ public class CodeGroupController extends BaseController{
 	@Autowired
 	CodeGroupService service;
 	
+	@Autowired
+	CodeService codeService;
+	
 	
 	@RequestMapping(value = "/codeGroupXdmList")
 	public String codeGroupXdmList(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
@@ -32,9 +37,6 @@ public class CodeGroupController extends BaseController{
 		vo.setParamsPaging(service.selectOneCount(vo));
 		
 		if (vo.getTotalRows() > 0) {
-//			List<CodeGroupDao> list = service.selectList(vo));
-//			model.addAttribute("list", list);
-			
 			model.addAttribute("list", service.selectList(vo));
 		}
 
@@ -45,9 +47,6 @@ public class CodeGroupController extends BaseController{
 	@RequestMapping(value = "/codeGroupXdmView")
 	public String codeGroupXdmView(@ModelAttribute("vo") CodeGroupVo vo, Model model) {
 		
-//		CodeGroupDto item = service.selectOne(vo);
-//		model.addAttribute("item", item);
-
 		model.addAttribute("item", service.selectOne(vo));
 		
 		return pathCommonXdm + "codeGroupXdmView";
@@ -55,17 +54,14 @@ public class CodeGroupController extends BaseController{
 
 	
 	@RequestMapping(value = "/codeGroupXdmForm")
-	public String codeGroupXdmForm(@ModelAttribute("vo") CodeGroupVo vo, Model model) throws Exception{
+	public String codeGroupXdmForm(@ModelAttribute("vo") CodeGroupVo vo,CodeVo cvo, Model model) throws Exception{
 		
 		if (vo.getIfcgSeq().equals("0") || vo.getIfcgSeq().equals("")) {
 //			insert mode
 		} else {
 //			update mode
-
-//			CodeGroupDto item = service.selectOne(vo);
-//			model.addAttribute("item", item);
-			
 			model.addAttribute("item", service.selectOne(vo));
+			model.addAttribute("list", codeService.selectList(cvo));
 		}
 		return pathCommonXdm + "codeGroupXdmForm";
 	}
@@ -103,18 +99,6 @@ public class CodeGroupController extends BaseController{
 	public String codeGroupXdmInst(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
-		
-//		vo.setIfcgSeq(dto.getIfcgSeq());
-		
-//		System.out.println("dto.getUploadFiles().length: " + dto.getUploadFiles().length);
-		
-		
-//		for(MultipartFile a : dto.getUploadFiles()) {
-//			System.out.println("a.getOriginalFilename() : " + a.getOriginalFilename());
-//		}
-		
-		
-
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 
