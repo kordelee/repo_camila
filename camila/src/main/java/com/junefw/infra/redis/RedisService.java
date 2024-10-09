@@ -9,11 +9,9 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.junefw.common.base.BaseService;
 import com.junefw.infra.code.CodeDao;
 import com.junefw.infra.code.CodeDto;
-import com.junefw.infra.code.CodeService;
 
 import jakarta.annotation.PostConstruct;
 
@@ -99,7 +97,6 @@ public class RedisService extends BaseService {
 //					by pass
 				}
 			}
-		System.out.println(rt + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return rt;
 	}	
 }
