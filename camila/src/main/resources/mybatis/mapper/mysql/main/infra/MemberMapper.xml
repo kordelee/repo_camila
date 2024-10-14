@@ -288,6 +288,18 @@
 		WHERE 1=1
 			AND a.ifmmId = #{ifmmId}
 	</select>
+	
+	
+	<select id="selectOneEmailCheck" resultType="Integer">
+		SELECT
+			count(ifmeEmailFull)
+		FROM
+			infrMemberEmail a
+		WHERE 1=1
+			AND a.ifmeEmailFull = #{ifmeEmailFull}
+	</select>
+	
+	
 	<!-- infrMember e -->
 	
 	
@@ -440,7 +452,6 @@
 	</insert>
 	<!-- logLogin e -->
 	
-	
 	<update id="updateIfmmPwdModDate">
 		UPDATE infrMember SET ifmmPwdModDate = #{ifmmPwdModDate}
 		WHERE 1=1
@@ -515,6 +526,7 @@
 			a.ifmmSeq
 			,a.ifmmId
 			,a.ifmmName
+			,b.ifmeEmailFull
 		FROM
 			infrMember a
 			LEFT JOIN infrMemberEmail b ON b.ifmmSeq = a.ifmmSeq
@@ -523,7 +535,6 @@
 			AND b.ifmeEmailFull = #{ifmeEmailFull}
 			<if test="ifmmId != null and !ifmmId.equals('')">AND a.ifmmId = #{ifmmId}</if>
 	</select>
-	
 	
 	<update id="updateChangePwd">
 		UPDATE infrMember 
@@ -534,6 +545,17 @@
 			AND ifmmSeq = #{ifmmSeq}
 	</update>
 	
+<!-- 	<insert id="insertAuth"> -->
+<!-- 		INSERT INTO infrAuth ( -->
+<!-- 			ifatName -->
+<!-- 			<include refid="Base.insertRegModColumn" /> -->
+<!-- 			,ifatDelNy -->
+<!-- 		) VALUES ( -->
+<!-- 			#{ifatName} -->
+<!-- 			<include refid="Base.insertRegModValue" /> -->
+<!-- 			,0 -->
+<!-- 		) -->
+<!-- 	</insert> -->
 	
 	<insert id="insertUploaded">
 		<include refid="Base.insertUploaded" />

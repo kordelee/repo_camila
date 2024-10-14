@@ -33,5 +33,14 @@ public interface MemberDao extends BaseDao{
 	public int insertEmail(MemberDto dto);
 	public int insertPhone(MemberDto dto);
 	public int insertAddress(MemberDto dto);
-    
+	
+//	
+//	usr
+//	
+	
+	public MemberDto selectOneFindIdPwd(MemberDto dto);
+	
+//	signupUsr
+	public int selectOneIdCheck(MemberDto dto);
+	public int selectOneEmailCheck(MemberDto dto);
 }

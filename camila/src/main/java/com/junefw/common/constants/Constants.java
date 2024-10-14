@@ -6,7 +6,6 @@ public final class Constants {
 	
 	public static final String ABBREVIATION_ADMIN = "Xdm"; 
 	public static final String ABBREVIATION_USER = "Usr";
-	public static final String ABBREVIATION_ADVERTISER = "Adt";
 	
 //	for paging
 	public static final int ROW_NUM_TO_SHOW = 5;

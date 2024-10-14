@@ -47,7 +47,7 @@ public class MemberService extends BaseService{
     	
     	dao.insert(dto);
     	
-    	uploadFilesToS3(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao, amazonS3Client);
+//    	uploadFilesToS3(dto.getUploadImg(), dto, "infrMemberUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfmmSeq(), dao, amazonS3Client);
 	
     	dto.setIfmeDefaultNy(1);
     	dto.setIfmeTypeCd(44);
@@ -166,4 +166,22 @@ public class MemberService extends BaseService{
 		dto.setIfmmPwdModDate(UtilDateTime.calculateDayDate(UtilDateTime.nowLocalDateTime(), (int) Constants.PASSWOPRD_CHANGE_INTERVAL));
 		return dao.updateIfmmPwdModDate(dto);
 	}
+	
+//
+//	usr
+//	
+	
+	public MemberDto selectOneFindIdPwd(MemberDto dto) throws Exception {
+		return dao.selectOneFindIdPwd(dto);
+	}
+
+
+	public int selectOneIdCheck(MemberDto dto) throws Exception {
+		return dao.selectOneIdCheck(dto);
+	}
+	
+	public int selectOneEmailCheck(MemberDto dto) throws Exception {
+		return dao.selectOneEmailCheck(dto);
+	}
+	
 }

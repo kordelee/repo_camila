@@ -54,7 +54,7 @@ public class CodeService extends BaseService{
     	return dao.delete(vo); 
     }
     
-    
+//    redis사용시 사용하지 않음
     @PostConstruct
 	public void selectListCachedCodeArrayList() throws Exception {
 		List<CodeDto> codeListFromDb = (ArrayList<CodeDto>) dao.selectListCachedCodeArrayList();

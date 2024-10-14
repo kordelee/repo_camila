@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signupUsrForm</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<br>
+	<form id="form" name="form" method="post">
+		<input type="hidden" id="idCheck" value="N"> 
+		<input type="hidden" id="emailCheck" value="N"> 
+		<input type="hidden" id="pwdCheck" value="N"> 
+	    <input id="ifmmId" name="ifmmId" type="text" value="xdmin" placeholder="아이디">
+		<button id="btnFindId" type="button">아이디 확인</button>
+		<br>
+	    <input id="ifmmPassword" name="ifmmPassword" type="text" placeholder="비번">
+		<br>
+	    <input id="ifmmPwdCheck" name="ifmmPwdCheck" type="text" placeholder="비번확인">
+		<button id="btnPwdCk" type="button">비밀번호 확인</button>
+		<br>
+	    <input id="ifmmName" name="ifmmName" type="text" placeholder="이름">
+		<br>
+	    <input id="ifmmGenderCd" name="ifmmGenderCd" type="text" placeholder="성별">
+		<br>
+	    <input id="ifmmDob" name="ifmmDob" type="text" placeholder="생년월일">
+		<br>
+	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" placeholder="이메일">
+		<button id="btnFindEmail" type="button">이메일 확인</button>
+		<br>
+	    <input id="ifmpTelecomCd" name="ifmpTelecomCd" type="text" placeholder="통신사코드값">
+		<br>
+	    <input id="ifmpNumber" name="ifmpNumber" type="text" placeholder="폰번호">
+		<!--<br>
+	    <input id="ifmpNumber" name="ifmpNumber" type="text" placeholder="폰번호">-->
+		<br>
+		<button id="btnSignUp" type="button">회원가입</button>
+	</form>
+		<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+		
+		<script>
+			
+			let idCheckNy = document.getElementById("idCheck").value;
+			let emailCheckNy = document.getElementById("emailCheck").value;
+			let pwdCheckNy = document.getElementById("pwdCheck").value;
+			
+			document.getElementById("btnSignUp").onclick = function(){
+				if(idCheckNy == "N" || emailCheckNy == "N" || pwdCheckNy == "N"){
+					if(idCheckNy == "N") {
+						alert("아이디 중복체크 하세요");
+					} else{
+						if(emailCheckNy == "N") {
+							alert("email 중복체크 하세요");
+						} else{
+							if(pwdCheckNy == "N") {
+								alert("비밀번호 체크 하세요");
+							} else{
+	//					by pass					
+							}
+						}
+					}
+				} else {
+					form.action = "/v1/infra/member/memberUsrInst";
+					form.submit();
+				} 				
+				
+			}
+			
+			document.getElementById("btnFindId").onclick = function () {
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/signupUsrIdCheck"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ifmmId" : $("#ifmmId").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							alert("이미 존재하는 회원입니다.");
+							idCheckNy = "N";
+							document.getElementById("ifmmId").value = null;
+						} else {
+							alert("success!");
+							idCheckNy = "Y";
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			}
+			
+			
+			document.getElementById("btnFindEmail").onclick = function () {
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/signupUsrEmailCheck"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							alert("가입이 존재하는 이메일입니다.");
+							emailCheckNy = "N";
+							document.getElementById("ifmeEmailFull").value = null;
+						} else {
+							alert("success!");
+							emailCheckNy = "Y";
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			}
+			
+			
+			document.getElementById("btnPwdCk").onclick = function () {
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/signupUsrPwdCheck"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ifmmPassword" : $("#ifmmPassword").val(), "ifmmPwdCheck" : $("#ifmmPwdCheck").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							alert("success!");
+							pwdCheckNy = "Y";
+						} else {
+							alert("비밀번호가 일치하지 않습니다!");
+							pwdCheckNy = "N";
+							document.getElementById("ifmmPwdCheck").value = null;
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			}
+			
+		</script>
+</body>
+</html>

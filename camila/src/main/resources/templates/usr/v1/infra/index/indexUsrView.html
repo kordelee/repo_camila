@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>다국어 테스트 화면입니다</h1>
-	<p th:if="${session.sessSeqUsr != null}">이름 : [[${session.sessNameUsr}]]</p>
-	<p th:unless="${session.sessSeqUsr != null}">로그인하세여</p>
+	<p th:if="${session.sessSeqUsr != ''}">이름 : [[${session.sessNameUsr}]]</p>
+	<p th:unless="${session.sessSeqUsr != ''}">로그인하세여</p>
     <p>가나다라마바사아자차카타바하</p>
     <p>ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ</p>
     <p>ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡ</p>
@@ -20,8 +20,8 @@
 	<button>EN</button>
 	<br>
 	<br>
-	<a type="button" th:href="@{/v1/infra/member/signinUsrForm}" th:if="${session.sessSeqUsr == null}">로그인</a>
-	<button id="btnSignout" type="button" th:unless="${session.sessSeqUsr == null}">로그아웃</button>
+	<a type="button" th:href="@{/v1/infra/member/signinUsrForm}" th:if="${session.sessSeqUsr == ''}">로그인</a>
+	<button id="btnSignout" type="button" th:unless="${session.sessSeqUsr == ''}">로그아웃</button>
 	
 	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
 	

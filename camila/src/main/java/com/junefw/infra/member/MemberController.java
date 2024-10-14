@@ -3,6 +3,8 @@ package com.junefw.infra.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.Context;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilCookie;
 import com.junefw.infra.mail.MailService;
+import com.junefw.infra.template.TemplateVo;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -37,7 +40,6 @@ public class MemberController extends BaseController{
 	@Autowired
 	MailService mailService;
 	
-    
 	@RequestMapping(value = "/memberXdmList")
 	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
 		
@@ -110,16 +112,17 @@ public class MemberController extends BaseController{
 		service.insert(dto);
 	
 		vo.setIfmmSeq(dto.getIfmmSeq());
+//		vo.setIfmmSeq(encodeBcrypt(dto.getIfmmPassword(), 10));
 		
-		Thread thread = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				mailService.sendMailSimple();
-			}
-		});
-		
-		thread.start();
+//		Thread thread = new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				mailService.sendMailAuthorizationPwd();
+//			}
+//		});
+//		
+//		thread.start();
 		
 		redirectAttributes.addFlashAttribute("vo", vo);
 
@@ -281,7 +284,9 @@ public class MemberController extends BaseController{
 	public Map<String, Object> signoutXdmProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		UtilCookie.deleteCookieXdm();
-		httpSession.invalidate();
+		httpSession.setAttribute("sessSeqXdm", null);
+		httpSession.setAttribute("sessIdXdm", null);
+		httpSession.setAttribute("sessNameXdm", null);
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
@@ -329,7 +334,10 @@ public class MemberController extends BaseController{
 	public Map<String, Object> signoutUsrProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		UtilCookie.deleteCookieUsr();
-		httpSession.invalidate();
+//		httpSession.invalidate();
+		httpSession.setAttribute("sessSeqUsr", null);
+		httpSession.setAttribute("sessIdUsr", null);
+		httpSession.setAttribute("sessNameUsr", null);
 		returnMap.put("rt", "success");
 		return returnMap;
 	}
@@ -384,4 +392,145 @@ public class MemberController extends BaseController{
 		}
 		return returnMap;
 	}
+	
+	
+	@RequestMapping(value = "findIdPwdUsrForm")
+	public String findIdPwdUsrForm(MemberVo vo, HttpSession httpSession) throws Exception {
+
+		return pathCommonUsr + "findIdPwdUsrForm";
+	}
+	
+	@RequestMapping(value = "findPwdUsrForm")
+	public String findPwdUsrForm(MemberVo vo, HttpSession httpSession) throws Exception {
+		
+		return pathCommonUsr + "findPwdUsrForm";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "findIdPwdProc")
+	public Map<String, Object> findIdPwdProc(MemberDto dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+
+		MemberDto findMember = service.selectOneFindIdPwd(dto);
+		
+		if(findMember != null) {
+			returnMap.put("rt", "success");
+			returnMap.put("id", findMember.getIfmmId());
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "authEmailUsrProc")
+	public Map<String, Object> authEmailUsrProc(MemberDto dto,TemplateVo tvo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		MemberDto findMember = service.selectOneFindIdPwd(dto);
+		
+		if(findMember != null) {
+			Thread thread = new Thread(new Runnable() {
+	
+				@Override
+				public void run() {
+					try {
+						mailService.sendEmailTemplate(dto, tvo);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+			});
+			
+			thread.start();
+			
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "signupUsrForm")
+    public String signupUsrForm() throws Exception{
+    	return pathCommonUsr + "signupUsrForm";
+    }
+	
+	
+	@SuppressWarnings(value = { "all" })
+	@RequestMapping(value = "memberUsrInst")
+	public String memberUsrInst(MemberVo vo, MemberDto dto, RedirectAttributes redirectAttributes) throws Exception {
+
+		vo.setIfmmSeq(encodeBcrypt(dto.getIfmmPassword(), 10));
+		service.insert(dto);
+	
+//		vo.setIfmmSeq(dto.getIfmmSeq());
+		
+//		Thread thread = new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				mailService.sendMailAuthorizationPwd();
+//			}
+//		});
+//		
+//		thread.start();
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+
+		return pathRedirectCommonUsr + "welcomeUsrView";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "signupUsrIdCheck")
+	public Map<String, Object> signupUsrIdCheck(MemberDto dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int idCheck = service.selectOneIdCheck(dto);
+		
+		if(idCheck != 0) {
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "signupUsrEmailCheck")
+	public Map<String, Object> signupUsrEmailCheck(MemberDto dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		int emailCheck = service.selectOneEmailCheck(dto);
+		
+		if(emailCheck != 0) {
+			returnMap.put("rt", "success");
+		} else {
+//			by pass
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "signupUsrPwdCheck")
+	public Map<String, Object> signupUsrPwdCheck(MemberDto dto) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		if(dto.getIfmmPassword().equals(dto.getIfmmPwdCheck())) {
+			returnMap.put("rt", "success");
+		} else {
+//			by pass
+		}
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "welcomeUsrView")
+    public String welcomeUsrView() throws Exception{
+    	return pathCommonUsr + "welcomeUsrView";
+    }
+	
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 비밀번호 찾기</title>
+</head>
+<body>
+    <h1>아이디 비밀번호 찾기</h1>
+	<br>
+	<br>
+	<div id="findId">
+		<label>이름</label>
+	    <input id="ifmmName" name="ifmmName" type="text" value="전체 관리자" placeholder="이름"><br>
+		<label>이메일</label>
+	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="abc@example.com" placeholder="이메일"><br>
+		<button id="btnFindId" type="button">아이디 찾기</button>
+	</div>
+	<div id="rtFind" hidden>
+		<span id="rtId"></span>
+		<br>
+		<button id="btnSignin" type="button">로그인</button>
+		<button id="btnFindPwd" type="button">비밀번호 찾기</button>
+	</div>
+	<div id="rtFail" hidden>
+		<span>실패</span>
+		<br>
+		<button id="btnSignin" type="button">로그인</button>
+		<button id="btnFindPwd" type="button">비밀번호 찾기</button>
+	</div>
+	
+	
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
+	<script>
+		document.getElementById("btnFindId").onclick = function () {
+			let findId = document.getElementById("findId")
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/findIdPwdProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("rtFail").hidden = true;
+						document.getElementById("rtFind").hidden = false;
+						let id = response.id;
+						let rtId = id.split('');
+						for(let i=2; i<id.length-2; i++){
+							rtId[i] = '*';
+						}
+						rtId = rtId.join('');
+						$('#rtId').append(rtId);
+					} else {
+						document.getElementById("rtFind").hidden = true;
+						document.getElementById("rtFail").hidden = false;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		document.getElementById("btnSignin").onclick = function(){
+			location.href = "/v1/infra/member/signinUsrForm"
+		}
+		
+		document.getElementById("btnFindPwd").onclick = function(){
+			location.href = "/v1/infra/member/findPwdUsrForm"
+		}
+		
+	</script>
+</body>
+</html>

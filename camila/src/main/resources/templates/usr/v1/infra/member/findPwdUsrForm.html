@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 비밀번호 찾기</title>
+</head>
+<body>
+    <h1>비밀번호 찾기</h1>
+	<br>
+	<br>
+	<div id="rtId">
+		<div id="findPwd">
+			<label>아이디</label>
+		    <input id="ifmmId" name="ifmmId" type="text" value="xdmin" placeholder="이메일"><br>
+			<label>이름</label>
+		    <input id="ifmmName" name="ifmmName" type="text" value="전체 관리자" placeholder="이름"><br>
+			<label>이메일</label>
+		    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="relationrok@gmail.com" placeholder="이메일">
+			<button type="button" id="btnSmtp">인증번호 전송</button><br>
+			<div id="authEmail" hidden>
+				<label>인증번호</label>
+			    <input type="text"><span id="timeout"></span>
+				<button type="button" id="btnSmtpCh">인증번호 확인</button><br>
+			</div>
+			<div id="goChangePwd" hidden>
+				<button id="btnFindPwd" type="button">비밀번호 찾기</button>
+			</div>
+		</div>
+	</div>
+	
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
+	<script>
+		
+		document.getElementById("btnSmtp").onclick = function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/authEmailUsrProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("btnSmtp").remove();
+						document.getElementById("authEmail").hidden = false;
+					} else {
+						alert("회원 정보와 이메일이 일치하지 않습니다.");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		document.getElementById("btnFindPwd").onclick = function () {
+			let findPwd = document.getElementById("findPwd")
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/findIdPwdProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						findPwd.remove();
+					} else {
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		function timeoutTimer(endTime, timeout) {
+		
+			let now = Date.now();
+			let end = endTime.getTime();
+			let timeLeft = end - now;
+			let secondsLeft = Math.max(0, Math.floor(timeLeft / 1000));
+		
+			document.getElementById("timeout").innerText = secondsLeft;
+			
+			if (secondsLeft <= 0) {
+				document.getElementById("authEmail").remove();
+				return;
+			}
+	
+			setTimeout(function() {
+			    timeoutTimer(endTime, timeout);
+			 }, timeout);
+		}
+		
+		// 5초 타이머 시작
+		timeoutTimer(new Date(Date.now() + 30000), 900);
+		
+	</script>
+</body>
+</html>

@@ -42,6 +42,7 @@ public class MemberDto extends BaseDto implements Serializable {
 	private String ifmmDesc;
 	private Integer ifmmDelNy;
 
+	private String ifmmPwdCheck;
 	
 //	infrMemberEmail
 	private String ifmeSeq;
@@ -737,6 +738,12 @@ public class MemberDto extends BaseDto implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getIfmmPwdCheck() {
+		return ifmmPwdCheck;
+	}
+	public void setIfmmPwdCheck(String ifmmPwdCheck) {
+		this.ifmmPwdCheck = ifmmPwdCheck;
 	}
 	
 }
