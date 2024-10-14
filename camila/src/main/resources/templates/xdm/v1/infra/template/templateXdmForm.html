@@ -82,11 +82,29 @@
 							<div class="controls">
 								<textarea class="form-control" id="iftpContents" name="iftpContents" th:value="${item?.iftpContents}" th:text="${item?.iftpContents}" style="height: 100px;"></textarea>
 								<div class="invalid-feedback" id="iftpContentsFeedback"></div>
+								<button type="button" id="run">실행</button>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
+						
+						<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="modalAlertTitle">title</h5>
+											<button type="button" class="btn-close btn_custom" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body" id="modalAlertBody">
+											<iframe class="form-control" id="rtContents" name="rtContents"></iframe>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm btn_custom" data-bs-dismiss="modal"><i class="fa-solid fa-check fa-lg"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<!-- empty -->
+							</div>
 <!-- 											
 						<div class="col-md-3">
 							<label for="iftpReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
@@ -227,6 +245,20 @@
 		alert("asdasdf");
 	
 	}
+	
+	function preview(){
+        let code = document.getElementById("iftpContents").value;
+        let rt = document.getElementById("rtContents");
+			rt.srcdoc = code;
+	};
+	
+	document.getElementById("run").onclick = function () {
+			preview();
+	        document.querySelector(".modal-title").textContent = "미리보기";
+	        document.querySelector(".modal-body").textContent;
+	        $("#modalAlert").modal("show");
+	}
+	
 </script>
 
 <script src="/xdm/v1/js/includeXdmForm.js"></script>

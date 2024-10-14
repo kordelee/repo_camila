@@ -9,6 +9,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
+import com.junefw.infra.mail.MailService;
 
 @Controller
 @RequestMapping(value = "/v1/infra/template")
@@ -23,6 +24,9 @@ public class TemplateController extends BaseController{
 	
 	@Autowired
 	TemplateService service;
+	
+	@Autowired
+	MailService mailService;
 	
 	
 	@RequestMapping(value = "/templateXdmList")
@@ -141,4 +145,5 @@ public class TemplateController extends BaseController{
 
 		return pathRedirectCommonXdm + "templateXdmList";
 	}
+	
 }
