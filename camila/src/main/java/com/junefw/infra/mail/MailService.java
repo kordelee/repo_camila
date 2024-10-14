@@ -20,13 +20,7 @@ public class MailService {
 	private JavaMailSender javaMailSender;
 	
 	@Autowired
-	private SpringTemplateEngine templateEngine;
-	
-	@Autowired
 	TemplateService templateService;
-	
-	private MimeMessage message;
-    private MimeMessageHelper helper;
 	
 //	public void sendMailSimple() {
 //    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
@@ -38,23 +32,6 @@ public class MailService {
 //    	javaMailSender.send(simpleMailMessage);
 //    }
 
-//
-//	파일을 전송 s
-//	
-	
-//    public void sendMailAuthorizationPwd() {
-//    	SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-//    	int randomKey = (int)(Math.random() * 899999) + 100000;
-//    	String authoKey = String.valueOf(randomKey);
-////    	simpleMailMessage.setTo("kordelee@naver.com");
-//    	simpleMailMessage.setTo("relationrok@gmail.com");
-//    	simpleMailMessage.setSubject("이메일 인증");
-////    	simpleMailMessage.setFrom("relationrok@gmail.com"); 
-//    	simpleMailMessage.setText(authoKey);
-//    	javaMailSender.send(simpleMailMessage);
-//    	
-//    }
-//    
 
     public void sendEmailTemplate(MemberDto dto, TemplateVo tvo) throws Exception{
     	int randomKey = (int)(Math.random() * 899999) + 100000;
@@ -79,34 +56,6 @@ public class MailService {
 
     }
     
-    
-//    public void sendEmailTemplate(MemberDto dto,TemplateVo tvo) throws Exception{
-//    	int randomKey = (int)(Math.random() * 899999) + 100000;
-//    	String authoKey = String.valueOf(randomKey);
-//        Context context = new Context();
-//        tvo.setIftpSeq("4");
-////        데이터 뭐 넘겨줄지 설정
-//        context.setVariable("randomNum", authoKey);
-//        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-//        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-//        mimeMessageHelper.setTo(dto.getIfmeEmailFull()); // 메일 수신자
-//        mimeMessageHelper.setSubject("test"); // 메일 제목
-//        mimeMessageHelper.setText(templateService.selectOne(tvo).getIftpContents(), true); // 메일 본문 내용, HTML 여부
-//        javaMailSender.send(mimeMessage);
-//
-//    }
-	
-//
-//	파일을 전송 e
-//	
-
-//	public void templateMailSend(MemberDto dto) throws Exception {
-//		helper = new MimeMessageHelper(message, true, "UTF-8");
-//		helper.setTo(dto.getIfmeEmailFull());
-//		helper.setSubject("emailTest");
-//		helper.sette
-//	}
-	
     
     public String randomNumber() {
     	int randomKey = (int)(Math.random() * 899999) + 100000;
