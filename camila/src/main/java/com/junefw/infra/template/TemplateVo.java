@@ -17,8 +17,4 @@ public class TemplateVo extends BaseVo implements Serializable {
 		this.iftpSeq = iftpSeq;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
 }

@@ -1,9 +1,13 @@
 package com.junefw.common.base;
 
+import java.io.Serializable;
+
 import com.junefw.common.constants.Constants;
 
-public class BaseVo {
+public class BaseVo implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 //	paging
 	private int thisPage = 1;									// 현재 페이지
 	private int rowNumToShow = Constants.ROW_NUM_TO_SHOW;		// 화면에 보여줄 데이터 줄 갯수
