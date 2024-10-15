@@ -48,12 +48,12 @@ public interface MemberDao extends BaseDao{
 //	findPwd
 	public int insertCertification(MemberDto dto);
 	public MemberDto selectOneCertification(MemberDto dto);
-	public int updateChangePwd(MemberVo vo);
+	public int updateChangePwd(MemberDto dto);
 	
 	
 //	infoChange
-	public int infoUpdate(MemberDto dto);
+	public int updateInfo(MemberDto dto);
 	
 //	withdraw
-	public int withdrawUelete(MemberDto dto);
+	public int ueleteWithdraw(MemberDto dto);
 }

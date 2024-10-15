@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 재설정</title>
+</head>
+<body>
+    <h1>비밀번호 재설정</h1>
+	<br>
+	<form id="form" name="form">
+	    <input id="ifmmPassword" name="ifmmPassword" type="text" placeholder="">
+		<br>
+	    <input id="ifmmPasswordCk" name="ifmmPasswordCk" type="text" placeholder="비밀번호">
+		<br>
+		<button id="btnChangePwd" type="button">비밀번호 변경하기</button>
+		<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	</form>
+	
+	<script>
+		
+		document.getElementById("btnChangePwd").onclick = function(){
+			form.action="/v1/infra/member/pwdChangeUsrUpdt";
+			form.submit();
+		}
+		
+	</script>
+</body>
+</html>

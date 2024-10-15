@@ -13,7 +13,7 @@
 		<label>이름</label>
 	    <input id="ifmmName" name="ifmmName" type="text" value="전체 관리자" placeholder="이름"><br>
 		<label>이메일</label>
-	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="abc@example.com" placeholder="이메일"><br>
+	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="relationrok@gmail.com" placeholder="이메일"><br>
 		<button id="btnFindId" type="button">아이디 찾기</button>
 	</div>
 	<div id="rtFind" hidden>
@@ -40,7 +40,7 @@
 				,cache: false
 				,type: "post"
 				/* ,dataType:"json" */
-				,url: "/v1/infra/member/findIdPwdProc"
+				,url: "/v1/infra/member/findIdUsrProc"
 				/* ,data : $("#formLogin").serialize() */
 				,data : { "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
 				,success: function(response) {

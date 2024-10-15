@@ -533,6 +533,7 @@
 		WHERE 1=1
 			AND a.ifmmName = #{ifmmName}
 			AND b.ifmeEmailFull = #{ifmeEmailFull}
+			AND b.ifmeDefaultNy = 1
 			<if test="ifmmId != null and !ifmmId.equals('')">AND a.ifmmId = #{ifmmId}</if>
 	</select>
 	
@@ -591,20 +592,22 @@
 	
 	<select id="selectOneCertification" resultMap="resultMapObj">
 		SELECT
-			a.ifcfTypeCd
+			a.ifcfSeq
+			,a.ifcfTypeCd
 			,a.ifcfEmail
-			,a.ifcfKey
 			,a.ifcfKey
 			,a.ifcfDelNy
 			<include refid="Base.selectRegModWithAlies" />
 		FROM
 			infrCertification a
 		WHERE 1=1
-			AND a.ifcfKey = #{ifcfKey}
+			AND a.ifcfEmail = #{ifmeEmailFull}
+		ORDER BY a.ifcfSeq DESC
+			LIMIT 1
 	</select>
 	<!-- infrCertification e -->
 	
-	<update id="infoUpdate">
+	<update id="updateInfo">
 		UPDATE infrMember a, infrMemberEmail b, infrMemberPhone c
 		SET
 			a.ifmmId = #{ifmmId}
@@ -617,7 +620,7 @@
 			AND a.ifmmSeq = #{ifmmSeq}
 	</update>
 	
-	<update id="withdrawUelete">
+	<update id="ueleteWithdraw">
 		UPDATE infrMember
 		SET
 			ifmmDelNy = 1

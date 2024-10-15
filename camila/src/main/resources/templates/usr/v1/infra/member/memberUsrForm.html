@@ -9,6 +9,7 @@
 	<h1>회원정보수정</h1>
 	<br>
 	<form id="form" name="form" method="post">
+		<input id="ifmmSeq" name="ifmmSeq" type="hidden" th:value="${item.ifmmSeq}">
 		아이디
 	    <input id="ifmmId" name="ifmmId" type="text" th:value="${item.ifmmId}">
 		<br>
@@ -33,25 +34,8 @@
 		
 		<script>
 			document.getElementById("btnUpdt").onclick = function(){
-				$.ajax({
-					async: true 
-					,cache: false
-					,type: "post"
-					/* ,dataType:"json" */
-					,url: "/v1/infra/member/infoUpdtUsrProc"
-					,data : $("#form").serialize() 
-					/*,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}*/
-					,success: function(response) {
-						if(response.rt == "success") {
-							location.href="/v1/infra/member/infoChangeUsrForm";
-						} else {
-//							by pass
-						}
-					}
-					,error : function(jqXHR, textStatus, errorThrown){
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
+				form.action = "/v1/infra/member/memberUsrUpdt";
+				form.submit();
 			}
 			
 		</script>

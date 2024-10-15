@@ -44,7 +44,7 @@
 				,cache: false
 				,type: "post"
 				/* ,dataType:"json" */
-				,url: "/v1/infra/member/emailSendUsrProc"
+				,url: "/v1/infra/member/sendMailGoogleCertificationUsrProc"
 				/* ,data : $("#formLogin").serialize() */
 				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
 				,success: function(response) {
@@ -70,9 +70,9 @@
 				,cache: false
 				,type: "post"
 				/* ,dataType:"json" */
-				,url: "/v1/infra/member/emailCheckUsrProc"
+				,url: "/v1/infra/member/certificationCheckUsrProc"
 				/* ,data : $("#formLogin").serialize() */
-				,data : { "ifcfKey" : $("#ifcfKey").val()}
+				,data : { "ifcfKey" : $("#ifcfKey").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
 						document.getElementById("goChangePwd").hidden = false;

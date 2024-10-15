@@ -196,17 +196,17 @@ public class MemberService extends BaseService{
 	}
 	
 	
-	public int updateChangePwd(MemberVo vo) throws Exception {
-		return dao.updateChangePwd(vo);
+	public int updateChangePwd(MemberDto dto) throws Exception {
+		return dao.updateChangePwd(dto);
 	}
 	
 	
-	public int infoUpdate(MemberDto dto) throws Exception {
-		return dao.infoUpdate(dto);
+	public int updateInfo(MemberDto dto) throws Exception {
+		return dao.updateInfo(dto);
 	}
 	
 	
-	public int withdrawUelete(MemberDto dto) throws Exception {
-		return dao.withdrawUelete(dto);
+	public int ueleteWithdraw(MemberDto dto) throws Exception {
+		return dao.ueleteWithdraw(dto);
 	}
 }
