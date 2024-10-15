@@ -180,8 +180,33 @@ public class MemberService extends BaseService{
 		return dao.selectOneIdCheck(dto);
 	}
 	
+	
 	public int selectOneEmailCheck(MemberDto dto) throws Exception {
 		return dao.selectOneEmailCheck(dto);
 	}
 	
+	
+	public int insertCertification(MemberDto dto) throws Exception {
+		return dao.insertCertification(dto);
+	}
+	
+	
+	public MemberDto selectOneCertification(MemberDto dto) throws Exception {
+		return dao.selectOneCertification(dto);
+	}
+	
+	
+	public int updateChangePwd(MemberVo vo) throws Exception {
+		return dao.updateChangePwd(vo);
+	}
+	
+	
+	public int infoUpdate(MemberDto dto) throws Exception {
+		return dao.infoUpdate(dto);
+	}
+	
+	
+	public int withdrawUelete(MemberDto dto) throws Exception {
+		return dao.withdrawUelete(dto);
+	}
 }

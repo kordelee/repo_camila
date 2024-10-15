@@ -1,6 +1,7 @@
 package com.junefw.infra.member;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.junefw.common.base.BaseVo;
 
@@ -9,6 +10,10 @@ public class MemberVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String ifmmSeq;
+	
+	private String ifmmPassword;
+	
+	private Date modDateTime;
 
 //	search item extra (optional)
 	private Integer shAdminNy = 0;
@@ -32,6 +37,22 @@ public class MemberVo extends BaseVo implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getIfmmPassword() {
+		return ifmmPassword;
+	}
+
+	public void setIfmmPassword(String ifmmPassword) {
+		this.ifmmPassword = ifmmPassword;
+	}
+
+	public Date getModDateTime() {
+		return modDateTime;
+	}
+
+	public void setModDateTime(Date modDateTime) {
+		this.modDateTime = modDateTime;
 	}
 
 	

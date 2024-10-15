@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signupUsrForm</title>
+</head>
+<body>
+	<h1>회원정보수정</h1>
+	<br>
+	<form id="form" name="form" method="post">
+		아이디
+	    <input id="ifmmId" name="ifmmId" type="text" th:value="${item.ifmmId}">
+		<br>
+		이름
+	    <input id="ifmmName" name="ifmmName" type="text" th:value="${item.ifmmName}">
+		<br>
+		성별
+	    <input id="ifmmGenderCd" name="ifmmGenderCd" type="text" th:value="${item.ifmmGenderCd}">
+		<br>
+		생년월일
+	    <input id="ifmmDob" name="ifmmDob" type="date"th:value="${item.ifmmDob}">
+		<br>
+		이메일
+	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" th:value="${item.ifmeEmailFull}">
+		<br>
+		폰번호
+	    <input id="ifmpNumber" name="ifmpNumber" type="text" th:value="${item.ifmpNumber}">
+		<br>
+		<button id="btnUpdt" type="button">개인정보 수정</button>
+	</form>
+		<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+		
+		<script>
+			document.getElementById("btnUpdt").onclick = function(){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/infoUpdtUsrProc"
+					,data : $("#form").serialize() 
+					/*,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}*/
+					,success: function(response) {
+						if(response.rt == "success") {
+							location.href="/v1/infra/member/infoChangeUsrForm";
+						} else {
+//							by pass
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			}
+			
+		</script>
+</body>
+</html>

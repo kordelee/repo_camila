@@ -41,7 +41,7 @@ public class MailService {
         context.setVariable("randomNum", authoKey);
 //        템플릿 시퀀스 설정
         tvo.setIftpSeq("4");
-        
+        dto.setIfcfKey(authoKey);
         String contentsHtml = templateService.selectOne(tvo).getIftpContents();
 
         // html에서 인증번호라는 곳에 authokey를 넣는다

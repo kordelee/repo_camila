@@ -43,4 +43,17 @@ public interface MemberDao extends BaseDao{
 //	signupUsr
 	public int selectOneIdCheck(MemberDto dto);
 	public int selectOneEmailCheck(MemberDto dto);
+	
+	
+//	findPwd
+	public int insertCertification(MemberDto dto);
+	public MemberDto selectOneCertification(MemberDto dto);
+	public int updateChangePwd(MemberVo vo);
+	
+	
+//	infoChange
+	public int infoUpdate(MemberDto dto);
+	
+//	withdraw
+	public int withdrawUelete(MemberDto dto);
 }

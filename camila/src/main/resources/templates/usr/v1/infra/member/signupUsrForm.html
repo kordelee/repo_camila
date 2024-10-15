@@ -46,20 +46,18 @@
 			let pwdCheckNy = document.getElementById("pwdCheck").value;
 			
 			document.getElementById("btnSignUp").onclick = function(){
+				
+				
 				if(idCheckNy == "N" || emailCheckNy == "N" || pwdCheckNy == "N"){
 					if(idCheckNy == "N") {
 						alert("아이디 중복체크 하세요");
-					} else{
-						if(emailCheckNy == "N") {
-							alert("email 중복체크 하세요");
-						} else{
-							if(pwdCheckNy == "N") {
-								alert("비밀번호 체크 하세요");
-							} else{
-	//					by pass					
-							}
-						}
-					}
+					} 
+					if(emailCheckNy == "N") {
+						alert("email 중복체크 하세요");
+					} 
+					if(pwdCheckNy == "N") {
+						alert("비밀번호 체크 하세요");
+					} 
 				} else {
 					form.action = "/v1/infra/member/memberUsrInst";
 					form.submit();
@@ -120,28 +118,17 @@
 			
 			
 			document.getElementById("btnPwdCk").onclick = function () {
-				$.ajax({
-					async: true 
-					,cache: false
-					,type: "post"
-					/* ,dataType:"json" */
-					,url: "/v1/infra/member/signupUsrPwdCheck"
-					/* ,data : $("#formLogin").serialize() */
-					,data : { "ifmmPassword" : $("#ifmmPassword").val(), "ifmmPwdCheck" : $("#ifmmPwdCheck").val()}
-					,success: function(response) {
-						if(response.rt == "success") {
-							alert("success!");
-							pwdCheckNy = "Y";
-						} else {
-							alert("비밀번호가 일치하지 않습니다!");
-							pwdCheckNy = "N";
-							document.getElementById("ifmmPwdCheck").value = null;
-						}
-					}
-					,error : function(jqXHR, textStatus, errorThrown){
-						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-					}
-				});
+				let pwd = document.getElementById("ifmmPassword").value;
+				let pwdCk = document.getElementById("ifmmPwdCheck").value;
+				
+				if(pwd == pwdCk){
+					alert("success!");
+					pwdCheckNy = "Y";
+				} else {
+					alert("비밀번호가 일치하지 않습니다!");
+					pwdCheckNy = "N";
+					document.getElementById("ifmmPwdCheck").value = null;
+				}
 			}
 			
 		</script>

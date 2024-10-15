@@ -9,6 +9,7 @@
     <h1>비밀번호 찾기</h1>
 	<br>
 	<br>
+	<form id="form" name="form" method="post">
 	<div id="rtId">
 		<div id="findPwd">
 			<label>아이디</label>
@@ -18,19 +19,23 @@
 			<label>이메일</label>
 		    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="relationrok@gmail.com" placeholder="이메일">
 			<button type="button" id="btnSmtp">인증번호 전송</button><br>
+			<div id="fail" hidden>실패</div>
 			<div id="authEmail" hidden>
 				<label>인증번호</label>
-			    <input type="text"><span id="timeout"></span>
-				<button type="button" id="btnSmtpCh">인증번호 확인</button><br>
+			    <input type="text" id="ifcfKey" name="ifcfKey"><span id="timeout"></span>
+				<button type="button" id="btnSmtpCk">인증번호 확인</button><br>
 			</div>
+			<div id="ckFail" hidden>실패</div>
 			<div id="goChangePwd" hidden>
-				<button id="btnFindPwd" type="button">비밀번호 찾기</button>
+				<input type="hidden" id="ifmmSeq" name="ifmmSeq">
+				<button type="button" id="btnFindPwd" >비밀번호 찾기</button>
 			</div>
+			
 		</div>
 	</div>
-	
+	</form>
 	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
-	
+	<script src="/usr/v1/js/constantsUsr.js"></script>
 	<script>
 		
 		document.getElementById("btnSmtp").onclick = function(){
@@ -39,15 +44,17 @@
 				,cache: false
 				,type: "post"
 				/* ,dataType:"json" */
-				,url: "/v1/infra/member/authEmailUsrProc"
+				,url: "/v1/infra/member/emailSendUsrProc"
 				/* ,data : $("#formLogin").serialize() */
 				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
+						document.getElementById("ifmmSeq").value = response.seq;
 						document.getElementById("btnSmtp").remove();
+						document.getElementById("fail").hidden = true;
 						document.getElementById("authEmail").hidden = false;
 					} else {
-						alert("회원 정보와 이메일이 일치하지 않습니다.");
+						document.getElementById("fail").hidden = false;
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -55,6 +62,32 @@
 				}
 			});
 		}
+		
+		
+		document.getElementById("btnSmtpCk").onclick = function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/emailCheckUsrProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifcfKey" : $("#ifcfKey").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("goChangePwd").hidden = false;
+						document.getElementById("ckFail").hidden = true;
+					} else {
+						document.getElementById("ckFail").hidden = false;
+						document.getElementById("ifcfKey").value = null;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
 		
 		document.getElementById("btnFindPwd").onclick = function () {
 			let findPwd = document.getElementById("findPwd")
@@ -79,27 +112,38 @@
 		}
 		
 		function timeoutTimer(endTime, timeout) {
-		
 			let now = Date.now();
 			let end = endTime.getTime();
 			let timeLeft = end - now;
 			let secondsLeft = Math.max(0, Math.floor(timeLeft / 1000));
-		
-			document.getElementById("timeout").innerText = secondsLeft;
-			
+
+			// 남은 분과 초 계산
+			let minutes = Math.floor(secondsLeft / 60);
+			let seconds = secondsLeft % 60;
+
+			// 두 자리로 나타내기 위해 초가 한 자리일 경우 앞에 '0'을 붙임
+			let formattedTime = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+			document.getElementById("timeout").innerText = formattedTime;
+
 			if (secondsLeft <= 0) {
 				document.getElementById("authEmail").remove();
 				return;
 			}
-	
+
 			setTimeout(function() {
-			    timeoutTimer(endTime, timeout);
-			 }, timeout);
+				timeoutTimer(endTime, timeout);
+			}, timeout);
 		}
+
+		// 5분 타이머 시작 (1분 = 60000ms, timeout = 900ms)
+		timeoutTimer(new Date(Date.now() + (TIMER_MINUTES*3)), 900);
 		
-		// 5초 타이머 시작
-		timeoutTimer(new Date(Date.now() + 30000), 900);
 		
+		document.getElementById("btnFindPwd").onclick = function () {
+		    form.action = "/v1/infra/member/changePwdUsrForm";
+		    form.submit();
+		}
 	</script>
 </body>
 </html>

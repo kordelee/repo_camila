@@ -3,8 +3,6 @@ package com.junefw.infra.member;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.naming.Context;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
@@ -401,8 +399,7 @@ public class MemberController extends BaseController{
 	}
 	
 	@RequestMapping(value = "findPwdUsrForm")
-	public String findPwdUsrForm(MemberVo vo, HttpSession httpSession) throws Exception {
-		
+	public String findPwdUsrForm(@ModelAttribute("vo") MemberVo vo, MemberDto dto) throws Exception {
 		return pathCommonUsr + "findPwdUsrForm";
 	}
 	
@@ -423,8 +420,8 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "authEmailUsrProc")
-	public Map<String, Object> authEmailUsrProc(MemberDto dto,TemplateVo tvo) throws Exception {
+	@RequestMapping(value = "emailSendUsrProc")
+	public Map<String, Object> emailSendUsrProc(MemberDto dto,TemplateVo tvo, MemberVo vo) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		MemberDto findMember = service.selectOneFindIdPwd(dto);
@@ -436,6 +433,7 @@ public class MemberController extends BaseController{
 				public void run() {
 					try {
 						mailService.sendEmailTemplate(dto, tvo);
+						service.insertCertification(dto);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -444,9 +442,42 @@ public class MemberController extends BaseController{
 			});
 			
 			thread.start();
-			
+			vo.setIfmmSeq(findMember.getIfmmSeq());
+			returnMap.put("seq", vo.getIfmmSeq());
+			returnMap.put("rt", "success");
+			if(service.selectOneCertification(dto) != null) {
+				returnMap.put("rt", "checked");
+			}
+		}
+		return returnMap;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "emailCheckUsrProc")
+	public Map<String, Object> emailCheckUsrProc(MemberDto dto,TemplateVo tvo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		if(service.selectOneCertification(dto) != null) {
 			returnMap.put("rt", "success");
 		}
+		
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "changePwdUsrForm")
+    public String changePwdUsrForm(@ModelAttribute("vo") MemberVo vo) throws Exception{
+    	return pathCommonUsr + "changePwdUsrForm";
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "changPwdUsrProc")
+	public Map<String, Object> changPwdUsrProc(MemberVo vo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		service.updateChangePwd(vo);
+		returnMap.put("rt", "success");
 		return returnMap;
 	}
 	
@@ -528,9 +559,64 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "welcomeUsrView")
-    public String welcomeUsrView() throws Exception{
-    	return pathCommonUsr + "welcomeUsrView";
+	@RequestMapping(value = "infoChangeUsrForm")
+    public String infoChangeUsrForm(Model model, MemberVo vo,HttpSession session) throws Exception{
+		vo.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+		model.addAttribute("item", service.selectOne(vo));
+    	return pathCommonUsr + "infoChangeUsrForm";
     }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "infoUpdtUsrProc")
+	public Map<String, Object> infoUpdtUsrProc(MemberDto dto, HttpSession session) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+		service.infoUpdate(dto);
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "infoPwdChangeUsrForm")
+    public String infoPwdChangeUsrForm() throws Exception{
+    	return pathCommonUsr + "infoPwdChangeUsrForm";
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "infoPwdChangeUsrProc")
+	public Map<String, Object> infoPwdChangeUsrProc(MemberVo vo,HttpSession session) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		vo.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+		service.updateChangePwd(vo);
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "withdrawUsrForm")
+    public String withdrawUsrForm() throws Exception{
+    	return pathCommonUsr + "withdrawUsrForm";
+    }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "withdrawUsrProc")
+	public Map<String, Object> withdrawUsrProc(MemberDto dto,HttpSession session) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+		if(service.withdrawUelete(dto) != 0) {
+			service.withdrawUelete(dto);
+			returnMap.put("rt", "success");
+		}
+		return returnMap;
+	}
+	
+	
+	@RequestMapping(value = "welcomeUsrView")
+	public String welcomeUsrView() throws Exception{
+		return pathCommonUsr + "welcomeUsrView";
+	}
 	
 }

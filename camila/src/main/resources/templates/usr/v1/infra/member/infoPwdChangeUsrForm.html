@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 재설정</title>
+</head>
+<body>
+    <h1>비밀번호 재설정</h1>
+	<br>
+    <input id="ifmmPassword" name="ifmmPassword" type="text" placeholder="">
+	<br>
+    <input id="ifmmPasswordCk" name="ifmmPasswordCk" type="text" placeholder="비밀번호">
+	<br>
+	<button id="btnChangePwd" type="button">비밀번호 변경하기</button>
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
+	<script>
+		
+		document.getElementById("btnChangePwd").onclick = function(){
+			let pwd = document.getElementById("ifmmPassword").value;
+			let pwdCk = document.getElementById("ifmmPasswordCk").value;
+			if(pwd == pwdCk){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/infoPwdChangeUsrProc"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ifmmPassword" : $("#ifmmPassword").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							location.href = "/v1/infra/member/signinUsrForm"
+						} else {
+//						by pass
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			} else {
+				alert("비밀번호가 일치하지 않습니다");
+			}
+		}
+		
+	</script>
+</body>
+</html>

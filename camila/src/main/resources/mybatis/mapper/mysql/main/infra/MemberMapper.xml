@@ -201,7 +201,6 @@
 		 </selectKey>
 	</insert>
 
-
 	<update id="update">
 		UPDATE infrMember
 		SET
@@ -232,6 +231,7 @@
 			AND ifmmSeq = #{ifmmSeq}
 	</update>
 				<!-- ,ifmmCountryResidence = #{ifmmCountryResidence} -->
+				
 	
 	<update id="useUpdate">
 		UPDATE infrMember a, infrMemberEmail b, infrMemberPhone c
@@ -540,7 +540,7 @@
 		UPDATE infrMember 
 		SET 
 			ifmmPassword = #{ifmmPassword}
-			,modDateTime = #{modDateTime}
+			,modDateTime = now()
 		WHERE 1=1
 			AND ifmmSeq = #{ifmmSeq}
 	</update>
@@ -568,5 +568,63 @@
 	<insert id="ueleteUploaded">
 		<include refid="Base.ueleteUploaded" />
 	</insert>
+	
+<!-- 	usr -->
+
+	<!-- infrCertification s -->
+	<insert id="insertCertification">
+		INSERT INTO infrCertification (
+			ifcfTypeCd
+			,ifcfEmail
+			,ifcfKey
+			,ifcfDelNy
+			<include refid="Base.insertRegModColumn" />
+		) VALUES (
+			#{ifcfTypeCd}
+			,#{ifmeEmailFull}
+			,#{ifcfKey}
+			,0
+			<include refid="Base.insertRegModValue" />
+		)
+	</insert>
+	
+	
+	<select id="selectOneCertification" resultMap="resultMapObj">
+		SELECT
+			a.ifcfTypeCd
+			,a.ifcfEmail
+			,a.ifcfKey
+			,a.ifcfKey
+			,a.ifcfDelNy
+			<include refid="Base.selectRegModWithAlies" />
+		FROM
+			infrCertification a
+		WHERE 1=1
+			AND a.ifcfKey = #{ifcfKey}
+	</select>
+	<!-- infrCertification e -->
+	
+	<update id="infoUpdate">
+		UPDATE infrMember a, infrMemberEmail b, infrMemberPhone c
+		SET
+			a.ifmmId = #{ifmmId}
+			,a.ifmmName = #{ifmmName}
+			,a.ifmmGenderCd = #{ifmmGenderCd}
+			,a.ifmmDob = #{ifmmDob}
+			,b.ifmeEmailFull = #{ifmeEmailFull}
+			,c.ifmpNumber = #{ifmpNumber}
+		WHERE 1=1
+			AND a.ifmmSeq = #{ifmmSeq}
+	</update>
+	
+	<update id="withdrawUelete">
+		UPDATE infrMember
+		SET
+			ifmmDelNy = 1
+			<include refid="Base.updateModColumnValue" />
+		WHERE 1=1
+			AND ifmmSeq = #{ifmmSeq}
+			AND ifmmPassword = #{ifmmPassword}
+	</update>
 	
 </mapper>

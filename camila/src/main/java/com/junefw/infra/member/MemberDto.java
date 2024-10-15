@@ -68,6 +68,14 @@ public class MemberDto extends BaseDto implements Serializable {
 //	private String ifmmSeq;
 	
 	
+//	infrinsertCertification
+	private String ifcfSeq;
+	private Integer ifcfTypeCd;
+	private String ifcfEmail;
+	private String ifcfKey;
+	private Integer ifcfDelNy;
+	
+	
 //	infrMemberPhone
 	private String ifmpSeq;
 	private Integer ifmpDefaultNy;
@@ -316,6 +324,12 @@ public class MemberDto extends BaseDto implements Serializable {
 	public void setIfmmDelNy(Integer ifmmDelNy) {
 		this.ifmmDelNy = ifmmDelNy;
 	}
+	public String getIfmmPwdCheck() {
+		return ifmmPwdCheck;
+	}
+	public void setIfmmPwdCheck(String ifmmPwdCheck) {
+		this.ifmmPwdCheck = ifmmPwdCheck;
+	}
 	public String getIfmeSeq() {
 		return ifmeSeq;
 	}
@@ -405,6 +419,36 @@ public class MemberDto extends BaseDto implements Serializable {
 	}
 	public void setIfmeDelNyArray(Integer[] ifmeDelNyArray) {
 		this.ifmeDelNyArray = ifmeDelNyArray;
+	}
+	public String getIfcfSeq() {
+		return ifcfSeq;
+	}
+	public void setIfcfSeq(String ifcfSeq) {
+		this.ifcfSeq = ifcfSeq;
+	}
+	public Integer getIfcfTypeCd() {
+		return ifcfTypeCd;
+	}
+	public void setIfcfTypeCd(Integer ifcfTypeCd) {
+		this.ifcfTypeCd = ifcfTypeCd;
+	}
+	public String getIfcfEmail() {
+		return ifcfEmail;
+	}
+	public void setIfcfEmail(String ifcfEmail) {
+		this.ifcfEmail = ifcfEmail;
+	}
+	public String getIfcfKey() {
+		return ifcfKey;
+	}
+	public void setIfcfKey(String ifcfKey) {
+		this.ifcfKey = ifcfKey;
+	}
+	public Integer getIfcfDelNy() {
+		return ifcfDelNy;
+	}
+	public void setIfcfDelNy(Integer ifcfDelNy) {
+		this.ifcfDelNy = ifcfDelNy;
 	}
 	public String getIfmpSeq() {
 		return ifmpSeq;
@@ -735,15 +779,6 @@ public class MemberDto extends BaseDto implements Serializable {
 	}
 	public void setxPasswordNew(String xPasswordNew) {
 		this.xPasswordNew = xPasswordNew;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public String getIfmmPwdCheck() {
-		return ifmmPwdCheck;
-	}
-	public void setIfmmPwdCheck(String ifmmPwdCheck) {
-		this.ifmmPwdCheck = ifmmPwdCheck;
 	}
 	
 }

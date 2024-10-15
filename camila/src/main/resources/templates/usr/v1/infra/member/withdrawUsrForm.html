@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원탈퇴</title>
+</head>
+<body>
+    <h1>회원탈퇴</h1>
+	<br>
+    <input id="ifmmPassword" name="ifmmPassword" type="text" placeholder="">
+	<br>
+	<button id="btnWithdraw" type="button">회원탈퇴</button>
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
+	<script>
+		
+		document.getElementById("btnWithdraw").onclick = function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/withdrawUsrProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmPassword" : $("#ifmmPassword").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						location.href = "/v1/infra/member/signinUsrForm"
+					} else {
+						alert("비밀번호가 일치하지 않습니다.");
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>
