@@ -33,6 +33,7 @@
             a.iftpSeq
             ,a.iftpTypeCd
             ,a.iftpTitle
+            ,a.iftpName
             ,a.iftpContents
             ,a.iftpUseNy
             ,a.iftpDelNy
@@ -47,6 +48,7 @@
             a.iftpSeq
             ,a.iftpTypeCd
             ,a.iftpTitle
+            ,a.iftpName
             ,a.iftpContents
             ,a.iftpUseNy
             ,a.iftpDelNy
@@ -58,17 +60,17 @@
 
     <insert id="insert">
 			INSERT INTO infrTemplate (
-				iftpSeq
-	            ,iftpTypeCd
+	            iftpTypeCd
 	            ,iftpTitle
+	            ,iftpName
 	            ,iftpContents
 	            ,iftpUseNy
 	            ,iftpDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
-				#{iftpSeq}
-				,#{iftpTypeCd}
+				#{iftpTypeCd}
 				,#{iftpTitle}
+				,#{iftpName}
 				,#{iftpContents}
 				,#{iftpUseNy}
 				,0
@@ -84,6 +86,7 @@
 		SET
             iftpTypeCd = #{iftpTypeCd}
             ,iftpTitle = #{iftpTitle}
+            ,iftpName = #{iftpName}
             ,iftpContents = #{iftpContents}
             ,iftpUseNy = #{iftpUseNy}
 			<include refid="Base.updateModColumnValue" />

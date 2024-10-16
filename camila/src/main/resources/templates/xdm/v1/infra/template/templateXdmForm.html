@@ -66,11 +66,16 @@
 							</select>-->
 							<div class="invalid-feedback" id="iftpTypeCdFeedback"></div>
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-3">
+							<label for="iftpName" class="form-label fs--1">템플릿이름<span class="text-danger fs-0">*</span></label>
+							<input type="text" id="iftpName" name="iftpName" th:value="${item?.iftpName}" maxlength="20" placeholder="선택하세요" class="form-control"/>
+							<div class="invalid-feedback" id="iftpNameFeedback"></div>
+						</div>
+						<div class="col-md-6">
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
-							<label for="iftpTitle" class="form-label fs--1">템플릿제목</label>
+							<label for="iftpTitle" class="form-label fs--1">제목</label>
 							<input type="text" id="iftpTitle" name="iftpTitle" th:value="${item?.iftpTitle}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
 							<div class="invalid-feedback" id="iftpTitleFeedback"></div>
 						</div>
@@ -78,7 +83,7 @@
 							<!-- empty -->
 						</div>
 						<div class="col-md-6">
-							<label class="form-label fs--1">템플릿내용</label>
+							<label class="form-label fs--1">내용</label>
 							<div class="controls">
 								<textarea class="form-control" id="iftpContents" name="iftpContents" th:value="${item?.iftpContents}" th:text="${item?.iftpContents}" style="height: 100px;"></textarea>
 								<div class="invalid-feedback" id="iftpContentsFeedback"></div>
