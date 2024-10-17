@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.junefw.infra.banner.BannerDao">
+
+	<resultMap id="resultMapObj" type="com.junefw.infra.banner.BannerDto"></resultMap>
+
+    <sql id="selectCommon">
+        FROM infrBanner a
+        WHERE 1=1
+        <if test="shUseNy != null and !shUseNy.equals('')">AND a.ifbnUseNy = #{shUseNy}</if>
+        <if test="shDelNy != null and !shDelNy.equals('')">AND a.ifbnDelNy = #{shDelNy}</if>
+<!-- 				
+				<choose>
+					<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+					<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
+				</choose>
+ -->				
+        <choose>
+            <when test="shOption == 1">AND a.ifbnSeq = #{shValue}</when>
+            <when test="shOption == 2">AND a.ifbnTitle LIKE CONCAT('%',#{shValue},'%')</when>
+        </choose>
+    </sql>
+
+    <select id="selectOneCount" resultType="Integer">
+        SELECT COUNT(*)
+        <include refid="selectCommon"/>
+    </select>
+
+    <select id="selectList" resultMap="resultMapObj">
+        <include refid="Base.selectListUpperForMysql" />
+        SELECT
+            a.ifbnSeq
+            ,a.ifbnLocationCd
+            ,a.ifbnTitle
+            ,a.ifbnUrl
+            ,a.ifbnOrder
+            ,a.ifbnUseNy
+            ,a.ifbnDelNy
+						<include refid="Base.selectRegModWithAlies" />
+        <include refid="selectCommon" />
+        ORDER BY a.ifbnSeq DESC
+        <include refid="Base.selectListLowerForMysql" />
+    </select>
+
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.ifbnSeq
+            ,a.ifbnLocationCd
+            ,a.ifbnTitle
+            ,a.ifbnUrl
+            ,a.ifbnOrder
+            ,a.ifbnUseNy
+            ,a.ifbnDelNy
+						<include refid="Base.selectRegModWithAlies" />		            
+        FROM infrBanner a
+        WHERE 1=1
+        AND a.ifbnSeq = #{ifbnSeq}
+    </select>
+
+    <insert id="insert">
+			INSERT INTO infrBanner (
+	            ifbnLocationCd
+	            ,ifbnTitle
+	            ,ifbnUrl
+	            ,ifbnOrder
+	            ,ifbnUseNy
+	            ,ifbnDelNy
+				<include refid="Base.insertRegModColumn" />			
+			) VALUES (
+				#{ifbnLocationCd}
+				,#{ifbnTitle}
+				,#{ifbnUrl}
+				,#{ifbnOrder}
+				,#{ifbnUseNy}
+				,0
+				<include refid="Base.insertRegModValue" />			
+			 )
+			 <selectKey resultType="String" keyProperty="ifbnSeq" order="AFTER">
+				SELECT last_insert_id()
+			 </selectKey>
+	</insert>
+	
+	<update id="update">
+		UPDATE infrBanner
+		SET
+			ifbnLocationCd = #{ifbnLocationCd}
+			,ifbnTitle = #{ifbnTitle}
+			,ifbnUrl = #{ifbnUrl}
+			,ifbnOrder = #{ifbnOrder}
+			,ifbnUseNy = #{ifbnUseNy}
+			,ifbnDelNy = #{ifbnDelNy}
+			<include refid="Base.updateModColumnValue" />
+		WHERE 1=1
+			AND ifbnSeq = #{ifbnSeq}
+	</update>
+	
+	<update id="uelete">
+		UPDATE infrBanner 
+		SET
+			ifbnDelNy = 1
+			<include refid="Base.updateModColumnValue" />	
+		WHERE 1=1
+			AND ifbnSeq = #{ifbnSeq}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM infrBanner 
+		WHERE 1=1
+			AND ifbnSeq = #{ifbnSeq}
+	</delete>
+	
+	<select id="selectListWithoutPaging" resultMap="resultMapObj">
+		SELECT
+			a.ifbnSeq
+			, a.ifbnTitle
+		FROM infrBanner a
+		WHERE 1=1
+			AND ifbnDelNy = 0
+			And ifbnUseNy = 1
+		ORDER BY a.ifbnSeq DESC
+	</select>
+	  
+</mapper>

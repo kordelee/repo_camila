@@ -31,7 +31,7 @@
                   </a>
                   <div class="parent-wrapper label-1">
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-users">
-                      <li class="collapsed-nav-item-title d-none">Customization
+                      <li class="collapsed-nav-item-title d-none">회원관리
                       </li>
                       <li class="nav-item"><a class="nav-link" id="member" th:href="@{/v1/infra/member/memberXdmList}" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">멤버관리</span>
@@ -49,8 +49,16 @@
                   </a>
                   <div class="parent-wrapper label-1">
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-monitor">
+					  <li class="collapsed-nav-item-title d-none">서비스관리
+                      </li>
                       <li class="nav-item"><a class="nav-link" id="popup" th:href="@{/v1/infra/popup/popupXdmList}" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">팝업관리</span>
+                          </div>
+                        </a>
+                        <!-- more inner pages-->
+                      </li>
+                      <li class="nav-item"><a class="nav-link" id="banner" th:href="@{/v1/infra/banner/bannerXdmList}" data-bs-toggle="" aria-expanded="false">
+                          <div class="d-flex align-items-center"><span class="nav-link-text">배너관리</span>
                           </div>
                         </a>
                         <!-- more inner pages-->
@@ -77,6 +85,8 @@
                   </a>
                   <div class="parent-wrapper label-1">
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-qna">
+					  <li class="collapsed-nav-item-title d-none">커뮤니케이션
+                      </li>
                       <li class="nav-item"><a class="nav-link" id="qna" th:href="@{/v1/infra/qna/qnaXdmList}" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">Qna관리</span>
                           </div>
@@ -99,7 +109,7 @@
                   </a>
                   <div class="parent-wrapper label-1">
                     <ul class="nav collapse parent" data-bs-parent="#navbarVerticalCollapse" id="nv-code">
-                      <li class="collapsed-nav-item-title d-none">Customization
+                      <li class="collapsed-nav-item-title d-none">시스템관리
                       </li>
                       <li class="nav-item"><a class="nav-link" id="code" th:href="@{/v1/infra/code/codeXdmList}" data-bs-toggle="" aria-expanded="false">
                           <div class="d-flex align-items-center"><span class="nav-link-text">코드관리</span>
