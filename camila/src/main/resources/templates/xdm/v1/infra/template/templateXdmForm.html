@@ -59,10 +59,9 @@
 						</div>
 						<div class="col-md-3">
 							<label for="iftpTypeCd" class="form-label fs--1">템플릿타입<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="iftpTypeCd" name="iftpTypeCd" th:value="${item?.iftpTypeCd}" maxlength="20" placeholder="선택하세요" class="form-control"/>
 							<select id="iftpTypeCd" name="iftpTypeCd" class="form-select">
 								<option value="">선택하세요</option>
-								<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.iftpTypeCd}"></option>
+								<option th:each="list : ${@redisService.selectListCodeInRedisList(17)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.iftpTypeCd}"></option>
 							</select>
 							<div class="invalid-feedback" id="iftpTypeCdFeedback"></div>
 						</div>
@@ -110,52 +109,11 @@
 							<div class="col-md-6">
 								<!-- empty -->
 							</div>
-<!-- 											
-						<div class="col-md-3">
-							<label for="iftpReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
-							<input type="text" id="iftpReferenceV1" name="iftpReferenceV1" th:value="${item?.iftpReferenceV1}" class="form-control"/>
-							<div class="invalid-feedback" id="iftpReferenceV1Feedback"></div>
-						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV2" class="form-label fs--1">예비2 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV2" name="ifcgReferenceV2" th:value="${item?.ifcgReferenceV2}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV2Feedback"></div>
-						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV3" class="form-label fs--1">예비3 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV3" name="ifcgReferenceV3" th:value="${item?.ifcgReferenceV3}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV3Feedback"></div>
-						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV4" class="form-label fs--1">예비4 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV4" name="ifcgReferenceV4" th:value="${item?.ifcgReferenceV4}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV4Feedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifcgReferenceI1" class="form-label fs--1">예비1 (int type)</label>
-							<input type="text" id="ifcgReferenceI1" name="ifcgReferenceI1" th:value="${item?.ifcgReferenceI1}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI1Feedback"></div>
-						</div>
-						<div class="col-md-3">							
-							<label for="ifcgReferenceI2" class="form-label fs--1">예비2 (int type)</label>
-							<input type="text" id="ifcgReferenceI2" name="ifcgReferenceI2" th:value="${item?.ifcgReferenceI2}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI2Feedback"></div>
-						</div>							
-						<div class="col-md-3">						
-							<label for="ifcgReferenceI3" class="form-label fs--1">예비3 (int type)</label>
-							<input type="text" id="ifcgReferenceI3" name="ifcgReferenceI3" th:value="${item?.ifcgReferenceI3}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI3Feedback"></div>
-						</div>							
-						<div class="col-md-3">						
-							<label for="ifcgReferenceI4" class="form-label fs--1">예비4 (int type)</label>
-							<input type="text" id="ifcgReferenceI4" name="ifcgReferenceI4" th:value="${item?.ifcgReferenceI4}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI4Feedback"></div>
-						</div>						
- -->	
+							
 <th:block th:if="${not #strings.isEmpty(item?.iftpSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
-										
+
 						<div class="col-12">
 							<div class="row">
 								<div class="col-6 text-start">
@@ -233,7 +191,7 @@
 	
 	
 	function validationUpdt() {
- 		if(!checkOnlyNumber('iftpTypeCd', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
+// 		if(!checkOnlyNumber('iftpTypeCd', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyEnglishNumber('iftpReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyEnglishNumber('ifcgReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyEnglishNumber('ifcgReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;

@@ -118,49 +118,8 @@
 						
 						<div class="col-md-6">
 							<!-- empty -->
-						</div>		
-<!-- 											
-						<div class="col-md-3">
-							<label for="ifcgReferenceV1" class="form-label fs--1">예비1 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV1" name="ifcgReferenceV1" th:value="${item?.ifcgReferenceV1}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV1Feedback"></div>
 						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV2" class="form-label fs--1">예비2 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV2" name="ifcgReferenceV2" th:value="${item?.ifcgReferenceV2}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV2Feedback"></div>
-						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV3" class="form-label fs--1">예비3 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV3" name="ifcgReferenceV3" th:value="${item?.ifcgReferenceV3}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV3Feedback"></div>
-						</div>	
-						<div class="col-md-3">
-							<label for="ifcgReferenceV4" class="form-label fs--1">예비4 (varchar type)</label>
-							<input type="text" id="ifcgReferenceV4" name="ifcgReferenceV4" th:value="${item?.ifcgReferenceV4}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceV4Feedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifcgReferenceI1" class="form-label fs--1">예비1 (int type)</label>
-							<input type="text" id="ifcgReferenceI1" name="ifcgReferenceI1" th:value="${item?.ifcgReferenceI1}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI1Feedback"></div>
-						</div>
-						<div class="col-md-3">							
-							<label for="ifcgReferenceI2" class="form-label fs--1">예비2 (int type)</label>
-							<input type="text" id="ifcgReferenceI2" name="ifcgReferenceI2" th:value="${item?.ifcgReferenceI2}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI2Feedback"></div>
-						</div>							
-						<div class="col-md-3">						
-							<label for="ifcgReferenceI3" class="form-label fs--1">예비3 (int type)</label>
-							<input type="text" id="ifcgReferenceI3" name="ifcgReferenceI3" th:value="${item?.ifcgReferenceI3}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI3Feedback"></div>
-						</div>							
-						<div class="col-md-3">						
-							<label for="ifcgReferenceI4" class="form-label fs--1">예비4 (int type)</label>
-							<input type="text" id="ifcgReferenceI4" name="ifcgReferenceI4" th:value="${item?.ifcgReferenceI4}" class="form-control"/>
-							<div class="invalid-feedback" id="ifcgReferenceI4Feedback"></div>
-						</div>						
- -->	
+							
 <th:block th:if="${not #strings.isEmpty(item?.ifppSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
