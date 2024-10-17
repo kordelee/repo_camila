@@ -22,7 +22,10 @@
 		<br>
 	    <input id="ifmmName" name="ifmmName" type="text" placeholder="이름">
 		<br>
-	    <input id="ifmmGenderCd" name="ifmmGenderCd" type="text" placeholder="성별">
+		<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
+			<option value="">선택하세요</option>
+			<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
+		</select>
 		<br>
 	    <input id="ifmmDob" name="ifmmDob" type="text" placeholder="생년월일">
 		<br>

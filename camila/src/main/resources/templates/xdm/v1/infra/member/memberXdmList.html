@@ -153,11 +153,9 @@
 				<td th:if="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">N</td>
 				<td th:unless="${list.ifmmAdminNy eq 0}" class="ifmmAdminNy align-middle">Y</td>
 				<td th:text="${list.ifmmSeq}" class="ifmmSeq align-middle"></td>
-				<td th:if="${list.ifmmGenderCd != null}" th:text="${@redisService.selectOneCodeInRedisList(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
-								<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
 				<td class="ifmmName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifmmName}" th:attr="onclick=|goForm('${list.ifmmSeq}')|"></a></td>
 				<td th:text="${list.ifmmId}" class="ifmmId align-middle"></td>
-				<td th:if="${list.ifmmGenderCd != null}" th:text="${@codeService.selectOneCachedCode(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
+				<td th:if="${list.ifmmGenderCd != null}" th:text="${@redisService.selectOneCodeInRedisList(list.ifmmGenderCd)}" class="ifmmGenderCd align-middle"></td>
 				<td th:unless="${list.ifmmGenderCd != null}" class="ifmmGenderCd align-middle"></td>
 				<td th:text="${list.ifmmDob}" class="ifcdName align-middle"></td>
 				<td th:text="${list.ifmeEmailFull}" class="ifmeEmailFull align-middle"></td>
