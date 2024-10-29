@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<form id="form" name="form" method="post">
+    <h1>크릭스에 가입 하신걸 환영합니다!</h1>
+	<button type="button" id="test">test</button>
+	</form>
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+<script>
+	document.getElementById("test").onclick = function (){
+		alert("fwa");
+		form.action="/validate";
+		form.submit();
+	}
+</script>
+</body>
+</html>

@@ -96,4 +96,33 @@
 ////        
 ////	    return desiredValue;  
 ////	}
+
+
+//	@PostMapping("")
+//	public Object selectList(int code) throws Exception {
+//	    
+//		// 요청 데이터 생성
+//        MultiValueMap<String, String> requestData = new LinkedMultiValueMap<>();
+//		parameters.add("key", "value");
+//		
+//	    RestTemplate restTemplate = new RestTemplate();
+//		
+//		// 요청을 보낼 URL
+//	    String apiUrl = "http://api.odcloud.kr/api/nts-businessman/v1/validate?serviceKey=VxD%2F2teDfmU%2BYTvJG9g%2BHlKZSr0AFATDBwshQPBytrbQqtsBWBZ257FWQZOoxd4Z8Sxy0D7BP8VjAB8yDYd5sw%3D%3D&returnType=json";
+//	 // HTTP GET 요청 보내기
+//	    ResponseEntity<String> responseEntity = restTemplate.exchange(
+//	            apiUrl,
+//	            HttpMethod.POST,
+//	            null,
+//	            String.class
+//	    );
+//	
+//	    String responseBody = responseEntity.getBody();
+//	    System.out.println("Exchange GET Response: " + responseBody);
+//	    
+//	    // 원하는 키의 값 가져오기 (예: "yourKey")
+//	    Object desiredValue = responseMap.get("ifcdName");
+//	    
+//	    return desiredValue;  
+//	}
 //}

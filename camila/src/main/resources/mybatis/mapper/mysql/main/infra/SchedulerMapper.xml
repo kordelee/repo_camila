@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.junefw.infra.scheduler.SchedulerDao">
+<mapper namespace="com.junefw.common.scheduler.SchedulerDao">
 
-	<resultMap id="resultMapObj" type="com.junefw.infra.scheduler.SchedulerDto"></resultMap>
+	<resultMap id="resultMapObj" type="com.junefw.common.scheduler.SchedulerDto"></resultMap>
 
     <sql id="selectCommon">
         FROM infrMember a
@@ -23,10 +23,10 @@
 			now()
 			,(SELECT COUNT(*)
 			<include refid="selectCommon" />
-			 AND a.ifmmGenderCd = 30)
+			 AND a.ifmmGenderCd = 36)
 			,(SELECT COUNT(*)
 			<include refid="selectCommon" />
-			 AND a.ifmmGenderCd = 31)
+			 AND a.ifmmGenderCd = 37)
 			,0
 			<include refid="Base.insertRegModValue" />
 		)

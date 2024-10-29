@@ -1,4 +1,4 @@
-package com.junefw.infra.redis;
+package com.junefw.common.redis;
 
 import java.util.ArrayList;
 import java.util.List;

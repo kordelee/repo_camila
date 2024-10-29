@@ -1,4 +1,4 @@
-package com.junefw.infra.scheduler;
+package com.junefw.common.scheduler;
 
 import org.springframework.stereotype.Repository;
 
