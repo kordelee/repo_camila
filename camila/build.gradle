@@ -55,6 +55,11 @@ dependencies {
 	// session use redis
 	// https://mvnrepository.com/artifact/org.springframework.session/spring-session-data-redis
 	implementation group: 'org.springframework.session', name: 'spring-session-data-redis'
+	
+	//captcha
+	// https://mvnrepository.com/artifact/io.springboot.plugin/captcha-spring-boot-starter
+	implementation group: 'io.springboot.plugin', name: 'captcha-spring-boot-starter', version: '2.2.3'
+	
 }
 
 tasks.named('test') {

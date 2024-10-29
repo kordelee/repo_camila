@@ -59,4 +59,6 @@ public final class Constants {
 	
 	public static final String SESSION_SEQ_NAME_USR = "sessSeqUsr";
 	
+	public static final String SESSION_LOGIN_CAPTCHA_USR = "sessLoginCaptchaUsr";
+	
 }

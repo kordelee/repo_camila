@@ -38,6 +38,10 @@
 		<!--<br>
 	    <input id="ifmpNumber" name="ifmpNumber" type="text" placeholder="폰번호">-->
 		<br>
+		<div id="captchaDiv" class="captcha_box">
+            <img id="captchaImage" src="easyCaptchaCreateImageUsrProc" style=" width:130px; height:48px; border: 1px solid #aaa;"/>
+            <input type="text" class="form-control" id="captchaCode" placeholder="숫자 입력" min="0" max="99999" oninput="this.value = Math.max(0, Math.min(99999, this.value))"/>
+        </div>
 		<button id="btnSignUp" type="button">회원가입</button>
 	</form>
 		<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
@@ -62,9 +66,28 @@
 						alert("비밀번호 체크 하세요");
 					} 
 				} else {
-					form.action = "/v1/infra/member/memberUsrInst";
-					form.submit();
-				} 				
+					$.ajax({
+						async: true 
+						,cache: false
+						,type: "post"
+						/* ,dataType:"json" */
+						,url: "easyCaptchaVerificationUsrProc"
+						/* ,data : $("#formLogin").serialize() */
+						,data : { "captchaCode" : $("#captchaCode").val()}
+						,success: function(response) {
+							if(response.rt == "success") {
+								form.action = "/v1/infra/member/memberUsrInst";
+								form.submit();
+								alert("성공");
+							} else {
+								alert("실패");
+							}
+						}
+						,error : function(jqXHR, textStatus, errorThrown){
+							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+						}
+					});
+				}  	
 				
 			}
 			
