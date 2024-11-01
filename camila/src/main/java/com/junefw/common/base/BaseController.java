@@ -1,30 +1,20 @@
 package com.junefw.common.base;
 
-import java.awt.Font;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilDateTime;
 
-import io.springboot.captcha.SpecCaptcha;
-import io.springboot.captcha.base.Captcha;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+
 
 public class BaseController {
 
@@ -148,38 +138,6 @@ public class BaseController {
 	  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(strength);
 	  return passwordEncoder.matches(planeText, hashValue);
 	}	
-	
-	
-	@RequestMapping(value = "easyCaptchaCreateImageUsrProc")
-	public void easyCaptchaCreateImageUsrProc(HttpServletResponse response,HttpSession session) throws IOException {
-	    response.setContentType("image/gif");
-	    response.setHeader("Pragma", "No-cache");
-	    response.setHeader("Cache-Control", "no-cache");
-	    response.setDateHeader("Expires", 0);
-	    SpecCaptcha specCaptcha = new SpecCaptcha(130, 48, 5);
-	    specCaptcha.setFont(new Font("Verdana", Font.PLAIN, 32));
-	    specCaptcha.setCharType(Captcha.TYPE_ONLY_NUMBER);
-	    session.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_USR); // 60second * 30 = 30minute
-	    session.setAttribute(Constants.SESSION_LOGIN_CAPTCHA_USR, specCaptcha.text().toLowerCase());
-	    specCaptcha.out(response.getOutputStream());
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "easyCaptchaVerificationUsrProc")
-	public Map<String, Object> easyCaptchaVerificationUsrProc(@RequestParam("captchaCode") String captchaCode,HttpSession session) throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		// EasyCaptcha 검증
-		if (captchaCode.equals(session.getAttribute(Constants.SESSION_LOGIN_CAPTCHA_USR).toString())) {
-        	returnMap.put("rt", "success");
-        	System.out.println(session.getAttribute("captcha"));
-        	session.removeAttribute(Constants.SESSION_LOGIN_CAPTCHA_USR);
-//        	session.invalidate();
-        } else {
-        	returnMap.put("rt", "fail");
-        }
-		return returnMap;
-	}
 	
 
 //	public void simpleMailSender(String from, String to, String title, String contents) {
