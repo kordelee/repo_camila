@@ -7,16 +7,91 @@
 </head>
 <body>
 	<form id="form" name="form" method="post">
-    <h1>크릭스에 가입 하신걸 환영합니다!</h1>
-	<button type="button" id="test">test</button>
+    <h1>사업자번호 api 테스트</h1>
+	<input type="text" id="fappBizNumber" name="fappBizNumber" placeholder="사업자 테스트">
+	<button type="button" id="test">test</button> <br>
+	<input type="text" id="copyrightNumber" name="copyrightNumber" placeholder="저작권테스트">
+	<button type="button" id="test2">test2</button><br>
+	<input type="text" id="trademarkNumber" name="trademarkNumber" placeholder="상표권테스트">
+	<button type="button" id="test3">test3</button>
 	</form>
 	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
 <script>
 	document.getElementById("test").onclick = function (){
-		alert("fwa");
-		form.action="/validate";
-		form.submit();
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/apiExternalCheckBiznum"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "fappBizNumber" : $("#fappBizNumber").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert("성공");
+					document.getElementById("test").remove();
+				} else {
+					alert("계속사업자가 아닙니다");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	
+	document.getElementById("test2").onclick = function (){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/apiExternalCheckCopyright"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "copyrightNumber" : $("#copyrightNumber").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert("성공");
+					document.getElementById("test2").remove();
+				} else {
+					alert("저작권이 존재하지 않습니다");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+		
+	document.getElementById("test3").onclick = function (){
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/apiExternalCheckTrademark"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "trademarkNumber" : $("#trademarkNumber").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert("성공");
+					document.getElementById("test3").remove();
+				} else {
+					alert("상표권이 존재하지 않습니다");
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
 	}
 </script>
+	
+<!--<script>
+	document.getElementById("test").onclick = function (){
+		form.action="/apiExternalCheckCopyright"
+		form.submit();
+	}
+</script>-->
 </body>
 </html>
