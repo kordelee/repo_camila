@@ -19,17 +19,23 @@ import com.junefw.infra.mail.MailService;
 import com.junefw.infra.template.TemplateVo;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @EnableRedisHttpSession
-@RequestMapping(value = "/v1/infra/member")
+@RequestMapping(value = {"/v1/infra/member" , "/v0/infra/member"})
 public class MemberController extends BaseController{
 	
 	String pathCommonXdm = "xdm/v1/infra/member/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/member/";
 
-	String pathCommonUsr = "usr/v1/infra/member/";
-	String pathRedirectCommonUsr = "redirect:/v1/infra/member/";
+	String pathCommonUsr = "usr/v0/infra/member/";
+	String pathRedirectCommonUsr = "redirect:/v0/infra/member/";
+	
+//	String pathCommonUsr = "usr/v1/infra/member/";
+//	String pathRedirectCommonUsr = "redirect:/v1/infra/member/";
 	
 	
 	@Autowired
@@ -472,15 +478,16 @@ public class MemberController extends BaseController{
 	
 	
 	@RequestMapping(value = "changePwdUsrForm")
-    public String changePwdUsrForm(@ModelAttribute("dto") MemberDto dto) throws Exception{
+    public String changePwdUsrForm() throws Exception{
     	return pathCommonUsr + "changePwdUsrForm";
     }
 	
 	
 	@ResponseBody
 	@RequestMapping(value = "changPwdUsrProc")
-	public Map<String, Object> changPwdUsrProc(MemberDto dto) throws Exception {
+	public Map<String, Object> changPwdUsrProc(MemberDto dto,HttpSession session) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
 		service.updateChangePwd(dto);
 		returnMap.put("rt", "success");
 		return returnMap;
@@ -606,5 +613,10 @@ public class MemberController extends BaseController{
 		return returnMap;
 	}
 	
+	
+	@RequestMapping(value = "expiredPwdUsrForm")
+    public String expiredPwdUsrForm() throws Exception{
+    	return pathCommonUsr + "expiredPwdUsrForm";
+    }
 	
 }

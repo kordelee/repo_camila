@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<div th:replace="~{usr/v0/infra/include/head :: head}"></div>
+
+<body>
+
+<!-- skippy -->
+<a id="skippy" class="skippy visually-hidden-focusable overflow-hidden" href="#content">
+    <div class="container">
+        <span class="u-skiplink-text">Skip to main content</span>
+    </div>
+</a>
+<!-- End skippy -->
+<!-- Preload -->
+<!--<div id="loading" class="loading-preloader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+--><!-- End Preload -->
+
+<!-- 
+========================
+    Wrapper 
+========================
+-->
+<div class="wrapper">
+    <!-- heder height -->
+    <div class="header-height-bar"></div>
+    
+<!-- includeUsrGnb s -->
+<div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
+<!-- includeUsrGnb e -->  
+
+<!-- Main -->
+    <main>
+        <!-- login page -->
+        <div class="section">
+            <div class="container">
+                <div class="justify-content-center row">
+                    <div class="col-lg-5 col-xxl-4 pt-10">
+                        <div class="card">
+                            <div class="card-header bg-transparent py-3">
+                                <h3 class="h4 mb-0">Find Password </h3>
+                            </div>
+							<form id="form" name="form" method="post">
+								<div id="rtId">
+		                            <div id="findPwd" class="card-body">
+										<div class="form-group mb-3">
+										    <label for="ifmmName" class="form-label">Name<span class="text-danger">*</span></label>
+										    <input type="text" id="ifmmName" name="ifmmName" maxlength="20" class="form-control" placeholder="Name">
+										</div>
+										<div class="form-group mb-3">
+									        <label class="form-label col" for="ifmmId">ID<span class="text-danger">*</span></label>
+										    <input type="text" id="ifmmId" name="ifmmId" maxlength="20" class="form-control" placeholder="">
+										</div>
+										<div class="form-group mb-3">
+									        <label class="form-label col" for="ifmeEmailFull">Email<span class="text-danger">*</span></label>
+										    <input type="text" id="ifmeEmailFull" name="ifmeEmailFull" maxlength="20" class="form-control" placeholder="abc@example.com">
+										</div>
+										<div class="form-group text-center">
+									        <button type="button" class="btn btn-primary w-100" id="btnSmtp">
+									            인증번호 전송
+									        </button>
+									    </div>
+										<div class="text-center pb-3" id="fail" hidden>실패</div>
+										<div class="text-center pb-3" id="authEmail" hidden>
+											<label>인증번호</label>
+										    <input type="text" id="ifcfKey" name="ifcfKey" class="form-control"><span id="timeout"></span>
+											<button type="button" class="btn btn-primary w-100" id="btnSmtpCk">인증번호 확인</button><br>
+										</div>
+										<div class="text-center pb-3" id="ckFail" hidden>실패</div>
+										<div class="text-center pb-3" id="goChangePwd" hidden>
+											<input type="hidden" id="ifmmSeq" name="ifmmSeq">
+											<button type="button" class="btn btn-primary w-100" id="btnFindPwd" >비밀번호 찾기</button>
+										</div>
+										<div class="text-center pb-3" id="resultFindPwd">
+										    <!-- <span class="text-muted">임시 비밀번호를 메일로 발송해 드렸습니다.</span> -->
+										</div>                                    
+		                            </div>
+								</div>
+							</form>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <!-- end login -->
+    </main>
+    <!-- End Main -->
+    
+<!-- includeUsrFooter s -->
+<div th:replace="~{usr/v0/infra/include/footer :: footer}"></div>
+<!-- includeUsrFooter e -->   
+
+</div>
+<!-- 
+========================
+    End Wrapper 
+========================
+-->
+<!-- includeUsrLinkJs s -->
+<div th:replace="~{usr/v0/infra/include/linkJs :: linkJs}"></div>
+<!-- includeUsrLinkJs e -->
+<script>
+		
+		document.getElementById("btnSmtp").onclick = function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/sendMailGoogleCertificationUsrProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("ifmmSeq").value = response.seq;
+						document.getElementById("btnSmtp").remove();
+						document.getElementById("fail").hidden = true;
+						document.getElementById("authEmail").hidden = false;
+					} else {
+						document.getElementById("fail").hidden = false;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		
+		document.getElementById("btnSmtpCk").onclick = function(){
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/certificationCheckUsrProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifcfKey" : $("#ifcfKey").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						document.getElementById("goChangePwd").hidden = false;
+						document.getElementById("ckFail").hidden = true;
+					} else {
+						document.getElementById("ckFail").hidden = false;
+						document.getElementById("ifcfKey").value = null;
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		
+		document.getElementById("btnFindPwd").onclick = function () {
+			let findPwd = document.getElementById("findPwd")
+			$.ajax({
+				async: true 
+				,cache: false
+				,type: "post"
+				/* ,dataType:"json" */
+				,url: "/v1/infra/member/findIdPwdProc"
+				/* ,data : $("#formLogin").serialize() */
+				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+				,success: function(response) {
+					if(response.rt == "success") {
+						findPwd.remove();
+					} else {
+					}
+				}
+				,error : function(jqXHR, textStatus, errorThrown){
+					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+				}
+			});
+		}
+		
+		function timeoutTimer(endTime, timeout) {
+			let now = Date.now();
+			let end = endTime.getTime();
+			let timeLeft = end - now;
+			let secondsLeft = Math.max(0, Math.floor(timeLeft / 1000));
+
+			// 남은 분과 초 계산
+			let minutes = Math.floor(secondsLeft / 60);
+			let seconds = secondsLeft % 60;
+
+			// 두 자리로 나타내기 위해 초가 한 자리일 경우 앞에 '0'을 붙임
+			let formattedTime = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+			document.getElementById("timeout").innerText = formattedTime;
+
+			if (secondsLeft <= 0) {
+				document.getElementById("authEmail").remove();
+				return;
+			}
+
+			setTimeout(function() {
+				timeoutTimer(endTime, timeout);
+			}, timeout);
+		}
+
+		// 5분 타이머 시작 (1분 = 60000ms, timeout = 900ms)
+		timeoutTimer(new Date(Date.now() + (TIMER_MINUTES*3)), 900);
+		
+		
+		document.getElementById("btnFindPwd").onclick = function () {
+		    form.action = "/v1/infra/member/changePwdUsrForm";
+		    form.submit();
+		}
+	</script>
+
+</body>
+
+</html>

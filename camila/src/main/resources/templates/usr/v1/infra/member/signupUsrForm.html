@@ -66,27 +66,8 @@
 						alert("비밀번호 체크 하세요");
 					} 
 				} else {
-					$.ajax({
-						async: true 
-						,cache: false
-						,type: "post"
-						/* ,dataType:"json" */
-						,url: "easyCaptchaVerificationUsrProc"
-						/* ,data : $("#formLogin").serialize() */
-						,data : { "captchaCode" : $("#captchaCode").val()}
-						,success: function(response) {
-							if(response.rt == "success") {
-								form.action = "/v1/infra/member/memberUsrInst";
-								form.submit();
-								alert("성공");
-							} else {
-								alert("실패");
-							}
-						}
-						,error : function(jqXHR, textStatus, errorThrown){
-							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-						}
-					});
+					form.action = "/v1/infra/member/memberUsrInst";
+					form.submit();
 				}  	
 				
 			}
