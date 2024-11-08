@@ -477,6 +477,16 @@ public class MemberController extends BaseController{
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value = "findChangePwdUsrProc")
+	public Map<String, Object> findChangePwdUsrProc(MemberDto dto,HttpSession session) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		service.updateChangePwd(dto);
+		returnMap.put("rt", "success");
+		return returnMap;
+	}
+	
+	
 	@RequestMapping(value = "changePwdUsrForm")
     public String changePwdUsrForm() throws Exception{
     	return pathCommonUsr + "changePwdUsrForm";
