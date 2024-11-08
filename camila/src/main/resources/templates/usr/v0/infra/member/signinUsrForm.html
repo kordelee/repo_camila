@@ -34,7 +34,7 @@
 
 <!-- Main -->
     <main>
-<form id="formLogin" name="formLogin" method="post">    
+<form id="formLogin" name="formLogin" method="post" autocomplete="off">    
         <!-- Breadcrumb -->
 
         <!--<div class="py-3 bg-gray-100">
@@ -68,13 +68,15 @@
                                     <div class="form-group mb-3">
                                         <label for="email_1" class="form-label">ID<span class="text-danger">*</span></label>
                                         <input type="text" id="ifmmId" name="ifmmId" maxlength="20" class="form-control" placeholder="ID">
+										<div class="invalid-feedback" id="ifmmIdFeedback"></div>
                                     </div>
                                     <div class="form-group mb-3">
                                         <div class="row align-items-center">
                                             <label class="form-label col" for="exampleInputPassword01">Password<span class="text-danger">*</span></label>
-                                            <span class="col ms-auto small text-end"><a href="/v0/infra/member/findIdPwdUsrForm">Forgot password?</a></span>
+                                            <span class="col ms-auto small text-end"><a th:href="@{/v0/infra/member/findPwdUsrForm}">Forgot password?</a></span>
                                         </div>
                                         <input type="password" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="*********">
+										<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
                                     </div>
                                     <!-- Checkbox -->
                                     <div class="form-check mb-3">
@@ -102,7 +104,7 @@
                                 </div>
 -->
                                 <div class="pt-4 text-center">
-                                    <span class="text-muted">Don't have an account? <a href="/v1/infra/member/signUpUsrForm">Signup here</a></span>
+                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signupUsrForm}">Signup here</a></span>
                                 </div>
                             </div>
                         </div>
@@ -132,7 +134,7 @@
 <script type="text/javascript">
 
 $("#btnLogin").on("click", function(){
-	if(validation() == false) return false;
+	if(validationInst() == false) return false;
 
 	$.ajax({
 		async: true 
@@ -162,9 +164,14 @@ $("#btnLogin").on("click", function(){
 });
 
 
-validation = function() {
-	// if(!checkNull($("#ifmmId"), $.trim($("#ifmmId").val()), "아이디를 입력해 주세요!")) return false;
-	// if(!checkNull($("#ifmmPassword"), $.trim($("#ifmmPassword").val()), "비밀번호를 입력해 주세요!")) return false;
+function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+function validationUpdt() {
+	if(!checkNull('ifmmId', 2, 0, "아이디를 입력해주세요")) return false;
+	if(!checkNull('ifmmPassword', 2, 0, "비밀번호를 입력해주세요")) return false;
 }
 
 </script>

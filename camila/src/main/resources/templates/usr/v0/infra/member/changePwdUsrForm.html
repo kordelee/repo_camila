@@ -88,6 +88,7 @@
 					<div class="form-group">
 						<label for="ifmmPassword" class="form-label">비밀번호</label>
 						<input type="password" id="ifmmPassword" class="form-control" name="ifmmPassword">
+						<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
 					</div>
 				</div>
 				<div class="col-sm-6 mb-3">
@@ -96,6 +97,7 @@
 					<div class="form-group">
 						<label for="ifmmPasswordCk" class="form-label">비밀번호확인</label>
 						<input type="password" id="ifmmPasswordCk" class="form-control" name="ifmmPasswordCk">
+						<div class="invalid-feedback" id="ifmmPasswordCkFeedback"></div>
 					</div>
 				</div>
 				<!--<div class="col-sm-6 mb-3">
@@ -186,34 +188,44 @@ validationFindId = function() {
 
 <script>
 		
-			document.getElementById("btnChangePwd").onclick = function(){
-				let pwd = document.getElementById("ifmmPassword").value;
-				let pwdCk = document.getElementById("ifmmPasswordCk").value;
-				if(pwd == pwdCk){
-					$.ajax({
-						async: true 
-						,cache: false
-						,type: "post"
-						/* ,dataType:"json" */
-						,url: "/v1/infra/member/changPwdUsrProc"
-						/* ,data : $("#formLogin").serialize() */
-						,data : {"ifmmPassword" : $("#ifmmPassword").val()}
-						,success: function(response) {
-							if(response.rt == "success") {
-								location.href = "/v1/infra/member/signinUsrForm"
-							} else {
-	//							by pass
-							}
+		document.getElementById("btnChangePwd").onclick = function(){
+			if(validationInst() == false) return false;
+			let pwd = document.getElementById("ifmmPassword").value;
+			let pwdCk = document.getElementById("ifmmPasswordCk").value;
+			if(pwd == pwdCk){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/changPwdUsrProc"
+					/* ,data : $("#formLogin").serialize() */
+					,data : {"ifmmPassword" : $("#ifmmPassword").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("ifmmPasswordCk").classList.remove('is-invalid');
+							document.getElementById("ifmmPasswordCkFeedback").remove();
+							location.href = "/v1/infra/member/signinUsrForm"
+						} else {
+//							by pass
 						}
-						,error : function(jqXHR, textStatus, errorThrown){
-							alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-						}
-					});
-				} else {
-					alert("비밀번호가 일치하지 않습니다.");
-				}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			} else {
+				document.getElementById("ifmmPasswordCk").classList.add('is-invalid');
+				document.getElementById("ifmmPasswordCkFeedback").innerText = '비밀번호가 일치하지 않습니다.';
 			}
+		}
 		
+		function validationInst() {
+		    if(validationUpdt() == false) return false;
+		}
+		function validationUpdt() {
+			if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력해주세요")) return false;
+		}
 			
 			
 	</script>

@@ -43,36 +43,49 @@
                             <div class="card-header bg-transparent py-3">
                                 <h3 class="h4 mb-0">Find Password </h3>
                             </div>
-							<form id="form" name="form" method="post">
+							<form id="form" name="form" method="post" autocomplete="off">
 								<div id="rtId">
 		                            <div id="findPwd" class="card-body">
-										<div class="form-group mb-3">
-										    <label for="ifmmName" class="form-label">Name<span class="text-danger">*</span></label>
-										    <input type="text" id="ifmmName" name="ifmmName" maxlength="20" class="form-control" placeholder="Name">
+										<div id="inputDiv">
+											<div class="form-group mb-3">
+											    <label for="ifmmName" class="form-label">Name<span class="text-danger">*</span></label>
+											    <input type="text" id="ifmmName" name="ifmmName" maxlength="20" class="form-control" placeholder="Name">
+												<div class="invalid-feedback" id="ifmmNameFeedback"></div>
+											</div>
+											<div class="form-group mb-3">
+										        <label class="form-label col" for="ifmmId">ID<span class="text-danger">*</span></label>
+											    <input type="text" id="ifmmId" name="ifmmId" maxlength="20" class="form-control" placeholder="">
+												<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+											</div>
+											<div class="form-group mb-3">
+										        <label class="form-label col" for="ifmeEmailFull">Email<span class="text-danger">*</span></label>
+											    <input type="text" id="ifmeEmailFull" name="ifmeEmailFull" maxlength="20" class="form-control" placeholder="abc@example.com">
+												<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+											</div>
+											<div class="form-group text-center">
+										        <button type="button" class="btn btn-primary w-100" id="btnSmtp">
+										            인증번호 전송
+										        </button>
+										    </div>
 										</div>
-										<div class="form-group mb-3">
-									        <label class="form-label col" for="ifmmId">ID<span class="text-danger">*</span></label>
-										    <input type="text" id="ifmmId" name="ifmmId" maxlength="20" class="form-control" placeholder="">
-										</div>
-										<div class="form-group mb-3">
-									        <label class="form-label col" for="ifmeEmailFull">Email<span class="text-danger">*</span></label>
-										    <input type="text" id="ifmeEmailFull" name="ifmeEmailFull" maxlength="20" class="form-control" placeholder="abc@example.com">
-										</div>
-										<div class="form-group text-center">
-									        <button type="button" class="btn btn-primary w-100" id="btnSmtp">
-									            인증번호 전송
-									        </button>
-									    </div>
-										<div class="text-center pb-3" id="fail" hidden>실패</div>
-										<div class="text-center pb-3" id="authEmail" hidden>
-											<label>인증번호</label>
+										<div class="form-group mb-3" id="authEmail" hidden>
+											<label class="form-label col" for="ifcfKey">인증번호<span class="text-danger">*</span></label>
 										    <input type="text" id="ifcfKey" name="ifcfKey" class="form-control"><span id="timeout"></span>
 											<button type="button" class="btn btn-primary w-100" id="btnSmtpCk">인증번호 확인</button><br>
 										</div>
-										<div class="text-center pb-3" id="ckFail" hidden>실패</div>
-										<div class="text-center pb-3" id="goChangePwd" hidden>
+										<div id="goChangePwd" hidden>
 											<input type="hidden" id="ifmmSeq" name="ifmmSeq">
-											<button type="button" class="btn btn-primary w-100" id="btnFindPwd" >비밀번호 찾기</button>
+											<div class="form-group mb-3">
+										        <label class="form-label col" for="ifmmPassword">Password<span class="text-danger">*</span></label>
+											    <input type="text" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="">
+												<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+											</div>
+											<div class="form-group mb-3">
+										        <label class="form-label col" for="ifmmPasswordCk">PasswordCheck<span class="text-danger">*</span></label>
+											    <input type="text" id="ifmmPasswordCk" name="ifmmPasswordCk" maxlength="20" class="form-control" placeholder="abc@example.com">
+												<div class="invalid-feedback" id="ifmmPasswordCkFeedback"></div>
+											</div>
+											<button type="button" class="btn btn-primary w-100" id="btnChangePwd" >비밀번호 찾기</button>
 										</div>
 										<div class="text-center pb-3" id="resultFindPwd">
 										    <!-- <span class="text-muted">임시 비밀번호를 메일로 발송해 드렸습니다.</span> -->
@@ -104,6 +117,8 @@
 <!-- includeUsrLinkJs e -->
 <script>
 		
+		
+		
 		document.getElementById("btnSmtp").onclick = function(){
 			$.ajax({
 				async: true 
@@ -117,10 +132,9 @@
 					if(response.rt == "success") {
 						document.getElementById("ifmmSeq").value = response.seq;
 						document.getElementById("btnSmtp").remove();
-						document.getElementById("fail").hidden = true;
 						document.getElementById("authEmail").hidden = false;
 					} else {
-						document.getElementById("fail").hidden = false;
+						alert("가입 정보를 확인해주세요");
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -141,10 +155,11 @@
 				,data : { "ifcfKey" : $("#ifcfKey").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
 				,success: function(response) {
 					if(response.rt == "success") {
+						document.getElementById("inputDiv").hidden = true;
+						document.getElementById("authEmail").hidden = true;
 						document.getElementById("goChangePwd").hidden = false;
-						document.getElementById("ckFail").hidden = true;
 					} else {
-						document.getElementById("ckFail").hidden = false;
+						alert("인증번호가 일치하지 않습니다");
 						document.getElementById("ifcfKey").value = null;
 					}
 				}
@@ -154,27 +169,36 @@
 			});
 		}
 		
-		
-		document.getElementById("btnFindPwd").onclick = function () {
-			let findPwd = document.getElementById("findPwd")
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post"
-				/* ,dataType:"json" */
-				,url: "/v1/infra/member/findIdPwdProc"
-				/* ,data : $("#formLogin").serialize() */
-				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
-				,success: function(response) {
-					if(response.rt == "success") {
-						findPwd.remove();
-					} else {
+		document.getElementById("btnChangePwd").onclick = function(){
+			if(validationInst() == false) return false;
+			let pwd = document.getElementById("ifmmPassword").value;
+			let pwdCk = document.getElementById("ifmmPasswordCk").value;
+			if(pwd == pwdCk){
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/infra/member/findChangePwdUsrProc"
+					/* ,data : $("#formLogin").serialize() */
+					,data : {"ifmmSeq" : $("#ifmmSeq").val(),"ifmmPassword" : $("#ifmmPassword").val()}
+					,success: function(response) {
+						if(response.rt == "success") {
+							document.getElementById("ifmmPasswordCk").classList.remove('is-invalid');
+							location.href = "/v1/infra/member/signinUsrForm"
+						} else {
+//							by pass
+						}
 					}
-				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+			} else {
+				document.getElementById("ifmmPasswordCk").classList.add('is-invalid');
+				document.getElementById("ifmmPasswordCkFeedback").innerText = '비밀번호가 일치하지 않습니다.';
+				document.getElementById("ifmmPasswordCk").value = ''
+			}
 		}
 		
 		function timeoutTimer(endTime, timeout) {
@@ -206,12 +230,15 @@
 		timeoutTimer(new Date(Date.now() + (TIMER_MINUTES*3)), 900);
 		
 		
-		document.getElementById("btnFindPwd").onclick = function () {
-		    form.action = "/v1/infra/member/changePwdUsrForm";
-		    form.submit();
+		function validationInst() {
+		    if(validationUpdt() == false) return false;
+		}
+		
+		
+		function validationUpdt() {
+	 		if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력해주세요")) return false;
 		}
 	</script>
-
 </body>
 
 </html>

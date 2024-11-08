@@ -30,7 +30,7 @@ $("#btnLogout").on("click", function(){
 		async: true 
 		,cache: false
 		,type: "post"
-		,url: "/v1/infra/member/logoutUsrProc"
+		,url: "/v1/infra/member/signoutUsrProc"
 		,data: {}
 		,success: function(response) {
 			if(response.rt == "success") {

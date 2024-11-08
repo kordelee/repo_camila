@@ -4,7 +4,7 @@
 	    <nav class="navbar navbar-expand-lg navbar-light">
 	        <div class="container">
 	            <!-- Logo -->
-	            <a class="navbar-brand" href="/">
+	            <a class="navbar-brand" th:href="@{/v0/infra/index/indexUsrView}">
 	                <img src="/usr/v0/template/shopapp/assets/img/logo.svg" title="" alt="">
 	            </a>
 	            <!-- End Logo -->
@@ -81,12 +81,12 @@
 	                    <div class="dropdown-menu dropdown-menu-end mt-2 shadow" aria-labelledby="dropdown_myaccount">
 
 		<div th:if="${session.sessSeqUsr} == null">
-							<a class="dropdown-item" href="/v1/infra/member/loginUsrForm">Login</a>
-							<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">SignUp</a>
+							<a class="dropdown-item" th:href="@{/v0/infra/member/signinUsrForm}">Login</a>
+							<a class="dropdown-item" th:href="@{/v0/infra/member/signupUsrForm}">SignUp</a>
 		</div>
 		<div th:unless="${session.sessSeqUsr} == null">
-							<a class="dropdown-item" href="javascript:void(0);" id="btnLogout">Logout</a>
-							<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">My page</a>
+							<a class="dropdown-item" id="btnLogout">Logout</a>
+							<a class="dropdown-item" th:href="@{/v0/infra/member/memberUsrForm}">My page</a>
 		</div>
 
 
