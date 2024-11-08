@@ -3,19 +3,9 @@ validationTest = function() {
 }
 
 
-function checkNull (objName, pattern, message) {
-// checkNull = function(obj, value, message) {
-    var obj = document.getElementById(objName);
-    var objValue = document.getElementById(objName).value.trim();
-    var objFeedback = document.getElementById(objName+"Feedback");
-
-    if (objValue == "" || objValue == null) {
-        checkLogicExpression (obj, objFeedback, pattern, message);
-        return false;
-    } else {
-        obj.classList.remove('is-invalid');
-        return true;
-    }
+function checkNull (objName, pattern, nullAllowedNy, message) {
+	var regExp = /^(?!\s*$).+/;;
+    return checkLogic (objName, pattern, nullAllowedNy, message, regExp);;
 }
 
 /*
