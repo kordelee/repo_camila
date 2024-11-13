@@ -17,7 +17,7 @@ public final class Constants {
 	
 	public static final int SESSION_MINUTE_XDM = 30;
 	
-	public static final String URL_LOGINFORM = "/v1/infra/member/signinXdmForm";
+	public static final String URL_LOGINXDMFORM = "/v1/infra/member/signinXdmForm";
 	
 	public static final String DATETIME_FORMAT_BASIC = "yyyy-MM-dd HH:mm:ss";
 
@@ -60,5 +60,7 @@ public final class Constants {
 	public static final String SESSION_SEQ_NAME_USR = "sessSeqUsr";
 	
 	public static final String SESSION_LOGIN_CAPTCHA_USR = "sessLoginCaptchaUsr";
+	
+	public static final String URL_LOGINUSRFORM = "/v1/infra/member/signinUsrForm";
 	
 }
