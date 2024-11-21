@@ -45,6 +45,20 @@ public class UtilDateTime {
 	}
 	
 	
+	public static String calculateMonthString(LocalDateTime localDateTime, int month) throws Exception {
+		LocalDateTime localDateTimeNew;
+		
+		if(month >= 0) {
+			localDateTimeNew = localDateTime.plusMonths(month); 
+		} else {
+			localDateTimeNew = localDateTime.minusMonths(Math.abs(month));
+		}
+		
+		String localDateTimeNewString = localDateTimeNew.format(DateTimeFormatter.ofPattern(Constants.DATETIME_FORMAT_BASIC));
+		return localDateTimeNewString;
+	}
+	
+	
 	public static String calculateDayReplace00TimeString(LocalDateTime localDateTime, int day) throws Exception {
 		LocalDateTime localDateTimeNew;
 		
@@ -85,6 +99,23 @@ public class UtilDateTime {
 		String localDateTimeNewString = localDateTimeNew.format(DateTimeFormatter.ofPattern(Constants.DATETIME_FORMAT_BASIC));
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATETIME_FORMAT_BASIC);
         Date date = simpleDateFormat.parse(localDateTimeNewString);
+		
+		return date;
+	}
+	
+	
+	public static Date calculateMonthDate(LocalDateTime localDateTime, int month) throws Exception {
+		LocalDateTime localDateTimeNew;
+		
+		if(month >= 0) {
+			localDateTimeNew = localDateTime.plusMonths(Math.abs(month)); 
+		} else {
+			localDateTimeNew = localDateTime.minusMonths(Math.abs(month));
+		}
+		
+		String localDateTimeNewString = localDateTimeNew.format(DateTimeFormatter.ofPattern(Constants.DATETIME_FORMAT_BASIC));
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATETIME_FORMAT_BASIC);
+		Date date = simpleDateFormat.parse(localDateTimeNewString);
 		
 		return date;
 	}
