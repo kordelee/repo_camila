@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.junefw.common.base.BaseService;
+import com.junefw.common.constants.Constants;
 import com.junefw.infra.code.CodeDao;
 import com.junefw.infra.code.CodeDto;
 
@@ -49,7 +50,7 @@ public class RedisService extends BaseService {
 	    	redisList.add(codeListFromDb.getIfcdName());
 	    	redisList.add(codeListFromDb.getIfcgSeq());
 	        
-	    	ListOperations.rightPush("codeGroup", redisList);
+	    	ListOperations.rightPush(Constants.PROJECT_NAME + "codeGroup", redisList);
 	    }
 	}
 	

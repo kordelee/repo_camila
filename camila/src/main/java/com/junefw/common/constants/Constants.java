@@ -3,6 +3,7 @@ package com.junefw.common.constants;
 public final class Constants {
 
 //	common
+	public static final String PROJECT_NAME = "camila";
 	
 	public static final String ABBREVIATION_ADMIN = "Xdm"; 
 	public static final String ABBREVIATION_USER = "Usr";
