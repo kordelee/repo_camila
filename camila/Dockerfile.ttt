@@ -10,8 +10,8 @@ RUN apk add tzdata && ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 # create project directory
 RUN mkdir ${project}
 
-#COPY build/libs/*.jar /${workdir}/spring-base.jar
-COPY build/libs/*.jar /${project}/${project}.jar
+#COPY : from local jar to docker imags 
+COPY build/libs/*.jar /${project}/${project}_ttt.jar
 
 # exec jar without env
-ENTRYPOINT ["sh", "-c", "java -jar /${project}/${project}.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar -Dspring.profiles.active=ttt /${project}/${project}_ttt.jar"]
