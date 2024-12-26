@@ -28,15 +28,15 @@
 				<li class="breadcrumb-item active">Default</li>								<!-- ### -->
 			</ol>
 		</nav>
-	  <div class="mb-9">
-	    <div class="row g-3 mb-4">
-	      <div class="col-auto">
-	        <h2 class="mb-0">팝업관리</h2>														<!-- ### -->
-	      </div>
-	    </div>
+	  	<div class="mb-9">
+	    	<div class="row g-3 mb-4">
+	      		<div class="col-auto">
+	        		<h2 class="mb-0">팝업관리</h2>														<!-- ### -->
+	      		</div>
+	    	</div>
 	    <!--수정-->
-	    <div id="orderTable"
-	      data-list='{"valueNames":["ifppSeq","ifppTitle","ifppOrder","ifppUrl","ifppDisplayNy","ifppDelNy","ifppStartDateTime","ifppEndDateTime","regDateTime","modDateTime"]}'>
+	    	<div id="orderTable"
+	      		data-list='{"valueNames":["ifppSeq","ifppTitle","ifppOrder","ifppUrl","ifppDisplayNy","ifppDelNy","ifppStartDateTime","ifppEndDateTime","regDateTime","modDateTime"]}'>
 
 <!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
@@ -64,8 +64,8 @@
 				<option value="" th:selected="${vo.shDisplayNy == null}">디스플레이</option>
 				<option value="1" th:selected="${vo.shDisplayNy == 1}">Y</option>
 				<option value="0" th:selected="${vo.shDisplayNy == 0}">N</option>
-	</select>
-</div>			
+			</select>
+		</div>			
 		<div class="col">
 			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>

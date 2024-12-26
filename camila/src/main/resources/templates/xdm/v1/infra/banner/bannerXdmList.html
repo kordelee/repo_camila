@@ -28,14 +28,14 @@
 				<li class="breadcrumb-item active">Default</li>								<!-- ### -->
 			</ol>
 		</nav>
-	  <div class="mb-9">
-	    <div class="row g-3 mb-4">
-	      <div class="col-auto">
-	        <h2 class="mb-0">배너관리</h2>														<!-- ### -->
-	      </div>
-	    </div>
-	    <div id="orderTable"
-	      data-list='{"valueNames":["ifbnSeq","ifbnUseNy","ifbnDelNy","ifbnTitle","ifbnUrl","ifbnLocationCd","ifbnOrder","regDateTime","modDateTime"]}'>
+	  	<div class="mb-9">
+	  		<div class="row g-3 mb-4">
+	      		<div class="col-auto">
+	        		<h2 class="mb-0">배너관리</h2>														<!-- ### -->
+	      		</div>
+	    	</div>
+	    	<div id="orderTable"
+	     	 data-list='{"valueNames":["ifbnSeq","ifbnUseNy","ifbnDelNy","ifbnTitle","ifbnUrl","ifbnLocationCd","ifbnOrder","regDateTime","modDateTime"]}'>
 
 <!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
@@ -63,8 +63,8 @@
 				<option value="" th:selected="${vo.shUseNy == null}">사용여부</option>
 				<option value="1" th:selected="${vo.shUseNy == 1}">Y</option>
 				<option value="0" th:selected="${vo.shUseNy == 0}">N</option>
-	</select>
-</div>			
+			</select>
+		</div>			
 		<div class="col">
 			<select id="shOptionDate" name="shOptionDate" class="form-select form-select-sm">
 				<option value="" th:selected="${vo.shOptionDate == null}">날짜</option>
