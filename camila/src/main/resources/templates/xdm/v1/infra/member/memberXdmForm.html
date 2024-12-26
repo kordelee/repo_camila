@@ -43,11 +43,11 @@
 		</ol>
 	</nav>
 	<div class="mb-9">
-	  <div class="row g-3 mb-4">
-	    <div class="col-auto">
-	      <h2 class="mb-0">Member</h2>																<!-- ### -->
-	    </div>
-	  </div>
+	  	<div class="row g-3 mb-4">
+	    	<div class="col-auto">
+	      		<h2 class="mb-0">Member</h2>																<!-- ### -->
+	    	</div>
+	  	</div>
 		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
 			<div class="card-header p-4 border-bottom border-300 bg-soft">
 				<div class="row g-3 justify-content-between align-items-center">
@@ -62,152 +62,152 @@
 			
 <div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### --> 					
 						
-						<div class="col-md-3">
-							<label for="ifmmSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmSeq" name="ifmmSeq" th:value="${item?.ifmmSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
-						</div>
-						<div class="col-md-9">
-						</div>						
-						<div class="col-md-3">
-							<label for="ifmmId" class="form-label fs--1">아이디 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmId" name="ifmmId" th:value="${item?.ifmmId}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmIdFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmmName" class="form-label fs--1">이름 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmName" name="ifmmName" th:value="${item?.ifmmName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmNameFeedback"></div>
-						</div>
+<div class="col-md-3">
+	<label for="ifmmSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmSeq" name="ifmmSeq" th:value="${item?.ifmmSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+</div>
+<div class="col-md-9">
+</div>						
+<div class="col-md-3">
+	<label for="ifmmId" class="form-label fs--1">아이디 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmId" name="ifmmId" th:value="${item?.ifmmId}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmmName" class="form-label fs--1">이름 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmName" name="ifmmName" th:value="${item?.ifmmName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmNameFeedback"></div>
+</div>
 <th:block th:if="${#strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->								
-						<div class="col-md-3">
-							<label for="ifmmPassword" class="form-label fs--1">비밀번호 <span class="text-danger fs-0">*</span></label>
-							<input type="password" id="ifmmPassword" name="ifmmPassword" th:value="${item?.ifmmPassword}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
-						</div>				
-						<div class="col-md-3">
-							<label for="ifmmPasswordRe" class="form-label fs--1">비밀번호 확인 <span class="text-danger fs-0">*</span></label>
-							<input type="password" id="ifmmPasswordRe" name="ifmmPasswordRe" th:value="${item?.ifmmPasswordRe}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmPasswordReFeedback"></div>
-						</div>				
+<div class="col-md-3">
+	<label for="ifmmPassword" class="form-label fs--1">비밀번호 <span class="text-danger fs-0">*</span></label>
+	<input type="password" id="ifmmPassword" name="ifmmPassword" th:value="${item?.ifmmPassword}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+</div>				
+<div class="col-md-3">
+	<label for="ifmmPasswordRe" class="form-label fs--1">비밀번호 확인 <span class="text-danger fs-0">*</span></label>
+	<input type="password" id="ifmmPasswordRe" name="ifmmPasswordRe" th:value="${item?.ifmmPasswordRe}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmPasswordReFeedback"></div>
+</div>				
 </th:block>
 <th:block th:if="${not #strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->								
-						<div class="col-md-6">
-						</div>				
+<div class="col-md-6">
+</div>				
 </th:block>					
-						<div class="col-md-3">
-							<label for="ifmmGenderCd" class="form-label fs--1">성별 <span class="text-danger fs-0">*</span></label>
-							<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
-								<option value="">선택하세요</option>
-								<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
-							</select>							
-							<div class="invalid-feedback" id="ifmmGenderCdFeedback"></div>
-						</div>				
-						<div class="col-md-3">
-							<label for="ifmmDob" class="form-label fs--1">출생일 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmDob" name="ifmmDob" th:value="${item?.ifmmDob}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmDobFeedback"></div>
-						</div>				
-						<div class="col-md-3">
-							<label for="ifmeEmailFull" class="form-label fs--1">이메일</label>
-							<input type="text" id="ifmeEmailFull" name="ifmeEmailFull" th:value="${item?.ifmeEmailFull}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
-						</div>				
-						<div class="col-md-3">
-							<label for="ifmpNumber" class="form-label fs--1">전화번호</label>
-							<input type="text" id="ifmpNumber" name="ifmpNumber" th:value="${item?.ifmpNumber}" maxlength="20" placeholder="숫자만" class="form-control"/>
-							<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<input type="hidden" id="ifmaLat" name="ifmaLat"> 
-							<input type="hidden" id="ifmaLng" name="ifmaLng"> 
-							<label for="ifmaZipcode" class="form-label fs--1">우편번호</label>
-							<div class="input-group input-group-sm">
-								<input type="text" id="ifmaZipcode" name="ifmaZipcode" th:value="${item?.ifmaZipcode}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
-								<button type="button" id="btnAddressClear" class="btn btn-outline-secondary"><i class="fa-solid fa-x"></i></button>
-							</div>
-							<div class="invalid-feedback" id="ifmaZipcodeFeedback"></div>
-						</div>						
-						<div class="col-md-3">
-							<label for="ifmaAddress1" class="form-label fs--1">주소</label>
-							<input type="text" id="ifmaAddress1" name="ifmaAddress1" th:value="${item?.ifmaAddress1}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
-							<div class="invalid-feedback" id="ifmaAddress1Feedback"></div>
-						</div>						
-						<div class="col-md-3">
-							<label for="ifmaAddress2" class="form-label fs--1">상세주소</label>
-							<input type="text" id="ifmaAddress2" name="ifmaAddress2" th:value="${item?.ifmaAddress2}" maxlength="20" placeholder="숫자만" class="form-control"/>
-							<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
-						</div>						
-						<div class="col-md-3">
-							<label for="ifmaAddress3" class="form-label fs--1">참고항목</label>
-							<input type="text" id="ifmaAddress3" name="ifmaAddress3" th:value="${item?.ifmaAddress3}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
-							<div class="invalid-feedback" id="ifmaAddress3Feedback"></div>
-						</div>						
-						<div class="col-md-6" th:with="type=2, name='uploadImg'">
+<div class="col-md-3">
+	<label for="ifmmGenderCd" class="form-label fs--1">성별 <span class="text-danger fs-0">*</span></label>
+	<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
+		<option value="">선택하세요</option>
+		<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
+	</select>							
+	<div class="invalid-feedback" id="ifmmGenderCdFeedback"></div>
+</div>				
+<div class="col-md-3">
+	<label for="ifmmDob" class="form-label fs--1">출생일 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmDob" name="ifmmDob" th:value="${item?.ifmmDob}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmDobFeedback"></div>
+</div>				
+<div class="col-md-3">
+	<label for="ifmeEmailFull" class="form-label fs--1">이메일</label>
+	<input type="text" id="ifmeEmailFull" name="ifmeEmailFull" th:value="${item?.ifmeEmailFull}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+</div>				
+<div class="col-md-3">
+	<label for="ifmpNumber" class="form-label fs--1">전화번호</label>
+	<input type="text" id="ifmpNumber" name="ifmpNumber" th:value="${item?.ifmpNumber}" maxlength="20" placeholder="숫자만" class="form-control"/>
+	<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
+</div>
+<div class="col-md-3">
+	<input type="hidden" id="ifmaLat" name="ifmaLat"> 
+	<input type="hidden" id="ifmaLng" name="ifmaLng"> 
+	<label for="ifmaZipcode" class="form-label fs--1">우편번호</label>
+	<div class="input-group input-group-sm">
+		<input type="text" id="ifmaZipcode" name="ifmaZipcode" th:value="${item?.ifmaZipcode}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
+		<button type="button" id="btnAddressClear" class="btn btn-outline-secondary"><i class="fa-solid fa-x"></i></button>
+	</div>
+	<div class="invalid-feedback" id="ifmaZipcodeFeedback"></div>
+</div>						
+<div class="col-md-3">
+	<label for="ifmaAddress1" class="form-label fs--1">주소</label>
+	<input type="text" id="ifmaAddress1" name="ifmaAddress1" th:value="${item?.ifmaAddress1}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
+	<div class="invalid-feedback" id="ifmaAddress1Feedback"></div>
+</div>						
+<div class="col-md-3">
+	<label for="ifmaAddress2" class="form-label fs--1">상세주소</label>
+	<input type="text" id="ifmaAddress2" name="ifmaAddress2" th:value="${item?.ifmaAddress2}" maxlength="20" placeholder="숫자만" class="form-control"/>
+	<div class="invalid-feedback" id="ifmpNumberFeedback"></div>
+</div>						
+<div class="col-md-3">
+	<label for="ifmaAddress3" class="form-label fs--1">참고항목</label>
+	<input type="text" id="ifmaAddress3" name="ifmaAddress3" th:value="${item?.ifmaAddress3}" maxlength="20" placeholder="숫자만" class="form-control" readonly/>
+	<div class="invalid-feedback" id="ifmaAddress3Feedback"></div>
+</div>						
+<div class="col-md-6" th:with="type=2, name='uploadImg'">
 						<!-- 	<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label> -->
-<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
-<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
-<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
-<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
-<label for="uploadImg" class="form-label input-file-button fs--1">이미지첨부</label>
-<input class="form-control form-control-sm" 
-th:id="${name}"
-th:name="${name}"
-type="file"
-multiple="multiple"
-style="display: none;"
-th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
-/>
-<!-- th:onChange="'javascript:upload(\''+ [[${name}]] +'\','+ [[${type}]] +',0,1,0,0,1);'" -->
-<!-- th:onChange="'javascript:upload(\''+ ${name} +'\','+ ${type} +',0,1,0,0,1);'" -->
-<!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
-<div th:id="|${name}Preview|" class="addScroll">
-<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">
-	<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
-<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
-<!-- 
-<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
-<c:if test="${listUploaded.type eq type }">
- -->
- 
-<!--  
-<div th:id="|imgDiv_${type}|" style="display: inline-block; height: 95px;">
-<img src="" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
-<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
-</div>
- -->
+	<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
+	<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
+	<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
+	<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
+	<label for="uploadImg" class="form-label input-file-button fs--1">이미지첨부</label>
+	<input class="form-control form-control-sm" 
+	th:id="${name}"
+	th:name="${name}"
+	type="file"
+	multiple="multiple"
+	style="display: none;"
+	th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
+	/>
+	<!-- th:onChange="'javascript:upload(\''+ [[${name}]] +'\','+ [[${type}]] +',0,1,0,0,1);'" -->
+	<!-- th:onChange="'javascript:upload(\''+ ${name} +'\','+ ${type} +',0,1,0,0,1);'" -->
+	<!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
+	<div th:id="|${name}Preview|" class="addScroll">
+		<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">	
+			<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
+			<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
+	<!-- 
+	<c:forEach items="${listUploaded}" var="listUploaded" varStatus="statusUploaded">
+	<c:if test="${listUploaded.type eq type }">
+	 -->
+	 
+	<!--  
+	<div th:id="|imgDiv_${type}|" style="display: inline-block; height: 95px;">
+	<img src="" class="rounded" width= "85px" height="85px" style="cursor:pointer;" onClick="openViewer();">
+	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv('<c:out value="${name }"/>', <c:out value="${type }"/>,<c:out value="${listUploaded.sort }"/>, <c:out value="${listUploaded.seq }"/>, '<c:out value="${listUploaded.path }"/><c:out value="${listUploaded.uuidName }"/>')">X</span></div>
+	</div>
+	 -->
+	
+	<!-- 
+	</c:if>
+	</c:forEach>
+	 -->
+	 	</div>
+	</div>
 
-<!-- 
-</c:if>
-</c:forEach>
- -->
- </div>
-</div>
 
 
-
-						</div>				
-						<div class="col-md-6">
-							비어있음																									            
-
-						</div>										
-						<div class="col-12">
-							<div class="row">
-								<div class="col-6 text-start">
-									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+</div>				
+<div class="col-md-6">
+	비어있음																									            
+</div>										
+<div class="col-12">
+	<div class="row">
+		<div class="col-6 text-start">
+			<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
 <th:block th:if="${not #strings.isEmpty(item?.ifmmSeq)}">			<!-- ### -->									
-									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
-									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 </th:block>
-								</div>
-								<div class="col-6 text-end">
+		</div>
+		<div class="col-6 text-end">
 <!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
-									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
-								</div>
-							</div>          
-						</div>
-					</div>
+			<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+		</div>
+	</div>          
+</div>
+						
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 

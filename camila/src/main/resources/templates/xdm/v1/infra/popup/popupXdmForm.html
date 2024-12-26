@@ -23,11 +23,11 @@
 		</ol>
 	</nav>
 	<div class="mb-9">
-	  <div class="row g-3 mb-4">
-	    <div class="col-auto">
-	      <h2 class="mb-0">팝업관리</h2>														<!-- ### -->
-	    </div>
-	  </div>
+	  	<div class="row g-3 mb-4">
+	    	<div class="col-auto">
+	      		<h2 class="mb-0">팝업관리</h2>														<!-- ### -->
+	    	</div>
+	  	</div>
 		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
 			<div class="card-header p-4 border-bottom border-300 bg-soft">
 				<div class="row g-3 justify-content-between align-items-center">
@@ -42,106 +42,107 @@
 			
 <div th:replace="~{xdm/v1/infra/popup/PopupXdmVo :: vo}"></div>			<!-- ### --> 					
 					
-						<div class="col-md-3">
-							<label for="ifppSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppSeq" name="ifppSeq" th:value="${item?.ifppSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
-						</div>
-						<div class="col-md-9">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifppDisplayNy" class="form-label fs--1">디스플레이 <span class="text-danger fs-0">*</span></label>
-							<select id="ifppDisplayNy" name="ifppDisplayNy" class="form-select">
-								<option value="" >선택하세요</option>
-								<option value="1" th:selected="${item?.ifppDisplayNy == 1}">사용</option>
-								<option value="0" th:selected="${item?.ifppDisplayNy == 0}">미사용</option>
-							</select>
-							<div class="invalid-feedback" id="ifppDisplayNyFeedback"></div>
-						</div>
-						<div class="col-md-9">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifppOrder" class="form-label fs--1">팝업순서<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppOrder" name="ifppOrder" th:value="${item?.ifppOrder}" maxlength="20" placeholder="숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifppOrderFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifppXpoint" class="form-label fs--1">X<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppXpoint" name="ifppXpoint" th:value="${item?.ifppXpoint}" maxlength="20" placeholder="숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifppXpointFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifppYpoint" class="form-label fs--1">Y<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppYpoint" name="ifppYpoint" th:value="${item?.ifppYpoint}" maxlength="20" placeholder="숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifppYpointFeedback"></div>
-						</div>
-						<div class="col-md-9">
-							<!-- empty -->
-						</div>
-						<div class="col-md-6">
-							<label for="ifppitle" class="form-label fs--1">팝업 제목</label>
-							<input type="text" id="ifppTitle" name="ifppTitle" th:value="${item?.ifppTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifppTitleFeedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-6">
-							<label for="ifppUrl" class="form-label fs--1">URL</label>
-							<input type="text" id="ifppUrl" name="ifppUrl" th:value="${item?.ifppUrl}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifppUrlFeedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-6">
-							<label class="form-label fs--1">설명</label>
-							<div class="controls">
-								<textarea class="form-control" id="ifppContents" name="ifppContents" th:text="${item?.ifppContents}" th:value="${item?.ifppContents}" style="height: 100px;"></textarea>
-								<div class="invalid-feedback" id="ifppContentsFeedback"></div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifppStartDateTime" class="form-label fs--1">시작일<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppStartDateTime" name="ifppStartDateTime" th:value="${#dates.format(item?.ifppStartDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="팝업 시작일" class="form-control"/>
-							<div class="invalid-feedback" id="ifppStartDateTimeFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifppEndDateTime" class="form-label fs--1">종료일<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifppEndDateTime" name="ifppEndDateTime" th:value="${#dates.format(item?.ifppEndDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="팝업 종료일" class="form-control"/>
-							<div class="invalid-feedback" id="ifppEndDateTimeFeedback"></div>
-						</div>
-						
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>	
+<div class="col-md-3">
+	<label for="ifppSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppSeq" name="ifppSeq" th:value="${item?.ifppSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+</div>
+<div class="col-md-9">
+	<!-- empty -->
+</div>
+<div class="col-md-3">
+	<label for="ifppDisplayNy" class="form-label fs--1">디스플레이 <span class="text-danger fs-0">*</span></label>
+	<select id="ifppDisplayNy" name="ifppDisplayNy" class="form-select">
+		<option value="" >선택하세요</option>
+		<option value="1" th:selected="${item?.ifppDisplayNy == 1}">사용</option>
+		<option value="0" th:selected="${item?.ifppDisplayNy == 0}">미사용</option>
+	</select>
+	<div class="invalid-feedback" id="ifppDisplayNyFeedback"></div>
+</div>
+<div class="col-md-9">
+	<!-- empty -->
+</div>
+<div class="col-md-3">
+	<label for="ifppOrder" class="form-label fs--1">팝업순서<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppOrder" name="ifppOrder" th:value="${item?.ifppOrder}" maxlength="20" placeholder="숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifppOrderFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifppXpoint" class="form-label fs--1">X<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppXpoint" name="ifppXpoint" th:value="${item?.ifppXpoint}" maxlength="20" placeholder="숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifppXpointFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifppYpoint" class="form-label fs--1">Y<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppYpoint" name="ifppYpoint" th:value="${item?.ifppYpoint}" maxlength="20" placeholder="숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifppYpointFeedback"></div>
+</div>
+<div class="col-md-9">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label for="ifppitle" class="form-label fs--1">팝업 제목</label>
+	<input type="text" id="ifppTitle" name="ifppTitle" th:value="${item?.ifppTitle}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifppTitleFeedback"></div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label for="ifppUrl" class="form-label fs--1">URL</label>
+	<input type="text" id="ifppUrl" name="ifppUrl" th:value="${item?.ifppUrl}" maxlength="20" placeholder="한글,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifppUrlFeedback"></div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<textarea class="form-control" id="ifppContents" name="ifppContents" th:text="${item?.ifppContents}" th:value="${item?.ifppContents}" style="height: 100px;"></textarea>
+		<div class="invalid-feedback" id="ifppContentsFeedback"></div>
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-3">
+	<label for="ifppStartDateTime" class="form-label fs--1">시작일<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppStartDateTime" name="ifppStartDateTime" th:value="${#dates.format(item?.ifppStartDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="팝업 시작일" class="form-control"/>
+	<div class="invalid-feedback" id="ifppStartDateTimeFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifppEndDateTime" class="form-label fs--1">종료일<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifppEndDateTime" name="ifppEndDateTime" th:value="${#dates.format(item?.ifppEndDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="팝업 종료일" class="form-control"/>
+	<div class="invalid-feedback" id="ifppEndDateTimeFeedback"></div>
+</div>
+
+<div class="col-md-6">
+	<!-- empty -->
+</div>	
 							
 <th:block th:if="${not #strings.isEmpty(item?.ifppSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
 										
-						<div class="col-12">
-							<div class="row">
-								<div class="col-6 text-start">
-									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+<div class="col-12">
+	<div class="row">
+		<div class="col-6 text-start">
+			<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
 <th:block th:if="${not #strings.isEmpty(item?.ifppSeq)}">									
-									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
-									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 </th:block>
-								</div>
-								<div class="col-6 text-end">
+		</div>
+		<div class="col-6 text-end">
 <!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
-									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
-								</div>
-							</div>          
-						</div>
-					</div>
+			<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+		</div>
+	</div>          
+</div>
+
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 

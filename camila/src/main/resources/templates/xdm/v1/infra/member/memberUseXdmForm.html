@@ -43,11 +43,11 @@
 		</ol>
 	</nav>
 	<div class="mb-9">
-	  <div class="row g-3 mb-4">
-	    <div class="col-auto">
-	      <h2 class="mb-0">개인정보 관리</h2>																<!-- ### -->
-	    </div>
-	  </div>
+		<div class="row g-3 mb-4">
+	    	<div class="col-auto">
+	      	<h2 class="mb-0">개인정보 관리</h2>																<!-- ### -->
+	    	</div>
+	  	</div>
 		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
 			<div class="card-header p-4 border-bottom border-300 bg-soft">
 				<div class="row g-3 justify-content-between align-items-center">
@@ -62,72 +62,73 @@
 			
 <div th:replace="~{xdm/v1/infra/member/memberXdmVo :: vo}"></div>			<!-- ### --> 					
 						
-						<div class="col-md-3">
-							<label for="ifmmSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmSeq" name="ifmmSeq" th:value="${item?.ifmmSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
-						</div>
-						<div class="col-md-9">
-						</div>						
-						<div class="col-md-3">
-							<label for="ifmmId" class="form-label fs--1">아이디 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmId" name="ifmmId" th:value="${item?.ifmmId}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmIdFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmmName" class="form-label fs--1">이름 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmName" name="ifmmName" th:value="${item?.ifmmName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmNameFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmmPassword" class="form-label fs--1">비밀번호 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmPassword" name="ifmmPassword" th:value="${item?.ifmmPassword}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
-						</div>				
-						<div class="col-md-3">
-							<label for="ifmmPasswordRe" class="form-label fs--1">비밀번호 확인<span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmPasswordRe" th:value="${item?.ifmmPassword}" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmPasswordReFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmeEmailFull" class="form-label fs--1">이메일 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmeEmailFull" name="ifmeEmailFull" th:value="${item?.ifmeEmailFull}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmIdFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmmMobile" class="form-label fs--1">모바일 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmmMobile" name="ifmmMobile" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmNameFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifmpNumber" class="form-label fs--1">전화번호 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifmpNumber" name="ifmpNumber" th:value="${item?.ifmpNumber}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifmmIdFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<!--empty-->
-						</div>
-						<div class="col-md-3">						
-							<label for="regDateTime" class="form-label">등록일</label>
-							<input type="text" id="regDateTime" name="regDateTime" th:value="${#dates.format(item.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
-						</div>				
-						<div class="col-md-3">						
-							<label for="modDateTime" class="form-label">수정일</label>
-							<input type="text" id="modDateTime" name="modDateTime" th:value="${#dates.format(item.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
-						</div>
-						
-						<div class="col-12">
-							<div class="row">
-								<div class="col-6 text-start">
-								</div>
-								<div class="col-6 text-end">
+<div class="col-md-3">
+	<label for="ifmmSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmSeq" name="ifmmSeq" th:value="${item?.ifmmSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+</div>
+<div class="col-md-9">
+</div>						
+<div class="col-md-3">
+	<label for="ifmmId" class="form-label fs--1">아이디 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmId" name="ifmmId" th:value="${item?.ifmmId}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmmName" class="form-label fs--1">이름 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmName" name="ifmmName" th:value="${item?.ifmmName}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmNameFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmmPassword" class="form-label fs--1">비밀번호 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmPassword" name="ifmmPassword" th:value="${item?.ifmmPassword}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+</div>				
+<div class="col-md-3">
+	<label for="ifmmPasswordRe" class="form-label fs--1">비밀번호 확인<span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmPasswordRe" th:value="${item?.ifmmPassword}" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmPasswordReFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmeEmailFull" class="form-label fs--1">이메일 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmeEmailFull" name="ifmeEmailFull" th:value="${item?.ifmeEmailFull}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmmMobile" class="form-label fs--1">모바일 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmmMobile" name="ifmmMobile" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmNameFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifmpNumber" class="form-label fs--1">전화번호 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifmpNumber" name="ifmpNumber" th:value="${item?.ifmpNumber}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+</div>
+<div class="col-md-3">
+	<!--empty-->
+</div>
+<div class="col-md-3">						
+	<label for="regDateTime" class="form-label">등록일</label>
+	<input type="text" id="regDateTime" name="regDateTime" th:value="${#dates.format(item.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
+</div>				
+<div class="col-md-3">						
+	<label for="modDateTime" class="form-label">수정일</label>
+	<input type="text" id="modDateTime" name="modDateTime" th:value="${#dates.format(item.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" disabled class="form-control"/>
+</div>
+
+<div class="col-12">
+	<div class="row">
+		<div class="col-6 text-start">
+		</div>
+		<div class="col-6 text-end">
 <!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
-									<button type="button" id="btnUseSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
-								</div>
-							</div>          
-						</div>
-					</div>
+			<button type="button" id="btnUseSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+		</div>
+	</div>          
+</div>
+						
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 

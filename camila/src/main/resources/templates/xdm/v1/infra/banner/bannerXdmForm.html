@@ -23,11 +23,11 @@
 		</ol>
 	</nav>
 	<div class="mb-9">
-	  <div class="row g-3 mb-4">
-	    <div class="col-auto">
-	      <h2 class="mb-0">배너관리</h2>														<!-- ### -->
-	    </div>
-	  </div>
+	 	<div class="row g-3 mb-4">
+	    	<div class="col-auto">
+	      		<h2 class="mb-0">배너관리</h2>														<!-- ### -->
+	    	</div>
+	  	</div>
 		<div class="card shadow-none border border-300 my-4" data-component-card="data-component-card">
 			<div class="card-header p-4 border-bottom border-300 bg-soft">
 				<div class="row g-3 justify-content-between align-items-center">
@@ -41,87 +41,87 @@
 					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
 			
 <div th:replace="~{xdm/v1/infra/banner/bannerXdmVo :: vo}"></div>			<!-- ### --> 					
-					
-						<div class="col-md-3">
-							<label for="ifbnSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifbnSeq" name="ifbnSeq" th:value="${item?.ifbnSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
-						</div>
-						<div class="col-md-3">
-							<label for="ifbnUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
-							<select id="ifbnUseNy" name="ifbnUseNy" class="form-select">
-								<option value="1" th:selected="${item?.ifbnUseNy == 1}">사용</option>
-								<option value="0" th:selected="${item?.ifbnUseNy == 0}">미사용</option>
-							</select>
-							<div class="invalid-feedback" id="ifbnUseNyFeedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifbnOrder" class="form-label fs--1">순서</label>
-							<input type="text" id="ifbnOrder" name="ifbnOrder" th:value="${item?.ifbnOrder}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifbnOrderFeedback"></div>
-						</div>
-						<div class="col-md-3">
-							<label for="ifbnLocationCd" class="form-label fs--1">위치</label>
-							<input type="text" id="ifbnLocationCd" name="ifbnLocationCd" th:value="${item?.ifbnLocationCd}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifbnLocationCdFeedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-3">
-							<label for="ifbnTitle" class="form-label fs--1">배너제목 <span class="text-danger fs-0">*</span></label>
-							<input type="text" id="ifbnTitle" name="ifbnTitle" th:value="${item?.ifbnTitle}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifbnTitleFeedback"></div>
-						</div>
-						<div class="col-md-9">
-							<!-- empty -->
-						</div>
-						<div class="col-md-6">
-							<label for="ifbnUrl" class="form-label fs--1">URL</label>
-							<input type="text" id="ifbnUrl" name="ifbnUrl" th:value="${item?.ifbnUrl}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
-							<div class="invalid-feedback" id="ifbnUrlFeedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>
-						<div class="col-md-6" th:with="type=1, name='uploadFile'">
-							<label for="uploadFile" class="form-label fs--1">이미지 첨부</label>
-							<input type="file" th:id="${name}" th:name="${name}" placeholder="영대소문자, 숫자" class="form-control"/>
+
+<div class="col-md-3">
+	<label for="ifbnSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifbnSeq" name="ifbnSeq" th:value="${item?.ifbnSeq}" maxlength="20" placeholder="자동생성" disabled class="form-control"/>
+</div>
+<div class="col-md-3">
+	<label for="ifbnUseNy" class="form-label fs--1">사용여부 <span class="text-danger fs-0">*</span></label>
+	<select id="ifbnUseNy" name="ifbnUseNy" class="form-select">
+		<option value="1" th:selected="${item?.ifbnUseNy == 1}">사용</option>
+		<option value="0" th:selected="${item?.ifbnUseNy == 0}">미사용</option>
+	</select>
+	<div class="invalid-feedback" id="ifbnUseNyFeedback"></div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-3">
+	<label for="ifbnOrder" class="form-label fs--1">순서</label>
+	<input type="text" id="ifbnOrder" name="ifbnOrder" th:value="${item?.ifbnOrder}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifbnOrderFeedback"></div>
+</div>
+<div class="col-md-3">
+	<label for="ifbnLocationCd" class="form-label fs--1">위치</label>
+	<input type="text" id="ifbnLocationCd" name="ifbnLocationCd" th:value="${item?.ifbnLocationCd}" maxlength="20" placeholder="영대소문자,숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifbnLocationCdFeedback"></div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-3">
+	<label for="ifbnTitle" class="form-label fs--1">배너제목 <span class="text-danger fs-0">*</span></label>
+	<input type="text" id="ifbnTitle" name="ifbnTitle" th:value="${item?.ifbnTitle}" maxlength="20" placeholder="한글, 영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifbnTitleFeedback"></div>
+</div>
+<div class="col-md-9">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label for="ifbnUrl" class="form-label fs--1">URL</label>
+	<input type="text" id="ifbnUrl" name="ifbnUrl" th:value="${item?.ifbnUrl}" maxlength="20" placeholder="영대소문자, 숫자" class="form-control"/>
+	<div class="invalid-feedback" id="ifbnUrlFeedback"></div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-6" th:with="type=1, name='uploadFile'">
+	<label for="uploadFile" class="form-label fs--1">이미지 첨부</label>
+	<input type="file" th:id="${name}" th:name="${name}" placeholder="영대소문자, 숫자" class="form-control"/>
 <!-- <input type="hidden" id="ifbnSeq" name="ifbnSeq" th:value=${item.ifbnSeq}> -->
 <input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
 <input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
 <input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
 <input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
-							<div class="invalid-feedback"></div>
-						</div>
-						<div class="col-md-6">
-							<!-- empty -->
-						</div>		
+	<div class="invalid-feedback"></div>
+</div>
+<div class="col-md-6">
+<!-- empty -->
+</div>		
 <th:block th:if="${not #strings.isEmpty(item?.ifbnSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>
 
-					<div class="col-12">
-							<div class="row">
-								<div class="col-6 text-start">
-									<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
+<div class="col-12">
+	<div class="row">
+		<div class="col-6 text-start">
+			<button type="button" id="btnList" class="btn btn-outline-secondary btn-sm btn_custom"><i class="fa-solid fa-list fa-lg"></i></button>
 <th:block th:if="${not #strings.isEmpty(item?.ifbnSeq)}">									
-									<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
-									<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
+			<button type="button" id="btnDelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-solid fa-x fa-lg"></i></button>
+			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 </th:block>
-								</div>
-								<div class="col-6 text-end">
+		</div>
+		<div class="col-6 text-end">
 <!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
-									<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
-								</div>
-							</div>          
-						</div>			
+			<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
+		</div>
+	</div>          
+</div>			
 						
-					</div>
+					</form>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 	
