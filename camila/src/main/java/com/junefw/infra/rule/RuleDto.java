@@ -11,13 +11,13 @@ public class RuleDto extends BaseDto implements Serializable {
 	private String ifrlSeq;
 	private String ifrlTitle;
 	private String ifrlDesc;
+	private String ifrlContents;
 	private Integer ifrlUseNy;
 	private Integer ifrlDelNy;
 	private String ifrlVersion;
-	private Date ifrlStartDateTime;
-	private Date ifrlEndDateTime;
-	private Date ifrlNoticeDateTime;
-	
+	private String ifrlStartDateTime;
+	private String ifrlEndDateTime;
+	private String ifrlNoticeDateTime;
 	public String getIfrlSeq() {
 		return ifrlSeq;
 	}
@@ -35,6 +35,12 @@ public class RuleDto extends BaseDto implements Serializable {
 	}
 	public void setIfrlDesc(String ifrlDesc) {
 		this.ifrlDesc = ifrlDesc;
+	}
+	public String getIfrlContents() {
+		return ifrlContents;
+	}
+	public void setIfrlContents(String ifrlContents) {
+		this.ifrlContents = ifrlContents;
 	}
 	public Integer getIfrlUseNy() {
 		return ifrlUseNy;
@@ -54,25 +60,22 @@ public class RuleDto extends BaseDto implements Serializable {
 	public void setIfrlVersion(String ifrlVersion) {
 		this.ifrlVersion = ifrlVersion;
 	}
-	public Date getIfrlStartDateTime() {
+	public String getIfrlStartDateTime() {
 		return ifrlStartDateTime;
 	}
-	public void setIfrlStartDateTime(Date ifrlStartDateTime) {
+	public void setIfrlStartDateTime(String ifrlStartDateTime) {
 		this.ifrlStartDateTime = ifrlStartDateTime;
 	}
-	public Date getIfrlEndDateTime() {
+	public String getIfrlEndDateTime() {
 		return ifrlEndDateTime;
 	}
-	public void setIfrlEndDateTime(Date ifrlEndDateTime) {
+	public void setIfrlEndDateTime(String ifrlEndDateTime) {
 		this.ifrlEndDateTime = ifrlEndDateTime;
 	}
-	public Date getIfrlNoticeDateTime() {
+	public String getIfrlNoticeDateTime() {
 		return ifrlNoticeDateTime;
 	}
-	public void setIfrlNoticeDateTime(Date ifrlNoticeDateTime) {
+	public void setIfrlNoticeDateTime(String ifrlNoticeDateTime) {
 		this.ifrlNoticeDateTime = ifrlNoticeDateTime;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

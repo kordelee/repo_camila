@@ -81,8 +81,14 @@
 				#{ifntTitle}
 				,#{ifntContents}
 				,#{ifntTopOrder}
-				,#{ifntTopDateStart}
-				,#{ifntTopDateEnd}
+				<choose>
+					<when test="ifntTopDateStart.equals('')">NULL</when>  
+					<otherwise>#{ifntTopDateStart}</otherwise>
+				</choose>
+				<choose>
+					<when test="ifntTopDateEnd.equals('')">NULL</when>  
+					<otherwise>#{ifntTopDateEnd}</otherwise>
+				</choose>
 				,0
 				,#{ifntDisplayNy}
 				,#{ifntTopNy}
@@ -100,8 +106,16 @@
 			ifntTitle = #{ifntTitle}
 	        ,ifntContents = #{ifntContents}
 	        ,ifntTopOrder = #{ifntTopOrder}
-	        ,ifntTopDateStart = #{ifntTopDateStart}
-	        ,ifntTopDateEnd = #{ifntTopDateEnd}
+	        ,ifntTopDateStart = 
+			<choose>
+				<when test="ifntTopDateStart.equals('')">NULL</when>  
+				<otherwise>#{ifntTopDateStart}</otherwise>
+			</choose>
+	        ,ifntTopDateEnd = 
+			<choose>
+				<when test="ifntTopDateEnd.equals('')">NULL</when>  
+				<otherwise>#{ifntTopDateEnd}</otherwise>
+			</choose>
 	        ,ifntTargetCd = #{ifntTargetCd}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1

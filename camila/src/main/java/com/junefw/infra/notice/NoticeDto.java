@@ -13,8 +13,8 @@ public class NoticeDto extends BaseDto implements Serializable {
 	private String ifntContents;
 	private Integer ifntTopNy;
 	private Integer ifntTopOrder;
-	private Date ifntTopDateStart;
-	private Date ifntTopDateEnd;
+	private String ifntTopDateStart;
+	private String ifntTopDateEnd;
 	private Integer ifntDisplayNy;
 	private Integer ifntDelNy;
 	private Integer ifntTargetCd;
@@ -48,16 +48,16 @@ public class NoticeDto extends BaseDto implements Serializable {
 	public void setIfntTopOrder(Integer ifntTopOrder) {
 		this.ifntTopOrder = ifntTopOrder;
 	}
-	public Date getIfntTopDateStart() {
+	public String getIfntTopDateStart() {
 		return ifntTopDateStart;
 	}
-	public void setIfntTopDateStart(Date ifntTopDateStart) {
+	public void setIfntTopDateStart(String ifntTopDateStart) {
 		this.ifntTopDateStart = ifntTopDateStart;
 	}
-	public Date getIfntTopDateEnd() {
+	public String getIfntTopDateEnd() {
 		return ifntTopDateEnd;
 	}
-	public void setIfntTopDateEnd(Date ifntTopDateEnd) {
+	public void setIfntTopDateEnd(String ifntTopDateEnd) {
 		this.ifntTopDateEnd = ifntTopDateEnd;
 	}
 	public Integer getIfntDisplayNy() {
@@ -77,8 +77,5 @@ public class NoticeDto extends BaseDto implements Serializable {
 	}
 	public void setIfntTargetCd(Integer ifntTargetCd) {
 		this.ifntTargetCd = ifntTargetCd;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 }

@@ -156,8 +156,8 @@
 				<td th:text="${list.ifppOrder}" class="ifppOrder align-middle fw-semi-bold"></td>
 				<td th:if="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">N</td>
 				<td th:unless="${list.ifppDisplayNy eq 0}" class="ifppDisplayNy align-middle">Y</td>
-				<td th:text="${#dates.format(list.ifppStartDateTime, 'yyyy-MM-dd HH:mm')}" class="ifppStartDateTime align-middle"></td>
-				<td th:text="${#dates.format(list.ifppEndDateTime, 'yyyy-MM-dd HH:mm')}" class="ifppEndDateTime align-middle"></td>
+				<td th:text="${list.ifppStartDateTime}" class="ifppStartDateTime align-middle"></td>
+				<td th:text="${list.ifppEndDateTime}" class="ifppEndDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>

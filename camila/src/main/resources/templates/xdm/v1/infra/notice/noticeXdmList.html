@@ -159,8 +159,8 @@
 				<td th:unless="${list.ifntTopNy eq 0}" class="ifntTopNy align-middle">Y</td>
 				<td th:if="${list.ifntDisplayNy eq 0}" class="ifntDisplayNy align-middle">N</td>
 				<td th:unless="${list.ifntDisplayNy eq 0}" class="ifntDisplayNy align-middle">Y</td>
-				<td th:text="${#dates.format(list.ifntTopDateStart, 'yyyy-MM-dd HH:mm')}" class="ifntTopDateStart align-middle"></td>
-				<td th:text="${#dates.format(list.ifntTopDateEnd, 'yyyy-MM-dd HH:mm')}" class="ifntTopDateEnd align-middle"></td>
+				<td th:text="${list.ifntTopDateStart}" class="ifntTopDateStart align-middle"></td>
+				<td th:text="${list.ifntTopDateEnd}" class="ifntTopDateEnd align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>

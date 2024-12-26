@@ -34,9 +34,9 @@
 	        		<h2 class="mb-0">정책관리</h2>														<!-- ### -->
 	      		</div>
 	    	</div>
-		    <!--수정-->
-		    <div id="orderTable"
-		      data-list='{"valueNames":["ifrlSeq","ifrlTitle","ifrlNoticeDateTime","ifrlStartDateTime","ifrlEndDateTime","ifrlDelNy","ifrlUseNy","regDateTime","modDateTime"]}'>
+	    <!--수정-->
+	    <div id="orderTable"
+	      data-list='{"valueNames":["ifrlSeq","ifrlTitle","ifrlNoticeDateTime","ifrlStartDateTime","ifrlEndDateTime","ifrlDelNy","ifrlUseNy","regDateTime","modDateTime"]}'>
 
 <!-- hidden search s -->
 <div class="container-fluid px-0 d-block d-sm-none">
@@ -154,9 +154,9 @@
 				<td th:text="${list.ifrlSeq}" class="ifrlSeq align-middle fw-semi-bold"></td>
 				<td class="ifrlName align-middle fw-semi-bold"><a href="javascript:void(0);" th:text="${list.ifrlTitle}" th:attr="onclick=|goForm('${list.ifrlSeq}')|"></a></td>
 				<!--<td th:text="${list.xifcdSeqCount}" class="xifcdSeqCount align-middle"></td>-->
-				<td th:text="${#dates.format(list.ifrlNoticeDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlNoticeDateTime align-middle"></td>
-				<td th:text="${#dates.format(list.ifrlStartDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlStartDateTime align-middle"></td>
-				<td th:text="${#dates.format(list.ifrlEndDateTime, 'yyyy-MM-dd HH:mm')}" class="ifrlEndDateTime align-middle"></td>
+				<td th:text="${list.ifrlNoticeDateTime}" class="ifrlNoticeDateTime align-middle"></td>
+				<td th:text="${list.ifrlStartDateTime}" class="ifrlStartDateTime align-middle"></td>
+				<td th:text="${list.ifrlEndDateTime}" class="ifrlEndDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="regDateTime align-middle"></td>
 				<td th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}" class="modDateTime align-middle" ></td>
 			</tr>

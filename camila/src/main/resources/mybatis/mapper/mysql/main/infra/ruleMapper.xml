@@ -67,7 +67,7 @@
     <insert id="insert">
 			INSERT INTO infrRule (
 				ifrlTitle
-				,ifrlDesc
+				,ifrlContents
 				,ifrlVersion
 				,ifrlUseNy
 				,ifrlEndDateTime
@@ -77,12 +77,21 @@
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
 				#{ifrlTitle}
-				,#{ifrlDesc}
+				,#{ifrlContents}
 				,#{ifrlVersion}
 				,#{ifrlUseNy}
-				,#{ifrlEndDateTime}
-				,#{ifrlStartDateTime}
-				,#{ifrlNoticeDateTime}
+				<choose>
+					<when test="ifrlEndDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifrlEndDateTime}</otherwise>
+				</choose>
+				<choose>
+					<when test="ifrlStartDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifrlStartDateTime}</otherwise>
+				</choose>
+				<choose>
+					<when test="ifrlNoticeDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifrlNoticeDateTime}</otherwise>
+				</choose>
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -95,12 +104,24 @@
 		UPDATE infrRule
 		SET
 			ifrlTitle = #{ifrlTitle}
-			,ifrlDesc = #{ifrlDesc}
+			,ifrlContents = #{ifrlContents}
 			,ifrlVersion = #{ifrlVersion}
 			,ifrlUseNy = #{ifrlUseNy}
-			,ifrlStartDateTime = #{ifrlStartDateTime}
-			,ifrlEndDateTime = #{ifrlEndDateTime}
-			,ifrlNoticeDateTime = #{ifrlNoticeDateTime}
+			,ifrlStartDateTime =
+			<choose>
+				<when test="ifrlStartDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifrlStartDateTime}</otherwise>
+			</choose>
+			,ifrlEndDateTime = 
+			<choose>
+				<when test="ifrlEndDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifrlEndDateTime}</otherwise>
+			</choose>
+			,ifrlNoticeDateTime = 
+			<choose>
+				<when test="ifrlNoticeDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifrlNoticeDateTime}</otherwise>
+			</choose>
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifrlSeq = #{ifrlSeq}

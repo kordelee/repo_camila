@@ -82,8 +82,14 @@
 				,#{ifppTitle}
 				,#{ifppContents}
 				,#{ifppOrder}
-				,#{ifppStartDateTime}
-				,#{ifppEndDateTime}
+				<choose>
+					<when test="ifppStartDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifppStartDateTime}</otherwise>
+				</choose>
+				<choose>
+					<when test="ifppEndDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifppEndDateTime}</otherwise>
+				</choose>
 				,#{ifppUrl}
 				,0
 				<include refid="Base.insertRegModValue" />			
@@ -103,8 +109,16 @@
 	        ,ifppTitle = #{ifppTitle}
 	        ,ifppContents = #{ifppContents}
 	        ,ifppOrder = #{ifppOrder}
-	        ,ifppStartDateTime = #{ifppStartDateTime}
-	        ,ifppEndDateTime = #{ifppEndDateTime}
+	        ,ifppStartDateTime = 
+			<choose>
+				<when test="ifppStartDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifppStartDateTime}</otherwise>
+			</choose>
+	        ,ifppEndDateTime = 
+	        <choose>
+				<when test="ifppEndDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifppEndDateTime}</otherwise>
+			</choose>
 	        ,ifppUrl = #{ifppUrl}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1

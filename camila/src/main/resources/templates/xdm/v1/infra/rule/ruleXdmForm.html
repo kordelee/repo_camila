@@ -88,17 +88,17 @@
 </div>
 <div class="col-md-3">
 	<label for="ifrlStartDateTime" class="form-label fs--1">시작일<span class="text-danger fs-0">*</span></label>
-	<input type="text" id="ifrlStartDateTime" name="ifrlStartDateTime" th:value="${#dates.format(item?.ifrlStartDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 시작일" class="form-control"/>
+	<input type="text" id="ifrlStartDateTime" name="ifrlStartDateTime" th:value="${item?.ifrlStartDateTime}" maxlength="20" placeholder="정책 시작일" class="form-control"/>
 	<div class="invalid-feedback" id="ifrlStartDateTimeFeedback"></div>
 </div>
 <div class="col-md-3">
 	<label for="ifrlEndDateTime" class="form-label fs--1">종료일<span class="text-danger fs-0">*</span></label>
-	<input type="text" id="ifrlEndDateTime" name="ifrlEndDateTime" th:value="${#dates.format(item?.ifrlEndDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 종료일" class="form-control"/>
+	<input type="text" id="ifrlEndDateTime" name="ifrlEndDateTime" th:value="${item?.ifrlEndDateTime}" maxlength="20" placeholder="정책 종료일" class="form-control"/>
 	<div class="invalid-feedback" id="ifrlEndDateTimeFeedback"></div>
 </div>
 <div class="col-md-3">
 	<label for="ifrlNoticeDateTime" class="form-label fs--1">공지일<span class="text-danger fs-0">*</span></label>
-	<input type="text" id="ifrlNoticeDateTime" name="ifrlNoticeDateTime" th:value="${#dates.format(item?.ifrlNoticeDateTime, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 공지일" class="form-control"/>
+	<input type="text" id="ifrlNoticeDateTime" name="ifrlNoticeDateTime" th:value="${item?.ifrlNoticeDateTime}" maxlength="20" placeholder="정책 공지일" class="form-control"/>
 	<div class="invalid-feedback" id="ifrlNoticeDateTimeFeedback"></div>
 </div>
 <div class="col-md-3">

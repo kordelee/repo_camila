@@ -15,11 +15,10 @@ public class PopupDto extends BaseDto implements Serializable {
 	private String ifppTitle;
 	private String ifppContents;
 	private Integer ifppOrder;
-	private Date ifppStartDateTime;
-	private Date ifppEndDateTime;
+	private String ifppStartDateTime;
+	private String ifppEndDateTime;
 	private String ifppUrl;
 	private Integer ifppDelNy;
-	
 	public String getIfppSeq() {
 		return ifppSeq;
 	}
@@ -62,16 +61,16 @@ public class PopupDto extends BaseDto implements Serializable {
 	public void setIfppOrder(Integer ifppOrder) {
 		this.ifppOrder = ifppOrder;
 	}
-	public Date getIfppStartDateTime() {
+	public String getIfppStartDateTime() {
 		return ifppStartDateTime;
 	}
-	public void setIfppStartDateTime(Date ifppStartDateTime) {
+	public void setIfppStartDateTime(String ifppStartDateTime) {
 		this.ifppStartDateTime = ifppStartDateTime;
 	}
-	public Date getIfppEndDateTime() {
+	public String getIfppEndDateTime() {
 		return ifppEndDateTime;
 	}
-	public void setIfppEndDateTime(Date ifppEndDateTime) {
+	public void setIfppEndDateTime(String ifppEndDateTime) {
 		this.ifppEndDateTime = ifppEndDateTime;
 	}
 	public String getIfppUrl() {
@@ -85,9 +84,6 @@ public class PopupDto extends BaseDto implements Serializable {
 	}
 	public void setIfppDelNy(Integer ifppDelNy) {
 		this.ifppDelNy = ifppDelNy;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	
 }

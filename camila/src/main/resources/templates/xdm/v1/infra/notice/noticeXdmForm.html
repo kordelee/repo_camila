@@ -81,12 +81,12 @@
 </div>
 <div class="col-md-3">
 	<label for="ifntTopDateStart" class="form-label fs--1">탑공지시작일<span class="text-danger fs-0">*</span></label>
-	<input type="text" id="ifntTopDateStart" name="ifntTopDateStart" th:value="${#dates.format(item?.ifntTopDateStart, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
+	<input type="text" id="ifntTopDateStart" name="ifntTopDateStart" th:value="${item?.ifntTopDateStart}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
 	<div class="invalid-feedback" id="ifntTopDateStartFeedback"></div>
 </div>
 <div class="col-md-3">
 	<label for="ifntTopDateEnd" class="form-label fs--1">탑공지종료일<span class="text-danger fs-0">*</span></label>
-	<input type="text" id="ifntTopDateEnd" name="ifntTopDateEnd" th:value="${#dates.format(item?.ifntTopDateEnd, 'yyyy/MM/dd HH:mm')}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
+	<input type="text" id="ifntTopDateEnd" name="ifntTopDateEnd" th:value="${item?.ifntTopDateEnd}" maxlength="20" placeholder="정책 적용일" class="form-control"/>
 	<div class="invalid-feedback" id="ifntTopDateEndFeedback"></div>
 </div>
 <div class="col-md-6">
