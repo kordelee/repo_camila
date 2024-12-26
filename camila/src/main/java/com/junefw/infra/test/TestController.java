@@ -17,7 +17,7 @@ import com.junefw.common.base.BaseController;
 @RequestMapping(value = "/v1/infra/test/")
 public class TestController extends BaseController{
 
-	@RequestMapping(value = "publicCorona1JsonNodeList")
+	@RequestMapping(value = "/publicCorona1JsonNodeList")
 	public String publicCorona1JsonNodeList(Model model) throws Exception {
 		
 		String apiUrl = "http://apis.data.go.kr/1471000/CovidDagnsRgntProdExprtStusService/getCovidDagnsRgntProdExprtStusInq?serviceKey=dNLcjyriV9IBD5djvIMsq16GYwW%2F8N%2FCtnCNvRj66yaLV9jXKhipDNCJFDcDzorgqnVsJsz5gmYoibNbAG0sdw%3D%3D&numOfRows=3&pageNo=1&type=json";

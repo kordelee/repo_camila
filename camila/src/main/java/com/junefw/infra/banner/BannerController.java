@@ -62,7 +62,7 @@ public class BannerController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "bannerXdmMultiUele")
+	@RequestMapping(value = "/bannerXdmMultiUele")
 	public String bannerXdmMultiUele(BannerVo  vo, BannerDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -76,7 +76,7 @@ public class BannerController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "bannerXdmMultiDele")
+	@RequestMapping(value = "/bannerXdmMultiDele")
 	public String bannerXdmMultiDele(BannerVo  vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -90,7 +90,7 @@ public class BannerController extends BaseController {
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "bannerXdmInst")
+	@RequestMapping(value = "/bannerXdmInst")
 	public String bannerXdmInst(BannerVo  vo, BannerDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -108,7 +108,7 @@ public class BannerController extends BaseController {
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "bannerXdmUpdt")
+	@RequestMapping(value = "/bannerXdmUpdt")
 	public String bannerXdmUpdt(BannerVo  vo, BannerDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -122,7 +122,7 @@ public class BannerController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value = "bannerXdmUele")
+	@RequestMapping(value = "/bannerXdmUele")
 	public String bannerXdmUele(BannerVo  vo, BannerDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -133,7 +133,7 @@ public class BannerController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "bannerXdmDele")
+	@RequestMapping(value = "/bannerXdmDele")
 	public String bannerXdmDele(BannerVo  vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

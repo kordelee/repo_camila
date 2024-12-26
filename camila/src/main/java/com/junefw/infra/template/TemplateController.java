@@ -65,7 +65,7 @@ public class TemplateController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "templateXdmMultiUele")
+	@RequestMapping(value = "/templateXdmMultiUele")
 	public String templateXdmMultiUele(TemplateVo vo, TemplateDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -79,7 +79,7 @@ public class TemplateController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "templateXdmMultiDele")
+	@RequestMapping(value = "/templateXdmMultiDele")
 	public String templateXdmMultiDele(TemplateVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -93,7 +93,7 @@ public class TemplateController extends BaseController{
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "templateXdmInst")
+	@RequestMapping(value = "/templateXdmInst")
 	public String templateXdmInst(TemplateVo vo, TemplateDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -111,7 +111,7 @@ public class TemplateController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "templateXdmUpdt")
+	@RequestMapping(value = "/templateXdmUpdt")
 	public String templateXdmUpdt(TemplateVo vo, TemplateDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -125,7 +125,7 @@ public class TemplateController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value = "templateXdmUele")
+	@RequestMapping(value = "/templateXdmUele")
 	public String templateXdmUele(TemplateVo vo, TemplateDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -136,7 +136,7 @@ public class TemplateController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "templateXdmDele")
+	@RequestMapping(value = "/templateXdmDele")
 	public String templateXdmDele(TemplateVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

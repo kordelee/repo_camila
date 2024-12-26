@@ -61,7 +61,7 @@ public class NoticeController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "noticeXdmMultiUele")
+	@RequestMapping(value = "/noticeXdmMultiUele")
 	public String noticeXdmMultiUele(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -75,7 +75,7 @@ public class NoticeController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "noticeXdmMultiDele")
+	@RequestMapping(value = "/noticeXdmMultiDele")
 	public String noticeXdmMultiDele(NoticeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -90,7 +90,7 @@ public class NoticeController extends BaseController {
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "noticeXdmInst")
+	@RequestMapping(value = "/noticeXdmInst")
 	public String noticeXdmInst(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -108,7 +108,7 @@ public class NoticeController extends BaseController {
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "noticeXdmUpdt")
+	@RequestMapping(value = "/noticeXdmUpdt")
 	public String noticeXdmUpdt(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -122,7 +122,7 @@ public class NoticeController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value = "noticeXdmUele")
+	@RequestMapping(value = "/noticeXdmUele")
 	public String noticeXdmUele(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -133,7 +133,7 @@ public class NoticeController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "noticeXdmDele")
+	@RequestMapping(value = "/noticeXdmDele")
 	public String noticeXdmDele(NoticeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

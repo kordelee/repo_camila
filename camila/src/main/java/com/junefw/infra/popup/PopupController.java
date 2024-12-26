@@ -61,7 +61,7 @@ public class PopupController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "popupXdmMultiUele")
+	@RequestMapping(value = "/popupXdmMultiUele")
 	public String popupXdmMultiUele(PopupVo vo, PopupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -75,7 +75,7 @@ public class PopupController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "popupXdmMultiDele")
+	@RequestMapping(value = "/popupXdmMultiDele")
 	public String popupXdmMultiDele(PopupVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -89,7 +89,7 @@ public class PopupController extends BaseController {
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "popupXdmInst")
+	@RequestMapping(value = "/popupXdmInst")
 	public String popupXdmInst(PopupVo vo, PopupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -107,7 +107,7 @@ public class PopupController extends BaseController {
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "popupXdmUpdt")
+	@RequestMapping(value = "/popupXdmUpdt")
 	public String popupXdmUpdt(PopupVo vo, PopupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -121,7 +121,7 @@ public class PopupController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value = "popupXdmUele")
+	@RequestMapping(value = "/popupXdmUele")
 	public String popupXdmUele(PopupVo vo, PopupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -132,7 +132,7 @@ public class PopupController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "popupXdmDele")
+	@RequestMapping(value = "/popupXdmDele")
 	public String popupXdmDele(PopupVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

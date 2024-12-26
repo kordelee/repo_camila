@@ -120,7 +120,7 @@ public class MajorController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "majorTradeUsrSalesNyUpdt")
+	@RequestMapping(value = "/majorTradeUsrSalesNyUpdt")
 	public String majorTradeUsrSalesNyUpdt(MajorVo vo, MajorDto dto, RedirectAttributes redirectAttributes) throws Exception {
 			    
 		service.updateMajorTradeSalesNy(dto);
@@ -186,7 +186,7 @@ public class MajorController extends BaseController{
 	}
 	
 
-	@RequestMapping(value = "majorFavoriteUsrUele")
+	@RequestMapping(value = "/majorFavoriteUsrUele")
 	public String majorFavoriteUsrUele(MajorVo vo, MajorDto dto, RedirectAttributes redirectAttributes, HttpSession httpSession) throws Exception {
 		
 		dto.setMbmfSeq(vo.getMbmfSeq());

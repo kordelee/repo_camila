@@ -67,7 +67,7 @@ public class CodeGroupController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "codeGroupXdmMultiUele")
+	@RequestMapping(value = "/codeGroupXdmMultiUele")
 	public String codeGroupXdmMultiUele(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -81,7 +81,7 @@ public class CodeGroupController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeGroupXdmMultiDele")
+	@RequestMapping(value = "/codeGroupXdmMultiDele")
 	public String codeGroupXdmMultiDele(CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -95,7 +95,7 @@ public class CodeGroupController extends BaseController{
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeGroupXdmInst")
+	@RequestMapping(value = "/codeGroupXdmInst")
 	public String codeGroupXdmInst(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -111,7 +111,7 @@ public class CodeGroupController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeGroupXdmUpdt")
+	@RequestMapping(value = "/codeGroupXdmUpdt")
 	public String codeGroupXdmUpdt(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -125,7 +125,7 @@ public class CodeGroupController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value = "codeGroupXdmUele")
+	@RequestMapping(value = "/codeGroupXdmUele")
 	public String codeGroupXdmUele(CodeGroupVo vo, CodeGroupDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -136,7 +136,7 @@ public class CodeGroupController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeGroupXdmDele")
+	@RequestMapping(value = "/codeGroupXdmDele")
 	public String codeGroupXdmDele(CodeGroupVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

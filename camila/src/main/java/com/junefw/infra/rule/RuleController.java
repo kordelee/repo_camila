@@ -61,7 +61,7 @@ public class RuleController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "ruleXdmMultiUele")
+	@RequestMapping(value = "/ruleXdmMultiUele")
 	public String ruleXdmMultiUele(RuleVo vo, RuleDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -75,7 +75,7 @@ public class RuleController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "ruleXdmMultiDele")
+	@RequestMapping(value = "/ruleXdmMultiDele")
 	public String ruleXdmMultiDele(RuleVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -89,7 +89,7 @@ public class RuleController extends BaseController{
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "ruleXdmInst")
+	@RequestMapping(value = "/ruleXdmInst")
 	public String ruleXdmInst(RuleVo vo, RuleDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -107,7 +107,7 @@ public class RuleController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "ruleXdmUpdt")
+	@RequestMapping(value = "/ruleXdmUpdt")
 	public String ruleXdmUpdt(RuleVo vo, RuleDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -121,7 +121,7 @@ public class RuleController extends BaseController{
 		}
 	}
 	
-	@RequestMapping(value = "ruleXdmUele")
+	@RequestMapping(value = "/ruleXdmUele")
 	public String ruleXdmUele(RuleVo vo, RuleDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -132,7 +132,7 @@ public class RuleController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "ruleXdmDele")
+	@RequestMapping(value = "/ruleXdmDele")
 	public String ruleXdmDele(RuleVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

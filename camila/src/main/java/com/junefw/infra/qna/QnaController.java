@@ -62,7 +62,7 @@ public class QnaController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value = "qnaXdmMultiUele")
+	@RequestMapping(value = "/qnaXdmMultiUele")
 	public String qnaXdmMultiUele(QnaVo vo, QnaDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -76,7 +76,7 @@ public class QnaController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "qnaXdmMultiDele")
+	@RequestMapping(value = "/qnaXdmMultiDele")
 	public String qnaXdmMultiDele(QnaVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -90,7 +90,7 @@ public class QnaController extends BaseController {
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "qnaXdmInst")
+	@RequestMapping(value = "/qnaXdmInst")
 	public String qnaXdmInst(QnaVo vo, QnaDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -108,7 +108,7 @@ public class QnaController extends BaseController {
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "qnaXdmUpdt")
+	@RequestMapping(value = "/qnaXdmUpdt")
 	public String qnaXdmUpdt(QnaVo vo, QnaDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.update(dto);
@@ -122,7 +122,7 @@ public class QnaController extends BaseController {
 		}
 	}
 	
-	@RequestMapping(value = "qnaXdmUele")
+	@RequestMapping(value = "/qnaXdmUele")
 	public String qnaXdmUele(QnaVo vo, QnaDto dto, RedirectAttributes redirectAttributes) throws Exception {
 		
 		service.uelete(dto);
@@ -133,7 +133,7 @@ public class QnaController extends BaseController {
 	}
 
 	
-	@RequestMapping(value = "qnaXdmDele")
+	@RequestMapping(value = "/qnaXdmDele")
 	public String qnaXdmDele(QnaVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);

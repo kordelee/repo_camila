@@ -89,7 +89,7 @@ public class CodeController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeXdmForm")
+	@RequestMapping(value = "/codeXdmForm")
 	public String codeXdmForm(@ModelAttribute("vo") CodeVo vo, Model model) throws Exception {
 		
 		model.addAttribute("listCodeGroup", codeGroupService.selectListWithoutPaging());
@@ -104,7 +104,7 @@ public class CodeController extends BaseController{
 	}
 	
 
-	@RequestMapping(value = "codeXdmMultiUele")
+	@RequestMapping(value = "/codeXdmMultiUele")
 	public String codeXdmMultiUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -118,7 +118,7 @@ public class CodeController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeXdmMultiDele")
+	@RequestMapping(value = "/codeXdmMultiDele")
 	public String codeXdmMultiDele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -133,7 +133,7 @@ public class CodeController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeXdmInst")
+	@RequestMapping(value = "/codeXdmInst")
 	public String codeXdmInst(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -151,7 +151,7 @@ public class CodeController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "codeXdmUpdt")
+	@RequestMapping(value = "/codeXdmUpdt")
 	public String codeXdmUpdt(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.update(dto);
@@ -166,7 +166,7 @@ public class CodeController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeXdmUele")
+	@RequestMapping(value = "/codeXdmUele")
 	public String codeXdmUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.uelete(dto);
@@ -177,7 +177,7 @@ public class CodeController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "codeXdmDele")
+	@RequestMapping(value = "/codeXdmDele")
 	public String codeXdmDele(CodeVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);
@@ -188,7 +188,7 @@ public class CodeController extends BaseController{
 	}
 
 
-	@RequestMapping("excelDownload")
+	@RequestMapping("/excelDownload")
     public void excelDownload(CodeVo vo, HttpServletResponse httpServletResponse) throws Exception {
 		
 		setSearch(vo);
@@ -290,7 +290,7 @@ public class CodeController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "codeXdmInit")
+	@RequestMapping(value = "/codeXdmInit")
 	public Map<String, Object> codeXdmInit() throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		service.selectListCachedCodeArrayList();

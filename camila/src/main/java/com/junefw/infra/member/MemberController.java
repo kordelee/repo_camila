@@ -67,7 +67,7 @@ public class MemberController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "memberXdmForm")
+	@RequestMapping(value = "/memberXdmForm")
 	public String memberXdmForm(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception {
 		
 		if (vo.getIfmmSeq().equals("0") || vo.getIfmmSeq().equals("")) {
@@ -81,7 +81,7 @@ public class MemberController extends BaseController{
 	}
 	
 
-	@RequestMapping(value = "memberXdmMultiUele")
+	@RequestMapping(value = "/memberXdmMultiUele")
 	public String memberXdmMultiUele(MemberVo vo, MemberDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -95,7 +95,7 @@ public class MemberController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "memberXdmMultiDele")
+	@RequestMapping(value = "/memberXdmMultiDele")
 	public String memberXdmMultiDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		for (String checkboxSeq : vo.getCheckboxSeqArray()) {
@@ -110,7 +110,7 @@ public class MemberController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "memberXdmInst")
+	@RequestMapping(value = "/memberXdmInst")
 	public String memberXdmInst(MemberVo vo, MemberDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.insert(dto);
@@ -139,7 +139,7 @@ public class MemberController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "memberXdmUpdt")
+	@RequestMapping(value = "/memberXdmUpdt")
 	public String memberXdmUpdt(MemberVo vo, MemberDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.update(dto);
@@ -154,7 +154,7 @@ public class MemberController extends BaseController{
 	}
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "memberUseXdmUpdt")
+	@RequestMapping(value = "/memberUseXdmUpdt")
 	public String memberUseXdmUpdt(MemberDto dto) throws Exception {
 
 		service.useUpdate(dto);
@@ -163,7 +163,7 @@ public class MemberController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "memberXdmUele")
+	@RequestMapping(value = "/memberXdmUele")
 	public String memberXdmUele(MemberVo vo, MemberDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.uelete(dto);
@@ -174,7 +174,7 @@ public class MemberController extends BaseController{
 	}
 
 	
-	@RequestMapping(value = "memberXdmDele")
+	@RequestMapping(value = "/memberXdmDele")
 	public String memberXdmDele(MemberVo vo, RedirectAttributes redirectAttributes) throws Exception {
 
 		service.delete(vo);
@@ -191,7 +191,7 @@ public class MemberController extends BaseController{
     }
 
     
-    @RequestMapping(value = "signinXdmForm")
+    @RequestMapping(value = "/signinXdmForm")
 	public String signinXdmForm(MemberVo vo, HttpSession httpSession) throws Exception {
 
     	if(UtilCookie.getValueXdm(Constants.COOKIE_SEQ_NAME_XDM) != null) {
@@ -217,7 +217,7 @@ public class MemberController extends BaseController{
 
 
 	@ResponseBody
-	@RequestMapping(value = "signinXdmProc")
+	@RequestMapping(value = "/signinXdmProc")
 	public Map<String, Object> signinXdmProc(MemberDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
@@ -284,7 +284,7 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "signoutXdmProc")
+	@RequestMapping(value = "/signoutXdmProc")
 	public Map<String, Object> signoutXdmProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		UtilCookie.deleteCookieXdm();
@@ -297,7 +297,7 @@ public class MemberController extends BaseController{
 	
 	
 //	개인정보 관리
-	@RequestMapping(value = "memberUseXdmForm")
+	@RequestMapping(value = "/memberUseXdmForm")
 	public String memberUseXdmForm(@ModelAttribute("vo") MemberVo vo, Model model,HttpSession session) throws Exception {
 		vo.setIfmmSeq(session.getAttribute("sessSeqXdm").toString());
 		model.addAttribute("item", service.selectOne(vo));
@@ -309,14 +309,14 @@ public class MemberController extends BaseController{
 //	usr
 //	
 	
-	@RequestMapping(value = "indexUsrView")
+	@RequestMapping(value = "/indexUsrView")
 	public String indexUsrView() throws Exception {
 
 		return pathCommonUsr + "indexUsrView";
 	}
 	
 	
-	@RequestMapping(value = "signinUsrForm")
+	@RequestMapping(value = "/signinUsrForm")
 	public String signinUsrForm(MemberVo vo, HttpSession httpSession) throws Exception {
 
     	if(UtilCookie.getValueUsr(Constants.COOKIE_SEQ_NAME_USR) != null) {
@@ -341,7 +341,7 @@ public class MemberController extends BaseController{
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "signoutUsrProc")
+	@RequestMapping(value = "/signoutUsrProc")
 	public Map<String, Object> signoutUsrProc(HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		UtilCookie.deleteCookieUsr();
@@ -354,7 +354,7 @@ public class MemberController extends BaseController{
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "signinUsrProc")
+	@RequestMapping(value = "/signinUsrProc")
 	public Map<String, Object> signinUsrProc(MemberDto dto, HttpSession httpSession) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
@@ -405,14 +405,14 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "findIdUsrForm")
+	@RequestMapping(value = "/findIdUsrForm")
 	public String findIdUsrForm() throws Exception {
 		return pathCommonUsr + "findIdUsrForm";
 	}
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "findIdUsrProc")
+	@RequestMapping(value = "/findIdUsrProc")
 	public Map<String, Object> findIdUsrProc(MemberDto dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 
@@ -426,7 +426,7 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "findPwdUsrForm")
+	@RequestMapping(value = "/findPwdUsrForm")
 	public String findPwdUsrForm() throws Exception {
 		return pathCommonUsr + "findPwdUsrForm";
 	}
@@ -464,7 +464,7 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "certificationCheckUsrProc")
+	@RequestMapping(value = "/certificationCheckUsrProc")
 	public Map<String, Object> certificationCheckUsrProc(MemberDto dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		if(service.selectOneCertification(dto).getIfcfKey().equals(dto.getIfcfKey())) {
@@ -478,7 +478,7 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "findChangePwdUsrProc")
+	@RequestMapping(value = "/findChangePwdUsrProc")
 	public Map<String, Object> findChangePwdUsrProc(MemberDto dto,HttpSession session) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		service.updateChangePwd(dto);
@@ -487,14 +487,14 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "changePwdUsrForm")
+	@RequestMapping(value = "/changePwdUsrForm")
     public String changePwdUsrForm() throws Exception{
     	return pathCommonUsr + "changePwdUsrForm";
     }
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "changPwdUsrProc")
+	@RequestMapping(value = "/changPwdUsrProc")
 	public Map<String, Object> changPwdUsrProc(MemberDto dto,HttpSession session) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
@@ -504,14 +504,14 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "signupUsrForm")
+	@RequestMapping(value = "/signupUsrForm")
     public String signupUsrForm() throws Exception{
     	return pathCommonUsr + "signupUsrForm";
     }
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "signupIdCheckUsrProc")
+	@RequestMapping(value = "/signupIdCheckUsrProc")
 	public Map<String, Object> signupIdCheckUsrProc(MemberDto dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -527,7 +527,7 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "signupEmailCheckUsrProc")
+	@RequestMapping(value = "/signupEmailCheckUsrProc")
 	public Map<String, Object> signupEmailCheckUsrProc(MemberDto dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -543,7 +543,7 @@ public class MemberController extends BaseController{
 	
 	
 	@SuppressWarnings(value = { "all" })
-	@RequestMapping(value = "memberUsrInst")
+	@RequestMapping(value = "/memberUsrInst")
 	public String memberUsrInst(MemberVo vo, MemberDto dto, TemplateVo templateVo, RedirectAttributes redirectAttributes) throws Exception {
 		vo.setIfmmPassword(encodeBcrypt(dto.getIfmmPassword(), 10));
 		vo.setIfmmSeq(dto.getIfmmSeq());
@@ -569,13 +569,13 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "welcomeUsrView")
+	@RequestMapping(value = "/welcomeUsrView")
 	public String welcomeUsrView() throws Exception{
 		return pathCommonUsr + "welcomeUsrView";
 	}
 	
 	
-	@RequestMapping(value = "memberUsrForm")
+	@RequestMapping(value = "/memberUsrForm")
     public String memberUsrForm(Model model, MemberVo vo, HttpSession session) throws Exception{
 		vo.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
 		model.addAttribute("item", service.selectOne(vo));
@@ -583,7 +583,7 @@ public class MemberController extends BaseController{
     }
 	
 	
-	@RequestMapping(value = "memberUsrUpdt")
+	@RequestMapping(value = "/memberUsrUpdt")
 	public String memberUsrUpdt(MemberDto dto, HttpSession session) throws Exception {
 		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
 		service.updateInfo(dto);
@@ -591,13 +591,13 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "pwdChangeUsrForm")
+	@RequestMapping(value = "/pwdChangeUsrForm")
     public String pwdChangeUsrForm() throws Exception{
     	return pathCommonUsr + "pwdChangeUsrForm";
     }
 	
 	
-	@RequestMapping(value = "pwdChangeUsrUpdt")
+	@RequestMapping(value = "/pwdChangeUsrUpdt")
 	public String pwdChangeUsrUpdt(MemberDto dto, HttpSession session) throws Exception {
 		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
 		service.updateChangePwd(dto);
@@ -605,14 +605,14 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "withdrawUsrForm")
+	@RequestMapping(value = "/withdrawUsrForm")
     public String withdrawUsrForm() throws Exception{
     	return pathCommonUsr + "withdrawUsrForm";
     }
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "withdrawUsrProc")
+	@RequestMapping(value = "/withdrawUsrProc")
 	public Map<String, Object> withdrawUsrProc(MemberDto dto,HttpSession session) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
@@ -624,7 +624,7 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "expiredPwdUsrForm")
+	@RequestMapping(value = "/expiredPwdUsrForm")
     public String expiredPwdUsrForm() throws Exception{
     	return pathCommonUsr + "expiredPwdUsrForm";
     }
