@@ -105,23 +105,6 @@ public class CodeController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "/codeXdmCreateUuidForm")
-	public String codeXdmCreateUuidForm() throws Exception {
-		
-		return pathCommonXdm + "codeXdmCreateUuidForm";
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/codeXdmCreateUuidProc")
-	public Map<String, Object> codeXdmCreateUuidProc() throws Exception {
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		String uuid = UUID.randomUUID().toString();
-		returnMap.put("uuid", uuid);
-		return returnMap;
-	}
-	
-
 	@RequestMapping(value = "/codeXdmMultiUele")
 	public String codeXdmMultiUele(CodeVo vo, CodeDto dto, RedirectAttributes redirectAttributes) throws Exception {
 
@@ -317,4 +300,19 @@ public class CodeController extends BaseController{
 	}	
 
 	
+	@RequestMapping(value = "/codeXdmCreateUuidForm")
+	public String codeXdmCreateUuidForm() throws Exception {
+		
+		return pathCommonXdm + "codeXdmCreateUuidForm";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/codeXdmCreateUuidProc")
+	public Map<String, Object> codeXdmCreateUuidProc() throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		String uuid = UUID.randomUUID().toString();
+		returnMap.put("uuid", uuid);
+		return returnMap;
+	}
 }
