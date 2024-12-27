@@ -20,6 +20,8 @@
 		<input type="hidden" id="rowNumToShow" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 		<input type="hidden" name="checkboxSeqArray">
 		<input type="hidden" name="ifcdSeq">															<!-- ### -->
+		<input type="hidden" id="uuidName">															<!-- ### -->
+		
 		
 		<nav class="mb-2" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
@@ -186,6 +188,7 @@
 			<button type="button" id="btnUelete" class="btn btn-danger btn-sm btn_custom"><i class="fa-regular fa-trash-can fa-lg"></i></button>
 		</div>
 		<div class="col-6 text-end">
+			<button type="button" id="btnUuid" class="btn btn-primary btn-sm btn_custom">U</button>
 			<button type="button" id="btnExcel" class="btn btn-success btn-sm btn_custom"><i class="fa-regular fa-file-excel fa-lg"></i></button>
 			<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fas fa-plus fa-lg"></i></button>
 		</div>
@@ -237,6 +240,10 @@
  			format: 'Y-m-d'
 		});
 	});
+	
+	document.getElementById("btnUuid").onclick = function () {
+		location.href = "/v1/infra/code/codeXdmCreateUuidForm"
+	}
 	
 	let goUrlXdmAjaxList = "/v1/infra/code/codeXdmAjaxList";				/* ### */
 	let goUrlXdmAjaxLita = "/v1/infra/code/codeXdmAjaxLita";				/* ### */

@@ -3,6 +3,7 @@ package com.junefw.infra.code;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -101,6 +102,23 @@ public class CodeController extends BaseController{
 		}
 		
 		return pathCommonXdm + "codeXdmForm";
+	}
+	
+	
+	@RequestMapping(value = "/codeXdmCreateUuidForm")
+	public String codeXdmCreateUuidForm() throws Exception {
+		
+		return pathCommonXdm + "codeXdmCreateUuidForm";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/codeXdmCreateUuidProc")
+	public Map<String, Object> codeXdmCreateUuidProc() throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		String uuid = UUID.randomUUID().toString();
+		returnMap.put("uuid", uuid);
+		return returnMap;
 	}
 	
 
