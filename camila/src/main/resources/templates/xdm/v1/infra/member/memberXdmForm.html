@@ -188,6 +188,17 @@
 </div>				
 <div class="col-md-6">
 	비어있음																									            
+</div>
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<input type="hidden" id="ifmmDesc" name="ifmmDesc">							
+	  	<div id="ifmmDescEditor" th:utext="${item?.ifmmDesc}"></div>
+	  	<div class="invalid-feedback" id="ifmmDescFeedback"></div>
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
 </div>										
 <div class="col-12">
 	<div class="row">
@@ -260,12 +271,23 @@
 	
 	let seq = document.querySelector("input[name=ifmmSeq]");							/* ### */
 	
-	var aaaa;
+	let ifmmDesc = document.getElementById("ifmmDesc");
+	
+	const ifmmDescEditor = new toastui.Editor({
+        el: document.querySelector('#ifmmDescEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
 	
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
+	    ifmmDesc.value = ifmmDescEditor.getHTML();
 	}
 	
+	var aaaa;
 	
 	function validationUpdt() {
 // 		if(!checkSelectNull('ifcgSeq', 2, "코드그룹을 선택해 주세요.")) return false;
@@ -281,6 +303,7 @@
 // 		if(!checkOnlyNumber('ifcdReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 // 		if(!checkOnlyNumber('ifcdReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 // 		if(!checkOnlyNumber('ifcdReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		ifmmDesc.value = ifmmDescEditor.getHTML();
 	}
 	
 	

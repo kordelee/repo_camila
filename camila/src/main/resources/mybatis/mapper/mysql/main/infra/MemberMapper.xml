@@ -214,7 +214,11 @@
 			,ifmmFirstNameEng = #{ifmmFirstNameEng}
 			,ifmmNickname = #{ifmmNickname}
 			,ifmmGenderCd = #{ifmmGenderCd}
-			,ifmmDob = #{ifmmDob}
+			,ifmmDob = 
+			<choose>
+				<when test="ifmmDob.equals('')">NULL</when>  
+				<otherwise>#{ifmmDob}</otherwise>
+			</choose>
 			,ifmmSavedCd = #{ifmmSavedCd}
 			,ifmmMarriageCd = #{ifmmMarriageCd}
 			,ifmmMarriageDate = #{ifmmMarriageDate}
