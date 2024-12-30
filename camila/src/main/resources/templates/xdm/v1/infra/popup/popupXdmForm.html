@@ -96,10 +96,13 @@
 	<!-- empty -->
 </div>
 <div class="col-md-6">
-	<label class="form-label fs--1">설명</label>
+	<label class="form-label fs--1">내용</label>
 	<div class="controls">
-		<textarea class="form-control" id="ifppContents" name="ifppContents" th:text="${item?.ifppContents}" th:value="${item?.ifppContents}" style="height: 100px;"></textarea>
-		<div class="invalid-feedback" id="ifppContentsFeedback"></div>
+		<input type="hidden" id="ifppContents" name="ifppContents">							
+	  	<div id="ifppContentsEditor" th:utext="${item?.ifppContents}"></div>
+	  	<div class="invalid-feedback" id="ifppContentsFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifppContents" name="ifppContents" th:text="${item?.ifppContents}" th:value="${item?.ifppContents}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifppContentsFeedback"></div> -->
 	</div>
 </div>
 <div class="col-md-6">
@@ -119,7 +122,19 @@
 <div class="col-md-6">
 	<!-- empty -->
 </div>	
-							
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<input type="hidden" id="ifppDesc" name="ifppDesc">							
+	  	<div id="ifppDescEditor" th:utext="${item?.ifppDesc}"></div>
+	  	<div class="invalid-feedback" id="ifrlDescFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifppContents" name="ifppContents" th:text="${item?.ifppContents}" th:value="${item?.ifppContents}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifppContentsFeedback"></div> -->
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>					
 <th:block th:if="${not #strings.isEmpty(item?.ifppSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
@@ -183,7 +198,10 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-			
+		$("#ifppStartDateTime, #ifppEndDateTime").datetimepicker({
+			timepicker:false,
+				format: 'Y/m/d'
+		});
 	});
 	
 	let goUrlXdmList = "/v1/infra/popup/popupXdmList";						/* ### */
@@ -195,15 +213,33 @@
 	
 	let seq = document.querySelector("input[name=ifppSeq]");							/* ### */
 	
-	window.addEventListener('load', function() {
-		$("#ifppStartDateTime, #ifppEndDateTime").datetimepicker({
-			timepicker:false,
- 			format: 'Y/m/d'
-		});
-	});
+	let ifppContents = document.getElementById("ifppContents");						/* ### */
+	let ifppDesc = document.getElementById("ifppDesc");								/* ### */
 	
+    const ifppContentsEditor = new toastui.Editor({
+        el: document.querySelector('#ifppContentsEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
+	
+    const ifppDescEditor = new toastui.Editor({
+        el: document.querySelector('#ifppDescEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
+    
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
+	    ifppContents.value = ifppContentsEditor.getHTML();
+	    ifppDesc.value = ifppDescEditor.getHTML();
 	}
 	
 	
@@ -220,6 +256,8 @@
 //  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+ 		ifppContents.value = ifppContentsEditor.getHTML();
+	    ifppDesc.value = ifppDescEditor.getHTML();
 	}
 
 	

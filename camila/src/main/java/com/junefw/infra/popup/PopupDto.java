@@ -18,6 +18,7 @@ public class PopupDto extends BaseDto implements Serializable {
 	private String ifppStartDateTime;
 	private String ifppEndDateTime;
 	private String ifppUrl;
+	private String ifppDesc;
 	private Integer ifppDelNy;
 	public String getIfppSeq() {
 		return ifppSeq;
@@ -79,11 +80,16 @@ public class PopupDto extends BaseDto implements Serializable {
 	public void setIfppUrl(String ifppUrl) {
 		this.ifppUrl = ifppUrl;
 	}
+	public String getIfppDesc() {
+		return ifppDesc;
+	}
+	public void setIfppDesc(String ifppDesc) {
+		this.ifppDesc = ifppDesc;
+	}
 	public Integer getIfppDelNy() {
 		return ifppDelNy;
 	}
 	public void setIfppDelNy(Integer ifppDelNy) {
 		this.ifppDelNy = ifppDelNy;
 	}
-	
 }

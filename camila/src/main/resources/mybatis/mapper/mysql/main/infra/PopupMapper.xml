@@ -50,11 +50,13 @@
         SELECT
            a.ifppSeq
             ,a.ifppTitle
+            ,a.ifppContents
             ,a.ifppOrder
             ,a.ifppStartDateTime
             ,a.ifppEndDateTime
             ,a.ifppDisplayNy
             ,a.ifppUrl
+            ,a.ifppDesc
             ,a.ifppDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrPopup a
@@ -73,6 +75,7 @@
 	            ,ifppStartDateTime
 	            ,ifppEndDateTime
 	            ,ifppUrl
+	            ,ifppDesc
 	            ,ifppDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
@@ -91,6 +94,7 @@
 					<otherwise>,#{ifppEndDateTime}</otherwise>
 				</choose>
 				,#{ifppUrl}
+				,#{ifppDesc}
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -109,6 +113,7 @@
 	        ,ifppTitle = #{ifppTitle}
 	        ,ifppContents = #{ifppContents}
 	        ,ifppOrder = #{ifppOrder}
+	        ,ifppDesc = #{ifppDesc}
 	        ,ifppStartDateTime = 
 			<choose>
 				<when test="ifppStartDateTime.equals('')">NULL</when>  
