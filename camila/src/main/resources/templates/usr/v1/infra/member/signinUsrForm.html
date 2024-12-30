@@ -10,40 +10,49 @@
 	<br>
     <input id="ifmmId" name="ifmmId" type="text" value="xdmin" placeholder="아이디">
 	<br>
-    <input id="ifmmPassword" name="ifmmPassword" type="password" value="1" placeholder="비밀번호">
+    <input id="ifmmPassword" name="ifmmPassword" type="password" value="1" onkeyup="enterkey()" placeholder="비밀번호">
 	<br>
 	<button id="buttonSignIn" type="button">로그인하기</button>
 	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
-	<script>
+<script>
 
-		document.getElementById("buttonSignIn").onclick = function () {
-			
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post"
-				/* ,dataType:"json" */
-				,url: "/v1/infra/member/signinUsrProc"
-				/* ,data : $("#formLogin").serialize() */
-				,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
-				,success: function(response) {
-					if(response.rt == "success") {
-						if(response.changePwd == "true") {
-							location.href = "/v1/infra/member/expiredPwdUsrForm";
-						} else {
-							location.href = "/v1/infra/index/indexUsrView";
-						}
-					} else {
-				 		//document.getElementById("modalAlertTitle").innerText = "확 인";
-				 		//document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-				 		//$("#modalAlert").modal("show");
-					}
+function loginLogic (){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url: "/v1/infra/member/signinUsrProc"
+		/* ,data : $("#formLogin").serialize() */
+		,data : { "ifmmId" : $("#ifmmId").val(), "ifmmPassword" : $("#ifmmPassword").val(), "autoLogin" : $("#autoLogin").is(":checked")}
+		,success: function(response) {
+			if(response.rt == "success") {
+				if(response.changePwd == "true") {
+					location.href = "/v1/infra/member/expiredPwdUsrForm";
+				} else {
+					location.href = "/v1/infra/index/indexUsrView";
 				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
+			} else {
+		 		//document.getElementById("modalAlertTitle").innerText = "확 인";
+		 		//document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+		 		//$("#modalAlert").modal("show");
+			}
 		}
-	</script>
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+}
+
+function enterkey() {
+	if (window.event.keyCode == 13) {
+		loginLogic();
+    }
+}
+document.getElementById("buttonSignIn").onclick = function () {
+	loginLogic();
+}
+		
+</script>
 </body>
 </html>

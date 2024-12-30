@@ -31,7 +31,7 @@
             <div class="mb-3 text-start">
               <label for="ifmmPassword" class="form-label">Password</label>
               <div class="form-icon-container">
-                <input type="password" id="ifmmPassword" name="ifmmPassword" placeholder="Password" class="form-control form-icon-input" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
+                <input type="password" id="ifmmPassword" name="ifmmPassword" placeholder="Password" class="form-control form-icon-input" onkeyup="enterkey()" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
                 <div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
               </div>
             </div>
@@ -68,7 +68,7 @@
 		if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해 주세요.")) return false;
 	}
 
-	document.getElementById("buttonSignIn").onclick = function () {
+	function loginLogic (){
 		
 		if(validation() == false) return false;
 	
@@ -98,14 +98,22 @@
 			}
 		});
 	}
-
+	
+	function enterkey() {
+		if (window.event.keyCode == 13) {
+			loginLogic();
+	    }
+	}
+	
+	document.getElementById("buttonSignIn").onclick = function () {
+		loginLogic();
+	}
 // document.getElementById("buttonSignIn").onclick = function () {
 	
 // 		document.getElementById("modalAlertTitle").innerText = "확 인";
 // 		document.getElementById("modalAlertBody").innerText = "진심입니까? 과연 그럴까요 ?????";
 // 		$("#modalAlert").modal("show");
 // }
-
 </script>
 
   </body>
