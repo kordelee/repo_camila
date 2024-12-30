@@ -16,6 +16,7 @@ public class NoticeDto extends BaseDto implements Serializable {
 	private String ifntTopDateStart;
 	private String ifntTopDateEnd;
 	private Integer ifntDisplayNy;
+	private String ifntDesc;
 	private Integer ifntDelNy;
 	private Integer ifntTargetCd;
 	public String getIfntSeq() {
@@ -66,6 +67,12 @@ public class NoticeDto extends BaseDto implements Serializable {
 	public void setIfntDisplayNy(Integer ifntDisplayNy) {
 		this.ifntDisplayNy = ifntDisplayNy;
 	}
+	public String getIfntDesc() {
+		return ifntDesc;
+	}
+	public void setIfntDesc(String ifntDesc) {
+		this.ifntDesc = ifntDesc;
+	}
 	public Integer getIfntDelNy() {
 		return ifntDelNy;
 	}
@@ -78,4 +85,5 @@ public class NoticeDto extends BaseDto implements Serializable {
 	public void setIfntTargetCd(Integer ifntTargetCd) {
 		this.ifntTargetCd = ifntTargetCd;
 	}
+	
 }

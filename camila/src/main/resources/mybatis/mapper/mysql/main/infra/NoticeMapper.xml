@@ -58,6 +58,7 @@
             ,a.ifntTopDateEnd
             ,a.ifntDisplayNy
             ,a.ifntTargetCd
+            ,a.ifntDesc
             ,a.ifntDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrNotice a
@@ -72,6 +73,7 @@
 	            ,ifntTopOrder
 	            ,ifntTopDateStart
 	            ,ifntTopDateEnd
+	            ,ifntDesc
 	            ,ifntDelNy
 	            ,ifntDisplayNy
 	            ,ifntTopNy
@@ -82,13 +84,14 @@
 				,#{ifntContents}
 				,#{ifntTopOrder}
 				<choose>
-					<when test="ifntTopDateStart.equals('')">NULL</when>  
-					<otherwise>#{ifntTopDateStart}</otherwise>
+					<when test="ifntTopDateStart.equals('')">,NULL</when>  
+					<otherwise>,#{ifntTopDateStart}</otherwise>
 				</choose>
 				<choose>
-					<when test="ifntTopDateEnd.equals('')">NULL</when>  
-					<otherwise>#{ifntTopDateEnd}</otherwise>
+					<when test="ifntTopDateEnd.equals('')">,NULL</when>  
+					<otherwise>,#{ifntTopDateEnd}</otherwise>
 				</choose>
+				,#{ifntDesc}
 				,0
 				,#{ifntDisplayNy}
 				,#{ifntTopNy}
@@ -106,6 +109,7 @@
 			ifntTitle = #{ifntTitle}
 	        ,ifntContents = #{ifntContents}
 	        ,ifntTopOrder = #{ifntTopOrder}
+	        ,ifntDesc = #{ifntDesc}
 	        ,ifntTopDateStart = 
 			<choose>
 				<when test="ifntTopDateStart.equals('')">NULL</when>  

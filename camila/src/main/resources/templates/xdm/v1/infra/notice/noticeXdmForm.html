@@ -103,8 +103,24 @@
 <div class="col-md-6">
 	<label class="form-label fs--1">내용</label>
 	<div class="controls">
-		<textarea class="form-control" id="ifntContents" name="ifntContents" th:text="${item?.ifntContents}" th:value="${item?.ifntContents}" style="height: 100px;"></textarea>
-		<div class="invalid-feedback" id="ifntContentsFeedback"></div>
+		<input type="hidden" id="ifntContents" name="ifntContents">							
+	  	<div id="ifntContentsEditor" th:utext="${item?.ifntContents}"></div>
+	  	<div class="invalid-feedback" id="ifntContentsFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifntContents" name="ifntContents" th:text="${item?.ifntContents}" th:value="${item?.ifntContents}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifntContentsFeedback"></div> -->
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<input type="hidden" id="ifntDesc" name="ifntDesc">							
+	  	<div id="ifntDescEditor" th:utext="${item?.ifntDesc}"></div>
+	  	<div class="invalid-feedback" id="ifntDescFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifntContents" name="ifntContents" th:text="${item?.ifntContents}" th:value="${item?.ifntContents}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifntContentsFeedback"></div> -->
 	</div>
 </div>
 <div class="col-md-6">
@@ -174,7 +190,10 @@
 <script type="text/javascript">
 
 	window.addEventListener('load', function() {
-			
+		$("#ifntTopDateStart,#ifntTopDateEnd").datetimepicker({
+			timepicker:false,
+				format: 'Y/m/d'
+		});
 	});
 	
 	let goUrlXdmList = "/v1/infra/notice/noticeXdmList";						/* ### */
@@ -186,15 +205,33 @@
 	
 	let seq = document.querySelector("input[name=ifntSeq]");							/* ### */
 	
-	window.addEventListener('load', function() {
-		$("#ifntTopDateStart,#ifntTopDateEnd").datetimepicker({
-			timepicker:false,
- 			format: 'Y/m/d'
-		});
-	});
+	let ifntContents = document.getElementById("ifntContents");						/* ### */
+	let ifntDesc = document.getElementById("ifntDesc");								/* ### */
+	
+    const ifntContentsEditor = new toastui.Editor({
+        el: document.querySelector('#ifntContentsEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
+	
+    const ifntDescEditor = new toastui.Editor({
+        el: document.querySelector('#ifntDescEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
 	
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
+	    ifntContents.value = ifntContentsEditor.getHTML();
+	    ifntDesc.value = ifntDescEditor.getHTML();
 	}
 	
 	
@@ -211,6 +248,8 @@
 //  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+ 		ifntContents.value = ifntContentsEditor.getHTML();
+	    ifntDesc.value = ifntDescEditor.getHTML();
 	}
 
 	
