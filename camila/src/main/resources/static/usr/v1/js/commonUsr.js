@@ -173,3 +173,6 @@ extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx"
 		  }
 	});*/
 		  
+function textCount(textAreaId){
+	document.getElementById(textAreaId+"Count").innerText = document.getElementById(textAreaId).value.length;
+}
