@@ -17,6 +17,7 @@ public class QnaDto extends BaseDto implements Serializable {
 	private String ifqaAnswerSeq;
 	private String ifqaAnswerDateTime;
 	private Integer ifqaAnswerDisplayNy;
+	private String ifqaDesc;
 	private Integer ifqaDelNy;
 	private Integer ifqaSecurityNy;
 	public String getIfqaSeq() {
@@ -72,6 +73,12 @@ public class QnaDto extends BaseDto implements Serializable {
 	}
 	public void setIfqaAnswerDisplayNy(Integer ifqaAnswerDisplayNy) {
 		this.ifqaAnswerDisplayNy = ifqaAnswerDisplayNy;
+	}
+	public String getIfqaDesc() {
+		return ifqaDesc;
+	}
+	public void setIfqaDesc(String ifqaDesc) {
+		this.ifqaDesc = ifqaDesc;
 	}
 	public Integer getIfqaDelNy() {
 		return ifqaDelNy;

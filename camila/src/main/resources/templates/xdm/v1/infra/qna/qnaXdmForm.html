@@ -88,8 +88,11 @@
 <div class="col-md-6">
 	<label class="form-label fs--1">질문내용</label>
 	<div class="controls">
-		<textarea class="form-control" id="ifqaContents" name="ifqaContents" th:text="${item?.ifqaContents}" th:value="${item?.ifqaContents}" style="height: 100px;"></textarea>
-		<div class="invalid-feedback" id="ifqaContentsFeedback"></div>
+		<input type="hidden" id="ifqaContents" name="ifqaContents">							
+	  	<div id="ifqaContentsEditor" th:utext="${item?.ifqaContents}"></div>
+	  	<div class="invalid-feedback" id="ifqaContentsFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifqaContents" name="ifqaContents" th:text="${item?.ifqaContents}" th:value="${item?.ifqaContents}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifqaContentsFeedback"></div> -->
 	</div>
 </div>
 <div class="col-md-6">
@@ -115,8 +118,24 @@
 <div class="col-md-6">
 	<label class="form-label fs--1">답변내용</label>
 	<div class="controls">
-		<textarea class="form-control" id="ifqaAnswer" name="ifqaAnswer" th:text="${item?.ifqaAnswer}" th:value="${item?.ifqaAnswer}" style="height: 100px;"></textarea>
-		<div class="invalid-feedback" id="ifqaAnswerFeedback"></div>
+		<input type="hidden" id="ifqaAnswer" name="ifqaAnswer">							
+	  	<div id="ifqaAnswerEditor" th:utext="${item?.ifqaAnswer}"></div>
+	  	<div class="invalid-feedback" id="ifqaAnswerFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifqaAnswer" name="ifqaAnswer" th:text="${item?.ifqaAnswer}" th:value="${item?.ifqaAnswer}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifqaAnswerFeedback"></div> -->
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<input type="hidden" id="ifqaDesc" name="ifqaDesc">							
+	  	<div id="ifqaDescEditor" th:utext="${item?.ifqaDesc}"></div>
+	  	<div class="invalid-feedback" id="ifqaDescFeedback"></div>
+<!-- 		<textarea class="form-control" id="ifqaAnswer" name="ifqaAnswer" th:text="${item?.ifqaAnswer}" th:value="${item?.ifqaAnswer}" style="height: 100px;"></textarea> -->
+<!-- 		<div class="invalid-feedback" id="ifqaAnswerFeedback"></div> -->
 	</div>
 </div>
 <div class="col-md-6">
@@ -196,8 +215,44 @@
 	
 	let seq = document.querySelector("input[name=ifqaSeq]");							/* ### */
 	
+	let ifqaContents = document.getElementById("ifqaContents");						/* ### */
+	let ifqaAnswer = document.getElementById("ifqaAnswer");						/* ### */
+	let ifqaDesc = document.getElementById("ifqaDesc");								/* ### */
+	
+    const ifqaContentsEditor = new toastui.Editor({
+        el: document.querySelector('#ifqaContentsEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
+	
+    const ifqaAnswerEditor = new toastui.Editor({
+        el: document.querySelector('#ifqaAnswerEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+	
+	
+    const ifqaDescEditor = new toastui.Editor({
+        el: document.querySelector('#ifqaDescEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
+    
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
+	    ifqaContents.value = ifqaContentsEditor.getHTML();
+	    ifqaAnswer.value = ifqaAnswerEditor.getHTML();
+	    ifqaDesc.value = ifqaDescEditor.getHTML();
 	}
 	
 	
@@ -214,6 +269,9 @@
 //  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+ 		ifqaContents.value = ifqaContentsEditor.getHTML();
+	    ifqaAnswer.value = ifqaAnswerEditor.getHTML();
+	    ifqaDesc.value = ifqaDescEditor.getHTML();
 	}
 
 	

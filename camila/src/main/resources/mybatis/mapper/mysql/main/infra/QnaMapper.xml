@@ -60,6 +60,7 @@
             ,a.ifqaAnswerSeq
             ,a.ifqaAnswerDateTime
             ,a.ifqaAnswerDisplayNy
+            ,a.ifqaDesc
             ,a.ifqaDelNy
             ,a.ifqaSecurityNy
 						<include refid="Base.selectRegModWithAlies" />
@@ -80,6 +81,7 @@
             ,a.ifqaAnswerSeq
             ,a.ifqaAnswerDateTime
             ,a.ifqaAnswerDisplayNy
+            ,a.ifqaDesc
             ,a.ifqaDelNy
             ,a.ifqaSecurityNy
 						<include refid="Base.selectRegModWithAlies" />		            
@@ -98,6 +100,7 @@
 	            ,ifqaAnswerSeq
 	            ,ifqaAnswerDateTime
 	            ,ifqaAnswerDisplayNy
+	            ,ifqaDesc
 	            ,ifqaDelNy
 	            ,ifqaSecurityNy
 				<include refid="Base.insertRegModColumn" />			
@@ -110,6 +113,7 @@
 				,#{ifqaAnswerSeq}
 				,#{ifqaAnswerDateTime}
 				,#{ifqaAnswerDisplayNy}
+				,#{ifqaDesc}
 				,0
 				,#{ifqaSecurityNy}
 				<include refid="Base.insertRegModValue" />			
@@ -131,6 +135,7 @@
 	        ,ifqaAnswerDateTime = #{ifqaAnswerDateTime}
 	        ,ifqaAnswerDisplayNy = #{ifqaAnswerDisplayNy}
 	        ,ifqaSecurityNy = #{ifqaSecurityNy}
+	        ,ifqaDesc = #{ifqaDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifqaSeq = #{ifqaSeq}
