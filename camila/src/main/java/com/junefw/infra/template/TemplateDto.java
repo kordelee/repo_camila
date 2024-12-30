@@ -13,6 +13,7 @@ public class TemplateDto extends BaseDto implements Serializable {
 	private String iftpName;
 	private String iftpContents;
 	private Integer iftpUseNy;
+	private String iftpDesc;
 	private Integer iftpDelNy;
 	public String getIftpSeq() {
 		return iftpSeq;
@@ -49,6 +50,12 @@ public class TemplateDto extends BaseDto implements Serializable {
 	}
 	public void setIftpUseNy(Integer iftpUseNy) {
 		this.iftpUseNy = iftpUseNy;
+	}
+	public String getIftpDesc() {
+		return iftpDesc;
+	}
+	public void setIftpDesc(String iftpDesc) {
+		this.iftpDesc = iftpDesc;
 	}
 	public Integer getIftpDelNy() {
 		return iftpDelNy;

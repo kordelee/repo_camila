@@ -109,7 +109,17 @@
 <div class="col-md-6">
 	<!-- empty -->
 </div>
-							
+<div class="col-md-6">
+	<label class="form-label fs--1">설명</label>
+	<div class="controls">
+		<input type="hidden" id="iftpDesc" name="iftpDesc">							
+	  	<div id="iftpDescEditor" th:utext="${item?.iftpDesc}"></div>
+	  	<div class="invalid-feedback" id="iftpDescFeedback"></div>
+	</div>
+</div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>			
 <th:block th:if="${not #strings.isEmpty(item?.iftpSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
@@ -185,9 +195,20 @@
 	
 	let seq = document.querySelector("input[name=iftpSeq]");							/* ### */
 	
+	let iftpDesc = document.getElementById("iftpDesc");
+	
+	const iftpDescEditor = new toastui.Editor({
+        el: document.querySelector('#iftpDescEditor'),
+        height: '300px',
+//         initialEditType: 'markdown',
+        initialEditType: 'wysiwyg',
+//         initialValue: '내용을 입력해 주세요.',
+        previewStyle: 'vertical'
+    });
 	
 	function validationInst() {
 	    if(validationUpdt() == false) return false;
+	    iftpDesc.value = iftpDescEditor.getHTML();
 	}
 	
 	
@@ -201,6 +222,7 @@
 //  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
 //  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		 iftpDesc.value = iftpDescEditor.getHTML();
 	}
 
 	

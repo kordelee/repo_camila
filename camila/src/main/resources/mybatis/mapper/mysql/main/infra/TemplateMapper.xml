@@ -36,6 +36,7 @@
             ,a.iftpName
             ,a.iftpContents
             ,a.iftpUseNy
+            ,a.iftpDesc
             ,a.iftpDelNy
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
@@ -51,6 +52,7 @@
             ,a.iftpName
             ,a.iftpContents
             ,a.iftpUseNy
+            ,a.iftpDesc
             ,a.iftpDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrTemplate a
@@ -65,6 +67,7 @@
 	            ,iftpName
 	            ,iftpContents
 	            ,iftpUseNy
+	            ,iftpDesc
 	            ,iftpDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
@@ -73,6 +76,7 @@
 				,#{iftpName}
 				,#{iftpContents}
 				,#{iftpUseNy}
+				,#{iftpDesc}
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -89,6 +93,7 @@
             ,iftpName = #{iftpName}
             ,iftpContents = #{iftpContents}
             ,iftpUseNy = #{iftpUseNy}
+            ,iftpDesc = #{iftpDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND iftpSeq = #{iftpSeq}
