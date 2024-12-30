@@ -51,6 +51,7 @@
         SELECT
             a.ifrlSeq
             ,a.ifrlTitle
+            ,a.ifrlContents
             ,a.ifrlDesc
             ,a.ifrlVersion
             ,a.ifrlUseNy
@@ -73,6 +74,7 @@
 				,ifrlEndDateTime
 				,ifrlStartDateTime
 				,ifrlNoticeDateTime
+				,ifrlDesc
 				,ifrlDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
@@ -92,6 +94,7 @@
 					<when test="ifrlNoticeDateTime.equals('')">,NULL</when>  
 					<otherwise>,#{ifrlNoticeDateTime}</otherwise>
 				</choose>
+				,#{ifrlDesc}
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -105,6 +108,7 @@
 		SET
 			ifrlTitle = #{ifrlTitle}
 			,ifrlContents = #{ifrlContents}
+			,ifrlDesc = #{ifrlDesc}
 			,ifrlVersion = #{ifrlVersion}
 			,ifrlUseNy = #{ifrlUseNy}
 			,ifrlStartDateTime =
