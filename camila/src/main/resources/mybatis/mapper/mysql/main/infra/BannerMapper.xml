@@ -84,6 +84,10 @@
 			 </selectKey>
 	</insert>
 	
+	<insert id="insertUploaded">
+		<include refid="Base.insertUploaded" />
+	</insert>
+	
 	<update id="update">
 		UPDATE infrBanner
 		SET

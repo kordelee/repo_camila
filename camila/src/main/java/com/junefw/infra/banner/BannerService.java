@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.junefw.common.base.BaseService;
 
 @Service
 public class BannerService extends BaseService {
 
+//	for aws.s3 fileupload s
+	@Autowired
+	private AmazonS3Client amazonS3Client;
+	
 	@Autowired
 	BannerDao dao;
     
@@ -31,7 +36,7 @@ public class BannerService extends BaseService {
     public int insert(BannerDto dto) throws Exception { 
     	setRegMod(dto);
     	dao.insert(dto);
-    	
+    	uploadFilesToS3(dto.getUploadImg(), dto, "infrBannerUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfbnSeq(), dao, amazonS3Client);
     	return 1; 
     }
 
