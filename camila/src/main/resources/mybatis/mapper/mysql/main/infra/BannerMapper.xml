@@ -51,6 +51,7 @@
             ,a.ifbnUrl
             ,a.ifbnOrder
             ,a.ifbnUseNy
+            ,a.ifbnDesc
             ,a.ifbnDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrBanner a
@@ -65,6 +66,7 @@
 	            ,ifbnUrl
 	            ,ifbnOrder
 	            ,ifbnUseNy
+	            ,ifbnDesc
 	            ,ifbnDelNy
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
@@ -73,6 +75,7 @@
 				,#{ifbnUrl}
 				,#{ifbnOrder}
 				,#{ifbnUseNy}
+				,#{ifbnDesc}
 				,0
 				<include refid="Base.insertRegModValue" />			
 			 )
@@ -89,7 +92,7 @@
 			,ifbnUrl = #{ifbnUrl}
 			,ifbnOrder = #{ifbnOrder}
 			,ifbnUseNy = #{ifbnUseNy}
-			,ifbnDelNy = #{ifbnDelNy}
+			,ifbnDesc = #{ifbnDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifbnSeq = #{ifbnSeq}

@@ -14,6 +14,7 @@ public class BannerDto extends BaseDto implements Serializable {
 	private String ifbnUrl;
 	private Integer ifbnOrder;
 	private Integer ifbnUseNy;
+	private String ifbnDesc;
 	private Integer ifbnDelNy;
 	public String getIfbnSeq() {
 		return ifbnSeq;
@@ -51,14 +52,17 @@ public class BannerDto extends BaseDto implements Serializable {
 	public void setIfbnUseNy(Integer ifbnUseNy) {
 		this.ifbnUseNy = ifbnUseNy;
 	}
+	public String getIfbnDesc() {
+		return ifbnDesc;
+	}
+	public void setIfbnDesc(String ifbnDesc) {
+		this.ifbnDesc = ifbnDesc;
+	}
 	public Integer getIfbnDelNy() {
 		return ifbnDelNy;
 	}
 	public void setIfbnDelNy(Integer ifbnDelNy) {
 		this.ifbnDelNy = ifbnDelNy;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 	
 }
