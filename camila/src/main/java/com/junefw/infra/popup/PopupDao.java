@@ -11,6 +11,7 @@ public interface PopupDao extends BaseDao {
 
 	public int selectOneCount(PopupVo vo);
     public List<PopupDto> selectList(PopupVo vo);
+    public List<PopupDto> selectListUploaded(PopupVo vo);
     public PopupDto selectOne(PopupVo vo);
     public int insert(PopupDto dto);
     public int update(PopupDto dto);

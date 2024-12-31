@@ -46,6 +46,23 @@
         <include refid="Base.selectListLowerForMysql" />
     </select>
 
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM infrMemberUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{ifppSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
            a.ifppSeq
@@ -101,6 +118,10 @@
 			 <selectKey resultType="String" keyProperty="ifppSeq" order="AFTER">
 				SELECT last_insert_id()
 			 </selectKey>
+	</insert>
+	
+	<insert id="insertUploaded">
+		<include refid="Base.insertUploaded" />
 	</insert>
 	
 	<update id="update">
