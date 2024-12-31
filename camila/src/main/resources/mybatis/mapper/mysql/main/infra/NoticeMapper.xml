@@ -103,6 +103,10 @@
 			 </selectKey>
 	</insert>
 	
+	<insert id="insertUploaded">
+		<include refid="Base.insertUploaded" />
+	</insert>
+	
 	<update id="update">
 		UPDATE infrNotice
 		SET
