@@ -6,6 +6,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 
+import com.junefw.common.constants.Constants;
 import com.junefw.infra.member.MemberDao;
 import com.junefw.infra.member.MemberDto;
 import com.junefw.infra.template.TemplateDto;
@@ -36,6 +37,24 @@ public class MailService {
 //    	javaMailSender.send(simpleMailMessage);
 //    }
 	
+//	테스트
+	public void sendMailTest(TemplateVo templateVo) throws Exception{
+		
+		TemplateDto templateDto = templateService.selectOne(templateVo);
+		String contentsHtml = templateDto.getIftpContents();
+		System.out.println("templateVo.getXdTestTarget(): " + templateVo.getXdTestTarget());
+		System.out.println("templateDto.getIftpTitle(): " + templateDto.getIftpTitle());
+		System.out.println("contentsHtml: " + contentsHtml);
+		
+		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+		mimeMessageHelper.setFrom(Constants.GOOGLE_ACCOUNT_FOR_SMTP);
+		mimeMessageHelper.setTo(templateVo.getXdTestTarget()); 
+		mimeMessageHelper.setSubject(templateDto.getIftpTitle());
+		mimeMessageHelper.setText(contentsHtml, true); 
+		javaMailSender.send(mimeMessage);
+		
+	}
 	
 //	회원가입 축하 메일
     public void sendMailWelcome(MemberDto memberDto, TemplateVo templateVo) throws Exception{

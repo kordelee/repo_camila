@@ -1,15 +1,21 @@
 package com.junefw.infra.template;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
 import com.junefw.infra.mail.MailService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/v1/infra/template")
@@ -144,6 +150,35 @@ public class TemplateController extends BaseController{
 		redirectAttributes.addFlashAttribute("vo", vo);
 
 		return pathRedirectCommonXdm + "templateXdmList";
+	}
+	
+	
+	@RequestMapping(value = "/templatePreviewXdmView")
+	public String templatePreviewXdmView(@ModelAttribute("vo") TemplateVo vo, Model model) {
+		
+		model.addAttribute("item", service.selectOne(vo));
+		
+		return pathCommonXdm + "templatePreviewXdmView";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/templateTestXdmProc")
+	public Map<String, Object> signoutUsrProc(TemplateVo vo, TemplateDto dto, HttpSession httpSession) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+//		154: mail
+//		155: sms
+//		156: kakao talk
+		if(dto.getIftpTypeCd() == 154) {
+			mailService.sendMailTest(vo);
+		} else if (dto.getIftpTypeCd() == 155) {
+//			not yet
+		} else {
+//			not yet
+		}
+		
+		returnMap.put("rt", "success");
+		return returnMap;
 	}
 	
 }

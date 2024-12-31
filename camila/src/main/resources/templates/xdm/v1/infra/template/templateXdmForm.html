@@ -81,34 +81,21 @@
 <div class="col-md-6">
 	<!-- empty -->
 </div>
-<div class="col-md-6">
+<div class="col-md-12">
 	<label class="form-label fs--1">내용</label>
 	<div class="controls">
 		<textarea class="form-control" id="iftpContents" name="iftpContents" th:value="${item?.iftpContents}" th:text="${item?.iftpContents}" style="height: 100px;"></textarea>
 		<div class="invalid-feedback" id="iftpContentsFeedback"></div>
-		<button type="button" id="run">실행</button>
-	</div>
-</div>
-
-<div class="modal fade" id="modalAlert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="modalAlertTitle">title</h5>
-				<button type="button" class="btn-close btn_custom" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body" id="modalAlertBody">
-				<iframe class="form-control" id="rtContents" name="rtContents"></iframe>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btn-sm btn_custom" data-bs-dismiss="modal"><i class="fa-solid fa-check fa-lg"></i></button>
-			</div>
-		</div>
 	</div>
 </div>
 <div class="col-md-6">
-	<!-- empty -->
+	<label for="xdTestTarget" class="form-label fs--1">테스트용 대상</label>
+	<input type="text" id="xdTestTarget" class="form-control"/>
+	<div class="invalid-feedback" id="xdTestTargetFeedback"></div>
 </div>
+<div class="col-md-6">
+	<!-- empty -->
+</div>						
 <div class="col-md-6">
 	<label class="form-label fs--1">설명</label>
 	<div class="controls">
@@ -119,7 +106,8 @@
 </div>
 <div class="col-md-6">
 	<!-- empty -->
-</div>			
+</div>
+							
 <th:block th:if="${not #strings.isEmpty(item?.iftpSeq)}">			
 	<div th:replace="~{xdm/v1/infra/include/regmod :: regmod}"></div>   						
 </th:block>					
@@ -134,12 +122,13 @@
 </th:block>
 		</div>
 		<div class="col-6 text-end">
-<!-- 									<button type="button" id="btnForm" class="btn btn-primary btn-sm btn_custom"><i class="fa-regular fa-pen-to-square fa-lg"></i></button> -->
+			<button type="button" id="btnTestTo" class="btn btn-primary btn-sm btn_custom"><i class="fa-solid fa-check fa-lg"></i></button>
+			<button type="button" id="btnPreview" class="btn btn-primary btn-sm btn_custom"><i class="fa-solid fa-check fa-lg"></i></button>
 			<button type="button" id="btnSubmit" class="btn btn-primary btn_custom"><i class="fa-solid fa-database fa-lg"></i></button>
 		</div>
 	</div>          
 </div>
-					
+
 					</form>
 				</div>
 			</div>
@@ -192,6 +181,7 @@
 	let goUrlXdmUpdt = "/v1/infra/template/templateXdmUpdt";						/* ### */
 	let goUrlXdmDele = "/v1/infra/template/templateXdmDele";						/* ### */
 	let goUrlXdmUele = "/v1/infra/template/templateXdmUele";						/* ### */
+	let goUrlPreviewXdmview = "/v1/infra/template/templatePreviewXdmView";						/* ### */
 	
 	let seq = document.querySelector("input[name=iftpSeq]");							/* ### */
 	
@@ -232,17 +222,42 @@
 	
 	}
 	
-	function preview(){
-        let code = document.getElementById("iftpContents").value;
-        let rt = document.getElementById("rtContents");
-			rt.srcdoc = code;
-	};
 	
-	document.getElementById("run").onclick = function () {
-			preview();
-	        document.querySelector(".modal-title").textContent = "미리보기";
-	        document.querySelector(".modal-body").textContent;
-	        $("#modalAlert").modal("show");
+	document.getElementById("btnPreview").onclick = function () {
+ 		window.open(goUrlPreviewXdmview + "?iftpSeq=" + seq.value, "preview", target="_blank");
+	}
+
+	
+	document.getElementById("btnTestTo").onclick = function () {
+		
+		// 메일주소 validation 처리
+		
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/v1/infra/template/templateTestXdmProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { 
+				"iftpSeq": seq.value,
+				"iftpTypeCd": document.getElementById("iftpTypeCd").value,
+				"xdTestTarget": document.getElementById("xdTestTarget").value,
+			}
+			,success: function(response) {
+				if(response.rt == "success") {
+					alert("발송 성공");
+// 					모달 뛰우기
+					
+				} else {
+
+				}
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+ 		
 	}
 	
 </script>

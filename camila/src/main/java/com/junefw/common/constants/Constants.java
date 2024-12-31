@@ -8,6 +8,8 @@ public final class Constants {
 	public static final String ABBREVIATION_ADMIN = "Xdm"; 
 	public static final String ABBREVIATION_USER = "Usr";
 	
+	public static final String GOOGLE_ACCOUNT_FOR_SMTP = "excitingmvr@gmail.com";
+	
 //	for paging
 	public static final int ROW_NUM_TO_SHOW = 5;
 	public static final int PAGE_NUM_TO_SHOW = 5;
