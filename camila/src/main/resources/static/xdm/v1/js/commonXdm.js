@@ -65,7 +65,9 @@ $("#shDateStart").datepicker({
 
 checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) {
 	if(allowedMaxTotalFileNumber < (filesCount + uploadedFilesCount)){
-		alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalAlertBody").textContent = "전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.";
+		$("#modalAlert").modal("show");
 //		$("#file"+seq).val("");
 //		obj.val("");
 		return false;
@@ -78,7 +80,9 @@ checkUploadedExt = function(objName, seq, div) {
 	var extArray = eval("extArray" + div);
 	
 	if(extArray.indexOf(ext) == -1) {
-		alert("허용된 확장자가 아닙니다.");
+		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalAlertBody").textContent = "허용된 확장자가 아닙니다.";
+		$("#modalAlert").modal("show");     
 //		$("#file"+seq).val("");
 		return false;
 	}
@@ -88,7 +92,9 @@ checkUploadedExt = function(objName, seq, div) {
 checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
 
 	if(obj.size > allowedEachFileSize){
-		alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalAlertBody").textContent = "각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.";
+		$("#modalAlert").modal("show");  
 		$("#file"+seq).val("");
 		return false;
 	}
@@ -97,7 +103,9 @@ checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
 
 checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
 	if(totalSize > allowedTotalFileSize){
-		alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+		document.querySelector("#modalAlertTitle").textContent = "확 인";
+		document.querySelector("#modalAlertBody").textContent = "전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.";
+		$("#modalAlert").modal("show");
 		$("#file"+seq).val("");
 		return false;
 	}
