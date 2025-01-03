@@ -15,6 +15,7 @@ public class TemplateDto extends BaseDto implements Serializable {
 	private Integer iftpUseNy;
 	private String iftpDesc;
 	private Integer iftpDelNy;
+//	----------
 	public String getIftpSeq() {
 		return iftpSeq;
 	}

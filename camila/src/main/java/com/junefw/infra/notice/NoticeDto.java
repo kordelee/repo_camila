@@ -33,6 +33,7 @@ public class NoticeDto extends BaseDto implements Serializable {
 	private Integer uploadFileMaxNumber;
 	private String[] uploadFileDeleteSeq;
 	private String[] uploadFileDeletePathFile;
+//	----------
 	public String getIfntSeq() {
 		return ifntSeq;
 	}

@@ -13,7 +13,7 @@ public class QnaVo extends BaseVo implements Serializable {
 	private Integer shSecurityNy;
 	
 	private String regSeq;
-
+//	----------
 	public String getIfqaSeq() {
 		return ifqaSeq;
 	}

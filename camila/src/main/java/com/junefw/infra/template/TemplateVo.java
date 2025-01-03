@@ -9,6 +9,7 @@ public class TemplateVo extends BaseVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String iftpSeq;
 	private String xdTestTarget;
+//	----------
 	public String getIftpSeq() {
 		return iftpSeq;
 	}

@@ -24,6 +24,7 @@ public class BannerDto extends BaseDto implements Serializable {
 	private Integer uploadImgMaxNumber;
 	private String[] uploadImgDeleteSeq;
 	private String[] uploadImgDeletePathFile;
+//	----------
 	public String getIfbnSeq() {
 		return ifbnSeq;
 	}

@@ -11,6 +11,7 @@ public class PopupVo extends BaseVo implements Serializable {
 	private String ifppSeq;
 	
 	private Integer shDisplayNy;
+//	----------
 	public String getIfppSeq() {
 		return ifppSeq;
 	}

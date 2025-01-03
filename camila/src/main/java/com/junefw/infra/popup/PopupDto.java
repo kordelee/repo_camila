@@ -28,6 +28,7 @@ public class PopupDto extends BaseDto implements Serializable {
 	private Integer uploadImgMaxNumber;
 	private String[] uploadImgDeleteSeq;
 	private String[] uploadImgDeletePathFile;
+//	----------
 	public String getIfppSeq() {
 		return ifppSeq;
 	}

@@ -8,7 +8,7 @@ public class RuleVo extends BaseVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String ifrlSeq;
-
+//	----------
 	public String getIfrlSeq() {
 		return ifrlSeq;
 	}

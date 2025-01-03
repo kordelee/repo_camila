@@ -18,6 +18,7 @@ public class RuleDto extends BaseDto implements Serializable {
 	private String ifrlStartDateTime;
 	private String ifrlEndDateTime;
 	private String ifrlNoticeDateTime;
+//	----------
 	public String getIfrlSeq() {
 		return ifrlSeq;
 	}

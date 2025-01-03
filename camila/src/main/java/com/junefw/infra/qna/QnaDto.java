@@ -20,6 +20,7 @@ public class QnaDto extends BaseDto implements Serializable {
 	private String ifqaDesc;
 	private Integer ifqaDelNy;
 	private Integer ifqaSecurityNy;
+//	----------
 	public String getIfqaSeq() {
 		return ifqaSeq;
 	}

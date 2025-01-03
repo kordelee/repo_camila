@@ -8,7 +8,7 @@ public class NoticeVo extends BaseVo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String ifntSeq;
-
+//	----------
 	public String getIfntSeq() {
 		return ifntSeq;
 	}
