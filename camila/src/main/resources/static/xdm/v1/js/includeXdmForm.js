@@ -43,6 +43,7 @@ document.getElementById("btnModalDelete").onclick = function () {
 
 
 document.getElementById("btnSubmit").onclick = function () {
+	$("#modalLoading").modal("show");
 	if(seq.value == "0" || seq.value == "") {
 		if(validationInst() == false) return false;
 			form.action = goUrlXdmInst;
