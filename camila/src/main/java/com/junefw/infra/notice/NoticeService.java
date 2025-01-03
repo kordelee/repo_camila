@@ -28,6 +28,11 @@ public class NoticeService extends BaseService{
     }
     
     
+    public List<NoticeDto> selectListUploaded(NoticeVo vo) { 
+    	return dao.selectListUploaded(vo); 
+    }
+    
+    
     public NoticeDto selectOne(NoticeVo vo) { 
     	return dao.selectOne(vo); 
     }

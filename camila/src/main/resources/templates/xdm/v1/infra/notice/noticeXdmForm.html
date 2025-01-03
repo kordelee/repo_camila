@@ -402,7 +402,6 @@
 				var sort = parseInt(maxNumber) + i;
 
 				var divImage = "";
-				divImage +=	'<input class="form-control form-control-sm" id="uploadImg2" name="uploadImg2" type="file" multiple="multiple" style="display: none;" onChange="upload(uploadImg2,1,0,1,0,0,1)"/>';
 				divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
 				divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
 				divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';

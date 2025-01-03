@@ -11,6 +11,7 @@ public interface NoticeDao extends BaseDao{
 
 	public int selectOneCount(NoticeVo vo);
     public List<NoticeDto> selectList(NoticeVo vo);
+    public List<NoticeDto> selectListUploaded(NoticeVo vo);
     public NoticeDto selectOne(NoticeVo vo);
     public int insert(NoticeDto dto);
     public int update(NoticeDto dto);

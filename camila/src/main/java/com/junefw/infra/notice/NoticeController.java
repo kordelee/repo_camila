@@ -56,6 +56,7 @@ public class NoticeController extends BaseController {
 		} else {
 //			update mode
 			model.addAttribute("item", service.selectOne(vo));
+			model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		}
 		return pathCommonXdm + "noticeXdmForm";
 	}

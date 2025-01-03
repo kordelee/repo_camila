@@ -47,6 +47,23 @@
         <include refid="Base.selectListLowerForMysql" />
     </select>
 
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM infrNoticeUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{ifntSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
             a.ifntSeq
