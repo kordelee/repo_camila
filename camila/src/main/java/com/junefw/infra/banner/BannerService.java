@@ -28,6 +28,11 @@ public class BannerService extends BaseService {
     }
     
     
+    public List<BannerDto> selectListUploaded(BannerVo vo) { 
+    	return dao.selectListUploaded(vo); 
+    }
+    
+    
     public BannerDto selectOne(BannerVo vo) { 
     	return dao.selectOne(vo); 
     }

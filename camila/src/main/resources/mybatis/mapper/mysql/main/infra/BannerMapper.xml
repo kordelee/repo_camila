@@ -43,6 +43,23 @@
         <include refid="Base.selectListLowerForMysql" />
     </select>
 
+	<select id="selectListUploaded" resultMap="resultMapObj">
+		SELECT 
+			seq
+			,type
+			,defaultNy
+			,sort
+			,path
+			,originalName
+			,uuidName
+		FROM infrBannerUploaded
+		WHERE 1=1
+			AND delNy = 0
+			AND pseq = #{ifbnSeq}
+		ORDER BY
+			type, sort
+	</select>
+	
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
             a.ifbnSeq

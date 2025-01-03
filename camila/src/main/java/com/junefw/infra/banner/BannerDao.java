@@ -11,6 +11,7 @@ public interface BannerDao extends BaseDao {
 
 	public int selectOneCount(BannerVo vo);
     public List<BannerDto> selectList(BannerVo vo);
+    public List<BannerDto> selectListUploaded(BannerVo vo);
     public BannerDto selectOne(BannerVo vo);
     public int insert(BannerDto dto);
     public int update(BannerDto dto);

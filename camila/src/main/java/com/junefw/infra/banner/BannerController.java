@@ -9,7 +9,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
-import com.junefw.infra.popup.PopupService;
 
 @Controller
 @RequestMapping(value = "/v1/infra/banner")
@@ -57,6 +56,7 @@ public class BannerController extends BaseController {
 		} else {
 //			update mode
 			model.addAttribute("item", service.selectOne(vo));
+			model.addAttribute("listUploaded", service.selectListUploaded(vo));
 		}
 		return pathCommonXdm + "bannerXdmForm";
 	}
