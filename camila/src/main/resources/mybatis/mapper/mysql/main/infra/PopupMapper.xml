@@ -55,7 +55,7 @@
 			,path
 			,originalName
 			,uuidName
-		FROM infrMemberUploaded
+		FROM infrPopupUploaded
 		WHERE 1=1
 			AND delNy = 0
 			AND pseq = #{ifppSeq}

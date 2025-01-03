@@ -122,7 +122,7 @@
 <div class="col-md-6">
 	<!-- empty -->
 </div>
-<div class="col-md-6" th:with="type=1, name='uploadImg'">
+<div class="col-md-6" th:with="type=1, name='uploadImg1'">
 	<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
 	<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
 	<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
@@ -398,7 +398,6 @@
 			var sort = parseInt(maxNumber) + i;
 
 			var divImage = "";
-			divImage +=	'<input class="form-control form-control-sm" id="uploadImg2" name="uploadImg2" type="file" multiple="multiple" style="display: none;" onChange="upload(uploadImg2,1,0,1,0,0,1)"/>';
 			divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
 			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
 			divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';

@@ -41,7 +41,7 @@ public class PopupService extends BaseService{
     public int insert(PopupDto dto) throws Exception { 
     	setRegMod(dto);
     	dao.insert(dto);
-    	uploadFilesToS3(dto.getUploadImg(), dto, "infrPopupUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfppSeq(), dao, amazonS3Client);
+    	uploadFilesToS3(dto.getUploadImg1(), dto, "infrPopupUploaded", dto.getUploadImg1Type(), dto.getUploadImg1MaxNumber(), dto.getIfppSeq(), dao, amazonS3Client);
     	return 1; 
     }
 
