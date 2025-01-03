@@ -87,17 +87,50 @@
 	</div>	
 
 	<div class="modal fade" id="modalLoading" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modalLoadingTitle">로딩중</h5>
-				</div>
-				<div class="modal-body" id="modalAlertBody">
-					Loading ...
-				</div>
-			</div>
-		</div>
+	    <div class="modal-dialog modal-dialog-centered">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="staticBackdropLabel">로딩중</h5>
+	            </div>
+	            <div class="modal-body">
+	                <div class="spinner"></div>
+	                <p class="loading-text">Loading ...</p>
+	            </div>
+	        </div>
+	    </div>
 	</div>
+
+<style>
+/* 스피너 스타일 */
+.spinner {
+    margin: 0 auto;
+    width: 80px; /* 크기 조정 */
+    height: 80px; /* 크기 조정 */
+    border: 8px solid rgba(0, 0, 0, 0.1); /* 두께 조정 */
+    border-top: 8px solid #007bff; /* 강조 색상 */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* 스피너 애니메이션 */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 로딩 텍스트 스타일 */
+.loading-text {
+    text-align: center;
+    margin-top: 20px; /* 간격 조정 */
+    font-size: 18px; /* 글자 크기 */
+    color: #333;
+}
+</style>
+	
 </th:block>
 
 </html>
