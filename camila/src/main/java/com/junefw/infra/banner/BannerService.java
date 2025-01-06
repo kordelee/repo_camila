@@ -41,7 +41,7 @@ public class BannerService extends BaseService {
     public int insert(BannerDto dto) throws Exception { 
     	setRegMod(dto);
     	dao.insert(dto);
-    	uploadFilesToS3(dto.getUploadImg(), dto, "infrBannerUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfbnSeq(), dao, amazonS3Client);
+    	uploadFilesToS3(dto.getUploadImg1(), dto, "infrBannerUploaded", dto.getUploadImg1Type(), dto.getUploadImg1MaxNumber(), dto.getIfbnSeq(), dao, amazonS3Client);
     	return 1; 
     }
 

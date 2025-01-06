@@ -86,7 +86,7 @@
 <div class="col-md-6">
 	<!-- empty -->
 </div>
-<div class="col-md-6" th:with="type=1, name='uploadImg'">
+<div class="col-md-6" th:with="type=1, name='uploadImg1'">
 	<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
 	<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
 	<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
@@ -104,7 +104,7 @@
 	<!-- th:onChange="'javascript:upload(\''+ ${name} +'\','+ ${type} +',0,1,0,0,1);'" -->
 	<!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
 	<div th:id="|${name}Preview|" class="addScroll">
-		<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">	
+		<div th:id="|imgDiv_${type}|" th:if="${listUploaded.type == 1}" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">	
 			<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
 			<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
 	 	</div>
@@ -406,9 +406,10 @@
 		}
 	}
 	
-	openViewer = function (type, sort) {
-		var str = '<c:set var="tmp" value="'+ type +'"/>';
-		$("#modalImgViewer").append(str);
+	openViewer = function (type, sort, path) {
+		var img = '<img src="'+path+'" class="img-fluid" alt="Image Preview">';
+		$("#modalImgViewerDetail").empty();
+		$("#modalImgViewerDetail").append(img);
 		$("#modalImgViewer").modal("show");
 	}
 </script>

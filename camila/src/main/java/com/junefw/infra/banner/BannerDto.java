@@ -19,11 +19,11 @@ public class BannerDto extends BaseDto implements Serializable {
 	private String ifbnDesc;
 	private Integer ifbnDelNy;
 	
-	private MultipartFile[] uploadImg;
-	private Integer uploadImgType;	
-	private Integer uploadImgMaxNumber;
-	private String[] uploadImgDeleteSeq;
-	private String[] uploadImgDeletePathFile;
+	private MultipartFile[] uploadImg1;
+	private Integer uploadImg1Type;	
+	private Integer uploadImg1MaxNumber;
+	private String[] uploadImg1DeleteSeq;
+	private String[] uploadImg1DeletePathFile;
 //	----------
 	public String getIfbnSeq() {
 		return ifbnSeq;
@@ -73,35 +73,35 @@ public class BannerDto extends BaseDto implements Serializable {
 	public void setIfbnDelNy(Integer ifbnDelNy) {
 		this.ifbnDelNy = ifbnDelNy;
 	}
-	public MultipartFile[] getUploadImg() {
-		return uploadImg;
+	public MultipartFile[] getUploadImg1() {
+		return uploadImg1;
 	}
-	public void setUploadImg(MultipartFile[] uploadImg) {
-		this.uploadImg = uploadImg;
+	public void setUploadImg1(MultipartFile[] uploadImg1) {
+		this.uploadImg1 = uploadImg1;
 	}
-	public Integer getUploadImgType() {
-		return uploadImgType;
+	public Integer getUploadImg1Type() {
+		return uploadImg1Type;
 	}
-	public void setUploadImgType(Integer uploadImgType) {
-		this.uploadImgType = uploadImgType;
+	public void setUploadImg1Type(Integer uploadImg1Type) {
+		this.uploadImg1Type = uploadImg1Type;
 	}
-	public Integer getUploadImgMaxNumber() {
-		return uploadImgMaxNumber;
+	public Integer getUploadImg1MaxNumber() {
+		return uploadImg1MaxNumber;
 	}
-	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
-		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	public void setUploadImg1MaxNumber(Integer uploadImg1MaxNumber) {
+		this.uploadImg1MaxNumber = uploadImg1MaxNumber;
 	}
-	public String[] getUploadImgDeleteSeq() {
-		return uploadImgDeleteSeq;
+	public String[] getUploadImg1DeleteSeq() {
+		return uploadImg1DeleteSeq;
 	}
-	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
-		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	public void setUploadImg1DeleteSeq(String[] uploadImg1DeleteSeq) {
+		this.uploadImg1DeleteSeq = uploadImg1DeleteSeq;
 	}
-	public String[] getUploadImgDeletePathFile() {
-		return uploadImgDeletePathFile;
+	public String[] getUploadImg1DeletePathFile() {
+		return uploadImg1DeletePathFile;
 	}
-	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
-		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	public void setUploadImg1DeletePathFile(String[] uploadImg1DeletePathFile) {
+		this.uploadImg1DeletePathFile = uploadImg1DeletePathFile;
 	}
 	
 }
