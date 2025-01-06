@@ -41,8 +41,8 @@ public class NoticeService extends BaseService{
     public int insert(NoticeDto dto) throws Exception { 
     	setRegMod(dto);
     	dao.insert(dto);
-    	uploadFilesToS3(dto.getUploadImg(), dto, "infrNoticeUploaded", dto.getUploadImgType(), dto.getUploadImgMaxNumber(), dto.getIfntSeq(), dao, amazonS3Client);
-    	uploadFilesToS3(dto.getUploadFile(), dto, "infrNoticeUploaded", dto.getUploadFileType(), dto.getUploadFileMaxNumber(), dto.getIfntSeq(), dao, amazonS3Client);
+    	uploadFilesToS3(dto.getUploadImg1(), dto, "infrNoticeUploaded", dto.getUploadImg1Type(), dto.getUploadImg1MaxNumber(), dto.getIfntSeq(), dao, amazonS3Client);
+    	uploadFilesToS3(dto.getUploadFile2(), dto, "infrNoticeUploaded", dto.getUploadFile2Type(), dto.getUploadFile2MaxNumber(), dto.getIfntSeq(), dao, amazonS3Client);
     	return 1; 
     }
 

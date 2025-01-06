@@ -22,17 +22,17 @@ public class NoticeDto extends BaseDto implements Serializable {
 	private Integer ifntDelNy;
 	private Integer ifntTargetCd;
 	
-	private MultipartFile[] uploadImg;
-	private Integer uploadImgType;	
-	private Integer uploadImgMaxNumber;
-	private String[] uploadImgDeleteSeq;
-	private String[] uploadImgDeletePathFile;	
+	private MultipartFile[] uploadImg1;
+	private Integer uploadImg1Type;	
+	private Integer uploadImg1MaxNumber;
+	private String[] uploadImg1DeleteSeq;
+	private String[] uploadImg1DeletePathFile;	
 	
-	private MultipartFile[] uploadFile;
-	private Integer uploadFileType;
-	private Integer uploadFileMaxNumber;
-	private String[] uploadFileDeleteSeq;
-	private String[] uploadFileDeletePathFile;
+	private MultipartFile[] uploadFile2;
+	private Integer uploadFile2Type;
+	private Integer uploadFile2MaxNumber;
+	private String[] uploadFile2DeleteSeq;
+	private String[] uploadFile2DeletePathFile;
 //	----------
 	public String getIfntSeq() {
 		return ifntSeq;
@@ -100,65 +100,65 @@ public class NoticeDto extends BaseDto implements Serializable {
 	public void setIfntTargetCd(Integer ifntTargetCd) {
 		this.ifntTargetCd = ifntTargetCd;
 	}
-	public MultipartFile[] getUploadImg() {
-		return uploadImg;
+	public MultipartFile[] getUploadImg1() {
+		return uploadImg1;
 	}
-	public void setUploadImg(MultipartFile[] uploadImg) {
-		this.uploadImg = uploadImg;
+	public void setUploadImg1(MultipartFile[] uploadImg1) {
+		this.uploadImg1 = uploadImg1;
 	}
-	public Integer getUploadImgType() {
-		return uploadImgType;
+	public Integer getUploadImg1Type() {
+		return uploadImg1Type;
 	}
-	public void setUploadImgType(Integer uploadImgType) {
-		this.uploadImgType = uploadImgType;
+	public void setUploadImg1Type(Integer uploadImg1Type) {
+		this.uploadImg1Type = uploadImg1Type;
 	}
-	public Integer getUploadImgMaxNumber() {
-		return uploadImgMaxNumber;
+	public Integer getUploadImg1MaxNumber() {
+		return uploadImg1MaxNumber;
 	}
-	public void setUploadImgMaxNumber(Integer uploadImgMaxNumber) {
-		this.uploadImgMaxNumber = uploadImgMaxNumber;
+	public void setUploadImg1MaxNumber(Integer uploadImg1MaxNumber) {
+		this.uploadImg1MaxNumber = uploadImg1MaxNumber;
 	}
-	public String[] getUploadImgDeleteSeq() {
-		return uploadImgDeleteSeq;
+	public String[] getUploadImg1DeleteSeq() {
+		return uploadImg1DeleteSeq;
 	}
-	public void setUploadImgDeleteSeq(String[] uploadImgDeleteSeq) {
-		this.uploadImgDeleteSeq = uploadImgDeleteSeq;
+	public void setUploadImg1DeleteSeq(String[] uploadImg1DeleteSeq) {
+		this.uploadImg1DeleteSeq = uploadImg1DeleteSeq;
 	}
-	public String[] getUploadImgDeletePathFile() {
-		return uploadImgDeletePathFile;
+	public String[] getUploadImg1DeletePathFile() {
+		return uploadImg1DeletePathFile;
 	}
-	public void setUploadImgDeletePathFile(String[] uploadImgDeletePathFile) {
-		this.uploadImgDeletePathFile = uploadImgDeletePathFile;
+	public void setUploadImg1DeletePathFile(String[] uploadImg1DeletePathFile) {
+		this.uploadImg1DeletePathFile = uploadImg1DeletePathFile;
 	}
-	public MultipartFile[] getUploadFile() {
-		return uploadFile;
+	public MultipartFile[] getUploadFile2() {
+		return uploadFile2;
 	}
-	public void setUploadFile(MultipartFile[] uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setUploadFile2(MultipartFile[] uploadFile2) {
+		this.uploadFile2 = uploadFile2;
 	}
-	public Integer getUploadFileType() {
-		return uploadFileType;
+	public Integer getUploadFile2Type() {
+		return uploadFile2Type;
 	}
-	public void setUploadFileType(Integer uploadFileType) {
-		this.uploadFileType = uploadFileType;
+	public void setUploadFile2Type(Integer uploadFile2Type) {
+		this.uploadFile2Type = uploadFile2Type;
 	}
-	public Integer getUploadFileMaxNumber() {
-		return uploadFileMaxNumber;
+	public Integer getUploadFile2MaxNumber() {
+		return uploadFile2MaxNumber;
 	}
-	public void setUploadFileMaxNumber(Integer uploadFileMaxNumber) {
-		this.uploadFileMaxNumber = uploadFileMaxNumber;
+	public void setUploadFile2MaxNumber(Integer uploadFile2MaxNumber) {
+		this.uploadFile2MaxNumber = uploadFile2MaxNumber;
 	}
-	public String[] getUploadFileDeleteSeq() {
-		return uploadFileDeleteSeq;
+	public String[] getUploadFile2DeleteSeq() {
+		return uploadFile2DeleteSeq;
 	}
-	public void setUploadFileDeleteSeq(String[] uploadFileDeleteSeq) {
-		this.uploadFileDeleteSeq = uploadFileDeleteSeq;
+	public void setUploadFile2DeleteSeq(String[] uploadFile2DeleteSeq) {
+		this.uploadFile2DeleteSeq = uploadFile2DeleteSeq;
 	}
-	public String[] getUploadFileDeletePathFile() {
-		return uploadFileDeletePathFile;
+	public String[] getUploadFile2DeletePathFile() {
+		return uploadFile2DeletePathFile;
 	}
-	public void setUploadFileDeletePathFile(String[] uploadFileDeletePathFile) {
-		this.uploadFileDeletePathFile = uploadFileDeletePathFile;
+	public void setUploadFile2DeletePathFile(String[] uploadFile2DeletePathFile) {
+		this.uploadFile2DeletePathFile = uploadFile2DeletePathFile;
 	}
 	
 }
