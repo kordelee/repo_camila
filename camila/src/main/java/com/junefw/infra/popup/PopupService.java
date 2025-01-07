@@ -48,7 +48,11 @@ public class PopupService extends BaseService{
     
     public int update(PopupDto dto) throws Exception { 
     	setRegMod(dto);
-    	return dao.update(dto); 
+    	dao.update(dto);
+    	if(dto.getUploadImg1() != null) {
+    		uploadFilesToS3(dto.getUploadImg1(), dto, "infrPopupUploaded", dto.getUploadImg1Type(), dto.getUploadImg1MaxNumber(), dto.getIfppSeq(), dao, amazonS3Client);
+    	}
+    	return 1;
     }
     
     
@@ -60,6 +64,19 @@ public class PopupService extends BaseService{
     
     public int delete(PopupVo vo) { 
     	return dao.delete(vo);
+    }
+    
+    
+    public int ueleteUploaded(PopupDto dto) throws Exception { 
+    	setRegMod(dto);
+    	dto.setTableName("infrPopupUploaded");
+    	return dao.ueleteUploaded(dto); 
+    }
+    
+    
+    public int deleteUploaded(PopupDto dto) { 
+    	dto.setTableName("infrPopupUploaded");
+    	return dao.deleteUploaded(dto);
     }
     
     

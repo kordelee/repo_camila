@@ -142,4 +142,26 @@ public class PopupController extends BaseController {
 
 		return pathRedirectCommonXdm + "popupXdmList";
 	}
+	
+	
+	@RequestMapping(value = "/popupUploadedXdmUele")
+	public String popupUploadedXdmUele(PopupVo vo, PopupDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.ueleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "popupXdmForm";
+	}
+	
+	
+	@RequestMapping(value = "/popupUploadedXdmDele")
+	public String popupUploadedXdmDele(PopupDto dto, PopupVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.deleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "popupXdmForm";
+	}
 }

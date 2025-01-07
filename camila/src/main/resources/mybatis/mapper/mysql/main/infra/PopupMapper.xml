@@ -166,6 +166,14 @@
 			AND ifppSeq = #{ifppSeq}
 	</delete>
 	
+		<update id="ueleteUploaded">
+		<include refid="Base.ueleteUploaded" />
+	</update>
+	
+	<delete id="deleteUploaded">
+		<include refid="Base.deleteUploaded" />
+	</delete>
+	
 	<select id="selectListWithoutPaging" resultMap="resultMapObj">
 		SELECT
 			a.ifppSeq
