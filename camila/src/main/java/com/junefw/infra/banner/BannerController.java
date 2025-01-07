@@ -142,5 +142,27 @@ public class BannerController extends BaseController {
 
 		return pathRedirectCommonXdm + "bannerXdmList";
 	}
+	
+	
+	@RequestMapping(value = "/bannerUploadedXdmUele")
+	public String bannerUploadedXdmUele(BannerVo vo, BannerDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.ueleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "bannerXdmForm";
+	}
+	
+	
+	@RequestMapping(value = "/bannerUploadedXdmDele")
+	public String bannerUploadedXdmDele(BannerDto dto, BannerVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.deleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "bannerXdmForm";
+	}
 
 }

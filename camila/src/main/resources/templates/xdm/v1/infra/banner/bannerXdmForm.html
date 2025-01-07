@@ -41,6 +41,7 @@
 					<form id="form" name="form" method="post" autocomplete="off" enctype="multipart/form-data" class="row g-3 needs-validation" novalidate="">
 			
 <div th:replace="~{xdm/v1/infra/banner/bannerXdmVo :: vo}"></div>			<!-- ### --> 					
+<input type="hidden" id="seq" name="seq">								<!-- ### --> 		
 
 <div class="col-md-3">
 	<label for="ifbnSeq" class="form-label fs--1">코드 <span class="text-danger fs-0">*</span></label>
@@ -106,7 +107,7 @@
 	<div th:id="|${name}Preview|" class="addScroll">
 		<div th:id="|imgDiv_${type}|" th:if="${listUploaded.type == 1}" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">	
 			<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
-			<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
+			<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" th:attr="onclick=|delUploaded('${listUploaded.seq}')|">X</span></div>
 	 	</div>
 	</div>
 </div>				
@@ -197,7 +198,10 @@
 	let goUrlXdmUpdt = "/v1/infra/banner/bannerXdmUpdt";						/* ### */
 	let goUrlXdmDele = "/v1/infra/banner/bannerXdmDele";						/* ### */
 	let goUrlXdmUele = "/v1/infra/banner/bannerXdmUele";						/* ### */
+	let goUrlXdmUploadedDele = "/v1/infra/banner/bannerUploadedXdmDele";						/* ### */
+	let goUrlXdmUploadedUele = "/v1/infra/banner/bannerUploadedXdmUele";						/* ### */
 	
+	let uploadSeq = document.getElementById("seq");											/* ### */
 	let seq = document.querySelector("input[name=ifbnSeq]");							/* ### */
 	
 	let ifbnDesc = document.getElementById("ifbnDesc");
