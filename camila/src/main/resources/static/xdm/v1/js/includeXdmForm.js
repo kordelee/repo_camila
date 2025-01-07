@@ -30,6 +30,16 @@ if(document.getElementById("btnUelete")){
 }
 
 
+delUploaded = function (seq) {
+	document.querySelector("#modalUploadDelConfirmTitle").textContent = "확 인";
+	document.querySelector("#modalUploadDelConfirmBody").textContent = "해당 데이터를 삭제하시겠습니까 ?";
+	document.querySelector("#btnModalUelete").style.display = 'none';
+	document.querySelector("#btnModalDelete").style.display = '';
+	$("#modalUploadDelConfirm").modal("show");
+	uploadSeq.value = seq;
+}
+	
+
 document.getElementById("btnModalUelete").onclick = function () {
 	form.action = goUrlXdmUele;
 	form.submit();
@@ -38,6 +48,18 @@ document.getElementById("btnModalUelete").onclick = function () {
 
 document.getElementById("btnModalDelete").onclick = function () {
 	form.action = goUrlXdmDele;
+	form.submit();
+}
+
+
+document.getElementById("btnModalUploadedUelete").onclick = function () {
+	form.action = goUrlXdmUploadedUele;
+	form.submit();
+}
+
+
+document.getElementById("btnModalUploadedDelete").onclick = function () {
+	form.action = goUrlXdmUploadedDele;
 	form.submit();
 }
 
