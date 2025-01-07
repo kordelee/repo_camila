@@ -139,7 +139,7 @@
 	<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
 	<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
 	<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
-	<label th:for="|${name}|" class="form-label input-file-button">파일첨부</label>
+	<label th:for="|${name}|" class="form-label input-file-button fs--1">파일첨부</label>
 	<input class="form-control form-control-sm"
 	       th:id="${name}" 
 	       th:name="${name}" 
@@ -151,8 +151,10 @@
 	    <ul th:id="|${name}Preview|" class="list-group">
            <li th:id="|li_${type}_${listUploaded.sort}|" th:if="${listUploaded.type == 2}" th:each="listUploaded : ${listUploaded}" 
            		class="list-group-item d-flex justify-content-between align-items-center">
-               <a th:href="@{${listUploaded.path}+${listUploaded.uuidName}}" th:download="${listUploaded.originalName}" class="text-decoration-none" 
+               <a class="text-decoration-none" 
                   th:text="${listUploaded.originalName}"></a>
+<!--                <a th:href="@{${listUploaded.path}+${listUploaded.uuidName }}" download="${listUploaded.originalName}" class="text-decoration-none"  -->
+<!--                   th:text="${listUploaded.originalName}"></a> -->
                <span class="badge bg-danger rounded-pill"> 
                    <i th:attr="onclick=|delUploaded('${listUploaded.seq}','${name}')|" class="fa-solid fa-x" style="cursor: pointer;"></i>
                </span>
