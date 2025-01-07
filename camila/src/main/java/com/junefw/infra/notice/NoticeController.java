@@ -144,6 +144,28 @@ public class NoticeController extends BaseController {
 		return pathRedirectCommonXdm + "noticeXdmList";
 	}
 	
+	
+	@RequestMapping(value = "/noticeUploadedXdmUele")
+	public String noticeUploadedXdmUele(NoticeVo vo, NoticeDto dto, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.ueleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "noticeXdmForm";
+	}
+	
+	
+	@RequestMapping(value = "/noticeUploadedXdmDele")
+	public String noticeUploadedXdmDele(NoticeDto dto, NoticeVo vo, RedirectAttributes redirectAttributes) throws Exception {
+		
+		service.deleteUploaded(dto);
+		
+		redirectAttributes.addFlashAttribute("vo", vo);
+		
+		return pathRedirectCommonXdm + "noticeXdmForm";
+	}
+	
 	@RequestMapping(value = "/noticeUseXdmList")
 	public String noticeUseXdmList(@ModelAttribute("vo") NoticeVo vo, Model model) throws Exception{
 
