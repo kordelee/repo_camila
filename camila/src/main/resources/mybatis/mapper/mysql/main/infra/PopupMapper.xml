@@ -63,6 +63,31 @@
 			type, sort
 	</select>
 	
+	<select id="selectListUploadedPopup" resultMap="resultMapObj">
+		SELECT
+			a.ifppSeq
+			,a.ifppDisplayNy
+			,a.ifppTitle
+			,a.ifppUrl
+			,a.ifppXpoint
+			,a.ifppYpoint
+			,a.ifppTitle
+			,a.ifppOrder
+			,b.seq
+			,b.type
+			,b.path			
+		FROM infrPopup a
+		LEFT JOIN infrPopupUploaded b ON a.ifppSeq = b.pSeq
+		WHERE 1=1
+			AND a.ifppDelNy = 0
+			AND a.ifppDisplayNy = 1
+			AND a.ifppStartDateTime <![CDATA[<]]> now()
+			AND now() <![CDATA[<]]> a.ifppEndDateTime
+			AND b.delNy = 0
+			AND b.type = 1
+		ORDER BY a.ifppOrder
+	</select>
+	
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
            a.ifppSeq
@@ -166,7 +191,7 @@
 			AND ifppSeq = #{ifppSeq}
 	</delete>
 	
-		<update id="ueleteUploaded">
+	<update id="ueleteUploaded">
 		<include refid="Base.ueleteUploaded" />
 	</update>
 	

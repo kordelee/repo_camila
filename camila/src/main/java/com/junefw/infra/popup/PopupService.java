@@ -33,6 +33,11 @@ public class PopupService extends BaseService{
     }
     
     
+    public List<PopupDto> selectListUploadedPopup(PopupVo vo) { 
+    	return dao.selectListUploadedPopup(vo); 
+    }
+    
+    
     public PopupDto selectOne(PopupVo vo) { 
     	return dao.selectOne(vo); 
     }
