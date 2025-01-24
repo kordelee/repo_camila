@@ -32,8 +32,11 @@
 <div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
 <!-- includeUsrGnb e -->  
 
+<div th:replace="~{usr/v0/infra/include/modal:: modal}"></div>
+
 <!-- Main -->
     <main>
+    
 <form id="formLogin" name="formLogin" method="post" autocomplete="off">    
         <!-- Breadcrumb -->
 
@@ -75,7 +78,7 @@
                                             <label class="form-label col" for="exampleInputPassword01">Password<span class="text-danger">*</span></label>
                                             <span class="col ms-auto small text-end"><a th:href="@{/v0/infra/member/findPwdUsrForm}">Forgot password?</a></span>
                                         </div>
-                                        <input type="password" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="*********">
+                                        <input type="password" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="*********" onkeyup="enterkey()">
 										<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
                                     </div>
                                     <!-- Checkbox -->
@@ -128,14 +131,13 @@
 ========================
 -->
 <!-- includeUsrLinkJs s -->
-<div th:replace="~{usr/v0/infra/include/linkJs :: linkJs}"></div>
+<div th:replace="~{xdm/v1/infra/include/linkJsFull :: linkJsFull}"></div>
 <!-- includeUsrLinkJs e -->
 
 <script type="text/javascript">
 
-$("#btnLogin").on("click", function(){
-	if(validationInst() == false) return false;
-
+function loginLogic (){
+	if(validationUpdt() == false) return false;
 	$.ajax({
 		async: true 
 		,cache: false
@@ -152,26 +154,34 @@ $("#btnLogin").on("click", function(){
 					location.href = "/v0/infra/index/indexUsrView";
 				}
 			} else {
-				alert("회원없음");
+				document.getElementById("modalAlertTitle").innerText = "확 인";
+		 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+		 		$("#modalAlert").modal("show");
 			}
 		}
 		,error : function(jqXHR, textStatus, errorThrown){
 			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 		}
 	});
- 	
-
+}
+$("#btnLogin").on("click", function(){
+	if(validationInst() == false) return false;
 });
 
 
 function validationInst() {
-	    if(validationUpdt() == false) return false;
-	}
-	
+    loginLogic();
+}
+function enterkey() {
+	if (window.event.keyCode == 13) {
+		loginLogic();
+    }
+}	
+
 	
 function validationUpdt() {
-	if(!checkNull('ifmmId', 2, 0, "아이디를 입력해주세요")) return false;
-	if(!checkNull('ifmmPassword', 2, 0, "비밀번호를 입력해주세요")) return false;
+	if(!checkNull('ifmmId', 2, "아이디를 입력해주세요")) return false;
+	if(!checkNull('ifmmPassword', 2, "비밀번호를 입력해주세요")) return false;
 }
 
 </script>
