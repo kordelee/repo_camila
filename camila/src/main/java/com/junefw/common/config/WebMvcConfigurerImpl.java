@@ -31,6 +31,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 						"/v1/infra/member/signupUsrForm",
 						"/v1/infra/member/signinUsrForm",
 						"/v1/infra/member/signinUsrProc",
+						"/v1/infra/member/signupIdCheckUsrProc",
 						"/v1/infra/index/indexUsrView",
 						"/adt/**",
 						"/xdm/**",
