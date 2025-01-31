@@ -221,14 +221,10 @@
 	}
 	
 	function validationUpdt() {
-//  		if(!checkOnlyEnglishNumber('ifbnReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifbnReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifbnReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifbnReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifbnReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifbnReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifbnReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifbnReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		if(!checkNull('ifbnOrder', 2, 0, "순서를 입력 해주세요")) return false;
+ 		if(!checkNull('ifbnLocationCd', 2, 0, "위치를 입력 해주세요")) return false;
+ 		if(!checkNull('ifbnTitle', 2, 0, "제목을 입력 해주세요")) return false;
+ 		if(!checkNull('ifbnUrl', 2, 0, "URL을 입력 해주세요")) return false;
 		ifbnDesc.value = ifbnDescEditor.getHTML();
 	}
 

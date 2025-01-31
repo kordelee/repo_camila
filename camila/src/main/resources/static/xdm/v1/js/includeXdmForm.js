@@ -65,13 +65,14 @@ document.getElementById("btnModalUploadedDelete").onclick = function () {
 
 
 document.getElementById("btnSubmit").onclick = function () {
-	$("#modalLoading").modal("show");
 	if(seq.value == "0" || seq.value == "") {
 		if(validationInst() == false) return false;
+			$("#modalLoading").modal("show");
 			form.action = goUrlXdmInst;
 			form.submit();
 		} else {
 		if(validationUpdt() == false) return false;
+			$("#modalLoading").modal("show");
 			form.action = goUrlXdmUpdt;
 			form.submit();
 		}

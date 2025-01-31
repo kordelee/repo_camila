@@ -275,7 +275,7 @@
 	
 	
 	function validationUpdt() {
- 		if(!checkOnlyKoreanNumber('ifppTitle', 2, 0, "팝업은 한글과 숫자만 입력 가능합니다.")) return false;
+		if(!checkNull('ifppTitle', 2, 0, "팝업은 한글과 숫자만 입력 가능합니다.")) return false;
 // 		if(!checkOnlyEnglishNumber('ifrlVersion', 2, 0, "팝업 버전은 영어와 숫자만 입력 가능합니다.")) return false;
 // 		if(!checkSelectNull('ifrlUseNy', 2, 1, "사용여부를 선택해주세요")) return false;
 // 		if(!checkOnlyNumber('ifcgOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;

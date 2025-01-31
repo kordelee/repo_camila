@@ -257,18 +257,10 @@
 	
 	
 	function validationUpdt() {
- 		if(!checkOnlyKoreanNumber('ifqaTitle', 2, 0, "정책은 한글과 숫자만 입력 가능합니다.")) return false;
-// 		if(!checkOnlyEnglishNumber('ifqaVersion', 2, 0, "정책 버전은 영어와 숫자만 입력 가능합니다.")) return false;
-// 		if(!checkSelectNull('ifqaUseNy', 2, 1, "사용여부를 선택해주세요")) return false;
-// 		if(!checkOnlyNumber('ifcgOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifcgReferenceV1', 2, 1, "예비1 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifcgReferenceV2', 2, 1, "예비2 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifcgReferenceV3', 2, 1, "예비3 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyEnglishNumber('ifcgReferenceV4', 2, 1, "예비4 (varchar type)은 영문대소문자, 숫자만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifcgReferenceI1', 2, 1, 1, -128, 127, "예비1 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifcgReferenceI2', 2, 1, 1, -128, 127, "예비2 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifcgReferenceI3', 2, 1, 1, -128, 127, "예비3 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
-//  		if(!checkOnlyNumber('ifcgReferenceI4', 2, 1, 1, -128, 127, "예비4 (Int type)은 숫자(-128~127)만 입력 가능합니다.")) return false;
+		if(!checkSelectNull('ifqaSecurityNy', 2, 0, "정책은 한글과 숫자만 입력 가능합니다.")) return false;
+ 		if(!checkSelectNull('ifqaStatusCd', 2, 0, "정책은 한글과 숫자만 입력 가능합니다.")) return false;
+ 		if(!checkSelectNull('ifqaTypeCd', 2, 0, "정책은 한글과 숫자만 입력 가능합니다.")) return false;
+ 		if(!checkNull('ifqaTitle', 2, 0, "정책은 한글과 숫자만 입력 가능합니다.")) return false;
  		ifqaContents.value = ifqaContentsEditor.getHTML();
 	    ifqaAnswer.value = ifqaAnswerEditor.getHTML();
 	    ifqaDesc.value = ifqaDescEditor.getHTML();

@@ -288,7 +288,7 @@
 	
 	
 	function validationUpdt() {
- 		if(!checkOnlyKoreanNumber('ifntTitle', 2, 0, "공지사항 제목은 한글과 숫자만 입력 가능합니다.")) return false;
+		if(!checkNull('ifntTitle', 2, 0, "공지사항 제목은 한글과 숫자만 입력 가능합니다.")) return false;
 // 		if(!checkOnlyEnglishNumber('ifntVersion', 2, 0, "정책 버전은 영어와 숫자만 입력 가능합니다.")) return false;
 // 		if(!checkSelectNull('ifntUseNy', 2, 1, "사용여부를 선택해주세요")) return false;
 // 		if(!checkOnlyNumber('ifcgOrder', 2, 0, 1, 0, 255, "순서는 숫자(0~255)만 입력 가능합니다.")) return false;
