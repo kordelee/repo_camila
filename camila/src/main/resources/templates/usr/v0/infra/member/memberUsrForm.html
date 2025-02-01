@@ -90,25 +90,34 @@
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">아이디<span class="text-danger">*</span></label>
 						<input id="ifmmId" name="ifmmId" type="text" class="form-control" th:value="${item.ifmmId}">
+						<div class="invalid-feedback" id="ifmmIdFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">이름<span class="text-danger">*</span></label>
 						<input id="ifmmName" name="ifmmName" type="text" class="form-control" th:value="${item.ifmmName}">
+						<div class="invalid-feedback" id="ifmmNameFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">성별<span class="text-danger">*</span></label>
-						<input id="ifmmGenderCd" name="ifmmGenderCd" type="text" class="form-control" th:value="${item.ifmmGenderCd}">
+						<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
+<!-- 							<option value="">선택하세요</option> -->
+							<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
+						</select>
+						<div class="invalid-feedback" id="ifmmGenderCdFeedback"></div>
+<!-- 						<input id="ifmmGenderCd" name="ifmmGenderCd" type="text" class="form-control" th:value="${item.ifmmGenderCd}"> -->
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">생년월일<span class="text-danger">*</span></label>
 						<input id="ifmmDob" name="ifmmDob" type="text" class="form-control" th:value="${item.ifmmDob}">
+						<div class="invalid-feedback" id="ifmmDobFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">이메일<span class="text-danger">*</span></label>
 						<input id="ifmeEmailFull" name="ifmeEmailFull" type="text" class="form-control" th:value="${item.ifmeEmailFull}">
+						<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
-						<label class="form-label">핸드폼<span class="text-danger">*</span></label>
+						<label class="form-label">핸드폰(예정)<span class="text-danger">*</span></label>
 						<input id="ifmpNumber" name="ifmpNumber" type="text" class="form-control" th:value="${item.ifmpNumber}">
 					</div>
 					<div class="col-12 pt-2">
@@ -145,11 +154,31 @@
 <div th:replace="~{usr/v0/infra/include/linkJs :: linkJs}"></div>
 <!-- includeUsrLinkJs e -->
 <script>
+	window.addEventListener('load', function() {
+		$("#ifmmDob").datetimepicker({
+			timepicker:false,
+				format: 'Y-m-d'
+		});
+	});
+	
 	document.getElementById("btnUpdt").onclick = function(){
+		if(validationInst() == false) return false;
 		form.action = "/v1/infra/member/memberUsrUpdt";
 		form.submit();
 	}
 	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+		if(!checkId('ifmmId', 2, 0, "아이디 형식에 맞게 입력하세요")) return false;
+		if(!checkNull('ifmmName', 2, 0, "이름을 입력 해주세요")) return false;
+		if(!checkSelectNull('ifmmGenderCd', 2, "성별을 선택해주세요")) return false;
+		if(!checkNull('ifmmDob', 2, 0, "생년월일을 입력해주세요")) return false;
+		if(!checkEmail('ifmeEmailFull', 2, 0, "이메일 형식에 맞게 입력하세요")) return false;
+	}
 </script>
 </body>
 
