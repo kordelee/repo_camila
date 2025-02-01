@@ -19,8 +19,6 @@ import com.junefw.infra.mail.MailService;
 import com.junefw.infra.template.TemplateVo;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -433,7 +431,7 @@ public class MemberController extends BaseController{
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "sendMailGoogleCertificationUsrProc")
+	@RequestMapping(value = "/sendMailGoogleCertificationUsrProc")
 	public Map<String, Object> sendMailGoogleCertificationUsrProc(MemberDto dto, TemplateVo templateVo) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
@@ -441,7 +439,7 @@ public class MemberController extends BaseController{
 		
 		if(findMember != null) {
 			Thread thread = new Thread(new Runnable() {
-	
+				
 				@Override
 				public void run() {
 					try {
@@ -455,18 +453,49 @@ public class MemberController extends BaseController{
 			
 			thread.start();
 			
-			dto.setIfmmSeq(findMember.getIfmmSeq());
-			returnMap.put("seq", dto.getIfmmSeq());
 			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
 		}
+			
 		return returnMap;
 	}
+//	@ResponseBody
+//	@RequestMapping(value = "/sendMailGoogleCertificationUsrProc")
+//	public Map<String, Object> sendMailGoogleCertificationUsrProc(MemberDto dto, TemplateVo templateVo) throws Exception {
+//		Map<String, Object> returnMap = new HashMap<String, Object>();
+//		
+//		MemberDto findMember = service.selectOneFindIdPwd(dto);
+//		
+//		if(findMember != null) {
+//			Thread thread = new Thread(new Runnable() {
+//				
+//				@Override
+//				public void run() {
+//					try {
+//						mailService.sendMailCertification(dto, templateVo);
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					}
+//				}
+//				
+//			});
+//			
+//			thread.start();
+//			
+//			dto.setIfmmSeq(findMember.getIfmmSeq());
+//			returnMap.put("seq", dto.getIfmmSeq());
+//			returnMap.put("rt", "success");
+//		}
+//		return returnMap;
+//	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value = "/certificationCheckUsrProc")
 	public Map<String, Object> certificationCheckUsrProc(MemberDto dto) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
+		dto.setIfcfEmail(dto.getIfmeEmailFull());
 		if(service.selectOneCertification(dto).getIfcfKey().equals(dto.getIfcfKey())) {
 			returnMap.put("rt", "success");
 		} else {

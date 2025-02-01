@@ -31,7 +31,7 @@
 <!-- includeUsrGnb s -->
 <div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
 <!-- includeUsrGnb e -->  
-
+<div th:replace="~{usr/v0/infra/include/modal:: modal}"></div>
 <!-- Main -->
     <main>
         <!-- login page -->
@@ -69,8 +69,8 @@
 										    </div>
 										</div>
 										<div class="form-group mb-3" id="authEmail" hidden>
-											<label class="form-label col" for="ifcfKey">인증번호<span class="text-danger">*</span></label>
-										    <input type="text" id="ifcfKey" name="ifcfKey" class="form-control"><span id="timeout"></span>
+											<label class="form-label col" for="ifcfKey">인증번호<span class="text-danger">*</span></label><span id="timeout" style="color: blue; margin-left: 3px;"></span>
+										    <input type="text" id="ifcfKey" name="ifcfKey" class="form-control" style="margin-bottom: 6px;">
 											<button type="button" class="btn btn-primary w-100" id="btnSmtpCk">인증번호 확인</button><br>
 										</div>
 										<div id="goChangePwd" hidden>
@@ -134,7 +134,9 @@
 						document.getElementById("btnSmtp").remove();
 						document.getElementById("authEmail").hidden = false;
 					} else {
-						alert("가입 정보를 확인해주세요");
+						document.getElementById("modalAlertTitle").innerText = "확 인";
+				 		document.getElementById("modalAlertBody").innerText = "가입 정보를 확인해주세요";
+				 		$("#modalAlert").modal("show");
 					}
 				}
 				,error : function(jqXHR, textStatus, errorThrown){
@@ -159,7 +161,9 @@
 						document.getElementById("authEmail").hidden = true;
 						document.getElementById("goChangePwd").hidden = false;
 					} else {
-						alert("인증번호가 일치하지 않습니다");
+						document.getElementById("modalAlertTitle").innerText = "확 인";
+				 		document.getElementById("modalAlertBody").innerText = "인증번호가 일치하지 않습니다";
+				 		$("#modalAlert").modal("show");
 						document.getElementById("ifcfKey").value = null;
 					}
 				}
