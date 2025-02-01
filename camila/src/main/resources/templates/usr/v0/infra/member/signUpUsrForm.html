@@ -31,7 +31,7 @@
 <!-- includeUsrGnb s -->
 <div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
 <!-- includeUsrGnb e -->  
-
+<div th:replace="~{usr/v0/infra/include/modal:: modal}"></div>
 <!-- Main -->
     <main>
         
@@ -73,7 +73,7 @@
 										<label class="form-label col" for="ifmmGenderCd">성별<span class="text-danger">*</span></label>
 										<select id="ifmmGenderCd" name="ifmmGenderCd" class="form-select">
 											<option value="">선택하세요</option>
-											<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}" th:selected="${list.ifcdSeq} == ${item?.ifmmGenderCd}"></option>
+											<option th:each="list : ${@redisService.selectListCodeInRedisList(3)}" th:value="${list.ifcdSeq}" th:text="${list.ifcdName}"></option>
 										</select>
 										<div class="invalid-feedback" id="ifmmGenderCdFeedback"></div>
                                     </div>
@@ -84,9 +84,33 @@
 										
                                     </div>
                                     <div class="form-group mb-3">
-										<label class="form-label col" for="ifmeEmailFull">이메일<span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="ifmeEmailFull" name="ifmeEmailFull">
-										<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+                                    	<div class="row">
+                                    		<div class="col-9">
+												<label class="form-label col" for="ifmeEmailFull">이메일<span class="text-danger">*</span></label>
+		                                        <input type="text" class="form-control" id="ifmeEmailFull" name="ifmeEmailFull">
+												<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+											</div>
+                                    		<div class="col-3 mt-5">
+												<button type="button" id="btnCertificateEmail" class="btn btn-primary">
+												    인증
+												</button>
+											</div>
+                                    	</div>
+                                    </div>
+                                    <div id="certificateDiv" class="form-group mb-6" hidden>
+                                    	<div class="row">
+                                    		<div class="col-9">
+												<label class="form-label col" for="ifcfKey">인증번호<span class="text-danger">*</span></label>
+												<span id="timer" style="color: blue; margin-left: 3px;"></span>
+		                                        <input type="text" class="form-control" id="ifcfKey" name="ifcfKey">
+												<div class="invalid-feedback" id="ifcfKeyFeedback"></div>
+											</div>
+                                    		<div id="certification" class="col-3 mt-5">
+                                    			<button type="button" id="btnCertificateCheck" class="btn btn-primary">
+												    확인
+												</button>
+											</div>
+                                    	</div>
                                     </div>
                                     <div class="form-group text-center">
                                         <button type="button" id="btnSignUp" class="btn btn-primary w-100">
@@ -117,115 +141,177 @@
 <!-- includeUsrLinkJs s -->
 <div th:replace="~{usr/v0/infra/include/linkJs :: linkJs}"></div>
 <!-- includeUsrLinkJs e -->
-<script>
-	let idCheckNy = document.getElementById("idCheck").value;
-	let emailCheckNy = document.getElementById("emailCheck").value;
-	let pwdCheckNy = document.getElementById("pwdCheck").value;
-	
-	document.getElementById("btnSignUp").onclick = function(){
-		if(validationInst() == false) return false;
-		if(idCheckNy == "N" || emailCheckNy == "N" || pwdCheckNy == "N"){
-			if(idCheckNy == "N") {
-				alert("아이디 중복체크 하세요");
-			} 
-			if(emailCheckNy == "N") {
-				alert("email 중복체크 하세요");
-			} 
-			if(pwdCheckNy == "N") {
-				alert("비밀번호 체크 하세요");
-			} 
-		}else {
-			form.action = "/v1/infra/member/memberUsrInst";
-			form.submit();
-		}
-		
+<script type="text/javascript">
+window.addEventListener('load', function() {
+	$("#ifmmDob").datetimepicker({
+		timepicker:false,
+			format: 'Y-m-d'
+	});
+});
+
+let idCheckNy = document.getElementById("idCheck").value;
+let emailCheckNy = document.getElementById("emailCheck").value;
+let pwdCheckNy = document.getElementById("pwdCheck").value;
+
+function timeoutTimer(endTime, timeout) {
+	let now = Date.now();
+	let end = endTime.getTime();
+	let timeLeft = end - now;
+	let secondsLeft = Math.max(0, Math.floor(timeLeft / 1000));
+
+	// 남은 분과 초 계산
+	let minutes = Math.floor(secondsLeft / 60);
+	let seconds = secondsLeft % 60;
+
+	// 두 자리로 나타내기 위해 초가 한 자리일 경우 앞에 '0'을 붙임
+	let formattedTime = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+	document.getElementById("timer").innerText = formattedTime;
+
+	if (secondsLeft <= 0) {
+		document.getElementById("modalAlertTitle").innerText = "확 인";
+ 		document.getElementById("modalAlertBody").innerText = "인증키 유효시간이 종료 되었습니다 재요청 바랍니다.";
+ 		$("#modalAlert").modal("show");
+ 		document.getElementById("certificateDiv").hidden = true;
+		return;
 	}
-	let id = document.getElementById("ifmmId");
-	id.addEventListener("blur", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			/* ,dataType:"json" */
-			,url: "/v1/infra/member/signupIdCheckUsrProc"
-			/* ,data : $("#formLogin").serialize() */
-			,data : { "ifmmId" : $("#ifmmId").val()}
-			,success: function(response) {
-				if(response.rt == "success") {
-					id.classList.add('is-invalid');
-					document.getElementById("ifmmIdFeedback").innerText = '이미 존재하는 회원입니다.';
-					idCheckNy = "N";
-					document.getElementById("ifmmId").value = null;
-				} else {
-					id.classList.remove('is-invalid');
-					document.getElementById("ifmmIdFeedback").remove();
-					idCheckNy = "Y";
-				}
+
+	setTimeout(function() {
+		timeoutTimer(endTime, timeout);
+	}, timeout);
+}
+
+let id = document.getElementById("ifmmId");
+id.addEventListener("blur", function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url:"/v1/infra/member/signupIdCheckUsrProc"
+		/* ,data : $("#formLogin").serialize() */
+		,data : { "ifmmId" : $("#ifmmId").val()}
+		,success: function(response) {
+			if(response.rt == "success") {
+				id.classList.add('is-invalid');
+				document.getElementById("ifmmIdFeedback").innerText = '이미 존재하는 아이디입니다.';
+				idCheckNy = "N";
+				document.getElementById("ifmmId").value = null;
+			} else {
+				id.classList.remove('is-invalid');
+				document.getElementById("ifmmIdFeedback").innerText = '';
+				idCheckNy = "Y";
 			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
-	
-	let email = document.getElementById("ifmeEmailFull");
-	email.addEventListener("blur", function(){
-		$.ajax({
-			async: true 
-			,cache: false
-			,type: "post"
-			/* ,dataType:"json" */
-			,url: "/v1/infra/member/signupEmailCheckUsrProc"
-			/* ,data : $("#formLogin").serialize() */
-			,data : { "ifmeEmailFull" : $("#ifmeEmailFull").val()}
-			,success: function(response) {
-				if(response.rt == "success") {
-					email.classList.add('is-invalid');
-					document.getElementById("ifmeEmailFullFeedback").innerText = '이미 존재하는 이메일입니다.';
-					emailCheckNy = "N";
-					document.getElementById("ifmeEmailFull").value = null;
-				} else {
-					email.classList.remove('is-invalid');
-					document.getElementById("ifmeEmailFullFeedback").remove();
-					emailCheckNy = "Y";
-				}
-			}
-			,error : function(jqXHR, textStatus, errorThrown){
-				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-			}
-		});
-	});
-	let pwdCkInput = document.getElementById("ifmmPwdCheck");
-	pwdCkInput.addEventListener("blur", function(){
-	let pwd = document.getElementById("ifmmPassword").value;
-	let pwdCk = document.getElementById("ifmmPwdCheck");
-		
-		if(pwd == pwdCk.value){
-			pwdCk.classList.remove('is-invalid');
-			document.getElementById("ifmmPwdCheckFeedback").remove();
-			pwdCheckNy = "Y";
-		} else {
-			pwdCk.classList.add('is-invalid');
-			document.getElementById("ifmmPwdCheckFeedback").innerText = '비밀번호가 일치하지 않습니다.';
-			pwdCheckNy = "N";
-			document.getElementById("ifmmPwdCheck").value = null;
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
 		}
 	});
+});
+
+let pwdCkInput = document.getElementById("ifmmPwdCheck");
+pwdCkInput.addEventListener("blur", function(){
+let pwd = document.getElementById("ifmmPassword").value;
+let pwdCk = document.getElementById("ifmmPwdCheck");
 	
-	function validationInst() {
-		    if(validationUpdt() == false) return false;
+	if(pwd == pwdCk.value){
+		pwdCk.classList.remove('is-invalid');
+		document.getElementById("ifmmPwdCheckFeedback").remove();
+		pwdCheckNy = "Y";
+	} else {
+		pwdCk.classList.add('is-invalid');
+		document.getElementById("ifmmPwdCheckFeedback").innerText = '비밀번호가 일치하지 않습니다.';
+		pwdCheckNy = "N";
+		document.getElementById("ifmmPwdCheck").value = null;
+	}
+});
+
+document.getElementById("btnCertificateEmail").onclick = function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url: "/v1/infra/member/sendMailGoogleCertificationUsrProc"
+		/* ,data : $("#formLogin").serialize() */
+		,data : { "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+		,success: function(response) {
+			if(response.rt == "success") {
+				document.getElementById("certificateDiv").hidden = false;
+				// 5분 타이머 시작 (1분 = 60000ms, timeout = 900ms)
+				timeoutTimer(new Date(Date.now() + (TIMER_MINUTES*3)), 1000);
+			} 
+// 			if(response.rt == "success") {
+// 				email.classList.add('is-invalid');
+// 				document.getElementById("ifmeEmailFullFeedback").innerText = '이미 존재하는 이메일입니다.';
+// 				emailCheckNy = "N";
+// 				document.getElementById("ifmeEmailFull").value = null;
+// 			} else {
+// 				email.classList.remove('is-invalid');
+// 				document.getElementById("ifmeEmailFullFeedback").remove();
+// 				emailCheckNy = "Y";
+// 			}
 		}
-		
-		
-	function validationUpdt() {
-		if(!checkId('ifmmId', 2, 0, "아이디 형식에 맞게 입력하세요")) return false;
-		if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력하세요")) return false;
-		if(!checkNull('ifmmName', 2, 0, "이름을 입력 해주세요")) return false;
-		if(!checkSelectNull('ifmmGenderCd', 2, "성별을 선택해주세요")) return false;
-		if(!checkNull('ifmmDob', 2, 0, "생년월일을 입력해주세요")) return false;
-		if(!checkEmail('ifmmEmail', 2, 0, "이메일 형식에 맞게 입력하세요")) return false;
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+};
+
+document.getElementById("btnCertificateCheck").onclick = function(){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url: "/v1/infra/member/certificationCheckUsrProc"
+		/* ,data : $("#formLogin").serialize() */
+		,data : { "ifcfKey" : $("#ifcfKey").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+		,success: function(response) {
+			if(response.rt == "success") {
+				emailCheckNy = "Y";
+				document.getElementById("modalAlertTitle").innerText = "성 공";
+		 		document.getElementById("modalAlertBody").innerText = "이메일 본인인증에 확인 했습니다!";
+		 		$("#modalAlert").modal("show");
+			} else {
+				document.getElementById("modalAlertTitle").innerText = "확 인";
+		 		document.getElementById("modalAlertBody").innerText = "이메일 본인인증에 실패 했습니다 본인인증을 다시 시도해주세요!";
+		 		$("#modalAlert").modal("show");
+				document.getElementById("ifcfKey").value = null;
+			}
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+}
+
+document.getElementById("btnSignUp").onclick = function(){
+	if(validationInst() == false) return false;
+	if(emailCheckNy == "N"){
+		document.getElementById("modalAlertTitle").innerText = "확 인";
+ 		document.getElementById("modalAlertBody").innerText = "이메일 본인인증을 진행 해주세요!";
+ 		$("#modalAlert").modal("show");
+	}else {
+		form.action = "/v1/infra/member/memberUsrInst";
+		form.submit();
 	}
 	
+}
+
+function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+function validationUpdt() {
+	if(!checkId('ifmmId', 2, 0, "아이디 형식에 맞게 입력하세요")) return false;
+	if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력하세요")) return false;
+	if(!checkNull('ifmmName', 2, 0, "이름을 입력 해주세요")) return false;
+	if(!checkSelectNull('ifmmGenderCd', 2, "성별을 선택해주세요")) return false;
+	if(!checkNull('ifmmDob', 2, 0, "생년월일을 입력해주세요")) return false;
+	if(!checkEmail('ifmeEmailFull', 2, 0, "이메일 형식에 맞게 입력하세요")) return false;
+}
 </script>
 </body>
 
