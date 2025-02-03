@@ -81,7 +81,7 @@
         <!-- <a class="btn btn-sm" href=""><i class="bi bi-arrow-repeat"></i></a> -->
     </div>  
 </div>
-<form id="form" name="form" method="post">
+<form id="form" name="form" method="post" autocomplete="off">
 	<div class="row g-3">
 		<div class="card">
 			<div class="card-body">
@@ -89,8 +89,13 @@
 					<input id="ifmmSeq" name="ifmmSeq" type="hidden" th:value="${item.ifmmSeq}">
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">아이디<span class="text-danger">*</span></label>
-						<input id="ifmmId" name="ifmmId" type="text" class="form-control" th:value="${item.ifmmId}">
+						<input id="ifmmId" name="ifmmId" type="text" class="form-control" th:value="${item.ifmmId}" disabled="disabled">
 						<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+					</div>
+					<div class="col-sm-6 mb-3">
+						<label class="form-label">이메일<span class="text-danger">*</span></label>
+						<input id="ifmeEmailFull" name="ifmeEmailFull" type="text" class="form-control" th:value="${item.ifmeEmailFull}" disabled="disabled">
+						<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">이름<span class="text-danger">*</span></label>
@@ -110,11 +115,6 @@
 						<label class="form-label">생년월일<span class="text-danger">*</span></label>
 						<input id="ifmmDob" name="ifmmDob" type="text" class="form-control" th:value="${item.ifmmDob}">
 						<div class="invalid-feedback" id="ifmmDobFeedback"></div>
-					</div>
-					<div class="col-sm-6 mb-3">
-						<label class="form-label">이메일<span class="text-danger">*</span></label>
-						<input id="ifmeEmailFull" name="ifmeEmailFull" type="text" class="form-control" th:value="${item.ifmeEmailFull}">
-						<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
 					</div>
 					<div class="col-sm-6 mb-3">
 						<label class="form-label">핸드폰(예정)<span class="text-danger">*</span></label>

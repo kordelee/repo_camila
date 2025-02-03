@@ -74,10 +74,9 @@
 										<div class="invalid-feedback" id="ifmmIdFeedback"></div>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <div class="row align-items-center">
+<!--                                         <div class="row align-items-center"> -->
                                             <label class="form-label col" for="exampleInputPassword01">Password<span class="text-danger">*</span></label>
-                                            <span class="col ms-auto small text-end"><a th:href="@{/v0/infra/member/findPwdUsrForm}">Forgot password?</a></span>
-                                        </div>
+<!--                                         </div> -->
                                         <input type="password" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="*********" onkeyup="enterkey()">
 										<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
                                     </div>
@@ -107,7 +106,9 @@
                                 </div>
 -->
                                 <div class="pt-4 text-center">
-                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signupUsrForm}">Signup here</a></span>
+                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signupUsrForm}">Signup here</a></span><br>
+                                    <span class="text-muted">Forgot your ID? <a th:href="@{/v1/infra/member/findIdUsrForm}">Find ID</a></span><br>
+                                    <span class="text-muted">Forgot your password? <a th:href="@{/v1/infra/member/findPwdUsrForm}">Find Password</a></span>
                                 </div>
                             </div>
                         </div>
