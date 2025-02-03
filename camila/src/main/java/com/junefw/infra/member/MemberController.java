@@ -16,6 +16,8 @@ import com.junefw.common.base.BaseController;
 import com.junefw.common.constants.Constants;
 import com.junefw.common.util.UtilCookie;
 import com.junefw.infra.mail.MailService;
+import com.junefw.infra.rule.RuleService;
+import com.junefw.infra.rule.RuleVo;
 import com.junefw.infra.template.TemplateVo;
 
 import jakarta.servlet.http.HttpSession;
@@ -41,6 +43,9 @@ public class MemberController extends BaseController{
 	
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	RuleService ruleService;
 	
 	@RequestMapping(value = "/memberXdmList")
 	public String memberXdmList(@ModelAttribute("vo") MemberVo vo, Model model) throws Exception{
@@ -533,10 +538,23 @@ public class MemberController extends BaseController{
 	}
 	
 	
-	@RequestMapping(value = "/signupUsrForm")
-    public String signupUsrForm() throws Exception{
-    	return pathCommonUsr + "signupUsrForm";
+	@RequestMapping(value = "/signUpUsrForm")
+    public String signUpUsrForm(RuleVo ruleVo, Model model) throws Exception{
+		
+    	return pathCommonUsr + "signUpUsrForm";
     }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/modalTermsUsrView")
+	public Map<String, Object> modalTermsUsrView(RuleVo ruleVo) throws Exception {
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		
+		returnMap.put("title", ruleService.selectOne(ruleVo).getIfrlTitle());
+		returnMap.put("contents", ruleService.selectOne(ruleVo).getIfrlContents());
+		
+		return returnMap;
+	}
 	
 	
 	@ResponseBody

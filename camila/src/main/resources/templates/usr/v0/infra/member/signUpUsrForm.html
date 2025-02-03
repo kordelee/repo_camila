@@ -112,6 +112,40 @@
 											</div>
                                     	</div>
                                     </div>
+                                    <div class="form-group mb-3">
+                                    	<div class="row">
+											<div class="col-6 text-start">
+										        <input class="form-check-input" type="checkbox"/>
+										        <span class="text-muted">약관약관약관약관1</span><br>
+										        <input class="form-check-input" type="checkbox"/>
+									        	<span class="text-muted">약관약관약관약관2</span><br>
+									        	<input class="form-check-input" type="checkbox"/>
+									        	<span class="text-muted">약관약관약관약관3</span><br>
+									    	</div>
+										    <div class="col-6 text-end">
+										        <a href="javascript:void(0);" onclick="modalTerms(1);">더보기</a><br>
+										        <a href="javascript:void(0);" onclick="modalTerms(2);">더보기</a><br>
+										        <a href="javascript:void(0);" onclick="modalTerms(3);">더보기</a><br>
+										    </div>
+									    </div>
+									</div>
+<!--                                     <div class="form-group mb-3"> -->
+<!-- 									    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"> -->
+<!-- 									        <input class="form-check-input" type="checkbox"/> -->
+<!-- 									        <span class="text-muted">약관약관약관약관1</span> -->
+<!-- 									        <a href="javascript:void(0);" onclick="modal(1);">더보기</a> -->
+<!-- 									    </div> -->
+<!-- 									    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"> -->
+<!-- 									        <input class="form-check-input" type="checkbox"/> -->
+<!-- 									        <span class="text-muted">약관약관약관약관2</span> -->
+<!-- 									        <a href="javascript:void(0);" onclick="modal(2);">더보기</a> -->
+<!-- 									    </div> -->
+<!-- 									    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;"> -->
+<!-- 									        <input class="form-check-input" type="checkbox"/> -->
+<!-- 									        <span class="text-muted">약관약관약관약관3</span> -->
+<!-- 									        <a href="javascript:void(0);" onclick="modal(3);">더보기</a> -->
+<!-- 									    </div> -->
+<!-- 									</div> -->
                                     <div class="form-group text-center">
                                         <button type="button" id="btnSignUp" class="btn btn-primary w-100">
                                             signup
@@ -148,6 +182,26 @@ window.addEventListener('load', function() {
 			format: 'Y-m-d'
 	});
 });
+
+modalTerms = function(ifrlSeq){
+	$.ajax({
+		async: true 
+		,cache: false
+		,type: "post"
+		/* ,dataType:"json" */
+		,url:"/v1/infra/member/modalTermsUsrView"
+		/* ,data : $("#formLogin").serialize() */
+		,data : {"ifrlSeq" : ifrlSeq}
+		,success: function(response) {
+			document.getElementById("modalAlertTitle").innerText = response.title;
+			document.getElementById("modalAlertBody").innerText = response.contents;
+			$("#modalAlert").modal("show");
+		}
+		,error : function(jqXHR, textStatus, errorThrown){
+			alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+		}
+	});
+}
 
 let idCheckNy = document.getElementById("idCheck").value;
 let emailCheckNy = document.getElementById("emailCheck").value;
