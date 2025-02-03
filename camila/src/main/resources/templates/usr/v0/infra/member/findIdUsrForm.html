@@ -75,18 +75,18 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group text-center" id="rtFail" hidden>
-									<span class="text-muted" >실패</span>
-									<br>
-									<div class="row">
-										<div class="col-6">
-											<a th:href = @{/v0/infra/member/signinUsrForm}><button id="btnSignin" type="button" class="btn btn-primary w-100">로그인</button></a>
-										</div>
-										<div class="col-6">
-											<a th:href = @{/v0/infra/member/findPwdUsrForm}><button id="btnFindPwd" type="button" class="btn btn-primary w-100">비밀번호 찾기</button></a>
-										</div>
-									</div>
-								</div>
+<!-- 								<div class="form-group text-center" id="rtFail" hidden> -->
+<!-- 									<span class="text-muted" >실패</span> -->
+<!-- 									<br> -->
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-6"> -->
+<!-- 											<a th:href = @{/v0/infra/member/signinUsrForm}><button id="btnSignin" type="button" class="btn btn-primary w-100">로그인</button></a> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-6"> -->
+<!-- 											<a th:href = @{/v0/infra/member/findPwdUsrForm}><button id="btnFindPwd" type="button" class="btn btn-primary w-100">비밀번호 찾기</button></a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
                             </div>
                         </div>
                     </div>
@@ -137,9 +137,11 @@
 					rtId = rtId.join('');
 					$('#rtId').append(rtId);
 				} else {
-					document.getElementById("findIdDiv").hidden = true;
-					document.getElementById("rtFind").hidden = true;
-					document.getElementById("rtFail").hidden = false;
+					document.getElementById("ifmeEmailFull").classList.add("is-invalid");
+					document.getElementById("ifmeEmailFullFeedback").innerText = "일치하는 회원이 존재하지 않습니다.";
+// 					document.getElementById("findIdDiv").hidden = true;
+// 					document.getElementById("rtFind").hidden = true;
+// 					document.getElementById("rtFail").hidden = false;
 				}
 			}
 			,error : function(jqXHR, textStatus, errorThrown){
