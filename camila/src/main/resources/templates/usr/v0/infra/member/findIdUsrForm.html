@@ -137,8 +137,10 @@
 					rtId = rtId.join('');
 					$('#rtId').append(rtId);
 				} else {
+					document.getElementById("ifmmName").classList.add("is-invalid");
 					document.getElementById("ifmeEmailFull").classList.add("is-invalid");
 					document.getElementById("ifmeEmailFullFeedback").innerText = "일치하는 회원이 존재하지 않습니다.";
+					document.getElementById("ifmmNameFeedback").innerText = "일치하는 회원이 존재하지 않습니다.";
 // 					document.getElementById("findIdDiv").hidden = true;
 // 					document.getElementById("rtFind").hidden = true;
 // 					document.getElementById("rtFail").hidden = false;
