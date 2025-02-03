@@ -29,8 +29,8 @@
     <div class="header-height-bar"></div>
     
 <!-- includeUsrGnb s -->
-<div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
-<!-- includeUsrGnb e -->  
+<div th:replace="~{usr/v0/infra/include/topWithoutMenu :: topWithoutMenu}"></div> 
+<!-- includeUsrGnb e -->
 <div th:replace="~{usr/v0/infra/include/modal:: modal}"></div>
 <!-- Main -->
     <main>
@@ -41,7 +41,7 @@
                     <div class="col-lg-5 col-xxl-4">
                         <div class="card">
                             <div class="card-header bg-transparent py-3">
-                                <h3 class="h4 mb-0">Find Password </h3>
+                                <h3 class="h4 mb-0" id="findPasswordTitle">Find Password </h3>
                             </div>
 							<form id="form" name="form" method="post" autocomplete="off">
 								<div id="rtId">
@@ -82,10 +82,10 @@
 											</div>
 											<div class="form-group mb-3">
 										        <label class="form-label col" for="ifmmPasswordCk">PasswordCheck<span class="text-danger">*</span></label>
-											    <input type="text" id="ifmmPasswordCk" name="ifmmPasswordCk" maxlength="20" class="form-control" placeholder="abc@example.com">
+											    <input type="text" id="ifmmPasswordCk" name="ifmmPasswordCk" maxlength="20" class="form-control" placeholder="">
 												<div class="invalid-feedback" id="ifmmPasswordCkFeedback"></div>
 											</div>
-											<button type="button" class="btn btn-primary w-100" id="btnChangePwd" >비밀번호 찾기</button>
+											<button type="button" class="btn btn-primary w-100" id="btnChangePwd" >change password</button>
 										</div>
 										<div class="text-center pb-3" id="resultFindPwd">
 										    <!-- <span class="text-muted">임시 비밀번호를 메일로 발송해 드렸습니다.</span> -->
@@ -160,6 +160,7 @@
 						document.getElementById("inputDiv").hidden = true;
 						document.getElementById("authEmail").hidden = true;
 						document.getElementById("goChangePwd").hidden = false;
+						document.getElementById("findPasswordTitle").innerText = "Change Password";
 					} else {
 						document.getElementById("modalAlertTitle").innerText = "확 인";
 				 		document.getElementById("modalAlertBody").innerText = "인증번호가 일치하지 않습니다";
