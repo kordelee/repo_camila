@@ -3506,9 +3506,9 @@ textarea.form-control-lg {
     border-color: #ff6f61;
 }
 
-.was-validated .form-check-input:invalid:checked, .form-check-input.is-invalid:checked {
-    background-color: #ff6f61;
-}
+/* .was-validated .form-check-input:invalid:checked, .form-check-input.is-invalid:checked { */
+/*     background-color: #ff6f61; */
+/* } */
 
 .was-validated .form-check-input:invalid:focus, .form-check-input.is-invalid:focus {
     box-shadow: 0 0 0 0 rgba(255, 111, 97, 0);
