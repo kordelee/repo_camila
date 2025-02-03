@@ -303,3 +303,20 @@ checkEstablishedYear = function(obj, value, message) {
         return false;
     }
 }
+
+// by hyeonrok
+checkCheckBox = function(objName, message) {
+	var ckVal = document.getElementById(objName).checked;
+	var objDiv = document.getElementById(objName);
+	var objFeedback = document.getElementById(objName.slice(0, 4)+"Feedback");
+    if(ckVal != false) {
+		objFeedback.innerHTML='';
+        objDiv.classList.remove('is-invalid');
+        return true;
+    } else {
+//		var regExp = /^(?!on$).*$/;
+		objDiv.classList.add('is-invalid');
+        objFeedback.innerText = message;
+        obj.focus();
+    }
+}
