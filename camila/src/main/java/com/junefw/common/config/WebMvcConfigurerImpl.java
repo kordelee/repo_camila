@@ -28,7 +28,7 @@ public class WebMvcConfigurerImpl implements WebMvcConfigurer{
 				.excludePathPatterns(
 //						"/resources/**",
 						"/usr/**",
-						"/v1/infra/member/signupUsrForm",
+						"/v1/infra/member/signUpUsrForm",
 						"/v1/infra/member/signinUsrForm",
 						"/v1/infra/member/signinUsrProc",
 						"/v1/infra/member/signupIdCheckUsrProc",
