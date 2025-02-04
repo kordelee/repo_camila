@@ -364,38 +364,59 @@ public class MemberController extends BaseController{
 		MemberDto rtMember = service.selectOneId(dto);
 
 		if (rtMember != null) {
-			MemberDto rtMember2 = service.selectOneLogin(dto);
-
-			if (rtMember2 != null) {
-				
+			if(Integer.valueOf(rtMember.getIfmmSeq()) > 9) {
+				if (matchesBcrypt(dto.getIfmmPassword(),rtMember.getIfmmPassword(),10)) {
+					if(dto.getAutoLogin() == true) {
+						UtilCookie.createCookie(
+								Constants.COOKIE_SEQ_NAME_USR, 
+								rtMember.getIfmmSeq(), 
+								Constants.COOKIE_DOMAIN_USR, 
+								Constants.COOKIE_PATH_USR, 
+								Constants.COOKIE_MAXAGE_USR);
+					} else {
+						// by pass
+					}
+	
+					httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_USR); // 60second * 30 = 30minute
+					httpSession.setAttribute("sessSeqUsr", rtMember.getIfmmSeq());
+					httpSession.setAttribute("sessIdUsr", rtMember.getIfmmId());
+					httpSession.setAttribute("sessNameUsr", rtMember.getIfmmName());
+	
+					rtMember.setIfmmSocialLoginCd(103);
+					rtMember.setIflgResultNy(1);
+					service.insertLogLogin(rtMember);
+	
+					returnMap.put("rt", "success");
+				} else {
+					dto.setIfmmSocialLoginCd(103);
+					dto.setIfmmSeq(rtMember.getIfmmSeq());
+					dto.setIflgResultNy(0);
+					service.insertLogLogin(dto);
+	
+					returnMap.put("rt", "fail");
+				}
+			} else {
 				if(dto.getAutoLogin() == true) {
 					UtilCookie.createCookie(
 							Constants.COOKIE_SEQ_NAME_USR, 
-							rtMember2.getIfmmSeq(), 
+							rtMember.getIfmmSeq(), 
 							Constants.COOKIE_DOMAIN_USR, 
 							Constants.COOKIE_PATH_USR, 
 							Constants.COOKIE_MAXAGE_USR);
 				} else {
 					// by pass
 				}
-
+				
 				httpSession.setMaxInactiveInterval(60 * Constants.SESSION_MINUTE_USR); // 60second * 30 = 30minute
-				httpSession.setAttribute("sessSeqUsr", rtMember2.getIfmmSeq());
-				httpSession.setAttribute("sessIdUsr", rtMember2.getIfmmId());
-				httpSession.setAttribute("sessNameUsr", rtMember2.getIfmmName());
-
-				rtMember2.setIfmmSocialLoginCd(103);
-				rtMember2.setIflgResultNy(1);
-				service.insertLogLogin(rtMember2);
-
+				httpSession.setAttribute("sessSeqUsr", rtMember.getIfmmSeq());
+				httpSession.setAttribute("sessIdUsr", rtMember.getIfmmId());
+				httpSession.setAttribute("sessNameUsr", rtMember.getIfmmName());
+				
+				rtMember.setIfmmSocialLoginCd(103);
+				rtMember.setIflgResultNy(1);
+				service.insertLogLogin(rtMember);
+				
 				returnMap.put("rt", "success");
-			} else {
-				dto.setIfmmSocialLoginCd(103);
-				dto.setIfmmSeq(rtMember.getIfmmSeq());
-				dto.setIflgResultNy(0);
-				service.insertLogLogin(dto);
-
-				returnMap.put("rt", "fail");
 			}
 		} else {
 			dto.setIfmmSocialLoginCd(103);
@@ -404,6 +425,8 @@ public class MemberController extends BaseController{
 
 			returnMap.put("rt", "fail");
 		}
+		
+		
 		return returnMap;
 	}
 	
@@ -529,11 +552,17 @@ public class MemberController extends BaseController{
 	
 	@ResponseBody
 	@RequestMapping(value = "/changPwdUsrProc")
-	public Map<String, Object> changPwdUsrProc(MemberDto dto,HttpSession session) throws Exception {
+	public Map<String, Object> changPwdUsrProc(MemberDto dto, MemberVo vo, HttpSession session) throws Exception {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
-		dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
-		service.updateChangePwd(dto);
-		returnMap.put("rt", "success");
+		vo.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+		if(matchesBcrypt(dto.getIfmmOldPassword(), service.selectOne(vo).getIfmmPassword(), 10)) {
+			dto.setIfmmSeq(session.getAttribute("sessSeqUsr").toString());
+			dto.setIfmmPassword(encodeBcrypt(dto.getIfmmPassword(), 10));
+			service.updateChangePwd(dto);
+			returnMap.put("rt", "success");
+		} else {
+			returnMap.put("rt", "fail");
+		}
 		return returnMap;
 	}
 	

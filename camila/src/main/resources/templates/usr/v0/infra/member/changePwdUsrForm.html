@@ -86,12 +86,23 @@
 			<div class="row">
 				<div class="col-sm-6 mb-3">
 					<div class="form-group">
-						<label for="ifmmPassword" class="form-label">비밀번호</label>
+						<label for="ifmmOldPassword" class="form-label">기존 비밀번호</label>
+						<input type="password" id="ifmmOldPassword" class="form-control" name="ifmmOldPassword">
+						<div class="invalid-feedback" id="ifmmOldPasswordFeedback"></div>
+					</div>
+				</div>
+				<div class="col-sm-6 mb-3">
+<!-- 				empty -->
+				</div>				
+				<div class="col-sm-6 mb-3">
+					<div class="form-group">
+						<label for="ifmmPassword" class="form-label">신규 비밀번호</label>
 						<input type="password" id="ifmmPassword" class="form-control" name="ifmmPassword">
 						<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
 					</div>
 				</div>
 				<div class="col-sm-6 mb-3">
+<!-- 				empty -->
 				</div>				
 				<div class="col-sm-6 mb-3">
 					<div class="form-group">
@@ -200,14 +211,15 @@ validationFindId = function() {
 					/* ,dataType:"json" */
 					,url: "/v1/infra/member/changPwdUsrProc"
 					/* ,data : $("#formLogin").serialize() */
-					,data : {"ifmmPassword" : $("#ifmmPassword").val()}
+					,data : {"ifmmPassword" : $("#ifmmPassword").val(), "ifmmOldPassword" : $("#ifmmOldPassword").val()}
 					,success: function(response) {
 						if(response.rt == "success") {
 							document.getElementById("ifmmPasswordCk").classList.remove('is-invalid');
 							document.getElementById("ifmmPasswordCkFeedback").remove();
 							location.href = "/v1/infra/member/signinUsrForm"
 						} else {
-//							by pass
+							document.getElementById("ifmmOldPassword").classList.add('is-invalid');
+							document.getElementById("ifmmOldPasswordFeedback").innerText = '기존 비밀번호가 일치하지 않습니다.';
 						}
 					}
 					,error : function(jqXHR, textStatus, errorThrown){
@@ -216,7 +228,7 @@ validationFindId = function() {
 				});
 			} else {
 				document.getElementById("ifmmPasswordCk").classList.add('is-invalid');
-				document.getElementById("ifmmPasswordCkFeedback").innerText = '비밀번호가 일치하지 않습니다.';
+				document.getElementById("ifmmPasswordCkFeedback").innerText = '신규 비밀번호가 일치하지 않습니다.';
 			}
 		}
 		
@@ -224,7 +236,7 @@ validationFindId = function() {
 		    if(validationUpdt() == false) return false;
 		}
 		function validationUpdt() {
-			if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력해주세요")) return false;
+// 			if(!checkPassword('ifmmPassword', 2, 0, "비밀번호 형식에 맞게 입력해주세요")) return false;
 		}
 			
 			
