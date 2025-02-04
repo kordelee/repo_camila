@@ -144,13 +144,13 @@ $("#btnWithdrawal").on("click", function(){
 		,cache: false
 		,type: "post"
 		/* ,dataType:"json" */
-		,url: "/v1/infra/member/withdrawalUsrProc"
+		,url: "/v1/infra/member/withdrawUsrProc"
 		/* ,data : $("#formLogin").serialize() */
-		,data : { "ifmmId" : "<c:out value="${sessUsrId }"/>", "ifmmPassword" : $("#ifmmPassword").val()}
+		,data : {"ifmmPassword" : $("#ifmmPassword").val()}
 		,success: function(response) {
 			
 			if(response.rt == "success") {
-				location.href = "/";
+				location.href = "/v1/infra/member/signinUsrForm";
 			} else {
 				$("#resultWithdrawal").empty();
 				
