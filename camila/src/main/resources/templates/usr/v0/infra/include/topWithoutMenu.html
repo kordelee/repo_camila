@@ -20,12 +20,12 @@
                     <div class="dropdown-menu dropdown-menu-end mt-2 shadow" aria-labelledby="dropdown_myaccount">
 
 	<div th:if="${session.sessSeqUsr} == null">
-						<a class="dropdown-item" th:href="@{/v0/infra/member/signinUsrForm}">Login</a>
-						<a class="dropdown-item" th:href="@{/v1/infra/member/signupUsrForm}">SignUp</a>
+						<a class="dropdown-item" th:href="@{/v1/infra/member/signinUsrForm}">Login</a>
+						<a class="dropdown-item" th:href="@{/v1/infra/member/signUpUsrForm}">SignUp</a>
 	</div>
 	<div th:unless="${session.sessSeqUsr} == null">
 						<a class="dropdown-item" id="btnLogout" style="cursor: pointer;">Logout</a>
-						<a class="dropdown-item" th:href="@{/v0/infra/member/memberUsrForm}">My page</a>
+						<a class="dropdown-item" th:href="@{/v1/infra/member/memberUsrForm}">My page</a>
 	</div>
 
 
