@@ -291,6 +291,7 @@
 			infrMember a
 		WHERE 1=1
 			AND a.ifmmId = #{ifmmId}
+			AND b.ifmmDelNy = 0
 	</select>
 	
 	
@@ -415,6 +416,7 @@
 			infrMember a
 		WHERE 1=1
 			AND a.ifmmId = #{ifmmId}
+			AND a.ifmmDelNy = 0
 	</select>
 	
 	
@@ -536,6 +538,7 @@
 			LEFT JOIN infrMemberEmail b ON b.ifmmSeq = a.ifmmSeq
 		WHERE 1=1
 			AND a.ifmmName = #{ifmmName}
+			AND b.ifmmDelNy = 0
 			AND b.ifmeEmailFull = #{ifmeEmailFull}
 			AND b.ifmeDefaultNy = 1
 			<if test="ifmmId != null and !ifmmId.equals('')">AND a.ifmmId = #{ifmmId}</if>
