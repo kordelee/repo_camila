@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <!-- Logo -->
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" th:href="@{/v1/infra/index/indexUsrView}">
                 <img src="/usr/v1/template/shopapp/assets/img/logo.svg" title="" alt="">
             </a>
             <!-- End Logo -->
@@ -73,22 +73,27 @@
                 </ul>
             </div>
             <!-- End Menu -->
-            <div class="nav flex-nowrap align-items-center header-right">
-                <!-- Acount -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" id="dropdown_myaccount" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fi-user"> </i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end mt-2 shadow" aria-labelledby="dropdown_myaccount">
+	            <div class="nav flex-nowrap align-items-center header-right">
+	                <!-- Acount -->
+	                <div class="nav-item dropdown">
+	                    <a class="nav-link" href="#" role="button" id="dropdown_myaccount" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                    	<div th:if="${session.sessSeqUsr} == null">
+	                        	<i class="fi-user"> </i>
+	                        </div>
+	                    	<div th:unless="${session.sessSeqUsr} == null">
+	                        	<i class="fi-user"> </i><span th:text="${session.sessNameUsr}"></span>
+	                        </div>
+	                    </a>
+	                    <div class="dropdown-menu dropdown-menu-end mt-2 shadow" aria-labelledby="dropdown_myaccount">
 
-<th:block th:if="${sessUsrSeq == null}">
-						<a class="dropdown-item" href="/v1/infra/member/loginUsrForm">Login</a>
-						<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">SignUp</a>
-</th:block>
-<th:block th:unless="${sessUsrSeq == null}">
-						<a class="dropdown-item" href="javascript:void(0);" id="btnLogout">Logout</a>
-						<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">My page</a>
-</th:block>
+		<div th:if="${session.sessSeqUsr} == null">
+							<a class="dropdown-item" th:href="@{/v1/infra/member/signinUsrForm}">Login</a>
+							<a class="dropdown-item" th:href="@{/v1/infra/member/signUpUsrForm}">SignUp</a>
+		</div>
+		<div th:unless="${session.sessSeqUsr} == null">
+							<a class="dropdown-item" id="btnLogout" style="cursor: pointer;">Logout</a>
+							<a class="dropdown-item" th:href="@{/v1/infra/member/memberUsrForm}">My page</a>
+		</div>
 
 <!--                             
                             <a class="dropdown-item" href="#">Wishlist</a>
