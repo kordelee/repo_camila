@@ -117,16 +117,14 @@
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrLinkJs :: includeUsrLinkJs}"></div>
 <!-- includeUsrLinkJs e -->
 
-<script src="/usr/v0/js/includeUsrAjaxList.js"></script>
+<script src="/usr/v1/js/includeUsrAjaxList.js"></script>
 
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
 
-	$(document).ready(function(){
-		$("#shPostedDateStart, #shPostedDateEnd").datepicker();
+	window.addEventListener('load', function() {
+// 		setCategoryInitAjax();
 		
-		setCategoryInitAjax();
-		
-		setCategory();
+// 		setCategory();
 
 		setLita();
 	}); 

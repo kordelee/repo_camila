@@ -208,10 +208,10 @@ public class MajorController extends BaseController{
 	
 	
 	@RequestMapping(value = "/majorShowUsrLita")
-	public String majorShowUsrLita(@ModelAttribute("vo") MajorVo vo, HttpSession httpSession, Model model) throws Exception {
+	public String majorShowUsrLita(@ModelAttribute("vo") MajorVo vo, HttpSession session, Model model) throws Exception {
 		
 		setSearch(vo);
-		vo.setSessUsrSeq((String) httpSession.getAttribute("sessUsrSeq"));
+//		vo.setSessUsrSeq(session.getAttribute("sessUsrSeq").toString());
 		vo.setParamsPaging(service.selectOneCountMajorShow(vo));
 		
 		if (vo.getTotalRows() > 0) {

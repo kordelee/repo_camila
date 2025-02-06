@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- includeUsrHead s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrHead :: includeUsrHead}"></div>
+<!-- includeUsrHead e -->
+
+<!-- includeUsrTagCodeMajor s -->
+<!-- <%@include file="../../include/includeUsrTagCodeMajor.jsp"%> -->
+<!-- includeUsrTagCodeMajor e -->
+
+<div class="shop-top-bar d-flex pb-3">
+    <div class="layout-change">
+        <!-- Mobile Toggle -->
+        <button class="btn btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#shop_filter" aria-controls="shop_filter">
+            <i class="fs-4 lh-1 bi bi-justify-left"></i>
+        </button>
+        <!-- End Mobile Toggle -->
+        <!-- <a class="btn btn-sm active" href="#"><i class="bi bi-grid"></i></a> -->
+        <a class="btn btn-sm" href=""><i class="bi bi-arrow-repeat"></i></a>
+
+		<span >&nbsp;&nbsp;&nbsp;Total: <span th:text="${vo.totalRows}"></span></span>
+
+    </div>
+    <div class="shortby-dropdown ms-auto">
+        <div class="dropdown">
+            <a class="btn btn-white btn-sm border dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Featured</a></li>
+                <li><a class="dropdown-item" href="#">Best selling</a></li>
+                <li><a class="dropdown-item" href="#">Alphabetically, A-Z</a></li>
+                <li><a class="dropdown-item" href="#">Alphabetically, Z-A</a></li>
+                <li><a class="dropdown-item" href="#">Price, low to high</a></li>
+                <li><a class="dropdown-item" href="#">Price, high to low</a></li>
+                <li><a class="dropdown-item" href="#">Date, old to new</a></li>
+                <li><a class="dropdown-item" href="#">Date, new to old</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row g-3">
+    <!-- Product Box -->
+
+	<span th:if="${#lists.isEmpty(list)}" style="padding-left: 50px;">There are no data!</span>
+    <div class="col-sm-6 col-lg-4" th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+        <div class="product-card-1">
+            <div class="product-card-image">
+                <div class="badge-ribbon">
+                
+					<span th:text="${#dates.format(list.regDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+
+					<!-- <c:if test="${todayDate eq regDateTime }"> -->
+					<!-- 	<span class="badge bg-danger">Today</span> -->
+					<!-- </c:if>     -->
+<!--                     <%-- <span class="badge bg-danger">Today<c:out value="${list.regDateTime }"/> <c:out value="${now }"/></span> --%> -->
+                </div>
+                <div class="product-action">
+                    <a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn btn-outline-primary">
+                        <i class="fi-eye"></i>
+                    </a>
+					<a href="javascript:addFavorite(<c:out value="${list.xMajorMyFavoriteCount }"/>, <c:out value="${list.mbmtSeq }"/>)" class="btn btn-outline-primary">
+                        <i class="bi bi-bookmark"></i>
+                    </a>
+                </div>
+                <div class="product-media">
+                    <a href="#">
+                        <img class="img-fluid" src="/resources/usr/v1/image/mall/product/1000x1000.jpg" title="" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="product-card-info">
+                <!-- <div class="product-meta small"> -->
+                <div class="product-meta">
+                    <i class="bi bi-hand-index-fill"></i><span th:text="${list.xMajorHitCount}"></span>&nbsp;&nbsp;
+                    <i class="bi bi-bookmark-fill"></i><span th:text="${list.xMajorFavoriteCount}"></span>&nbsp;&nbsp;
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span th:text="${list.mbtdDistrictCt}"></span>
+					 | 
+                    <span th:text="${list.mbtdDistrict2Ct}"></span>
+                </div>
+
+<!-- includeUsrBicycleLita s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrMajorLita :: includeUsrMajorLita}"></div>
+<!-- includeUsrBicycleLita e -->
+	            
+				<h6 class="product-title" style="padding-top: 10px;">
+					<a href="javascript:void(0);" th:text="${list.mbmtTitle}" th:attr="onclick=|goForm('${list.mbmtSeq}')|"></a> 
+					(<span th:text="${list.xMajorCommentCount}"/></span>)
+				</h6>	            
+				<div class="product-price">
+					<span class="text-primary" th:text="${#numbers.formatInteger(list.mbmtPrice,3,'COMMA')}"></span>
+				</div>
+				<div class="product-meta small" style="padding-top: 5px;">
+					<span th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+					 | 
+					<span th:text="${list.regId}"></span>
+	            </div>	                                                                          
+            </div>
+        </div>
+    </div>
+    
+    <!-- End Product Box -->
+</div>
+	<!-- Paging -->
+	<div class="shop-bottom-bar d-flex align-items-center mt-3">
+	    <div class="ms-auto">
+	        <ul class="pagination">
+<c:if test="${vo.startPage gt vo.pageNumToShow}">	            
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+</c:if>
+<c:forEach begin="${vo.startPage}" end="${vo.endPage}" varStatus="i">
+	<c:choose>
+		<c:when test="${i.index eq vo.thisPage}">          
+	            <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+		</c:when>
+		<c:otherwise>  	            
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">${i.index}</a></li>
+		</c:otherwise>
+	</c:choose>
+</c:forEach>
+<c:if test="${vo.endPage ne vo.totalPages}">    	            
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+</c:if>	            
+	        </ul>
+	    </div>
+	</div>
+	<!-- End Paging -->
+
+	
+<script>
+
+	var checkMajorMyFavoriteCountJs = 0;
+
+	addFavorite = function(xMajorMyFavoriteCountJs, mbmtSeqJs) {
+		var sessUsrSeqJs = '<c:out value="${sessUsrSeq}"/>';
+
+		$("#modalAlertTitle").text("즐겨찾기");
+		
+		if (sessUsrSeqJs) {
+			if(xMajorMyFavoriteCountJs == 0 && checkMajorMyFavoriteCountJs == 0) {
+				$.ajax({
+					async: true 
+					,cache: false
+					,type: "post"
+					/* ,dataType:"json" */
+					,url: "/v1/mallbicycle/major/majorFavoriteUsrInst"
+					/* ,data : $("#formLogin").serialize() */
+					,data : { "ifmmSeq" : sessUsrSeqJs, "mbmtSeq" : mbmtSeqJs}
+					,success: function(response) {
+						if(response.rt == "success") {
+							// success
+							checkMajorMyFavoriteCountJs++;
+						} else {
+							// by pass
+						}
+					}
+					,error : function(jqXHR, textStatus, errorThrown){
+						alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+					}
+				});
+				
+				$("#modalAlertBody").text("즐겨찾기에 등록이 되었습니다.");
+				$("#btnMoveToLogin").remove();
+				$("#modalAlertFooter").append('<button type="button" class="btn btn-primary btn-sm" id="btnMoveToLogin" onclick="goFavorite();">즐겨찾기</button>');				
+				
+				$("#modalAlert").modal("show");
+			} else {
+				$("#modalAlertBody").text("이미 등록이 되어 있습니다.");
+				
+				$("#btnMoveToLogin").remove();
+				$("#modalAlertFooter").append('<button type="button" class="btn btn-primary btn-sm" id="btnMoveToLogin" onclick="goFavorite();">즐겨찾기</button>');
+				
+				$("#modalAlert").modal("show");
+			}
+		} else {
+			$("#modalAlertBody").text("로그인 후 이용가능한 서비스 입니다.");
+			
+			$("#btnMoveToLogin").remove();
+			$("#modalAlertFooter").append('<button type="button" class="btn btn-primary btn-sm" id="btnMoveToLogin" onclick="goLogin();">Login</button>');
+			
+			$("#modalAlert").modal("show");
+		}
+	}
+	
+	
+	goFavorite = function() {
+		location.href = "/v1/mallbicycle/major/majorFavoriteUsrAjaxList";
+	}
+	
+</script>	
