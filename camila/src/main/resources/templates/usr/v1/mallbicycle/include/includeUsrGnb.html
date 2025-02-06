@@ -6,7 +6,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <img src="/resources/usr/v1/template/shopapp/assets/img/logo.svg" title="" alt="">
+                <img src="/usr/v1/template/shopapp/assets/img/logo.svg" title="" alt="">
             </a>
             <!-- End Logo -->
             <!-- Menu -->
@@ -81,17 +81,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end mt-2 shadow" aria-labelledby="dropdown_myaccount">
 
-<c:choose>
-	<c:when test="${empty sessUsrSeq }">
+<th:block th:if="${sessUsrSeq == null}">
 						<a class="dropdown-item" href="/v1/infra/member/loginUsrForm">Login</a>
 						<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">SignUp</a>
-	</c:when>
-	<c:otherwise>
+</th:block>
+<th:block th:unless="${sessUsrSeq == null}">
 						<a class="dropdown-item" href="javascript:void(0);" id="btnLogout">Logout</a>
 						<a class="dropdown-item" href="/v1/infra/member/signUpUsrForm">My page</a>
-	</c:otherwise>
-</c:choose>
-
+</th:block>
 
 <!--                             
                             <a class="dropdown-item" href="#">Wishlist</a>
