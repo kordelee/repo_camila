@@ -14,10 +14,10 @@
 		WHERE 1=1
 			AND a.ifmmSeq = #{sessUsrSeq}
 			<if test="shDelNy != null and !shDelNy.equals('')">AND mbmgDelNy = #{shDelNy}</if>
-			<choose>
-				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			</choose>
+<!-- 			<choose> -->
+<!-- 				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 			</choose> -->
 	</sql>
 	
 	

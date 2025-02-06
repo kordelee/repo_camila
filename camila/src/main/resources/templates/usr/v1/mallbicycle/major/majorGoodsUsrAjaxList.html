@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!-- includeUsrJspTag s -->
-<!--<div th:replace="~{usr/v1/mallbicycle/include/includeUsrJspTag :: includeUsrJspTag}"></div>-->  
-<!-- includeUsrJspTag e -->
-
-
 <!-- includeUsrHead s -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrHead :: includeUsrHead}"></div>
 <!-- includeUsrHead e -->
@@ -86,7 +81,7 @@
 
 						<!-- Product Box -->
 						<div class="col-lg-8 col-xl-9">
-
+						
 <div id="lita"></div>  
 
                         </div>
@@ -114,14 +109,12 @@
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrLinkJs :: includeUsrLinkJs}"></div>
 <!-- includeUsrLinkJs e -->
 
-<script src="/resources/usr/v1/js/includeUsrAjaxList.js"></script>
+<script src="/usr/v0/js/includeUsrAjaxList.js"></script>
 
 <script type="text/javascript">
 
-	$(document).ready(function(){
-		
+	window.addEventListener('load', function() {
 		setLita();
-		
 	}); 
 	
 	

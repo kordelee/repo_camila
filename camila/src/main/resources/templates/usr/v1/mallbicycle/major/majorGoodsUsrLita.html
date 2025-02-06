@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- Total -->
+<div class="shop-top-bar d-flex pb-3">
+    <div class="layout-change">
+        <!-- Mobile Toggle -->
+        <button class="btn btn-sm d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#shop_filter" aria-controls="shop_filter">
+            <i class="fs-4 lh-1 bi bi-justify-left"></i>
+        </button>
+        <!-- End Mobile Toggle -->
+        <!-- <a class="btn btn-sm active" href="#"><i class="bi bi-grid"></i></a> -->
+        <a class="btn btn-sm" href="javascript:goForm(0);"><i class="bi bi-plus-lg"></i></a>
+		<span >&nbsp;&nbsp;&nbsp;Total: <span th:text="${vo.totalRows}"></span></span>
+    </div>
+</div>
+<!-- End Total --> 
+                     
+<div class="row g-2">
+	<!-- Product -->
+<span th:if="${#lists.isEmpty(list)}" style="padding-left: 50px;">There are no data!</span>
+	<div class="col-sm-6 col-lg-4" th:if="${!#lists.isEmpty(list)}" th:each="list : ${list}">
+	    <div class="product-card-1">
+	        <div class="product-card-image">
+	            <div class="product-media">
+	                <a href="javascript:void(0);" th:attr="onclick=|goView('${list.mbmgSeq}')|">
+	                    <img class="img-fluid" src="/xdm/v1/template/phoenix-v1.13.0/assets/img/e-commerce/1.png" title="" alt="">
+	                </a>
+	<!--                                                 
+					<div class="product-cart-btn">
+						<a href="#" class="btn btn-danger btn-sm w-100">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+								<path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+							</svg>
+						</a>
+					</div>
+	                                                 -->
+	            </div>
+	        </div>
+	        <div class="product-card-info">
+<!-- includeUsrBicycleLita s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrMajorLita :: includeUsrMajorLita}"></div>
+<!-- <%@include file="../../include/includeUsrMajorLita.jsp"%> -->
+<!-- includeUsrBicycleLita e --> 
+				<h6 class="product-title" style="padding-top: 10px;">
+					<a th:text="${list.mbmgTitle}"></a>
+				</h6>
+				<div class="product-meta small">
+					<span th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+					  |
+					<span th:text="${list.regId}"/></span>
+				</div> 				
+	        </div>
+	    </div>
+	</div>
+	<!-- End Product -->
+	
+	<!-- Paging -->
+	<div class="shop-bottom-bar d-flex align-items-center mt-3">
+	    <div class="ms-auto">
+	        <ul class="pagination">
+<!-- <c:if test="${vo.startPage gt vo.pageNumToShow}">	             -->
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${vo.startPage - 1})" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+<!-- </c:if> -->
+	            <li class="page-item active"><a class="page-link" href="javascript:goList(${i.index})">1</a></li>
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">2</a></li>
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">3</a></li>
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${i.index})">4</a></li>
+	            <li class="page-item"><a class="page-link" href="javascript:goList(${vo.endPage + 1})" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+	        </ul>
+	    </div>
+	</div>
+	<!-- End Paging -->
+
+</div>                  
+</html>

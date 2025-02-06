@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="includeUsrMajorLita">
+<div class="product-meta" style="padding-top: 5px;">
+	Canyon
+	 | 
+	<span th:text="${list.mbmgTypeCd}"></span>
+	 |  	                 
+	<sapn th:text="${list.mbmgProductionYear }"></sapn>
+</div>
+<div class="product-meta " style="padding-top: 5px;">
+	Aeroad CF SLX 7 Disc eTap 
+</div>
+<div class="product-meta " style="padding-top: 5px;">
+	<span th:text="${list.mbmgSizeCd}"></span>
+	 |  
+	<span th:text="${list.mbmgMaterialCd}"></span>
+	 | 		
+	<c:choose>
+		<c:when test="${list.mbmgTypeCd eq majorTypeRoad}">
+			<c:forEach items="${listCodeMajorTypeRoad}" var="itemBicycleTypeRoad" varStatus="statusBicycleTypeRoad">
+				<c:if test="${list.mbmgTypeDetailCd eq itemBicycleTypeRoad.ifcdSeq}"><c:out value="${itemBicycleTypeRoad.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>
+		<c:when test="${list.mbmgTypeCd eq majorTypeMtb}">
+			<c:forEach items="${listCodeMajorTypeMtb}" var="itemBicycleTypeMtb" varStatus="statusBicycleTypeMtb">
+				<c:if test="${list.mbmgTypeDetailCd eq itemBicycleTypeMtb.ifcdSeq}"><c:out value="${itemBicycleTypeMtb.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>
+		<c:when test="${list.mbmgTypeCd eq majorTypeLife }">
+			<c:forEach items="${listCodeMajorTypeLife}" var="itemBicycleTypeLife" varStatus="statusBicycleTypeLife">
+				<c:if test="${list.mbmgTypeDetailCd eq itemBicycleTypeLife.ifcdSeq}"><c:out value="${itemBicycleTypeLife.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>					
+	</c:choose>
+	 |  
+	 <span th:text="${list.mbmgDriveSystemCd}"></span>
+</div>                                            
+<div class="product-meta" style="padding-top: 5px;">
+	<c:choose>
+		<c:when test="${list.mbmgTypeCd eq majorTypeRoad}">
+			<c:forEach items="${listCodeDriveTrainRoad}" var="itemDriveTrainRoad" varStatus="statusDriveTrainRoad">
+				<c:if test="${list.mbmgDriveTrainCd eq itemDriveTrainRoad.ifcdSeq}"><c:out value="${itemDriveTrainRoad.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>
+		<c:when test="${list.mbmgTypeCd eq majorTypeMtb}">
+			<c:forEach items="${listCodeDriveTrainMtb}" var="itemDriveTrainMtb" varStatus="statusDriveTrainMtb">
+				<c:if test="${list.mbmgDriveTrainCd eq itemDriveTrainMtb.ifcdSeq}"><c:out value="${itemDriveTrainMtb.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>
+		<c:when test="${list.mbmgTypeCd eq majorTypeLife }">
+			<c:forEach items="${listCodeDriveTrainLife}" var="itemDriveTrainLife" varStatus="statusDriveTrainLife">
+				<c:if test="${list.mbmgDriveTrainCd eq itemDriveTrainLife.ifcdSeq}"><c:out value="${itemDriveTrainLife.ifcdName }"/></c:if>
+			</c:forEach>
+		</c:when>					
+	</c:choose>
+	 | 
+	 <span th:text="${list.mbmgBreakCd}"></span>
+	 | 
+	 <span th:text="${list.mbmgWheelCd}"></span>
+	 | 
+	 <span th:text="${list.mbmgTireCd}"></span>
+</div> 
+</th:block>                                                                             
+</html>

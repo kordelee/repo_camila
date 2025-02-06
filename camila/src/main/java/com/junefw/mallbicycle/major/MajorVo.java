@@ -11,6 +11,8 @@ private static final long serialVersionUID = 6917685060203569570L;
 	private String sessUsrSeq;
 	private String sessXdmSeq;
 	
+	private String ifmmSeq;
+	
 	private String mbmgSeq;
 	private String mbmtSeq;
 	private String mbmfSeq;
@@ -50,6 +52,12 @@ private static final long serialVersionUID = 6917685060203569570L;
 	}
 	public void setSessXdmSeq(String sessXdmSeq) {
 		this.sessXdmSeq = sessXdmSeq;
+	}
+	public String getIfmmSeq() {
+		return ifmmSeq;
+	}
+	public void setIfmmSeq(String ifmmSeq) {
+		this.ifmmSeq = ifmmSeq;
 	}
 	public String getMbmgSeq() {
 		return mbmgSeq;
