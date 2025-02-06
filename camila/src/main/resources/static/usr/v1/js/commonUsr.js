@@ -176,3 +176,8 @@ extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx"
 function textCount(textAreaId){
 	document.getElementById(textAreaId+"Count").innerText = document.getElementById(textAreaId).value.length;
 }
+
+/*문자열 특정 자리수 치환*/
+var replaceAt = function(input, index, character){
+    return input.substr(0, index) + character + input.substr(index+character.length);
+}
