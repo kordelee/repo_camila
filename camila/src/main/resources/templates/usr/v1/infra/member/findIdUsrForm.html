@@ -1,78 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아이디 비밀번호 찾기</title>
-</head>
+<html lang="ko">
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrHead :: includeUsrHead}"></div>
+
 <body>
-    <h1>아이디 비밀번호 찾기</h1>
-	<br>
-	<br>
-	<div id="findId">
-		<label>이름</label>
-	    <input id="ifmmName" name="ifmmName" type="text" value="전체 관리자" placeholder="이름"><br>
-		<label>이메일</label>
-	    <input id="ifmeEmailFull" name="ifmeEmailFull" type="text" value="relationrok@gmail.com" placeholder="이메일"><br>
-		<button id="btnFindId" type="button">아이디 찾기</button>
-	</div>
-	<div id="rtFind" hidden>
-		<span id="rtId"></span>
-		<br>
-		<button id="btnSignin" type="button">로그인</button>
-		<button id="btnFindPwd" type="button">비밀번호 찾기</button>
-	</div>
-	<div id="rtFail" hidden>
-		<span>실패</span>
-		<br>
-		<button id="btnSignin" type="button">로그인</button>
-		<button id="btnFindPwd" type="button">비밀번호 찾기</button>
-	</div>
-	
-	
-	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
-	
-	<script>
-		document.getElementById("btnFindId").onclick = function () {
-			let findId = document.getElementById("findId")
-			$.ajax({
-				async: true 
-				,cache: false
-				,type: "post"
-				/* ,dataType:"json" */
-				,url: "/v1/infra/member/findIdUsrProc"
-				/* ,data : $("#formLogin").serialize() */
-				,data : { "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
-				,success: function(response) {
-					if(response.rt == "success") {
-						document.getElementById("rtFail").hidden = true;
-						document.getElementById("rtFind").hidden = false;
-						let id = response.id;
-						let rtId = id.split('');
-						for(let i=2; i<id.length-2; i++){
-							rtId[i] = '*';
-						}
-						rtId = rtId.join('');
-						$('#rtId').append(rtId);
-					} else {
-						document.getElementById("rtFind").hidden = true;
-						document.getElementById("rtFail").hidden = false;
+
+<!-- skippy -->
+<a id="skippy" class="skippy visually-hidden-focusable overflow-hidden" href="#content">
+    <div class="container">
+        <span class="u-skiplink-text">Skip to main content</span>
+    </div>
+</a>
+<!-- End skippy -->
+<!-- Preload -->
+<!--<div id="loading" class="loading-preloader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+--><!-- End Preload -->
+
+<!-- 
+========================
+    Wrapper 
+========================
+-->
+<div class="wrapper">
+    <!-- heder height -->
+    <div class="header-height-bar"></div>
+    
+<!-- includeUsrGnb s -->
+<div th:replace="~{usr/v1/infra/include/top :: top}"></div> 
+<!-- includeUsrGnb e --> 
+
+<!-- Main -->
+    <main>
+		<form id="form" name="form" method="post" autocomplete="off">
+        <!-- login page -->
+        <div class="section">
+            <div class="container">
+                <div class="justify-content-center row">
+                    <div class="col-lg-5 col-xxl-4">
+                        <div class="card">
+                            <div class="card-header bg-transparent py-3">
+                                <h3 class="h4 mb-0">Find ID </h3>
+                            </div>
+                            <div class="card-body">
+								<div id="findIdDiv"> 
+									<div class="form-group mb-3">
+									    <label for="ifmmName" class="form-label">Name<span class="text-danger">*</span></label>
+									    <input type="text" id="ifmmName" name="ifmmName" maxlength="20" class="form-control" placeholder="Name">
+										<div class="invalid-feedback" id="ifmmNameFeedback"></div>
+									</div>
+									<div class="form-group mb-3">
+										<label class="form-label col" for="ifmeEmailFull">Email<span class="text-danger">*</span></label>
+									    <input type="text" id="ifmeEmailFull" name="ifmeEmailFull" maxlength="20" class="form-control" placeholder="abc@example.com">
+										<div class="invalid-feedback" id="ifmeEmailFullFeedback"></div>
+									</div>
+									<div class="form-group text-center">
+								        <button type="button" class="btn btn-primary w-100" id="btnFindId">
+								            Find ID
+								        </button>
+								    </div>
+								</div>
+								<div class="text-center pb-3" id="rtFind" hidden>
+									<h4>회원님의 아이디는 ..</h4><br>
+									<span class="text-muted" id="rtId"></span>
+									<br><br>
+									<div class="row">
+										<div class="col-6">
+											<a th:href = @{/v0/infra/member/signinUsrForm}><button id="btnSignin" type="button" class="btn btn-primary w-100">로그인</button></a>
+										</div>
+										<div class="col-6">
+											<a th:href = @{/v0/infra/member/findPwdUsrForm}><button id="btnFindPwd" type="button" class="btn btn-primary w-100">비밀번호 찾기</button></a>
+										</div>
+									</div>
+								</div>
+<!-- 								<div class="form-group text-center" id="rtFail" hidden> -->
+<!-- 									<span class="text-muted" >실패</span> -->
+<!-- 									<br> -->
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-6"> -->
+<!-- 											<a th:href = @{/v0/infra/member/signinUsrForm}><button id="btnSignin" type="button" class="btn btn-primary w-100">로그인</button></a> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-6"> -->
+<!-- 											<a th:href = @{/v0/infra/member/findPwdUsrForm}><button id="btnFindPwd" type="button" class="btn btn-primary w-100">비밀번호 찾기</button></a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- end login -->
+		</form>
+    </main>
+    <!-- End Main -->
+    
+<!-- includeUsrFooter s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrFooter :: includeUsrFooter}"></div>
+<!-- includeUsrFooter e -->   
+
+</div>
+<!-- 
+========================
+    End Wrapper 
+========================
+-->
+<!-- includeUsrLinkJs s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrLinkJs :: includeUsrLinkJs}"></div>
+<!-- includeUsrLinkJs e -->
+
+<script>
+	document.getElementById("btnFindId").onclick = function () {
+		if(validationInst() == false) return false;
+		$.ajax({
+			async: true 
+			,cache: false
+			,type: "post"
+			/* ,dataType:"json" */
+			,url: "/v1/infra/member/findIdUsrProc"
+			/* ,data : $("#formLogin").serialize() */
+			,data : { "ifmmName" : $("#ifmmName").val(), "ifmeEmailFull" : $("#ifmeEmailFull").val()}
+			,success: function(response) {
+				if(response.rt == "success") {
+					document.getElementById("findIdDiv").hidden = true;
+					document.getElementById("rtFail").hidden = true;
+					document.getElementById("rtFind").hidden = false;
+					let id = response.id;
+					let rtId = id.split('');
+					for(let i=2; i<id.length-2; i++){
+						rtId[i] = '*';
 					}
+					rtId = rtId.join('');
+					$('#rtId').append(rtId);
+				} else {
+					document.getElementById("ifmmName").classList.add("is-invalid");
+					document.getElementById("ifmeEmailFull").classList.add("is-invalid");
+					document.getElementById("ifmeEmailFullFeedback").innerText = "일치하는 회원이 존재하지 않습니다.";
+					document.getElementById("ifmmNameFeedback").innerText = "일치하는 회원이 존재하지 않습니다.";
+// 					document.getElementById("findIdDiv").hidden = true;
+// 					document.getElementById("rtFind").hidden = true;
+// 					document.getElementById("rtFail").hidden = false;
 				}
-				,error : function(jqXHR, textStatus, errorThrown){
-					alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
-				}
-			});
-		}
-		
-		document.getElementById("btnSignin").onclick = function(){
-			location.href = "/v1/infra/member/signinUsrForm"
-		}
-		
-		document.getElementById("btnFindPwd").onclick = function(){
-			location.href = "/v1/infra/member/findPwdUsrForm"
-		}
-		
-	</script>
+			}
+			,error : function(jqXHR, textStatus, errorThrown){
+				alert("ajaxUpdate " + jqXHR.textStatus + " : " + jqXHR.errorThrown);
+			}
+		});
+	}
+	
+	
+	function validationInst() {
+	    if(validationUpdt() == false) return false;
+	}
+	
+	
+	function validationUpdt() {
+ 		if(!checkNull('ifmmName', 2, 0, "이름을 입력해주세요")) return false;
+ 		if(!checkNull('ifmeEmailFull', 2, 0, "이메일을 입력해주세요")) return false;
+	}
+	
+</script>
 </body>
+
 </html>

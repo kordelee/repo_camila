@@ -1,125 +1,35 @@
 <!DOCTYPE html>
-<html lang="ko">
-<div th:replace="~{usr/v0/infra/include/head :: head}"></div>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
 <body>
-
-<!-- skippy -->
-<a id="skippy" class="skippy visually-hidden-focusable overflow-hidden" href="#content">
-    <div class="container">
-        <span class="u-skiplink-text">Skip to main content</span>
-    </div>
-</a>
-<!-- End skippy -->
-<!-- Preload -->
-<!--<div id="loading" class="loading-preloader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>
---><!-- End Preload -->
-
-<!-- 
-========================
-    Wrapper 
-========================
--->
-<div class="wrapper">
-    <!-- heder height -->
-    <div class="header-height-bar"></div>
-    
-<!-- includeUsrGnb s -->
-<div th:replace="~{usr/v0/infra/include/top :: top}"></div> 
-<!-- includeUsrGnb e -->  
-
-<!-- Main -->
-    <main>
-        <!-- Home Section -->
-        <div class="swiper swiper-container" data-swiper-options='{
-                "slidesPerView": 1,
-                "spaceBetween": 0,
-                "pagination": {
-                "el": ".swiper-pagination",
-                "clickable": true
-                },
-                "navigation": {
-                "nextEl": ".swiper-next-01",
-                "prevEl": ".swiper-prev-01"
-                },
-                "autoplay": {
-                "delay": 5000,
-                "disableOnInteraction": false
-                }
-            }'>
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="bg-no-repeat bg-cover bg-center" style="background-image: url(/usr/v0/image/infra/index/index_01.jpg);"><!--1600*900-->
-                        <div class="container">
-                            <div class="row min-vh-85 align-items-center justify-content-center py-12">
-                                <div class="col-lg-8 text-center">
-                                    <h6 class="fw-300 text-uppercase text-white mb-3 letter-spacing-6">You're Looking Good: sessUsrSeq: <c:out value="${sessUsrSeq }"/></h6>
-                                    <h1 class="display-1 fw-300 text-white letter-spacing-6 text-uppercase">New LookBook</h1>
-                                    <div class="pt-3">
-                                        <a class="btn btn-outline-white" href="#">Discover More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="bg-no-repeat bg-cover bg-center" style="background-image: url(/usr/v0/image/infra/index/index_02.jpg);">
-                        <div class="container">
-                            <div class="row min-vh-85 align-items-center justify-content-center py-12">
-                                <div class="col-lg-8 text-center">
-                                    <h6 class="fw-300 text-uppercase text-white mb-3 letter-spacing-6">You're Looking Good</h6>
-                                    <h1 class="display-1 fw-300 text-white letter-spacing-6 text-uppercase">New LookBook</h1>
-                                    <div class="pt-3">
-                                        <a class="btn btn-outline-white" href="#">Discover More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="bg-no-repeat bg-cover bg-center" style="background-image: url(/usr/v0/image/infra/index/index_03.jpg);">
-                        <div class="container">
-                            <div class="row min-vh-85 align-items-center justify-content-center py-12">
-                                <div class="col-lg-8 text-center">
-                                    <h6 class="fw-300 text-uppercase text-white mb-3 letter-spacing-6">You're Looking Good</h6>
-                                    <h1 class="display-1 fw-300 text-white letter-spacing-6 text-uppercase">New LookBook</h1>
-                                    <div class="pt-3">
-                                        <a class="btn btn-outline-white" href="#">Discover More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>                
-            </div>
-            <div class="swiper-arrow-style-01 swiper-next swiper-next-01"><i class="bi-chevron-right"></i> </div>
-            <div class="swiper-arrow-style-01 swiper-prev swiper-prev-01"><i class="bi-chevron-left"></i></div>
-            <div class="swiper-pagination swiper-pagination-white"></div>
-        </div>
-        <!-- End Home Section -->
-    </main>
-    <!-- End Main -->
-    
-<!-- includeUsrFooter s -->
-<div th:replace="~{usr/v0/infra/include/footer :: footer}"></div>
-<!-- includeUsrFooter e -->   
-
-</div>
-<!-- 
-========================
-    End Wrapper 
-========================
--->
-<!-- includeUsrLinkJs s -->
-<div th:replace="~{usr/v0/infra/include/linkJs :: linkJs}"></div>
-<!-- includeUsrLinkJs e -->
-
+    <h1>다국어 테스트 화면입니다</h1>
+	<p th:if="${session.sessSeqUsr != ''}">이름 : [[${session.sessNameUsr}]]</p>
+	<p th:unless="${session.sessSeqUsr != ''}">로그인하세여</p>
+	<a th:href="@{/v1/infra/member/memberUsrForm}">회원정보 수정</a>
+	<a th:href="@{/v1/infra/member/pwdChangeUsrForm}">비밀번호 변경</a>
+	<a th:href="@{/v1/infra/member/withdrawUsrForm}">회원정보 탈퇴</a>
+	<a th:href="@{/v1/infra/member/findIdUsrForm}">아이디 찾기</a>
+	<a th:href="@{/v1/infra/member/findPwdUsrForm}">비밀번호 찾기</a>
+    <p>가나다라마바사아자차카타바하</p>
+    <p>ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ</p>
+    <p>ㅛㅕㅑㅐㅔㅗㅓㅏㅣㅠㅜㅡ</p>
+    <p>qwertyuiopasdfghjklzxcvbnm</p>
+    <p>1234567890</p>
+    <p>!@#$%^&*()_+"?>~`[];',./</p>
+	
+	<a th:href="@{/v1/infra/member/indexUsrView}">KR</a>
+	<button>EN</button>
+	<br>
+	<br>
+	<a th:href="@{/v1/infra/member/signinUsrForm}" th:if="${session.sessSeqUsr == null}">로그인</a>
+	<button id="btnSignout" type="button" th:unless="${session.sessSeqUsr == null}">로그아웃</button>
+	
+	
+	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
+	
 </body>
-
 </html>

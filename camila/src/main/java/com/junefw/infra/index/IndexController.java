@@ -14,11 +14,11 @@ public class IndexController extends BaseController{
 	String pathCommonXdm = "xdm/v1/infra/index/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/index/";
 
-	String pathCommonUsr = "usr/v0/infra/index/";
-	String pathRedirectCommonUsr = "redirect:/v0/infra/index/";
+//	String pathCommonUsr = "usr/v0/infra/index/";
+//	String pathRedirectCommonUsr = "redirect:/v0/infra/index/";
 	
-//	String pathCommonUsr = "usr/v1/infra/index/";
-//	String pathRedirectCommonUsr = "redirect:/v1/infra/index/";
+	String pathCommonUsr = "usr/v1/infra/index/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/index/";
 	
 	
     @RequestMapping(value = "/indexXdmView")
