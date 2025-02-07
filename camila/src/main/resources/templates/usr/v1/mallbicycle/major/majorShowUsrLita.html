@@ -59,13 +59,13 @@
                     <a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn btn-outline-primary">
                         <i class="fi-eye"></i>
                     </a>
-					<a href="javascript:addFavorite(<c:out value="${list.xMajorMyFavoriteCount }"/>, <c:out value="${list.mbmtSeq }"/>)" class="btn btn-outline-primary">
+					<a href="javascript:void(0);" th:attr="onclick=|addFavorite('${list.xMajorMyFavoriteCount}','${list.mbmtSeq}')|" class="btn btn-outline-primary">
                         <i class="bi bi-bookmark"></i>
                     </a>
                 </div>
                 <div class="product-media">
-                    <a href="#">
-                        <img class="img-fluid" src="/resources/usr/v1/image/mall/product/1000x1000.jpg" title="" alt="">
+                    <a href="javascript:void(0);" th:attr="onclick=|goView('${list.mbmtSeq}')|">
+                        <img class="img-fluid" src="/usr/v1/image/mall/product/1000x1000.jpg" title="" alt="">
                     </a>
                 </div>
             </div>

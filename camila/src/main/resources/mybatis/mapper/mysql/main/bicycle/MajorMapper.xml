@@ -515,10 +515,10 @@
 			LEFT JOIN mbccMajorTradeDistrict c on c.mbmtSeq = a.mbmtSeq AND c.mbtdDefaultNy = 1
 		WHERE 1=1
 			<if test="shDelNy != null and !shDelNy.equals('')">AND a.mbmtDelNy = #{shDelNy}</if>
-			<choose>
-				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when>
-			</choose>
+<!-- 			<choose> -->
+<!-- 				<when test="shOptionDate == 1">AND a.regDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 				<when test="shOptionDate == 2">AND a.modDateTime BETWEEN #{shDateStart} AND #{shDateEnd}</when> -->
+<!-- 			</choose> -->
 			<if test="shPostedDateStart != null and !shPostedDateStart.equals('')">AND a.regDateTime BETWEEN #{shPostedDateStart} AND #{shPostedDateEnd}</if>
 			<if test="shPriceStart != null and !shPriceStart.equals('')">AND a.mbmtPrice BETWEEN #{shPriceStart} AND #{shPriceEnd}</if>
 

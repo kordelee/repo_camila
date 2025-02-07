@@ -1,0 +1,67 @@
+<th:block th:fragment="includeUsrMajorView">
+	<div class="product-meta" style="padding-top: 5px;">
+		<span>
+		Canyon
+		 | 
+		<span th:text="${item.mbmgTypeCd}"></span>
+		 | 			  
+		<span th:text="${item.mbmgProductionYear}"></span>
+	</div>		
+	<div class="product-meta" style="padding-top: 5px;">
+		<span>Aeroad CF SLX 7 Disc eTap</span>
+	</div>
+	<div class="product-meta">
+		<span>
+			<span th:text="${item.mbmgSizeCd}"></span>
+			 | 
+			<span th:text="${item.mbmgMaterialCd}"></span>
+			 | 
+			<c:choose>
+				<c:when test="${item.mbmgTypeCd eq majorTypeRoad}">
+					<c:forEach items="${listCodeMajorTypeRoad}" var="itemBicycleTypeRoad" varStatus="statusBicycleTypeRoad">
+						<c:if test="${item.mbmgTypeDetailCd eq itemBicycleTypeRoad.ifcdSeq}"><c:out value="${itemBicycleTypeRoad.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${item.mbmgTypeCd eq majorTypeMtb}">
+					<c:forEach items="${listCodeMajorTypeMtb}" var="itemBicycleTypeMtb" varStatus="statusBicycleTypeMtb">
+						<c:if test="${item.mbmgTypeDetailCd eq itemBicycleTypeMtb.ifcdSeq}"><c:out value="${itemBicycleTypeMtb.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${item.mbmgTypeCd eq majorTypeLife }">
+					<c:forEach items="${listCodeMajorTypeLife}" var="itemBicycleTypeLife" varStatus="statusBicycleTypeLife">
+						<c:if test="${item.mbmgTypeDetailCd eq itemBicycleTypeLife.ifcdSeq}"><c:out value="${itemBicycleTypeLife.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>					
+			</c:choose>
+			 |  
+			 <span th:text="${item.mbmgDriveSystemCd}"></span>
+		</span>
+	</div>                                  
+	<div class="product-meta" style="padding-top: 5px;">
+		<span>
+			<c:choose>
+				<c:when test="${item.mbmgTypeCd eq majorTypeRoad}">
+					<c:forEach items="${listCodeDriveTrainRoad}" var="itemDriveTrainRoad" varStatus="statusDriveTrainRoad">
+						<c:if test="${item.mbmgDriveTrainCd eq itemDriveTrainRoad.ifcdSeq}"><c:out value="${itemDriveTrainRoad.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${item.mbmgTypeCd eq majorTypeMtb}">
+					<c:forEach items="${listCodeDriveTrainMtb}" var="itemDriveTrainMtb" varStatus="statusDriveTrainMtb">
+						<c:if test="${item.mbmgDriveTrainCd eq itemDriveTrainMtb.ifcdSeq}"><c:out value="${itemDriveTrainMtb.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>
+				<c:when test="${item.mbmgTypeCd eq majorTypeLife }">
+					<c:forEach items="${listCodeDriveTrainLife}" var="itemDriveTrainLife" varStatus="statusDriveTrainLife">
+						<c:if test="${item.mbmgDriveTrainCd eq itemDriveTrainLife.ifcdSeq}"><c:out value="${itemDriveTrainLife.ifcdName }"/></c:if>
+					</c:forEach>
+				</c:when>					
+			</c:choose>
+		 	 | 	
+		 	 <span th:text="${item.mbmgBreakCd}"></span>
+			 |
+			 <span th:text="${item.mbmgWheelCd}"></span> 
+			 | 
+	 		 <span th:text="${item.mbmgTireCd}"></span>
+		</span>
+	</div>                                                                                                                                               
+</th:block>
