@@ -31,11 +31,11 @@ public class MemberController extends BaseController{
 	String pathCommonXdm = "xdm/v1/infra/member/";
 	String pathRedirectCommonXdm = "redirect:/v1/infra/member/";
 
-	String pathCommonUsr = "usr/v0/infra/member/";
-	String pathRedirectCommonUsr = "redirect:/v0/infra/member/";
+//	String pathCommonUsr = "usr/v0/infra/member/";
+//	String pathRedirectCommonUsr = "redirect:/v0/infra/member/";
 	
-//	String pathCommonUsr = "usr/v1/infra/member/";
-//	String pathRedirectCommonUsr = "redirect:/v1/infra/member/";
+	String pathCommonUsr = "usr/v1/infra/member/";
+	String pathRedirectCommonUsr = "redirect:/v1/infra/member/";
 	
 	
 	@Autowired

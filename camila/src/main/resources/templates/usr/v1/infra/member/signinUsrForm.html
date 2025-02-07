@@ -1,22 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
-</head>
+<html lang="ko">
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrHead :: includeUsrHead}"></div>
+
 <body>
-    <h1>로그인</h1>
-	<br>
-    <input id="ifmmId" name="ifmmId" type="text" value="xdmin" placeholder="아이디">
-	<br>
-    <input id="ifmmPassword" name="ifmmPassword" type="password" value="1" onkeyup="enterkey()" placeholder="비밀번호">
-	<br>
-	<button id="buttonSignIn" type="button">로그인하기</button>
-	<div th:replace="~{usr/v1/infra/include/linkJs :: linkJs}"></div>
-<script>
+
+<!-- skippy -->
+<a id="skippy" class="skippy visually-hidden-focusable overflow-hidden" href="#content">
+    <div class="container">
+        <span class="u-skiplink-text">Skip to main content</span>
+    </div>
+</a>
+<!-- End skippy -->
+<!-- Preload -->
+<!--<div id="loading" class="loading-preloader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+--><!-- End Preload -->
+
+<!-- 
+========================
+    Wrapper 
+========================
+-->
+<div class="wrapper">
+    <!-- heder height -->
+    <div class="header-height-bar"></div>
+    
+<!-- includeUsrGnb s -->
+<div th:replace="~{usr/v1/infra/include/topWithoutMenu :: topWithoutMenu}"></div> 
+<!-- includeUsrGnb e --> 
+
+<div th:replace="~{usr/v1/infra/include/modal:: modal}"></div>
+
+<!-- Main -->
+    <main>
+    
+<form id="formLogin" name="formLogin" method="post" autocomplete="off">    
+        <!-- Breadcrumb -->
+
+        <!--<div class="py-3 bg-gray-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 my-2">
+                        <h1 class="m-0 h4 text-center text-lg-start">Login</h1>
+                    </div>
+                    <div class="col-lg-6 my-2">
+                        <ol class="breadcrumb dark-link m-0 small justify-content-center justify-content-lg-end">
+                            <li class="breadcrumb-item"><a class="text-nowrap" href="#"><i class="bi bi-home"></i>Home</a></li>
+                            <li class="breadcrumb-item text-nowrap active" aria-current="page">Login</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <!-- End Breadcrumb -->
+        <!-- login page -->
+        <div class="section">
+            <div class="container">
+                <div class="justify-content-center row">
+                    <div class="col-lg-5 col-xxl-4 pt-10">
+                        <div class="card">
+                            <div class="card-header bg-transparent py-3">
+                                <h3 class="h4 mb-0">Login </h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="">
+                                    <div class="form-group mb-3">
+                                        <label for="email_1" class="form-label">ID<span class="text-danger">*</span></label>
+                                        <input type="text" id="ifmmId" name="ifmmId" maxlength="20" class="form-control" placeholder="ID">
+										<div class="invalid-feedback" id="ifmmIdFeedback"></div>
+                                    </div>
+                                    <div class="form-group mb-3">
+<!--                                         <div class="row align-items-center"> -->
+                                            <label class="form-label col" for="exampleInputPassword01">Password<span class="text-danger">*</span></label>
+<!--                                         </div> -->
+                                        <input type="password" id="ifmmPassword" name="ifmmPassword" maxlength="20" class="form-control" placeholder="*********" onkeyup="enterkey()">
+										<div class="invalid-feedback" id="ifmmPasswordFeedback"></div>
+                                    </div>
+                                    <!-- Checkbox -->
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="autoLogin" name="autoLogin"/>
+                                        <label class="form-check-label" for="autoLogin"> Remember me </label>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <button type="button" class="btn btn-primary w-100" id="btnLogin">
+                                            Log in
+                                        </button>
+                                    </div>
+                                </form>
+<!--
+                                <div class="text-center pt-4 pb-5" style="">
+                                    <span class="px-3 bg-white d-inline-block align-top lh-sm">OR</span>
+                                    <div class="border-bottom mt-n3"></div>
+                                </div>
+                                <div class="row g-2">
+                                    <div class="col">
+                                        <button class="btn w-100 btn-dark" type="button"><i class="bi bi-facebook me-2"></i> Facebook</button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn w-100 btn-dark" type="button"><i class="bi bi-twitter me-2"></i> Twitter</button>
+                                    </div>
+                                </div>
+-->
+                                <div class="pt-4 text-center">
+                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signUpUsrForm}">Signup here</a></span><br>
+                                    <span class="text-muted">Forgot your ID? <a th:href="@{/v1/infra/member/findIdUsrForm}">Find ID</a></span><br>
+                                    <span class="text-muted">Forgot your password? <a th:href="@{/v1/infra/member/findPwdUsrForm}">Find Password</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end login -->
+</form>        
+    </main>
+    <!-- End Main -->
+    
+<!-- includeUsrFooter s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrFooter :: includeUsrFooter}"></div>
+<!-- includeUsrFooter e -->   
+
+</div>
+<!-- 
+========================
+    End Wrapper 
+========================
+-->
+<!-- includeUsrLinkJs s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrLinkJs :: includeUsrLinkJs}"></div>
+<!-- includeUsrLinkJs e -->
+
+<script type="text/javascript">
 
 function loginLogic (){
+	if(validationUpdt() == false) return false;
 	$.ajax({
 		async: true 
 		,cache: false
@@ -33,9 +155,9 @@ function loginLogic (){
 					location.href = "/v1/infra/index/indexUsrView";
 				}
 			} else {
-		 		//document.getElementById("modalAlertTitle").innerText = "확 인";
-		 		//document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
-		 		//$("#modalAlert").modal("show");
+				document.getElementById("modalAlertTitle").innerText = "확 인";
+		 		document.getElementById("modalAlertBody").innerText = "일치하는 회원이 존재 하지 않습니다!";
+		 		$("#modalAlert").modal("show");
 			}
 		}
 		,error : function(jqXHR, textStatus, errorThrown){
@@ -43,16 +165,27 @@ function loginLogic (){
 		}
 	});
 }
+$("#btnLogin").on("click", function(){
+	if(validationInst() == false) return false;
+});
 
+
+function validationInst() {
+    loginLogic();
+}
 function enterkey() {
 	if (window.event.keyCode == 13) {
 		loginLogic();
     }
+}	
+
+	
+function validationUpdt() {
+	if(!checkNull('ifmmId', 2, 0, "아이디를 입력해주세요")) return false;
+	if(!checkNull('ifmmPassword', 2, 0, "비밀번호를 입력해주세요")) return false;
 }
-document.getElementById("buttonSignIn").onclick = function () {
-	loginLogic();
-}
-		
+
 </script>
 </body>
+
 </html>
