@@ -4,11 +4,16 @@
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrHead :: includeUsrHead}"></div>
 <!-- includeUsrHead e -->
 
-<title>상품</title>
+<!-- includeUsrTagCodeMajor s -->
+<!-- <%@include file="../../include/includeUsrTagCodeMajor.jsp"%> -->
+<!-- includeUsrTagCodeMajor e -->
+
+<title>즐겨찾기</title>
 <style>
     .product-card-1 .product-card-info {
 		text-align: left;
     }
+
 </style>
 </head>
 
@@ -23,35 +28,35 @@
 </a>
 <!-- End skippy -->
 <!-- Preload -->
-<!--<div id="loading" class="loading-preloader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>-->
+<!-- <div id="loading" class="loading-preloader"> -->
+<!--     <div class="spinner-border text-primary" role="status"> -->
+<!--         <span class="visually-hidden">Loading...</span> -->
+<!--     </div> -->
+<!-- </div> -->
 <!-- End Preload -->
 <!-- End Skippy & Prload -->
 
-<!-- 
-========================
-    Wrapper 
-========================
--->
-<div class="wrapper">
-    <!-- heder height -->
-    <div class="header-height-bar"></div>
-
+    <!-- 
+    ========================
+        Wrapper 
+    ========================
+    -->
+    <div class="wrapper">
+        <!-- heder height -->
+        <div class="header-height-bar"></div>
+        
 <!-- includeUsrGnb s -->
-<div th:replace="~{usr/v1/mallbicycle/include/includeUsrGnb :: includeUsrGnb}"></div>
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrGnb :: includeUsrGnb}"></div> 
 <!-- includeUsrGnb e -->  
-
+        
         <!-- Main -->
         <main>
 <form name="formList" id="formList" method="post">
 	<input type="hidden" name="thisPage" th:value="${vo.thisPage}" default="1"/>
 	<input type="hidden" name="rowNumToShow" th:value="${vo.rowNumToShow}"/>
 	<input type="hidden" name="checkboxSeqArray" >
-	<input type="hidden" name="mbmgSeq">		 
-	     
+	<input type="hidden" name="mbmfSeq">		<!-- #-> -->                 
+        
             <!-- Breadcrumb -->
             <div class="py-3 bg-gray-100">
                 <div class="container">
@@ -61,8 +66,8 @@
                         </div>
                         <div class="col-lg-6 my-2">
                             <ol class="breadcrumb dark-link m-0 small justify-content-center justify-content-lg-end">
-                                <li class="breadcrumb-item"></i>My Page</li>
-                                <li class="breadcrumb-item text-nowrap" aria-current="page">상품</li>
+                                <li class="breadcrumb-item">My Page</li>
+                                <li class="breadcrumb-item text-nowrap" aria-current="page">즐겨찾기</li>
                             </ol>
                         </div>
                     </div>
@@ -77,11 +82,11 @@
 
 <!-- includeUsrLeft s -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrLeftMypage :: includeUsrLeftMypage}"></div>
-<!-- includeUsrLeft e -->    
+<!-- includeUsrLeft e -->
 
 						<!-- Product Box -->
 						<div class="col-lg-8 col-xl-9">
-						
+
 <div id="lita"></div>  
 
                         </div>
@@ -96,14 +101,14 @@
         
 <!-- includeUsrFooter s -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrFooter :: includeUsrFooter}"></div>
-<!-- includeUsrFooter e -->   
+<!-- includeUsrFooter e -->    
         
-</div>
-<!-- 
-========================
-   End Wrapper 
-========================
--->
+    </div>
+    <!-- 
+    ========================
+       End Wrapper 
+    ========================
+    -->
     
 <!-- includeUsrLinkJs s -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrLinkJs :: includeUsrLinkJs}"></div>
@@ -113,23 +118,26 @@
 
 <script type="text/javascript">
 
-	window.addEventListener('load', function() {
+	$(document).ready(function(){
+		
 		setLita();
+		
 	}); 
 	
 	
-	var urlCommon = "/v1/mallbicycle/major/";
+	var urlCommon = "/v1/mallbicycle/major/";								/* #-> */
 	
-	var goUrlAjaxList = urlCommon + "majorGoodsUsrAjaxList";				/* #-> */
-	var goUrlLita = urlCommon + "majorGoodsUsrLita";						/* #-> */
-	var goUrlForm = urlCommon + "majorGoodsUsrForm";						/* #-> */
-	var goUrlView = urlCommon + "majorGoodsUsrView";						/* #-> */
-	var goUrlMultiUele = urlCommon + "majorGoodsUsrMultiUele";				/* #-> */
-	var goUrlMultiDele = urlCommon + "majorGoodsUsrMultiDele";				/* #-> */
+	var goUrlAjaxList = urlCommon + "majorFavoriteUsrAjaxList";				/* #-> */
+	var goUrlLita = urlCommon + "majorFavoriteUsrLita";						/* #-> */
+	var goUrlForm = urlCommon + "majorFavoriteUsrForm";						/* #-> */
+	var goUrlView = urlCommon + "majorFavoriteUsrView";						/* #-> */
+	var goUrlMultiUele = urlCommon + "majorFavoriteUsrMultiUele";			/* #-> */
+	var goUrlMultiDele = urlCommon + "majorFavoriteUsrMultiDele";			/* #-> */
+	var goUrlUele = urlCommon + "majorFavoriteUsrUele";						/* #-> */
 	
 	var excelUri = urlCommon + "excelDownload";								/* #-> */
 	
-	var seq = $("input:hidden[name=mbmgSeq]");								/* #-> */
+	var seq = $("input:hidden[name=mbmfSeq]");								/* #-> */
 	
 	
 	validationList = function() {

@@ -144,10 +144,10 @@ public class MajorController extends BaseController{
 	
 	
 	@RequestMapping(value = "/majorFavoriteUsrLita")
-	public String majorFavoriteUsrLita(@ModelAttribute("vo") MajorVo vo, HttpSession httpSession, Model model) throws Exception {
+	public String majorFavoriteUsrLita(@ModelAttribute("vo") MajorVo vo, HttpSession session, Model model) throws Exception {
 		
 		setSearch(vo);
-		vo.setSessUsrSeq((String) httpSession.getAttribute("sessUsrSeq"));
+		vo.setSessUsrSeq(session.getAttribute("sessSeqUsr").toString());
 		vo.setParamsPaging(service.selectOneCountMajorFavorite(vo));
 		
 		if (vo.getTotalRows() > 0) {

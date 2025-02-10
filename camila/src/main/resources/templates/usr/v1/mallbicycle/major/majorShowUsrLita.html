@@ -59,7 +59,7 @@
                     <a data-bs-toggle="modal" data-bs-target="#px-quick-view" href="javascript:void(0)" class="btn btn-outline-primary">
                         <i class="fi-eye"></i>
                     </a>
-					<a href="javascript:void(0);" th:attr="onclick=|addFavorite('${list.xMajorMyFavoriteCount}','${list.mbmtSeq}')|" class="btn btn-outline-primary">
+					<a th:attr="onclick=|addFavorite('${list.xMajorMyFavoriteCount}','${list.mbmtSeq}')|" class="btn btn-outline-primary">
                         <i class="bi bi-bookmark"></i>
                     </a>
                 </div>
@@ -126,7 +126,10 @@
 	    </div>
 	</div>
 	<!-- End Paging -->
-
+	
+<!-- includeUsrLinkJs s -->
+<div th:replace="~{usr/v1/mallbicycle/include/includeUsrModal :: includeUsrModal}"></div>
+<!-- includeUsrLinkJs e -->
 	
 <script>
 
