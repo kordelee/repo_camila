@@ -8,7 +8,7 @@
 <!-- <%@include file="../../include/includeUsrTagCodeMajor.jsp"%> -->
 <!-- includeUsrTagCodeMajor e -->
 
-
+                        	
 <!-- Total -->
 <div class="shop-top-bar d-flex pb-3">
     <div class="layout-change">
@@ -18,31 +18,23 @@
         </button>
         <!-- End Mobile Toggle -->
         <!-- <a class="btn btn-sm active" href="#"><i class="bi bi-grid"></i></a> -->
-        <a class="btn btn-sm" href=""><i class="bi bi-arrow-repeat"></i></a>
+        <a class="btn btn-sm" href="javascript:goForm(0);"><i class="bi bi-plus-lg"></i></i></a>
         
-<span >&nbsp;&nbsp;&nbsp;Total: <span th:text="${vo.totalRows}"></span></span>        
-        
+<span >&nbsp;&nbsp;&nbsp;Total: <span th:text="${vo.totalRows}"></span></span>
+         
     </div>
 </div>
 <!-- End Total -->                           
 <div class="row g-2">
     <!-- Product -->
-	<span th:if="${#lists.isEmpty(list)}" style="padding-left: 50px;">There are no data!</span>
+    <span th:if="${#lists.isEmpty(list)}" style="padding-left: 50px;">There are no data!</span>
     <div th:if="${!#lists.isEmpty(list)}" class="col-sm-6 col-lg-4">
         <div class="product-card-1">
             <div class="product-card-image">
                 <div class="badge-ribbon">
 					<span th:if="${list.mbmtSalesNy eq 0 }" class="badge bg-danger">Off</span>
 					<span th:unless="${list.mbmtSalesNy eq 0 }" class="badge bg-success">On</span>
-                    <!-- <span class="badge bg-danger">Today</span> -->
-                </div>
-                <div class="product-action">
-					<a th:attr="onclick=|uleteFavorite('${list.mbmfSeq}')|" class="btn btn-outline-primary">
-                       	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-							<path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-						</svg>
-                    </a>
-                </div>                
+                </div>                                        
                 <div class="product-media">
                     <a href="#">
                         <img class="img-fluid" src="/usr/v1/image/mall/product/1000x1000.jpg" title="" alt="">
@@ -59,36 +51,36 @@
                 </div>
             </div>
             <div class="product-card-info">
-                <div class="product-meta">
-                    <i class="bi bi-hand-index-fill"></i><span th:text="${list.xMajorHitCount}"></span>&nbsp;&nbsp;
+				<div class="product-meta" style="padding-top: 5px;">
+					<i class="bi bi-hand-index-fill"></i><span th:text="${list.xMajorHitCount}"></span>&nbsp;&nbsp;
                     <i class="bi bi-bookmark-fill"></i><span th:text="${list.xMajorFavoriteCount}"></span>&nbsp;&nbsp;
                     <i class="bi bi-geo-alt-fill"></i>
                     <span th:text="${list.mbtdDistrictCt}"></span>
 					 | 
                     <span th:text="${list.mbtdDistrict2Ct}"></span>
-                </div>  
-                                                      
+                </div> 
+	            
 <!-- includeUsrBicycleLita s -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrMajorLita :: includeUsrMajorLita}"></div>
-<!-- includeUsrBicycleLita e -->
+<!-- includeUsrBicycleLita e -->    	            
 
 				<h6 class="product-title" style="padding-top: 10px;">
-					<a href="javascript:void(0);" th:text="${list.mbmtTitle}" th:attr="onclick=|goForm('${list.mbmfSeq}')|"></a>
+					<a href="javascript:void(0);" th:text="${list.mbmtTitle}" th:attr="onclick=|goView('${list.mbmtSeq}')|"></a>
 				</h6>	            
 				<div class="product-price">
 					<span class="text-primary" th:text="${#numbers.formatInteger(list.mbmtPrice,3,'COMMA')}"></span>
-				</div>				
+				</div>
 				<div class="product-meta small" style="padding-top: 5px;">
 					<span th:text="${#dates.format(list.modDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
 					 | 
 					<span th:text="${list.regId}"></span>
-	            </div>	    
+	            </div>				 	            
             </div>
         </div>
     </div>
-    
+
     <!-- End Product -->
-    
+
 	<!-- Paging -->
 	<div class="shop-bottom-bar d-flex align-items-center mt-3">
 	    <div class="ms-auto">
@@ -112,33 +104,6 @@
 	        </ul>
 	    </div>
 	</div>
-	<!-- End Paging -->                              
+	<!-- End Paging -->
+	                           
 </div>
-
-<!-- includeUsrLinkJs s -->
-<div th:replace="~{usr/v1/mallbicycle/include/includeUsrModal :: includeUsrModal}"></div>
-<!-- includeUsrLinkJs e -->
-
-<script>
-
-	uleteFavorite = function(mbmfSeqJs) {
-		
-		$("#modalAlertTitle").text("즐겨찾기");
-	
-		$("#modalAlertBody").text("삭제 하시겠습니까?");
-		$("#btnUele").remove();
-		$("#modalAlertFooter").append('<button type="button" class="btn btn-danger btn-sm" id="btnUele" onclick="goFavoriteUele('+mbmfSeqJs+');">삭제</button>');				
-		
-		$("#modalAlert").modal("show");
-		
-	}
-	
-	
-	goFavoriteUele = function(mbmfSeqJs) {
-		
-		$("input:hidden[name=mbmfSeq]").val(mbmfSeqJs);
-		$("#modalAlert").modal("hide");
-		form.attr("action", goUrlUele).submit();
-	}
-	
-</script>
