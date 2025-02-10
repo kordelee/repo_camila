@@ -178,6 +178,59 @@
 					<input type="hidden" id="mbmtDesc" name="mbmtDesc">							
 	  				<div id="mbmtDescEditor"></div>
 				</div>
+				<div class="col-sm-6" th:with="type=2, name='uploadImg'">
+										<!-- 	<label for="ifcdNameEng" class="form-label fs--1">코드 이름 (영문)</label> -->
+					<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
+					<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
+					<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
+					<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
+					<label for="uploadImg" class="form-label input-file-button fs--1">이미지첨부</label>
+					<input class="form-control form-control-sm" 
+					th:id="${name}"
+					th:name="${name}"
+					type="file"
+					multiple="multiple"
+					style="display: none;"
+					th:onChange="upload([[${name}]],[[${type}]],0,1,0,0,1)"
+					/>
+					<!-- th:onChange="'javascript:upload(\''+ [[${name}]] +'\','+ [[${type}]] +',0,1,0,0,1);'" -->
+					<!-- th:onChange="'javascript:upload(\''+ ${name} +'\','+ ${type} +',0,1,0,0,1);'" -->
+					<!-- onChange="upload('[[${name}]]', '${type}', 0, 1, 0, 0, 1);" -->
+					<div th:id="|${name}Preview|" class="addScroll">
+						<div th:id="|imgDiv_${type}|" th:each="listUploaded : ${listUploaded}" style="display: inline-block; height: 95px;">	
+							<img th:src="${listUploaded.path}" class="rounded" width= "85px" height="85px" style="cursor:pointer;" th:data-value="${listUploaded.path}" th:onClick="|openViewer(${listUploaded.type},${listUploaded.sort},this.getAttribute('data-value'));|">
+							<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" >X</span></div>
+					 	</div>
+					</div>
+				</div>
+				<div class="col-sm-6" th:with="type=2, name='uploadFile2'">
+					<input type="hidden" th:id="|${name}Type|" th:name="|${name}Type|" th:value="${type}"/>
+					<input type="hidden" th:id="|${name}MaxNumber|" th:name="|${name}MaxNumber|" value="0"/>
+					<input type="hidden" th:id="|${name}DeleteSeq|" th:name="|${name}DeleteSeq|"/>
+					<input type="hidden" th:id="|${name}DeletePathFile|" th:name="|${name}DeletePathFile|"/>
+					<label th:for="|${name}|" class="form-label input-file-button fs--1">파일첨부</label>
+					<input class="form-control form-control-sm"
+					       th:id="${name}" 
+					       th:name="${name}" 
+					       type="file" 
+					       multiple="multiple" 
+					       style="display: none;" 
+					       th:onchange="upload([[${name}]],[[${type}]],0,2,0,0,2);" />
+					<div class="addScroll">
+					    <ul th:id="|${name}Preview|" class="list-group">
+				           <li th:id="|li_${type}_${listUploaded.sort}|" th:if="${listUploaded.type == 2}" th:each="listUploaded : ${listUploaded}" 
+				           		class="list-group-item d-flex justify-content-between align-items-center">
+				               <a class="text-decoration-none" 
+				                  th:text="${listUploaded.originalName}"></a>
+				<!--                <a th:href="@{${listUploaded.path}+${listUploaded.uuidName }}" download="${listUploaded.originalName}" class="text-decoration-none"  -->
+				<!--                   th:text="${listUploaded.originalName}"></a> -->
+				               <span class="badge bg-danger rounded-pill"> 
+				                   <i th:attr="onclick=|delUploaded('${listUploaded.seq}','${name}')|" class="fa-solid fa-x" style="cursor: pointer;"></i>
+				               </span>
+				           </li>
+					    </ul>
+					</div>
+				</div>
 				<div class="col-12">
 					<a th:href="@{/v1/mallbicycle/major/majorGoodsUsrAjaxList}">
 						<button class="btn btn-secondary">
@@ -224,9 +277,6 @@
 
 <script src="/usr/v1/js/includeUsrView.js"></script>
 <script>
-document.getElementById("btnSubmit").onclick = function(){
-	if(validationInst() == false) return false;
-}
 
 let mbmtDesc = document.getElementById("mbmtDesc");
 
@@ -238,6 +288,190 @@ const mbmtDescEditor = new toastui.Editor({
 //     initialValue: '내용을 입력해 주세요.',
     previewStyle: 'vertical'
 });
+
+
+upload = function(objName, seq, allowedMaxTotalFileNumber, allowedExtdiv, allowedEachFileSize, allowedTotalFileSize, uiType) {
+	
+	//		objName 과 seq 는 html 내에서 유일 하여야 함.
+	//		uploadedImg1: 1
+	//		uploadedFile2: 2
+	
+	//		uiType: 1 => 이미지형
+	//		uiType: 2 => 파일형
+	//		uiType: 3 => 프로필형
+
+		var files = $("#" + objName +"")[0].files;
+		var filePreview = $("#" + objName +"Preview");
+		var numbering = [];
+		var maxNumber = 0;
+		
+		if(uiType == 1) {
+			var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > div > img").length;
+			var tagIds = document.querySelectorAll("#" + objName + "Preview > div");
+			
+			for(var i=0; i<tagIds.length; i++){
+				var tagId = tagIds[i].getAttribute("id").split("_");
+				numbering.push(tagId[2]);
+			}
+			
+			for(let i=0; i < numbering.length; i++){
+// 				alert(i);
+			}
+			
+			if(uploadedFilesCount > 0){
+				numbering.sort();
+				maxNumber = parseInt(numbering[numbering.length-1]) + parseInt(1);
+			}
+		} else if(uiType == 2){
+			var uploadedFilesCount = document.querySelectorAll("#" + objName + "Preview > li").length;
+			var tagIds = document.querySelectorAll("#" + objName + "Preview > li");
+
+			for(var i=0; i<tagIds.length; i++){
+				var tagId = tagIds[i].getAttribute("id").split("_");
+				numbering.push(tagId[2]);
+			}
+			
+			if(uploadedFilesCount > 0){
+				numbering.sort();
+				maxNumber = parseInt(numbering[numbering.length-1]) + parseInt(1);
+			}
+		} else {
+			// by pass
+		}
+		
+		$("#" + objName + "MaxNumber").val(maxNumber);
+
+		var totalFileSize = 0;
+		var filesCount = files.length;
+		var filesArray = [];
+		
+		allowedMaxTotalFileNumber = allowedMaxTotalFileNumber == 0 ? MAX_TOTAL_FILE_NUMBER : allowedMaxTotalFileNumber;
+		allowedEachFileSize = allowedEachFileSize == 0 ? MAX_EACH_FILE_SIZE : allowedEachFileSize;
+		allowedTotalFileSize = allowedTotalFileSize == 0 ? MAX_TOTAL_FILE_SIZE : allowedTotalFileSize;
+		
+		if(checkUploadedTotalFileNumber(files, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) == false) { return false; }
+		
+		for (var i=0; i<filesCount; i++) {
+			if(checkUploadedExt(files[i].name, seq, allowedExtdiv) == false) { return false; }
+			if(checkUploadedEachFileSize(files[i], seq, allowedEachFileSize) == false) { return false; }
+
+			totalFileSize += files[i].size;
+			
+			filesArray.push(files[i]);
+		}
+
+		if(checkUploadedTotalFileSize(seq, totalFileSize, allowedTotalFileSize) == false) { return false; }
+		
+		if (uiType == 1) {
+			for (var i=0; i<filesArray.length; i++) {
+				var file = filesArray[i];
+
+				var picReader = new FileReader();
+			    picReader.addEventListener("load", addEventListenerCustom (objName, seq, i, file, filePreview, maxNumber));
+			    picReader.readAsDataURL(file);
+			}			
+		} else if(uiType == 2) {
+			for (var i = 0 ; i < filesCount ; i++) {
+				addUploadLi(objName, seq, i, $("#" + objName +"")[0].files[i].name, filePreview, maxNumber);
+			}
+		} else if (uiType == 3) {
+			var fileReader = new FileReader();
+			 fileReader.onload = function () {
+				 $("#uploadImgProfilePreview").attr("src", fileReader.result);		/* #-> */
+			 }	
+			 fileReader.readAsDataURL($("#" + objName +"")[0].files[0]);
+		} else {
+			return false;
+		}
+		return false;
+	}
+	
+	
+	addEventListenerCustom = function (objName, type, i, file, filePreview, maxNumber) { 
+		return function(event) {
+			var imageFile = event.target;
+			var sort = parseInt(maxNumber) + i;
+
+			var divImage = "";
+			divImage += '<div id="imgDiv_'+type+'_'+ sort +'" style="display: inline-block; height: 95px;">';
+			divImage += '	<img src="'+ imageFile.result +'" class="rounded" width= "85px" height="85px">';
+			divImage += '	<div style="position: relative; top:-85px; left:5px"><span style="color: red; cursor:pointer;" onClick="delImgDiv(0,' + type +','+ sort +')">X</span></div>';
+			divImage += '</div> ';
+			
+			filePreview.append(divImage);
+	    };
+	}
+	
+	
+	delImgDiv = function(objName, type, sort, deleteSeq, pathFile) {
+		
+		$("#imgDiv_"+type+"_"+sort).remove();
+		
+		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
+
+		if(objDeleteSeq.val() == "") {
+			objDeleteSeq.val(deleteSeq);
+		} else {
+			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+		}
+		
+		if(objDeletePathFile.val() == "") {
+			objDeletePathFile.val(pathFile);
+		} else {
+			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+		}
+	}
+	
+	
+	addUploadLi = function (objName, type, i, name, filePreview, maxNumber){
+
+		var sort = parseInt(maxNumber) + i;
+		
+		var li ="";
+		li += '<input type="hidden" id="'+ objName +'Process_'+type+'_'+ sort +'" name="'+ objName +'Process" value="1">';
+		li += '<input type="hidden" id="'+ objName +'Sort_'+type+'_'+ sort +'" name="'+ objName +'Sort" value="'+ sort +'">';
+		li += '<li id="li_'+type+'_'+sort+'" class="list-group-item d-flex justify-content-between align-items-center">';
+		li += name;
+		li +='<span class="badge bg-danger rounded-pill" onClick="delLi(0,'+ type +','+ sort +')"><i class="fa-solid fa-x" style="cursor: pointer;"></i></span>';
+		li +='</li>';
+		
+		filePreview.append(li);
+	}
+	
+	
+	delLi = function(objName, type, sort, deleteSeq, pathFile) {
+		
+		$("#li_"+type+"_"+sort).remove();
+
+		var objDeleteSeq = $('input[name='+ objName +'DeleteSeq]');
+		var objDeletePathFile = $('input[name='+ objName +'DeletePathFile]');
+
+		if(objDeleteSeq.val() == "") {
+			objDeleteSeq.val(deleteSeq);
+		} else {
+			objDeleteSeq.val(objDeleteSeq.val() + "," + deleteSeq);
+		}
+		
+		if(objDeletePathFile.val() == "") {
+			objDeletePathFile.val(pathFile);
+		} else {
+			objDeletePathFile.val(objDeletePathFile.val() + "," + pathFile);
+		}
+	}
+	
+	openViewer = function (type, sort, path) {
+		var img = '<img src="'+path+'" class="img-fluid" alt="Image Preview">';
+		$("#modalImgViewerDetail").empty();
+		$("#modalImgViewerDetail").append(img);
+		$("#modalImgViewer").modal("show");
+	}
+	
+
+document.getElementById("btnSubmit").onclick = function(){
+	if(validationInst() == false) return false;
+}
+
 
 function validationInst() {
     if(validationUpdt() == false) return false;
