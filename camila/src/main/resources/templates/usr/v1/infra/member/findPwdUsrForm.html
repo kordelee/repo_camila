@@ -29,7 +29,7 @@
     <div class="header-height-bar"></div>
     
 <!-- includeUsrGnb s -->
-<div th:replace="~{usr/v1/infra/include/top :: top}"></div> 
+<div th:replace="~{usr/v1/infra/include/topWithoutMenu :: topWithoutMenu}"></div> 
 <!-- includeUsrGnb e -->
 <!-- <div th:replace="~{usr/v0/infra/include/modal:: modal}"></div> -->
 <div th:replace="~{usr/v1/mallbicycle/include/includeUsrModal :: includeUsrModal}"></div>
@@ -90,7 +90,11 @@
 										</div>
 										<div class="text-center pb-3" id="resultFindPwd">
 										    <!-- <span class="text-muted">임시 비밀번호를 메일로 발송해 드렸습니다.</span> -->
-										</div>                                    
+										</div>
+										<div class="text-center">
+		                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signUpUsrForm}">Signup here</a></span><br>
+		                                    <span class="text-muted">Forgot your ID? <a th:href="@{/v1/infra/member/findIdUsrForm}">Find ID</a></span><br>
+		                                </div>                                    
 		                            </div>
 								</div>
 							</form>

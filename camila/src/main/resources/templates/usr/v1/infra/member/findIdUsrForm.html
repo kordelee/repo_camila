@@ -29,7 +29,7 @@
     <div class="header-height-bar"></div>
     
 <!-- includeUsrGnb s -->
-<div th:replace="~{usr/v1/infra/include/top :: top}"></div> 
+<div th:replace="~{usr/v1/infra/include/topWithoutMenu :: topWithoutMenu}"></div> 
 <!-- includeUsrGnb e --> 
 
 <!-- Main -->
@@ -87,6 +87,10 @@
 <!-- 										</div> -->
 <!-- 									</div> -->
 <!-- 								</div> -->
+								<div class="pt-4 text-center">
+                                    <span class="text-muted">Don't have an account? <a th:href="@{/v1/infra/member/signUpUsrForm}">Signup here</a></span><br>
+                                    <span class="text-muted">Forgot your password? <a th:href="@{/v1/infra/member/findPwdUsrForm}">Find Password</a></span>
+                                </div>
                             </div>
                         </div>
                     </div>
