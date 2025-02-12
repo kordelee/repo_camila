@@ -63,9 +63,24 @@ $("#shDateStart").datepicker({
 });*/
 
 
+function bytesToMb(bytes) {
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0){
+        return '0 Byte';
+    } 
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    if (i > 4) {
+        return Math.round(bytes / Math.pow(1024, i), 2);
+    }
+    return Math.round(bytes / Math.pow(1024, i), 2) +  sizes[i];
+};
+
+
 checkUploadedTotalFileNumber = function(obj, allowedMaxTotalFileNumber, filesCount, uploadedFilesCount) {
 	if(allowedMaxTotalFileNumber < (filesCount + uploadedFilesCount)){
-		alert("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+		$(".modal-title").text("경 고");
+		$(".modal-body").text("전체 파일 갯수는 "+ allowedMaxTotalFileNumber +"개 까지 허용됩니다.");
+		$("#modalAlert").modal("show");
 //		$("#file"+seq).val("");
 //		obj.val("");
 		return false;
@@ -78,7 +93,9 @@ checkUploadedExt = function(objName, seq, div) {
 	var extArray = eval("extArray" + div);
 	
 	if(extArray.indexOf(ext) == -1) {
-		alert("허용된 확장자가 아닙니다.");
+		$(".modal-title").text("경 고");
+		$(".modal-body").text("허용된 확장자가 아닙니다.");
+		$("#modalAlert").modal("show");
 //		$("#file"+seq).val("");
 		return false;
 	}
@@ -88,7 +105,9 @@ checkUploadedExt = function(objName, seq, div) {
 checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
 
 	if(obj.size > allowedEachFileSize){
-		alert("각 첨부 파일 사이즈는 "+kbToMb(allowedEachFileSize)+"MB 이내로 등록 가능합니다.");
+		$(".modal-title").text("경 고");
+		$(".modal-body").text("각 첨부 파일 사이즈는 "+bytesToMb(allowedEachFileSize)+" 이내로 등록 가능합니다.");
+		$("#modalAlert").modal("show");
 		$("#file"+seq).val("");
 		return false;
 	}
@@ -97,7 +116,9 @@ checkUploadedEachFileSize = function(obj, seq, allowedEachFileSize) {
 
 checkUploadedTotalFileSize = function(seq, totalSize, allowedTotalFileSize) {
 	if(totalSize > allowedTotalFileSize){
-		alert("전체 용량은 "+kbToMb(allowedTotalFileSize)+"M를 넘을 수 없습니다.");
+		$(".modal-title").text("경 고");
+		$(".modal-body").text("전체 용량은 "+bytesToMb(allowedTotalFileSize)+"를 넘을 수 없습니다.");
+		$("#modalAlert").modal("show");
 		$("#file"+seq).val("");
 		return false;
 	}
@@ -156,22 +177,28 @@ extArray9 = ["jpg","gif","png","jpeg","bmp","tif","txt","pdf","hwp","doc","docx"
 	});
 		
 	
-	  /*window.addEventListener('load', function() {
+	window.addEventListener('load', function() {
 		  let url = window.location.pathname;
 		  let rt = url.split("/");
+		  
 		  //배열로 떨어져서 길이 구한다음 모듈 이름까지 빼기
 		  let moduelName = rt[rt.length-2];
 		  let fileName = rt[rt.length-1];
-		  
-		  if(fileName.includes("Use")){
-		  	document.getElementById(moduelName+'Use').classList.add('active');
+		  let cateWording = fileName.slice(0, fileName.length - 11);
+		  if(moduelName == "member"){
+		  	//li태그에 active 요소 추가
+		  	document.getElementById("member").classList.add('show');
+		  	//바로 상위 태그인 ul에 show 요소 추가
+			document.getElementById("memberA").ariaExpanded = true;
+		  	//document.getElementById(moduelName).closest('ul').classList.add('show');
 		  } else{
 		  	//li태그에 active 요소 추가
-		  	document.getElementById(moduelName).classList.add('active');
+		  	document.getElementById(cateWording).classList.add('show');
 		  	//바로 상위 태그인 ul에 show 요소 추가
-		  	document.getElementById(moduelName).closest('ul').classList.add('show');
+			document.getElementById(cateWording+"A").ariaExpanded = true;
+		  	//document.getElementById(moduelName).closest('ul').classList.add('show');
 		  }
-	});*/
+	});
 		  
 function textCount(textAreaId){
 	document.getElementById(textAreaId+"Count").innerText = document.getElementById(textAreaId).value.length;

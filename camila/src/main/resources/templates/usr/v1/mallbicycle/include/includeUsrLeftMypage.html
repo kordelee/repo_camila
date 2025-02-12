@@ -25,51 +25,51 @@
 						</li>
 	 -->					
 						<li class="nav-item">
-							<a href="javascript:void(0);" class="nav-link" style="color: inherit; cursor: default;">즐겨찾기</a>
-							<a data-bs-toggle="collapse" href="#leftMypageFavorite" role="button" aria-expanded="true" aria-controls="leftMypageFavorite" class="s-icon"></a>
-							<div class="collapse show" id="leftMypageFavorite">
+							<a href="#majorFavorite" data-bs-toggle="collapse" aria-controls="majorFavorite" class="nav-link" style="color: inherit; cursor: default;">즐겨찾기</a>
+							<a data-bs-toggle="collapse" id="majorFavoriteA" href="#majorFavorite" role="button" aria-expanded="false" aria-controls="majorFavorite" class="s-icon collapsed"></a>
+							<div class="collapse" id="majorFavorite">
 								<ul class="nav nav-pills flex-column nav-hierarchy">
 									<li class="nav-item nav-item-edited">
-										<a href="/v1/mallbicycle/major/majorFavoriteUsrAjaxList">자전거</a>&nbsp;&nbsp;|&nbsp;  
-										<a href="/v1/mallbicycle/major/partFavoriteUsrAjaxList">부품</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/clothesFavoriteUsrAjaxList">의류</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/suppliesFavoriteUsrAjaxList">용품</a>
+										<a th:href="@{/v1/mallbicycle/major/majorFavoriteUsrAjaxList}">자전거</a>&nbsp;&nbsp;|&nbsp;  
+										<a th:href="@{/v1/mallbicycle/major/partFavoriteUsrAjaxList}">부품</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/clothesFavoriteUsrAjaxList}">의류</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/suppliesFavoriteUsrAjaxList}">용품</a>
 									</li>	
 								</ul>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a href="javascript:void(0);" class="nav-link" style="color: inherit; cursor: default;">거래</a>
-							<a data-bs-toggle="collapse" href="#leftMypageTrade" role="button" aria-expanded="true" aria-controls="leftMypageTrade" class="s-icon"></a>
-							<div class="collapse show" id="leftMypageTrade">
+							<a href="#majorTrade" data-bs-toggle="collapse" aria-controls="majorFavorite" class="nav-link" style="color: inherit; cursor: default;">거래</a>
+							<a data-bs-toggle="collapse" id="majorTradeA" href="#majorTrade" role="button" aria-expanded="false" aria-controls="majorTrade" class="s-icon collapsed"></a>
+							<div class="collapse" id="majorTrade">
 								<ul class="nav nav-pills flex-column nav-hierarchy">
 									<li class="nav-item nav-item-edited">
-										<a href="/v1/mallbicycle/major/majorTradeUsrAjaxList">자전거</a>&nbsp;&nbsp;|&nbsp;  
-										<a href="/v1/mallbicycle/major/partTradeUsrAjaxList">부품</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/clothesTradeUsrAjaxList">의류</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/suppliesTradeUsrAjaxList">용품</a>
+										<a th:href="@{/v1/mallbicycle/major/majorTradeUsrAjaxList}">자전거</a>&nbsp;&nbsp;|&nbsp;  
+										<a th:href="@{/v1/mallbicycle/major/partTradeUsrAjaxList}">부품</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/clothesTradeUsrAjaxList}">의류</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/suppliesTradeUsrAjaxList}">용품</a>
 									</li>	
 								</ul>
 							</div>
 						</li>					
 						<li class="nav-item">
-							<a href="javascript:void(0);" class="nav-link" style="color: inherit; cursor: default;">상품</a>
-							<a data-bs-toggle="collapse" href="#leftMypageGoods" role="button" aria-expanded="true" aria-controls="leftMypageGoods" class="s-icon"></a>
-							<div class="collapse show" id="leftMypageGoods">
+							<a href="#majorGoods" data-bs-toggle="collapse" aria-controls="majorFavorite" class="nav-link" style="color: inherit; cursor: default;">상품</a>
+							<a data-bs-toggle="collapse" id="majorGoodsA" href="#majorGoods" role="button" aria-expanded="false" aria-controls="majorGoods" class="s-icon collapsed"></a>
+							<div class="collapse" id="majorGoods">
 								<ul class="nav nav-pills flex-column nav-hierarchy">
 									<li class="nav-item nav-item-edited">
-										<a href="/v1/mallbicycle/major/majorGoodsUsrAjaxList">자전거</a>&nbsp;&nbsp;|&nbsp;  
-										<a href="/v1/mallbicycle/major/partGoodsUsrAjaxList">부품</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/clothesGoodsUsrAjaxList">의류</a>&nbsp;&nbsp;|&nbsp;
-										<a href="/v1/mallbicycle/major/suppliesGoodsUsrAjaxList">용품</a>
+										<a th:href="@{/v1/mallbicycle/major/majorGoodsUsrAjaxList}">자전거</a>&nbsp;&nbsp;|&nbsp;  
+										<a th:href="@{/v1/mallbicycle/major/partGoodsUsrAjaxList}">부품</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/clothesGoodsUsrAjaxList}">의류</a>&nbsp;&nbsp;|&nbsp;
+										<a th:href="@{/v1/mallbicycle/major/suppliesGoodsUsrAjaxList}">용품</a>
 									</li>								
 								</ul>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a href="javascript:void(0);" class="nav-link" style="color: inherit; cursor: default;">활동</a>
-							<a data-bs-toggle="collapse" href="#leftMypageActivity" role="button" aria-expanded="true" aria-controls="leftMypageActivity" class="s-icon"></a>
-							<div class="collapse show" id="leftMypageActivity">
+							<a href="#leftMypageActivity" data-bs-toggle="collapse" aria-controls="majorFavorite" class="nav-link" style="color: inherit; cursor: default;">활동</a>
+							<a data-bs-toggle="collapse" href="#leftMypageActivity" role="button" aria-expanded="false" aria-controls="leftMypageActivity" class="s-icon collapsed"></a>
+							<div class="collapse" id="leftMypageActivity">
 								<ul class="nav nav-pills flex-column nav-hierarchy">
 									<li class="nav-item">
 										<a href="#" class="nav-link ">문의</a>
@@ -78,9 +78,9 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a href="javascript:void(0);" class="nav-link" style="color: inherit; cursor: default;">개인정보</a>
-							<a data-bs-toggle="collapse" href="#leftMypagePersonalInfo" role="button" aria-expanded="true" aria-controls="leftMypagePersonalInfo" class="s-icon"></a>
-							<div class="collapse show" id="leftMypagePersonalInfo">
+							<a href="#member" data-bs-toggle="collapse" aria-controls="majorFavorite" class="nav-link" style="color: inherit; cursor: default;">개인정보</a>
+							<a data-bs-toggle="collapse" id="memberA" href="#member" role="button" aria-expanded="false" aria-controls="member" class="s-icon collapsed"></a>
+							<div class="collapse" id="member">
 								<ul class="nav nav-pills flex-column nav-hierarchy">
 									<li class="nav-item">
 										<a th:href="@{/v1/infra/member/memberUsrForm}" class="nav-link ">개인정보</a>
