@@ -33,12 +33,16 @@
         <include refid="Base.selectListUpperForMysql" />
         SELECT
             a.ifppSeq
+            ,a.ifppDisplayNy
+            ,a.ifppXpoint
+            ,a.ifppYpoint
             ,a.ifppTitle
+            ,a.ifppContents
             ,a.ifppOrder
             ,a.ifppStartDateTime
             ,a.ifppEndDateTime
-            ,a.ifppDisplayNy
             ,a.ifppUrl
+            ,a.ifppDesc
             ,a.ifppDelNy
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
@@ -91,12 +95,14 @@
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
            a.ifppSeq
+            ,a.ifppDisplayNy
+            ,a.ifppXpoint
+            ,a.ifppYpoint
             ,a.ifppTitle
             ,a.ifppContents
             ,a.ifppOrder
             ,a.ifppStartDateTime
             ,a.ifppEndDateTime
-            ,a.ifppDisplayNy
             ,a.ifppUrl
             ,a.ifppDesc
             ,a.ifppDelNy
@@ -152,14 +158,12 @@
 	<update id="update">
 		UPDATE infrPopup
 		SET
-			ifppSeq = #{ifppSeq}
-			,ifppDisplayNy = #{ifppDisplayNy}
+			ifppDisplayNy = #{ifppDisplayNy}
 	        ,ifppXpoint = #{ifppXpoint}
 	        ,ifppYpoint = #{ifppYpoint}
 	        ,ifppTitle = #{ifppTitle}
 	        ,ifppContents = #{ifppContents}
 	        ,ifppOrder = #{ifppOrder}
-	        ,ifppDesc = #{ifppDesc}
 	        ,ifppStartDateTime = 
 			<choose>
 				<when test="ifppStartDateTime.equals('')">NULL</when>  
@@ -171,6 +175,7 @@
 				<otherwise>#{ifppEndDateTime}</otherwise>
 			</choose>
 	        ,ifppUrl = #{ifppUrl}
+	        ,ifppDesc = #{ifppDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifppSeq = #{ifppSeq}

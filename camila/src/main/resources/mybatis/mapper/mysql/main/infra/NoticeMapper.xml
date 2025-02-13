@@ -32,6 +32,7 @@
         <include refid="Base.selectListUpperForMysql" />
         SELECT
         	a.ifntSeq
+            ,a.ifntTargetCd
             ,a.ifntTitle
             ,a.ifntContents
             ,a.ifntTopNy
@@ -39,8 +40,8 @@
             ,a.ifntTopDateStart
             ,a.ifntTopDateEnd
             ,a.ifntDisplayNy
+            ,a.ifntDesc
             ,a.ifntDelNy
-            ,a.ifntTargetCd
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
         ORDER BY a.ifntSeq DESC
@@ -67,6 +68,7 @@
     <select id="selectOne" resultMap="resultMapObj">
         SELECT
             a.ifntSeq
+            ,a.ifntTargetCd
             ,a.ifntTitle
             ,a.ifntContents
             ,a.ifntTopNy
@@ -74,7 +76,6 @@
             ,a.ifntTopDateStart
             ,a.ifntTopDateEnd
             ,a.ifntDisplayNy
-            ,a.ifntTargetCd
             ,a.ifntDesc
             ,a.ifntDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
@@ -85,20 +86,22 @@
 
     <insert id="insert">
 			INSERT INTO infrNotice (
-	            ifntTitle
+	            ifntTargetCd
+	            ,ifntTitle
 	            ,ifntContents
+	            ,ifntTopNy
 	            ,ifntTopOrder
 	            ,ifntTopDateStart
 	            ,ifntTopDateEnd
+	            ,ifntDisplayNy
 	            ,ifntDesc
 	            ,ifntDelNy
-	            ,ifntDisplayNy
-	            ,ifntTopNy
-	            ,ifntTargetCd
 				<include refid="Base.insertRegModColumn" />			
 			) VALUES (
-				#{ifntTitle}
+				#{ifntTargetCd}
+				,#{ifntTitle}
 				,#{ifntContents}
+				,#{ifntTopNy}
 				,#{ifntTopOrder}
 				<choose>
 					<when test="ifntTopDateStart.equals('')">,NULL</when>  
@@ -108,11 +111,9 @@
 					<when test="ifntTopDateEnd.equals('')">,NULL</when>  
 					<otherwise>,#{ifntTopDateEnd}</otherwise>
 				</choose>
+				,#{ifntDisplayNy}
 				,#{ifntDesc}
 				,0
-				,#{ifntDisplayNy}
-				,#{ifntTopNy}
-				,#{ifntTargetCd}
 				<include refid="Base.insertRegModValue" />			
 			 )
 			 <selectKey resultType="String" keyProperty="ifntSeq" order="AFTER">
@@ -127,10 +128,11 @@
 	<update id="update">
 		UPDATE infrNotice
 		SET
-			ifntTitle = #{ifntTitle}
+	        ifntTargetCd = #{ifntTargetCd}
+			,ifntTitle = #{ifntTitle}
 	        ,ifntContents = #{ifntContents}
+	        ,ifntTopNy = #{ifntTopNy}
 	        ,ifntTopOrder = #{ifntTopOrder}
-	        ,ifntDesc = #{ifntDesc}
 	        ,ifntTopDateStart = 
 			<choose>
 				<when test="ifntTopDateStart.equals('')">NULL</when>  
@@ -141,7 +143,8 @@
 				<when test="ifntTopDateEnd.equals('')">NULL</when>  
 				<otherwise>#{ifntTopDateEnd}</otherwise>
 			</choose>
-	        ,ifntTargetCd = #{ifntTargetCd}
+	        ,ifntDisplayNy = #{ifntDisplayNy}
+	        ,ifntDesc = #{ifntDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifntSeq = #{ifntSeq}

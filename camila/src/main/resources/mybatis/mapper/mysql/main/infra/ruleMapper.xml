@@ -35,12 +35,14 @@
         SELECT
             a.ifrlSeq
             ,a.ifrlTitle
-            ,a.ifrlDesc
-            ,a.ifrlUseNy
-            ,a.ifrlDelNy
+            ,a.ifrlContents
+            ,a.ifrlVersion
+            ,a.ifrlNoticeDateTime
             ,a.ifrlStartDateTime
             ,a.ifrlEndDateTime
-            ,a.ifrlNoticeDateTime
+            ,a.ifrlUseNy
+            ,a.ifrlDesc
+            ,a.ifrlDelNy
 						<include refid="Base.selectRegModWithAlies" />
         <include refid="selectCommon" />
         ORDER BY a.ifrlSeq DESC
@@ -52,13 +54,13 @@
             a.ifrlSeq
             ,a.ifrlTitle
             ,a.ifrlContents
-            ,a.ifrlDesc
             ,a.ifrlVersion
-            ,a.ifrlUseNy
-            ,a.ifrlDelNy
+            ,a.ifrlNoticeDateTime
             ,a.ifrlStartDateTime
             ,a.ifrlEndDateTime
-            ,a.ifrlNoticeDateTime
+            ,a.ifrlUseNy
+            ,a.ifrlDesc
+            ,a.ifrlDelNy
 						<include refid="Base.selectRegModWithAlies" />		            
         FROM infrRule a
         WHERE 1=1
@@ -70,10 +72,10 @@
 				ifrlTitle
 				,ifrlContents
 				,ifrlVersion
-				,ifrlUseNy
-				,ifrlEndDateTime
-				,ifrlStartDateTime
 				,ifrlNoticeDateTime
+				,ifrlStartDateTime
+				,ifrlEndDateTime
+				,ifrlUseNy
 				,ifrlDesc
 				,ifrlDelNy
 				<include refid="Base.insertRegModColumn" />			
@@ -81,19 +83,19 @@
 				#{ifrlTitle}
 				,#{ifrlContents}
 				,#{ifrlVersion}
-				,#{ifrlUseNy}
 				<choose>
-					<when test="ifrlEndDateTime.equals('')">,NULL</when>  
-					<otherwise>,#{ifrlEndDateTime}</otherwise>
+					<when test="ifrlNoticeDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifrlNoticeDateTime}</otherwise>
 				</choose>
 				<choose>
 					<when test="ifrlStartDateTime.equals('')">,NULL</when>  
 					<otherwise>,#{ifrlStartDateTime}</otherwise>
 				</choose>
 				<choose>
-					<when test="ifrlNoticeDateTime.equals('')">,NULL</when>  
-					<otherwise>,#{ifrlNoticeDateTime}</otherwise>
+					<when test="ifrlEndDateTime.equals('')">,NULL</when>  
+					<otherwise>,#{ifrlEndDateTime}</otherwise>
 				</choose>
+				,#{ifrlUseNy}
 				,#{ifrlDesc}
 				,0
 				<include refid="Base.insertRegModValue" />			
@@ -108,9 +110,12 @@
 		SET
 			ifrlTitle = #{ifrlTitle}
 			,ifrlContents = #{ifrlContents}
-			,ifrlDesc = #{ifrlDesc}
 			,ifrlVersion = #{ifrlVersion}
-			,ifrlUseNy = #{ifrlUseNy}
+			,ifrlNoticeDateTime = 
+			<choose>
+				<when test="ifrlNoticeDateTime.equals('')">NULL</when>  
+				<otherwise>#{ifrlNoticeDateTime}</otherwise>
+			</choose>
 			,ifrlStartDateTime =
 			<choose>
 				<when test="ifrlStartDateTime.equals('')">NULL</when>  
@@ -121,11 +126,8 @@
 				<when test="ifrlEndDateTime.equals('')">NULL</when>  
 				<otherwise>#{ifrlEndDateTime}</otherwise>
 			</choose>
-			,ifrlNoticeDateTime = 
-			<choose>
-				<when test="ifrlNoticeDateTime.equals('')">NULL</when>  
-				<otherwise>#{ifrlNoticeDateTime}</otherwise>
-			</choose>
+			,ifrlUseNy = #{ifrlUseNy}
+			,ifrlDesc = #{ifrlDesc}
 			<include refid="Base.updateModColumnValue" />
 		WHERE 1=1
 			AND ifrlSeq = #{ifrlSeq}
