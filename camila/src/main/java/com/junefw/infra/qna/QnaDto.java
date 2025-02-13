@@ -1,7 +1,6 @@
 package com.junefw.infra.qna;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.junefw.common.base.BaseDto;
 
@@ -12,14 +11,14 @@ public class QnaDto extends BaseDto implements Serializable {
 	private Integer ifqaStatusCd;
 	private Integer ifqaTypeCd;
 	private String ifqaTitle;
-	private String ifqaAnswer;
+	private Integer ifqaSecurityNy;
 	private String ifqaContents;
+	private String ifqaAnswer;
 	private String ifqaAnswerSeq;
 	private String ifqaAnswerDateTime;
 	private Integer ifqaAnswerDisplayNy;
 	private String ifqaDesc;
 	private Integer ifqaDelNy;
-	private Integer ifqaSecurityNy;
 //	----------
 	public String getIfqaSeq() {
 		return ifqaSeq;
@@ -45,17 +44,23 @@ public class QnaDto extends BaseDto implements Serializable {
 	public void setIfqaTitle(String ifqaTitle) {
 		this.ifqaTitle = ifqaTitle;
 	}
-	public String getIfqaAnswer() {
-		return ifqaAnswer;
+	public Integer getIfqaSecurityNy() {
+		return ifqaSecurityNy;
 	}
-	public void setIfqaAnswer(String ifqaAnswer) {
-		this.ifqaAnswer = ifqaAnswer;
+	public void setIfqaSecurityNy(Integer ifqaSecurityNy) {
+		this.ifqaSecurityNy = ifqaSecurityNy;
 	}
 	public String getIfqaContents() {
 		return ifqaContents;
 	}
 	public void setIfqaContents(String ifqaContents) {
 		this.ifqaContents = ifqaContents;
+	}
+	public String getIfqaAnswer() {
+		return ifqaAnswer;
+	}
+	public void setIfqaAnswer(String ifqaAnswer) {
+		this.ifqaAnswer = ifqaAnswer;
 	}
 	public String getIfqaAnswerSeq() {
 		return ifqaAnswerSeq;
@@ -87,11 +92,4 @@ public class QnaDto extends BaseDto implements Serializable {
 	public void setIfqaDelNy(Integer ifqaDelNy) {
 		this.ifqaDelNy = ifqaDelNy;
 	}
-	public Integer getIfqaSecurityNy() {
-		return ifqaSecurityNy;
-	}
-	public void setIfqaSecurityNy(Integer ifqaSecurityNy) {
-		this.ifqaSecurityNy = ifqaSecurityNy;
-	}
-
 }

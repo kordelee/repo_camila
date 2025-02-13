@@ -11,6 +11,7 @@ public class NoticeDto extends BaseDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String ifntSeq;
+	private Integer ifntTargetCd;
 	private String ifntTitle;
 	private String ifntContents;
 	private Integer ifntTopNy;
@@ -20,7 +21,6 @@ public class NoticeDto extends BaseDto implements Serializable {
 	private Integer ifntDisplayNy;
 	private String ifntDesc;
 	private Integer ifntDelNy;
-	private Integer ifntTargetCd;
 	
 	private MultipartFile[] uploadImg1;
 	private Integer uploadImg1Type;	
@@ -39,6 +39,12 @@ public class NoticeDto extends BaseDto implements Serializable {
 	}
 	public void setIfntSeq(String ifntSeq) {
 		this.ifntSeq = ifntSeq;
+	}
+	public Integer getIfntTargetCd() {
+		return ifntTargetCd;
+	}
+	public void setIfntTargetCd(Integer ifntTargetCd) {
+		this.ifntTargetCd = ifntTargetCd;
 	}
 	public String getIfntTitle() {
 		return ifntTitle;
@@ -93,12 +99,6 @@ public class NoticeDto extends BaseDto implements Serializable {
 	}
 	public void setIfntDelNy(Integer ifntDelNy) {
 		this.ifntDelNy = ifntDelNy;
-	}
-	public Integer getIfntTargetCd() {
-		return ifntTargetCd;
-	}
-	public void setIfntTargetCd(Integer ifntTargetCd) {
-		this.ifntTargetCd = ifntTargetCd;
 	}
 	public MultipartFile[] getUploadImg1() {
 		return uploadImg1;
